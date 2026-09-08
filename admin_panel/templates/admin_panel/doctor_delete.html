@@ -1,21 +1,22 @@
 {% extends 'admin_panel/base_admin.html' %}
+{% load i18n %}
 
-{% block title %}Supprimer le médecin{% endblock %}
+{% block title %}{% trans "Supprimer le médecin" %}{% endblock %}
 
 {% block admin_content %}
 <div class="row justify-content-center">
     <div class="col-md-6">
         <div class="card">
-            <div class="card-header bg-danger text-white"><h5 class="mb-0">Confirmer la suppression</h5></div>
+            <div class="card-header bg-danger text-white"><h5 class="mb-0">{% trans "Confirmer la suppression" %}</h5></div>
             <div class="card-body">
-                <p>Voulez-vous vraiment supprimer le profil médecin de <strong>Dr {{ doctor.user.get_full_name|default:doctor.user.username }}</strong> ?</p>
+                <p>{% trans "Voulez-vous vraiment supprimer le profil médecin de" %} <strong>Dr {{ doctor.user.get_full_name|default:doctor.user.username }}</strong> ?</p>
                 <div class="alert alert-warning">
-                    Le compte utilisateur ne sera pas supprimé. Seul le profil médecin (et ses créneaux) sera retiré.
+                    {% trans "Le compte utilisateur ne sera pas supprimé. Seul le profil médecin (et ses créneaux) sera retiré." %}
                 </div>
                 <form method="post">
                     {% csrf_token %}
-                    <button type="submit" class="btn btn-danger"><i class="fas fa-trash"></i> Supprimer</button>
-                    <a href="{% url 'admin_doctor_detail' doctor.id %}" class="btn btn-secondary">Annuler</a>
+                    <button type="submit" class="btn btn-danger"><i class="fas fa-trash"></i> {% trans "Supprimer" %}</button>
+                    <a href="{% url 'admin_doctor_detail' doctor.id %}" class="btn btn-secondary">{% trans "Annuler" %}</a>
                 </form>
             </div>
         </div>

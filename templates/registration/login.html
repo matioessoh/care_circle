@@ -1,6 +1,7 @@
 {% extends 'base_auth.html' %}
+{% load i18n %}
 
-{% block title %}Connexion - CareCircle{% endblock %}
+{% block title %}{% trans "Connexion" %} - CareCircle{% endblock %}
 
 {% block content %}
 <div class="login-screen">
@@ -14,39 +15,39 @@
                 <span class="ring-icon"><i class="fas fa-heartbeat"></i></span>
                 <span class="brand-text font-serif">Care<span class="circle">Circle</span></span>
             </a>
-            <p class="login-tagline">Votre communauté de soins, en toute confiance.</p>
+            <p class="login-tagline">{% trans "Votre communauté de soins, en toute confiance." %}</p>
         </div>
 
         <form method="post">
             {% csrf_token %}
             {% if form.errors %}
             <div class="alert alert-danger py-2 small">
-                Identifiants incorrects. Veuillez réessayer.
+                {% trans "Identifiants incorrects. Veuillez réessayer." %}
             </div>
             {% endif %}
             <div class="cc-field">
-                <label for="username">Adresse e-mail ou identifiant</label>
+                <label for="username">{% trans "Adresse e-mail ou identifiant" %}</label>
                 <div class="position-relative">
                     <i class="fas fa-envelope position-absolute text-muted" style="left:14px;top:13px;"></i>
                     <input type="text" name="username" id="username" class="cc-input" style="padding-left:40px;" required>
                 </div>
             </div>
             <div class="cc-field">
-                <label for="password">Mot de passe</label>
+                <label for="password">{% trans "Mot de passe" %}</label>
                 <div class="position-relative">
                     <i class="fas fa-lock position-absolute text-muted" style="left:14px;top:13px;"></i>
                     <input type="password" name="password" id="password" class="cc-input" style="padding-left:40px;" required>
                     <button type="button" class="btn p-0 position-absolute" style="right:12px;top:10px;color:var(--text-secondary);" onclick="togglePw()"><i class="fas fa-eye" id="pwIcon"></i></button>
                 </div>
             </div>
-            <button type="submit" class="btn-cc btn-cc-primary w-100" style="justify-content:center;margin-top:6px;">Se connecter</button>
+            <button type="submit" class="btn-cc btn-cc-primary w-100" style="justify-content:center;margin-top:6px;">{% trans "Se connecter" %}</button>
         </form>
 
-        <div class="text-center my-3 text-muted-2" style="font-size:13px;">ou</div>
-        <p class="text-center mb-1"><a href="{% url 'register' %}" class="text-decoration-none fw-semibold" style="color:var(--blue-accent);">Créer un compte <i class="fas fa-arrow-right ms-1"></i></a></p>
+        <div class="text-center my-3 text-muted-2" style="font-size:13px;">{% trans "ou" %}</div>
+        <p class="text-center mb-1"><a href="{% url 'register' %}" class="text-decoration-none fw-semibold" style="color:var(--blue-accent);">{% trans "Créer un compte" %} <i class="fas fa-arrow-right ms-1"></i></a></p>
 
         <div class="d-flex align-items-center justify-content-center gap-2 mt-4" style="font-size:12.5px;color:var(--text-secondary);">
-            <i class="fas fa-lock"></i> Vos données restent confidentielles.
+            <i class="fas fa-lock"></i> {% trans "Vos données restent confidentielles." %}
         </div>
     </div>
 </div>

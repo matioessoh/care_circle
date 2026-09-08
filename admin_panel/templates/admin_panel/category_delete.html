@@ -1,18 +1,19 @@
 {% extends 'admin_panel/base_admin.html' %}
+{% load i18n %}
 
-{% block title %}Supprimer la catégorie{% endblock %}
+{% block title %}{% trans "Supprimer la catégorie" %}{% endblock %}
 
 {% block admin_content %}
 <div class="row justify-content-center">
     <div class="col-md-6">
         <div class="card">
-            <div class="card-header bg-danger text-white"><h5 class="mb-0">Confirmer la suppression</h5></div>
+            <div class="card-header bg-danger text-white"><h5 class="mb-0">{% trans "Confirmer la suppression" %}</h5></div>
             <div class="card-body">
-                <p>Voulez-vous vraiment supprimer la catégorie <strong>« {{ category.name }} »</strong> ? Les articles associés seront déplacés en « Sans catégorie ».</p>
+                <p>{% trans "Voulez-vous vraiment supprimer la catégorie" %} <strong>« {{ category.name }} »</strong> ? {% trans "Les articles associés seront déplacés en « Sans catégorie »." %}</p>
                 <form method="post">
                     {% csrf_token %}
-                    <button type="submit" class="btn btn-danger"><i class="fas fa-trash"></i> Supprimer</button>
-                    <a href="{% url 'admin_categories' %}" class="btn btn-secondary">Annuler</a>
+                    <button type="submit" class="btn btn-danger"><i class="fas fa-trash"></i> {% trans "Supprimer" %}</button>
+                    <a href="{% url 'admin_categories' %}" class="btn btn-secondary">{% trans "Annuler" %}</a>
                 </form>
             </div>
         </div>

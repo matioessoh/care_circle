@@ -29,4 +29,5 @@ urlpatterns = [
     path('reports/<int:report_id>/action/', views.report_action, name='admin_report_action'),
     path('export/users/', views.export_users, name='admin_export_users'),
     path('export/appointments/', views.export_appointments, name='admin_export_appointments'),
+    path('audit/connexions/', views.login_audit, name='admin_login_audit'),
 ]

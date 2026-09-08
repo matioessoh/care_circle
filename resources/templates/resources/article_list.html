@@ -1,0 +1,47 @@
+{% extends 'base.html' %}
+{% load i18n %}
+
+{% block title %}{% trans "Fiches info" %} - Care Circle{% endblock %}
+
+{% block content %}
+<div class="d-flex justify-content-between align-items-center mb-2">
+    <div>
+        <div class="kicker">{% trans "Espace d'information" %}</div>
+        <h1 class="page-title">{% trans "Fiches info santé." %}</h1>
+        <p class="reassurance mb-0">{% trans "Pour mieux comprendre, prévenir et agir." %}</p>
+    </div>
+</div>
+
+<div class="cc-card mb-4">
+    <form method="get" class="d-flex gap-2">
+        <input type="text" name="q" class="cc-input" placeholder="{% trans "Rechercher une fiche..." %}" value="{{ current_query }}">
+        <button class="btn-cc btn-cc-outline" type="submit"><i class="fas fa-search"></i></button>
+    </form>
+    <div class="mt-3 d-flex flex-wrap gap-2">
+        <a href="{% url 'resources_articles' %}" class="filter-pill {% if not current_category %}active{% endif %}">{% trans "Toutes" %}</a>
+        {% for cat in categories %}
+        <a href="{% url 'resources_articles' %}?category={{ cat.slug }}" class="filter-pill {% if current_category == cat.slug %}active{% endif %}">{{ cat.name }} ({{ cat.n }})</a>
+        {% endfor %}
+    </div>
+</div>
+
+<div class="row g-4">
+    {% for article in articles %}
+    <div class="col-md-6">
+        <a href="{% url 'resource_article_detail' article.slug %}" class="text-decoration-none">
+            <div class="cc-card h-100">
+                <span class="category-pill">{{ article.category.name }}</span>
+                <h5 class="mt-2 mb-1">{{ article.title }}</h5>
+                <p class="text-muted-2 small mb-2">{{ article.summary }}</p>
+                <span class="card-action">{% trans "Lire la fiche" %} <i class="fas fa-arrow-right"></i></span>
+            </div>
+        </a>
+    </div>
+    {% empty %}
+    <div class="col-12">
+        <div class="cc-card"><div class="empty-state"><h4>{% trans "Aucune fiche trouvée" %}</h4></div></div>
+    </div>
+    {% endfor %}
+</div>
+<p class="reassurance small mt-4 mb-0">⚠️ {% trans "Ces fiches ne remplacent pas un avis médical professionnel." %}</p>
+{% endblock %}

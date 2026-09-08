@@ -1,0 +1,49 @@
+{% extends 'base.html' %}
+{% load i18n %}
+
+{% block title %}{% trans "Ressources & FAQ" %} - Care Circle{% endblock %}
+
+{% block content %}
+<div class="d-flex justify-content-between align-items-center mb-2">
+    <div>
+        <div class="kicker">{% trans "Espace d'information" %}</div>
+        <h1 class="page-title">{% trans "Ressources santé." %}</h1>
+        <p class="reassurance mb-0">{% trans "Des fiches validées et des réponses claires pour mieux vous informer." %}</p>
+    </div>
+</div>
+
+<p class="reassurance small mt-1 mb-4">⚠️ {% trans "Information à visée éducative — elle ne remplace pas un avis médical professionnel." %}</p>
+
+<div class="cc-card mb-4">
+    <div class="d-flex justify-content-between align-items-center mb-3">
+        <h5 class="fw-bold mb-0"><i class="fas fa-book-medical" style="color:var(--blue-accent);"></i> {% trans "Dernières fiches" %}</h5>
+        <a href="{% url 'resources_articles' %}" class="btn-cc btn-cc-ghost">{% trans "Toutes les fiches" %} <i class="fas fa-arrow-right"></i></a>
+    </div>
+    {% for article in recent_articles %}
+    <a href="{% url 'resource_article_detail' article.slug %}" class="text-decoration-none d-block">
+        <div class="py-2 {% if not forloop.last %}border-bottom{% endif %}" style="border-color:var(--border)!important;">
+            <span class="category-pill">{{ article.category.name }}</span>
+            <strong class="ms-2">{{ article.title }}</strong>
+            <div class="small text-muted-2 mt-1">{{ article.summary }}</div>
+        </div>
+    </a>
+    {% empty %}
+    <div class="empty-state"><h4>{% trans "Aucune fiche pour le moment" %}</h4></div>
+    {% endfor %}
+</div>
+
+<div class="cc-card mb-4">
+    <div class="d-flex justify-content-between align-items-center mb-3">
+        <h5 class="fw-bold mb-0"><i class="fas fa-circle-question" style="color:var(--blue-accent);"></i> {% trans "Questions fréquentes" %}</h5>
+        <a href="{% url 'resources_faq' %}" class="btn-cc btn-cc-ghost">{% trans "Toute la FAQ" %} <i class="fas fa-arrow-right"></i></a>
+    </div>
+    {% for f in faqs %}
+    <div class="py-2 {% if not forloop.last %}border-bottom{% endif %}" style="border-color:var(--border)!important;">
+        <strong>{{ f.question }}</strong>
+        <p class="small text-muted-2 mb-0 mt-1">{{ f.answer }}</p>
+    </div>
+    {% empty %}
+    <div class="empty-state"><h4>{% trans "Pas encore de questions" %}</h4></div>
+    {% endfor %}
+</div>
+{% endblock %}

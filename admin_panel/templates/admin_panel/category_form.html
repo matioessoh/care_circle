@@ -1,25 +1,26 @@
 {% extends 'admin_panel/base_admin.html' %}
+{% load i18n %}
 
-{% block title %}{% if category %}Modifier la catégorie{% else %}Nouvelle catégorie{% endif %}{% endblock %}
+{% block title %}{% if category %}{% trans "Modifier la catégorie" %}{% else %}{% trans "Nouvelle catégorie" %}{% endif %}{% endblock %}
 
 {% block admin_content %}
 <div class="row justify-content-center">
     <div class="col-md-8">
         <div class="card">
-            <div class="card-header"><h5 class="mb-0">{% if category %}Modifier la catégorie{% else %}Nouvelle catégorie{% endif %}</h5></div>
+            <div class="card-header"><h5 class="mb-0">{% if category %}{% trans "Modifier la catégorie" %}{% else %}{% trans "Nouvelle catégorie" %}{% endif %}</h5></div>
             <div class="card-body">
                 <form method="post">
                     {% csrf_token %}
                     <div class="mb-3">
-                        <label class="form-label">Nom <span class="text-danger">*</span></label>
+                        <label class="form-label">{% trans "Nom" %} <span class="text-danger">*</span></label>
                         <input type="text" name="name" value="{{ category.name|default:'' }}" class="form-control" required>
                     </div>
                     <div class="mb-3">
-                        <label class="form-label">Description</label>
+                        <label class="form-label">{% trans "Description" %}</label>
                         <textarea name="description" class="form-control" rows="3">{{ category.description|default:'' }}</textarea>
                     </div>
-                    <button type="submit" class="btn btn-primary"><i class="fas fa-save"></i> Enregistrer</button>
-                    <a href="{% url 'admin_categories' %}" class="btn btn-secondary">Annuler</a>
+                    <button type="submit" class="btn btn-primary"><i class="fas fa-save"></i> {% trans "Enregistrer" %}</button>
+                    <a href="{% url 'admin_categories' %}" class="btn btn-secondary">{% trans "Annuler" %}</a>
                 </form>
             </div>
         </div>

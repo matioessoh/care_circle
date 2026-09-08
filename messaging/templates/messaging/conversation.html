@@ -1,15 +1,16 @@
 {% extends 'base.html' %}
+{% load i18n %}
 
-{% block title %}Conversation - Care Circle{% endblock %}
+{% block title %}{% trans "Conversation" %} - Care Circle{% endblock %}
 
 {% block content %}
 <div class="d-flex justify-content-between align-items-center mb-2">
     <div>
-        <div class="kicker">Messagerie privée</div>
+        <div class="kicker">{% trans "Messagerie privée" %}</div>
         <h1 class="page-title">{{ other_user.username }}</h1>
-        <p class="reassurance mb-0">Échange confidentiel et respectueux.</p>
+        <p class="reassurance mb-0">{% trans "Échange confidentiel et respectueux." %}</p>
     </div>
-    <a href="{% url 'inbox' %}" class="btn-cc btn-cc-outline"><i class="fas fa-arrow-left"></i> Retour</a>
+    <a href="{% url 'inbox' %}" class="btn-cc btn-cc-outline"><i class="fas fa-arrow-left"></i> {% trans "Retour" %}</a>
 </div>
 
 <div class="cc-card mt-4">
@@ -25,24 +26,101 @@
             </div>
         </div>
         {% empty %}
-        <p class="text-center text-muted-2 py-4">Démarrez la conversation !</p>
+        <p class="text-center text-muted-2 py-4">{% trans "Démarrez la conversation !" %}</p>
         {% endfor %}
     </div>
     <div class="border-top pt-3 mt-3" style="border-color: var(--border) !important;">
-        <form method="post">
-            {% csrf_token %}
-            <div class="d-flex gap-2">
-                <input type="text" name="content" class="cc-input" placeholder="Écrire un message..." required>
-                <button class="btn-cc btn-cc-primary" type="submit"><i class="fas fa-paper-plane"></i> Envoyer</button>
-            </div>
-        </form>
+        <div class="d-flex gap-2">
+            <input type="text" id="chatInput" class="cc-input" placeholder="{% trans "Écrire un message..." %}" required>
+            <button id="chatSend" class="btn-cc btn-cc-primary" type="button"><i class="fas fa-paper-plane"></i> {% trans "Envoyer" %}</button>
+        </div>
+        <small id="chatStatus" class="text-muted-2 mt-1 d-block"></small>
     </div>
 </div>
 {% endblock %}
 
 {% block extra_js %}
 <script>
-    var chatBox = document.getElementById('chatBox');
+var conversationId = {{ conversation.id }};
+var lastMsgId = {% if messages %}{{ messages.0.id }}{% else %}0{% endif %};
+var chatBox = document.getElementById('chatBox');
+var chatInput = document.getElementById('chatInput');
+var chatStatus = document.getElementById('chatStatus');
+
+function getCookie(name) {
+    var cookieValue = null;
+    if (document.cookie && document.cookie !== '') {
+        var cookies = document.cookie.split(';');
+        for (var i = 0; i < cookies.length; i++) {
+            var cookie = cookies[i].trim();
+            if (cookie.substring(0, name.length + 1) === (name + '=')) {
+                cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                break;
+            }
+        }
+    }
+    return cookieValue;
+}
+
+function scrollToBottom() {
     if (chatBox) { chatBox.scrollTop = chatBox.scrollHeight; }
+}
+
+function appendMessages(html) {
+    if (!html.trim()) return;
+    var div = document.createElement('div');
+    div.innerHTML = html;
+    while (div.firstChild) {
+        chatBox.appendChild(div.firstChild);
+    }
+    scrollToBottom();
+}
+
+function pollMessages() {
+    fetch("{% url 'conversation_poll' conversation.id %}?after_id=" + lastMsgId, {
+        headers: {'X-Requested-With': 'XMLHttpRequest'}
+    })
+    .then(function(r) { return r.json(); })
+    .then(function(data) {
+        if (data.html) {
+            appendMessages(data.html);
+        }
+        if (data.last_id && data.last_id > lastMsgId) {
+            lastMsgId = data.last_id;
+        }
+    })
+    .catch(function() {});
+}
+
+function sendMessage() {
+    var content = chatInput.value.trim();
+    if (!content) return;
+    var formData = new FormData();
+    formData.append('content', content);
+    formData.append('csrfmiddlewaretoken', getCookie('csrftoken'));
+    fetch("{% url 'conversation_send_ajax' conversation.id %}", {
+        method: 'POST',
+        body: formData,
+        headers: {'X-Requested-With': 'XMLHttpRequest'}
+    })
+    .then(function(r) { return r.json(); })
+    .then(function(data) {
+        if (data.ok) {
+            chatInput.value = '';
+            lastMsgId = Math.max(lastMsgId, data.id);
+        } else if (data.error) {
+            chatStatus.textContent = data.error;
+        }
+    })
+    .catch(function() {});
+}
+
+chatSend.addEventListener('click', sendMessage);
+chatInput.addEventListener('keydown', function(e) {
+    if (e.key === 'Enter') { e.preventDefault(); sendMessage(); }
+});
+
+scrollToBottom();
+setInterval(pollMessages, 3000);
 </script>
 {% endblock %}

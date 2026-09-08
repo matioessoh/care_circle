@@ -1,6 +1,7 @@
 from django.db import models
 from django.contrib.auth.models import User
 from django.utils.text import slugify
+from django.utils.translation import gettext_lazy as _
 
 
 class Category(models.Model):
@@ -71,12 +72,12 @@ class Comment(models.Model):
 
 class Report(models.Model):
     REASON_CHOICES = [
-        ('spam', 'Spam'),
-        ('offensive', 'Contenu offensant'),
-        ('harassment', 'Harcèlement'),
-        ('medical_advice', 'Conseil médical dangereux'),
-        ('inappropriate', 'Contenu inapproprié'),
-        ('other', 'Autre'),
+        ('spam', _('Spam')),
+        ('offensive', _('Contenu offensant')),
+        ('harassment', _('Harcèlement')),
+        ('medical_advice', _('Conseil médical dangereux')),
+        ('inappropriate', _('Contenu inapproprié')),
+        ('other', _('Autre')),
     ]
 
     STATUS_CHOICES = [

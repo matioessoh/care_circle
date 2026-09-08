@@ -3,6 +3,8 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
 from django.contrib.auth import login
 from django.contrib import messages
+from django.contrib.auth.password_validation import validate_password
+from django.core.exceptions import ValidationError
 from django.db.models import Q
 from .models import PatientProfile, Connection
 
@@ -23,13 +25,17 @@ def register(request):
             messages.error(request, 'Ce nom d\'utilisateur est déjà pris.')
         elif password != password2:
             messages.error(request, 'Les mots de passe ne correspondent pas.')
-        elif len(password) < 8:
-            messages.error(request, 'Le mot de passe doit contenir au moins 8 caractères.')
         else:
-            user = User.objects.create_user(username=username, email=email, password=password)
-            login(request, user)
-            messages.success(request, 'Inscription réussie ! Bienvenue.')
-            return redirect('profile')
+            try:
+                validate_password(password, user=User(username=username))
+            except ValidationError as valid_errors:
+                for err in valid_errors:
+                    messages.error(request, err)
+            else:
+                user = User.objects.create_user(username=username, email=email, password=password)
+                login(request, user)
+                messages.success(request, 'Inscription réussie ! Bienvenue.')
+                return redirect('profile')
     return render(request, 'registration/register.html')
 
 
@@ -60,6 +66,7 @@ def edit_profile(request):
         profile.medical_conditions = request.POST.get('medical_conditions', '')
         profile.emergency_contact = request.POST.get('emergency_contact', '')
         profile.emergency_phone = request.POST.get('emergency_phone', '')
+        profile.share_medical_record = request.POST.get('share_medical_record') == 'on'
         profile.save()
         return redirect('profile')
     return render(request, 'patients/edit_profile.html', {'profile': profile})

@@ -1,6 +1,7 @@
 {% extends 'base_auth.html' %}
+{% load i18n %}
 
-{% block title %}Inscription - CareCircle{% endblock %}
+{% block title %}{% trans "Inscription" %} - CareCircle{% endblock %}
 
 {% block content %}
 <div class="login-screen">
@@ -14,51 +15,58 @@
                 <span class="ring-icon"><i class="fas fa-heartbeat"></i></span>
                 <span class="brand-text font-serif">Care<span class="circle">Circle</span></span>
             </a>
-            <p class="login-tagline">Rejoignez un cercle de soins bienveillant.</p>
+            <p class="login-tagline">{% trans "Rejoignez un cercle de soins bienveillant." %}</p>
         </div>
 
-        {% if error %}
-        <div class="alert alert-danger py-2 small">{{ error }}</div>
+        {% if messages %}
+        <div class="mb-3">
+            {% for message in messages %}
+            <div class="alert alert-danger alert-dismissible fade show py-2 small" role="alert">
+                {{ message }}
+                <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+            </div>
+            {% endfor %}
+        </div>
         {% endif %}
 
         <form method="post">
             {% csrf_token %}
             <div class="cc-field">
-                <label for="username">Nom d'utilisateur</label>
+                <label for="username">{% trans "Nom d'utilisateur" %}</label>
                 <div class="position-relative">
                     <i class="fas fa-user position-absolute text-muted" style="left:14px;top:13px;"></i>
                     <input type="text" name="username" id="username" class="cc-input" style="padding-left:40px;" required>
                 </div>
             </div>
             <div class="cc-field">
-                <label for="email">Adresse e-mail</label>
+                <label for="email">{% trans "Adresse e-mail" %}</label>
                 <div class="position-relative">
                     <i class="fas fa-envelope position-absolute text-muted" style="left:14px;top:13px;"></i>
                     <input type="email" name="email" id="email" class="cc-input" style="padding-left:40px;" required>
                 </div>
             </div>
             <div class="cc-field">
-                <label for="password">Mot de passe</label>
+                <label for="password">{% trans "Mot de passe" %}</label>
                 <div class="position-relative">
                     <i class="fas fa-lock position-absolute text-muted" style="left:14px;top:13px;"></i>
                     <input type="password" name="password" id="password" class="cc-input" style="padding-left:40px;" required>
                 </div>
             </div>
             <div class="cc-field">
-                <label for="password2">Confirmer le mot de passe</label>
+                <label for="password2">{% trans "Confirmer le mot de passe" %}</label>
                 <div class="position-relative">
                     <i class="fas fa-lock position-absolute text-muted" style="left:14px;top:13px;"></i>
                     <input type="password" name="password2" id="password2" class="cc-input" style="padding-left:40px;" required>
                 </div>
             </div>
-            <button type="submit" class="btn-cc btn-cc-primary w-100" style="justify-content:center;">Créer mon compte</button>
+            <button type="submit" class="btn-cc btn-cc-primary w-100" style="justify-content:center;">{% trans "Créer mon compte" %}</button>
         </form>
 
-        <div class="text-center my-3 text-muted-2" style="font-size:13px;">ou</div>
-        <p class="text-center mb-1"><a href="{% url 'login' %}" class="text-decoration-none fw-semibold" style="color:var(--blue-accent);">Se connecter <i class="fas fa-arrow-right ms-1"></i></a></p>
+        <div class="text-center my-3 text-muted-2" style="font-size:13px;">{% trans "ou" %}</div>
+        <p class="text-center mb-1"><a href="{% url 'login' %}" class="text-decoration-none fw-semibold" style="color:var(--blue-accent);">{% trans "Se connecter" %} <i class="fas fa-arrow-right ms-1"></i></a></p>
 
         <div class="d-flex align-items-center justify-content-center gap-2 mt-4" style="font-size:12.5px;color:var(--text-secondary);">
-            <i class="fas fa-shield-alt"></i> Vos données de santé restent confidentielles.
+            <i class="fas fa-shield-alt"></i> {% trans "Vos données de santé restent confidentielles." %}
         </div>
     </div>
 </div>

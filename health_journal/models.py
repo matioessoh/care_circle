@@ -1,14 +1,15 @@
 from django.db import models
 from django.contrib.auth.models import User
+from django.utils.translation import gettext_lazy as _
 
 
 class HealthEntry(models.Model):
     MOOD_CHOICES = [
-        ('great', 'Très bien'),
-        ('good', 'Bien'),
-        ('okay', 'Passable'),
-        ('bad', 'Mauvais'),
-        ('terrible', 'Très mauvais'),
+        ('great', _('Très bien')),
+        ('good', _('Bien')),
+        ('okay', _('Passable')),
+        ('bad', _('Mauvais')),
+        ('terrible', _('Très mauvais')),
     ]
 
     user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='health_entries')

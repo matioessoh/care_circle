@@ -1,20 +1,21 @@
 {% extends 'base.html' %}
+{% load i18n %}
 
-{% block title %}Supprimer - Care Circle{% endblock %}
+{% block title %}{% trans "Supprimer" %} - Care Circle{% endblock %}
 
 {% block content %}
 <div class="row justify-content-center">
     <div class="col-md-6">
-        <div class="kicker">Espace communautaire</div>
-        <h1 class="page-title">Confirmer la suppression</h1>
+        <div class="kicker">{% trans "Espace communautaire" %}</div>
+        <h1 class="page-title">{% trans "Confirmer la suppression" %}</h1>
         <div class="cc-card">
-            <p>Voulez-vous vraiment supprimer l'article <strong>« {{ post.title }} »</strong> ? Cette action est définitive.</p>
+            <p>{% trans "Voulez-vous vraiment supprimer l'article" %} <strong>« {{ post.title }} »</strong> ? {% trans "Cette action est définitive." %}</p>
             <div class="d-flex gap-2">
                 <form method="post">
                     {% csrf_token %}
-                    <button type="submit" class="btn-cc btn-cc-primary" style="background:#C0392B;border-color:#C0392B;"><i class="fas fa-trash"></i> Supprimer</button>
+                    <button type="submit" class="btn-cc btn-cc-primary" style="background:#C0392B;border-color:#C0392B;"><i class="fas fa-trash"></i> {% trans "Supprimer" %}</button>
                 </form>
-                <a href="{% url 'post_detail' post.slug %}" class="btn-cc btn-cc-outline">Annuler</a>
+                <a href="{% url 'post_detail' post.slug %}" class="btn-cc btn-cc-outline">{% trans "Annuler" %}</a>
             </div>
         </div>
     </div>

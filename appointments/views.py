@@ -154,12 +154,39 @@ def patient_medical_record(request, patient_id):
     # Vérifier que le médecin a au moins un rendez-vous avec ce patient
     has_relation = doctor.appointments.filter(patient=patient, status__in=['pending', 'confirmed', 'completed']).exists()
     profile = getattr(patient, 'patient_profile', None)
+    share_ok = bool(profile and profile.share_medical_record and has_relation)
     appointments = doctor.appointments.filter(patient=patient).order_by('-date')
     return render(request, 'appointments/patient_medical_record.html', {
         'patient': patient,
         'profile': profile,
         'appointments': appointments,
         'has_relation': has_relation,
+        'share_ok': share_ok,
+    })
+
+
+@user_passes_test(_is_doctor, login_url='home')
+def doctor_view_journal(request, patient_id):
+    """Le médecin consulte le journal de santé du patient s'il y a consentement + relation."""
+    doctor = _get_doctor(request.user)
+    patient = get_object_or_404(User, id=patient_id)
+    profile = getattr(patient, 'patient_profile', None)
+    has_relation = doctor.appointments.filter(
+        patient=patient, status__in=['pending', 'confirmed', 'completed']
+    ).exists()
+    if not (profile and profile.share_medical_record and has_relation):
+        messages.error(request, 'Accès refusé : le patient n\'a pas autorisé le partage de son journal de santé.')
+        return redirect('patient_medical_record', patient_id=patient.id)
+
+    from health_journal.models import HealthEntry, Medication, VitalSign
+    entries = HealthEntry.objects.filter(user=patient)
+    medications = Medication.objects.filter(user=patient, is_active=True)
+    vitals = VitalSign.objects.filter(user=patient)[:20]
+    return render(request, 'appointments/doctor_view_journal.html', {
+        'patient': patient,
+        'entries': entries,
+        'medications': medications,
+        'vitals': vitals,
     })
 
 

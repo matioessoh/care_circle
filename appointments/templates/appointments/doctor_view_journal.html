@@ -1,0 +1,68 @@
+{% extends 'base.html' %}
+{% load i18n %}
+
+{% block title %}{% trans "Journal de santé" %} - {{ patient.username }} - Care Circle{% endblock %}
+
+{% block content %}
+<div class="d-flex justify-content-between align-items-center mb-2">
+    <div>
+        <div class="kicker">{% trans "Espace médecin · Accès autorisé" %}</div>
+        <h1 class="page-title">{% trans "Journal de santé" %}</h1>
+        <p class="reassurance mb-0">{{ patient.get_full_name|default:patient.username }} — {% trans "consultation en tant que médecin traitant." %}</p>
+    </div>
+    <a href="{% url 'patient_medical_record' patient.id %}" class="btn-cc btn-cc-outline"><i class="fas fa-arrow-left"></i> {% trans "Dossier médical" %}</a>
+</div>
+
+<div class="alert alert-info mt-3" role="alert" style="border-radius:var(--radius-md);">
+    <i class="fas fa-shield-alt"></i> <strong>{% trans "Consentement patient actif" %}</strong> — {% trans "Ce patient a explicitement autorisé le partage de son journal de santé avec les médecins qui le prennent en charge." %}
+</div>
+
+<div class="row mt-3">
+    <div class="col-md-6 mb-3">
+        <div class="cc-card">
+            <h6 class="kicker" style="color:var(--blue-accent);"><i class="fas fa-pills me-1"></i> {% trans "Médicaments actifs" %}</h6>
+            {% for m in medications %}
+            <div class="py-2 {% if not forloop.last %}border-bottom{% endif %}" style="border-color:var(--border)!important;">
+                <strong>{{ m.name }}</strong> — {{ m.dosage }} <span class="text-muted-2 small">· {{ m.frequency }}</span>
+            </div>
+            {% empty %}
+            <p class="text-muted-2">{% trans "Aucun médicament actif." %}</p>
+            {% endfor %}
+        </div>
+        <div class="cc-card mt-3">
+            <h6 class="kicker" style="color:var(--green);"><i class="fas fa-heart-pulse me-1"></i> {% trans "Signes vitaux récents" %}</h6>
+            {% for v in vitals %}
+            <div class="py-2 {% if not forloop.last %}border-bottom{% endif %}" style="border-color:var(--border)!important;">
+                <strong>{{ v.date|date:'d/m/Y H:i' }}</strong>
+                <div class="small text-muted-2">
+                    {% if v.systolic_bp %}{% trans "Tension" %} {{ v.systolic_bp }}/{{ v.diastolic_bp }} mmHg · {% endif %}
+                    {% if v.heart_rate %}{% trans "Fréquence cardiaque" %} {{ v.heart_rate }} bpm · {% endif %}
+                    {% if v.temperature %}{{ v.temperature }}°C{% endif %}
+                </div>
+            </div>
+            {% empty %}
+            <p class="text-muted-2">{% trans "Pas encore de signes vitaux enregistrés." %}</p>
+            {% endfor %}
+        </div>
+    </div>
+    <div class="col-md-6 mb-3">
+        <div class="cc-card">
+            <h6 class="kicker" style="color:var(--navy);"><i class="fas fa-file-medical me-1"></i> {% trans "Entrées du journal" %}</h6>
+            {% for e in entries %}
+            <div class="py-2 {% if not forloop.last %}border-bottom{% endif %}" style="border-color:var(--border)!important;">
+                <div class="d-flex justify-content-between">
+                    <strong>{{ e.date|date:'d/m/Y' }}</strong>
+                    <span class="badge-status {% if e.mood == 'great' or e.mood == 'good' %}green{% elif e.mood == 'okay' %}blue{% else %}gray{% endif %}">{{ e.get_mood_display }}</span>
+                </div>
+                {% if e.symptoms %}<div class="small mt-1"><strong>{% trans "Symptômes :" %}</strong> {{ e.symptoms|truncatechars:120 }}</div>{% endif %}
+                {% if e.pain_level %}<div class="small text-muted-2">{% trans "Douleur :" %} {{ e.pain_level }}/10 · {% trans "Sommeil :" %} {{ e.sleep_hours|default:'—' }} h</div>{% endif %}
+            </div>
+            {% empty %}
+            <p class="text-muted-2">{% trans "Aucune entrée dans le journal." %}</p>
+            {% endfor %}
+        </div>
+    </div>
+</div>
+
+<p class="reassurance small mt-3 mb-0"><i class="fas fa-lock"></i> {% trans "Confidentialité médicale : ces données sont strictement réservées à la prise en charge de ce patient. Toute divulgation est interdite." %}</p>
+{% endblock %}

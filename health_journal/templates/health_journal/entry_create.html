@@ -1,79 +1,80 @@
 {% extends 'base.html' %}
+{% load i18n %}
 
-{% block title %}Nouvelle entrée - Care Circle{% endblock %}
+{% block title %}{% trans "Nouvelle entrée" %} - Care Circle{% endblock %}
 
 {% block content %}
 <div class="row justify-content-center">
     <div class="col-md-8">
-        <div class="kicker">Journal de santé</div>
-        <h1 class="page-title">Nouvelle entrée santé</h1>
-        <p class="reassurance mb-4">Notez votre état du jour, en toute confidentialité.</p>
+        <div class="kicker">{% trans "Journal de santé" %}</div>
+        <h1 class="page-title">{% trans "Nouvelle entrée santé" %}</h1>
+        <p class="reassurance mb-4">{% trans "Notez votre état du jour, en toute confidentialité." %}</p>
         <div class="cc-card">
             <form method="post">
                 {% csrf_token %}
                 <div class="row">
                     <div class="col-md-6">
                         <div class="cc-field">
-                            <label>Date <span style="color:#C0392B;">*</span></label>
+                            <label>{% trans "Date" %} <span style="color:#C0392B;">*</span></label>
                             <input type="date" name="date" class="cc-input" required>
                         </div>
                     </div>
                     <div class="col-md-6">
                         <div class="cc-field">
-                            <label>Humeur <span style="color:#C0392B;">*</span></label>
+                            <label>{% trans "Humeur" %} <span style="color:#C0392B;">*</span></label>
                             <select name="mood" class="cc-input" required>
-                                <option value="great">Très bien</option>
-                                <option value="good">Bien</option>
-                                <option value="okay">Passable</option>
-                                <option value="bad">Mauvais</option>
-                                <option value="terrible">Très mauvais</option>
+                                <option value="great">{% trans "Très bien" %}</option>
+                                <option value="good">{% trans "Bien" %}</option>
+                                <option value="okay">{% trans "Passable" %}</option>
+                                <option value="bad">{% trans "Mauvais" %}</option>
+                                <option value="terrible">{% trans "Très mauvais" %}</option>
                             </select>
                         </div>
                     </div>
                     <div class="col-md-6">
                         <div class="cc-field">
-                            <label>Heures de sommeil</label>
+                            <label>{% trans "Heures de sommeil" %}</label>
                             <input type="number" name="sleep_hours" step="0.5" min="0" max="24" class="cc-input">
                         </div>
                     </div>
                     <div class="col-md-6">
                         <div class="cc-field">
-                            <label>Niveau de douleur (0-10)</label>
+                            <label>{% trans "Niveau de douleur (0-10)" %}</label>
                             <input type="number" name="pain_level" min="0" max="10" class="cc-input">
                         </div>
                     </div>
                     <div class="col-md-6">
                         <div class="cc-field">
-                            <label>Poids (kg)</label>
+                            <label>{% trans "Poids (kg)" %}</label>
                             <input type="number" name="weight" step="0.1" class="cc-input">
                         </div>
                     </div>
                     <div class="col-12">
                         <div class="cc-field">
-                            <label>Symptômes</label>
+                            <label>{% trans "Symptômes" %}</label>
                             <textarea name="symptoms" class="cc-input" rows="3"></textarea>
                         </div>
                     </div>
                     <div class="col-12">
                         <div class="cc-field">
-                            <label>Médicaments pris</label>
+                            <label>{% trans "Médicaments pris" %}</label>
                             <textarea name="medications" class="cc-input" rows="3"></textarea>
                         </div>
                     </div>
                     <div class="col-12">
                         <div class="cc-field">
-                            <label>Notes</label>
+                            <label>{% trans "Notes" %}</label>
                             <textarea name="notes" class="cc-input" rows="3"></textarea>
                         </div>
                     </div>
                 </div>
                 <div class="d-flex gap-2">
-                    <button type="submit" class="btn-cc btn-cc-primary"><i class="fas fa-save"></i> Enregistrer</button>
-                    <a href="{% url 'entry_list' %}" class="btn-cc btn-cc-outline">Annuler</a>
+                    <button type="submit" class="btn-cc btn-cc-primary"><i class="fas fa-save"></i> {% trans "Enregistrer" %}</button>
+                    <a href="{% url 'entry_list' %}" class="btn-cc btn-cc-outline">{% trans "Annuler" %}</a>
                 </div>
             </form>
         </div>
-        <p class="reassurance small mt-3 mb-0">Vos informations restent privées et à votre disposition.</p>
+        <p class="reassurance small mt-3 mb-0">{% trans "Vos informations restent privées et à votre disposition." %}</p>
     </div>
 </div>
 {% endblock %}

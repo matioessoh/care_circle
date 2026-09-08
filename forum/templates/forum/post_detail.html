@@ -1,4 +1,6 @@
 {% extends 'base.html' %}
+{% load forum_extras %}
+{% load i18n %}
 
 {% block title %}{{ post.title }} - Care Circle{% endblock %}
 
@@ -6,11 +8,17 @@
 <div class="cc-card">
     <div class="d-flex justify-content-between align-items-start mb-2">
         <div>
-            <div class="kicker">Article communautaire</div>
+            <div class="kicker">{% trans "Article communautaire" %}</div>
             <h1 class="page-title">{{ post.title }}</h1>
             <p class="reassurance mb-0">
-                par <a href="{% url 'user_profile' post.author.username %}" style="color: var(--blue-accent);">{{ post.author.username }}</a>
-                · {{ post.created_at|date:'d/m/Y à H:i' }}
+                {% trans "par" %} <a href="{% url 'user_profile' post.author.username %}" style="color: var(--blue-accent);">{{ post.author.username }}</a>
+                {% with badge=post.author|member_badge %}
+                {% if badge %}<span class="badge-status {{ badge.css }} ms-1">{{ badge.label }}</span>{% endif %}
+                {% endwith %}
+                {% with rank=post.author|forum_rank %}
+                {% if rank %}<span class="badge-status {{ rank.css }} ms-1">{{ rank.label }}</span>{% endif %}
+                {% endwith %}
+                · {{ post.created_at|date:'d/m/Y H:i' }}
                 {% if post.category %}| <span class="category-pill {{ post.category.slug }}">{{ post.category.name }}</span>{% endif %}
             </p>
         </div>
@@ -28,20 +36,20 @@
             <i class="fas fa-heart"></i> {{ post.likes_count }}
         </a>
         {% if user.is_authenticated and post.author != user %}
-        <a href="#" data-bs-toggle="modal" data-bs-target="#reportPostModal" class="btn-cc btn-cc-outline" style="padding:8px 16px;color:#B9770E;border-color:#F0DFB6;">Signaler</a>
+        <a href="#" data-bs-toggle="modal" data-bs-target="#reportPostModal" class="btn-cc btn-cc-outline" style="padding:8px 16px;color:#B9770E;border-color:#F0DFB6;">{% trans "Signaler" %}</a>
         {% endif %}
     </div>
 </div>
 
 <div class="cc-card mt-4">
-    <h5 class="mb-3"><i class="fas fa-comments me-2" style="color: var(--blue-accent);"></i>Commentaires ({{ comments.count }})</h5>
+    <h5 class="mb-3"><i class="fas fa-comments me-2" style="color: var(--blue-accent);"></i>{% trans "Commentaires" %} ({{ comments.count }})</h5>
     {% if user.is_authenticated %}
     <form method="post" action="{% url 'add_comment' post.slug %}" class="mb-4">
         {% csrf_token %}
         <div class="cc-field mb-0">
-            <textarea name="content" class="cc-input" rows="2" placeholder="Écrire un commentaire..." required></textarea>
+            <textarea name="content" class="cc-input" rows="2" placeholder="{% trans "Écrire un commentaire..." %}" required></textarea>
         </div>
-        <button class="btn-cc btn-cc-primary" type="submit"><i class="fas fa-paper-plane"></i> Publier</button>
+        <button class="btn-cc btn-cc-primary" type="submit"><i class="fas fa-paper-plane"></i> {% trans "Publier" %}</button>
     </form>
     {% endif %}
 
@@ -66,24 +74,24 @@
                 <form method="post" action="{% url 'report_comment' comment.id %}">
                     {% csrf_token %}
                     <div class="modal-header">
-                        <h5 class="modal-title">Signaler le commentaire</h5>
+                        <h5 class="modal-title">{% trans "Signaler le commentaire" %}</h5>
                         <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
                     </div>
                     <div class="modal-body">
-                        <label class="form-label">Motif</label>
+                        <label class="form-label">{% trans "Motif" %}</label>
                         <select name="reason" class="form-control mb-2">
                             <option value="spam">Spam</option>
-                            <option value="offensive">Contenu offensant</option>
-                            <option value="harassment">Harcèlement</option>
-                            <option value="medical_advice">Conseil médical dangereux</option>
-                            <option value="inappropriate">Contenu inapproprié</option>
-                            <option value="other">Autre</option>
+                            <option value="offensive">{% trans "Contenu offensant" %}</option>
+                            <option value="harassment">{% trans "Harcèlement" %}</option>
+                            <option value="medical_advice">{% trans "Conseil médical dangereux" %}</option>
+                            <option value="inappropriate">{% trans "Contenu inapproprié" %}</option>
+                            <option value="other">{% trans "Autre" %}</option>
                         </select>
-                        <label class="form-label">Description (optionnel)</label>
+                        <label class="form-label">{% trans "Description (optionnel)" %}</label>
                         <textarea name="description" class="form-control" rows="2"></textarea>
                     </div>
                     <div class="modal-footer">
-                        <button type="submit" class="btn-cc btn-cc-accent">Envoyer le signalement</button>
+                        <button type="submit" class="btn-cc btn-cc-accent">{% trans "Envoyer le signalement" %}</button>
                     </div>
                 </form>
             </div>
@@ -92,8 +100,8 @@
     {% empty %}
     <div class="empty-state">
         <i class="fas fa-comment-dots"></i>
-        <h5>Pas encore de commentaire</h5>
-        <p>Participez à la discussion.</p>
+        <h5>{% trans "Pas encore de commentaire" %}</h5>
+        <p>{% trans "Participez à la discussion." %}</p>
     </div>
     {% endfor %}
 </div>
@@ -105,29 +113,29 @@
             <form method="post" action="{% url 'report_post' post.slug %}">
                 {% csrf_token %}
                 <div class="modal-header">
-                    <h5 class="modal-title">Signaler l'article</h5>
+                    <h5 class="modal-title">{% trans "Signaler l'article" %}</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
                 </div>
                 <div class="modal-body">
-                    <label class="form-label">Motif</label>
+                    <label class="form-label">{% trans "Motif" %}</label>
                     <select name="reason" class="form-control mb-2">
                         <option value="spam">Spam</option>
-                        <option value="offensive">Contenu offensant</option>
-                        <option value="harassment">Harcèlement</option>
-                        <option value="medical_advice">Conseil médical dangereux</option>
-                        <option value="inappropriate">Contenu inapproprié</option>
-                        <option value="other">Autre</option>
+                        <option value="offensive">{% trans "Contenu offensant" %}</option>
+                        <option value="harassment">{% trans "Harcèlement" %}</option>
+                        <option value="medical_advice">{% trans "Conseil médical dangereux" %}</option>
+                        <option value="inappropriate">{% trans "Contenu inapproprié" %}</option>
+                        <option value="other">{% trans "Autre" %}</option>
                     </select>
-                    <label class="form-label">Description (optionnel)</label>
+                    <label class="form-label">{% trans "Description (optionnel)" %}</label>
                     <textarea name="description" class="form-control" rows="2"></textarea>
                 </div>
                 <div class="modal-footer">
-                    <button type="submit" class="btn-cc btn-cc-accent">Envoyer le signalement</button>
+                    <button type="submit" class="btn-cc btn-cc-accent">{% trans "Envoyer le signalement" %}</button>
                 </div>
             </form>
         </div>
     </div>
 </div>
 
-<p class="reassurance small mt-4 mb-0">La modération garantit un espace de confiance respectant votre santé et votre vie privée.</p>
+<p class="reassurance small mt-4 mb-0">{% trans "La modération garantit un espace de confiance respectant votre santé et votre vie privée." %}</p>
 {% endblock %}

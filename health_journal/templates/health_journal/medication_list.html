@@ -1,15 +1,16 @@
 {% extends 'base.html' %}
+{% load i18n %}
 
-{% block title %}Mes médicaments - Care Circle{% endblock %}
+{% block title %}{% trans "Mes médicaments" %} - Care Circle{% endblock %}
 
 {% block content %}
 <div class="d-flex justify-content-between align-items-center mb-2">
     <div>
-        <div class="kicker">Journal de santé</div>
-        <h1 class="page-title">Mes médicaments</h1>
-        <p class="reassurance mb-0">Centralisez et suivez vos traitements.</p>
+        <div class="kicker">{% trans "Journal de santé" %}</div>
+        <h1 class="page-title">{% trans "Mes médicaments" %}</h1>
+        <p class="reassurance mb-0">{% trans "Centralisez et suivez vos traitements." %}</p>
     </div>
-    <a href="{% url 'medication_create' %}" class="btn-cc btn-cc-primary"><i class="fas fa-plus"></i> Ajouter</a>
+    <a href="{% url 'medication_create' %}" class="btn-cc btn-cc-primary"><i class="fas fa-plus"></i> {% trans "Ajouter" %}</a>
 </div>
 
 <div class="cc-card mt-4">
@@ -18,19 +19,19 @@
         <div>
             <strong>{{ med.name }}</strong> <span class="text-muted-2">- {{ med.dosage }}</span>
             <div class="text-muted-2 small">{{ med.frequency }}
-                {% if med.is_active %}<span class="badge-status green ms-2">Actif</span>
-                {% else %}<span class="badge-status gray ms-2">Inactif</span>{% endif %}
+                {% if med.is_active %}<span class="badge-status green ms-2">{% trans "Actif" %}</span>
+                {% else %}<span class="badge-status gray ms-2">{% trans "Inactif" %}</span>{% endif %}
             </div>
         </div>
     </div>
     {% empty %}
     <div class="empty-state">
         <i class="fas fa-pills"></i>
-        <h5>Aucun médicament enregistré</h5>
-        <p>Ajoutez vos traitements pour un suivi fiable.</p>
-        <a href="{% url 'medication_create' %}" class="btn-cc btn-cc-accent">Ajouter un médicament</a>
+        <h5>{% trans "Aucun médicament enregistré" %}</h5>
+        <p>{% trans "Ajoutez vos traitements pour un suivi fiable." %}</p>
+        <a href="{% url 'medication_create' %}" class="btn-cc btn-cc-accent">{% trans "Ajouter un médicament" %}</a>
     </div>
     {% endfor %}
 </div>
-<p class="reassurance small mt-3 mb-0">Respectez toujours la posologie prescrite par votre médecin.</p>
+<p class="reassurance small mt-3 mb-0">{% trans "Respectez toujours la posologie prescrite par votre médecin." %}</p>
 {% endblock %}

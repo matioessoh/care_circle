@@ -1,4 +1,5 @@
 {% extends 'base.html' %}
+{% load i18n %}
 
 {% block title %}Dr {{ doctor.user.last_name }} - Care Circle{% endblock %}
 
@@ -21,7 +22,7 @@
     </div>
     <div class="col-md-8">
         <div class="cc-card">
-            <h5 class="mb-3"><i class="far fa-calendar-alt me-2" style="color:var(--blue-accent);"></i>Créneaux disponibles</h5>
+            <h5 class="mb-3"><i class="far fa-calendar-alt me-2" style="color:var(--blue-accent);"></i>{% trans "Créneaux disponibles" %}</h5>
             {% if user.is_authenticated %}
             <form method="post" action="{% url 'appointment_create' %}">
                 {% csrf_token %}
@@ -33,35 +34,35 @@
                         {{ slot.start_time|time:'H:i' }} à {{ slot.end_time|time:'H:i' }}
                     </span>
                     <span class="d-flex align-items-center gap-2">
-                        <input type="radio" name="slot" value="{{ slot.pk }}" required class="form-check-input">Réserver
+                        <input type="radio" name="slot" value="{{ slot.pk }}" required class="form-check-input">{% trans "Réserver" %}
                     </span>
                 </label>
                 {% empty %}
                 <div class="empty-state">
                     <i class="far fa-calendar-times"></i>
-                    <h5>Aucun créneau disponible</h5>
-                    <p>Ce médecin n'a pas de créneau ouvert pour le moment.</p>
+                    <h5>{% trans "Aucun créneau disponible" %}</h5>
+                    <p>{% trans "Ce médecin n'a pas de créneau ouvert pour le moment." %}</p>
                 </div>
                 {% endfor %}
                 {% if slots %}
                 <div class="mt-3">
                     <div class="cc-field">
-                        <label>Objet (optionnel)</label>
-                        <input type="text" name="title" class="cc-input" placeholder="Motif de la consultation">
+                        <label>{% trans "Objet (optionnel)" %}</label>
+                        <input type="text" name="title" class="cc-input" placeholder="{% trans "Motif de la consultation" %}">
                     </div>
                     <div class="cc-field">
-                        <label>Description (optionnel)</label>
+                        <label>{% trans "Description (optionnel)" %}</label>
                         <textarea name="description" class="cc-input" rows="2"></textarea>
                     </div>
-                    <button class="btn-cc btn-cc-green" type="submit"><i class="fas fa-calendar-check"></i> Confirmer le rendez-vous</button>
+                    <button class="btn-cc btn-cc-green" type="submit"><i class="fas fa-calendar-check"></i> {% trans "Confirmer le rendez-vous" %}</button>
                 </div>
                 {% endif %}
             </form>
             {% else %}
-            <p><a href="{% url 'login' %}" class="alert-link" style="color:var(--blue-accent); font-weight:600;">Connectez-vous</a> pour prendre rendez-vous.</p>
+            <p><a href="{% url 'login' %}" class="alert-link" style="color:var(--blue-accent); font-weight:600;">{% trans "Connectez-vous" %}</a> {% trans "pour prendre rendez-vous." %}</p>
             {% endif %}
         </div>
-        <p class="reassurance small mt-3 mb-0">La prise de rendez-vous respecte strictement la confidentialité de vos informations de santé.</p>
+        <p class="reassurance small mt-3 mb-0">{% trans "La prise de rendez-vous respecte strictement la confidentialité de vos informations de santé." %}</p>
     </div>
 </div>
 {% endblock %}

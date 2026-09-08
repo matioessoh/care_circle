@@ -1,6 +1,8 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.decorators import login_required
+from django.contrib.auth.models import User
 from django.contrib import messages
+from django.db.models import Q, Count
 from .models import Post, Comment, Category, Report
 
 
@@ -114,3 +116,51 @@ def report_comment(request, comment_id):
         )
         messages.success(request, 'Signalement envoyé.')
     return redirect('post_detail', slug=comment.post.slug)
+
+
+def advanced_search(request):
+    query = request.GET.get('q', '').strip()
+    scope = request.GET.get('scope', 'all')
+    results = []
+    counts = {'posts': 0, 'members': 0, 'doctors': 0}
+
+    if query:
+        if scope in ('all', 'posts'):
+            posts = Post.objects.filter(
+                is_published=True, is_hidden=False
+            ).filter(
+                Q(title__icontains=query) | Q(content__icontains=query) | Q(author__username__icontains=query)
+            ).select_related('author', 'category')[:30]
+            results.extend(('posts', p, None) for p in posts)
+            counts['posts'] = len(posts)
+
+        if scope in ('all', 'members'):
+            members = User.objects.filter(
+                Q(username__icontains=query) | Q(first_name__icontains=query) |
+                Q(last_name__icontains=query) | Q(email__icontains=query)
+            ).exclude(is_superuser=True).exclude(is_staff=True)[:30]
+            results.extend(('members', None, m) for m in members)
+            counts['members'] = len(members)
+
+        if scope in ('all', 'doctors'):
+            doctors = []
+            from appointments.models import Doctor
+            doctors = Doctor.objects.filter(
+                Q(user__username__icontains=query) |
+                Q(user__first_name__icontains=query) |
+                Q(user__last_name__icontains=query) |
+                Q(specialty__icontains=query) |
+                Q(clinic_name__icontains=query)
+            ).select_related('user')[:30]
+            results.extend(('doctors', None, d) for d in doctors)
+            counts['doctors'] = len(doctors)
+
+    # Triage : posts d'abord, puis membres, puis médecins
+    results.sort(key=lambda r: {'posts': 0, 'members': 1, 'doctors': 2}[r[0]])
+
+    return render(request, 'forum/search.html', {
+        'query': query,
+        'scope': scope,
+        'results': results,
+        'counts': counts,
+    })

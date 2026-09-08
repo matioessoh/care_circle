@@ -8,6 +8,8 @@ from datetime import date
 from django.db.models import Count, Q
 import csv
 
+from audit.models import LoginLog
+
 from patients.models import PatientProfile
 from appointments.models import Doctor, Appointment, AvailabilitySlot
 from forum.models import Post, Comment, Category, Report
@@ -433,3 +435,19 @@ def export_appointments(request):
             labels.get(a.status, a.status),
         ])
     return response
+
+
+@admin_required
+def login_audit(request):
+    logs = LoginLog.objects.select_related('user')
+    status = request.GET.get('status')
+    if status == 'failed':
+        logs = logs.filter(success=False)
+    elif status == 'success':
+        logs = logs.filter(success=True)
+    logs = logs[:200]
+    return render(request, 'admin_panel/login_audit.html', {
+        'logs': logs,
+        'current_status': status or 'all',
+    })
+

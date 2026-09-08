@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+{% load i18n %}
+
+{% block title %}{{ article.title }} - Care Circle{% endblock %}
+
+{% block content %}
+<a href="{% url 'resources_articles' %}" class="btn-cc btn-cc-ghost mb-3"><i class="fas fa-arrow-left"></i> {% trans "Toutes les fiches" %}</a>
+
+<div class="cc-card mb-4">
+    <span class="category-pill">{{ article.category.name }}</span>
+    <h1 class="page-title mt-2 mb-3">{{ article.title }}</h1>
+    <p class="reassurance mb-0">{{ article.summary }}</p>
+    <div class="small text-muted-2 mt-2">
+        {% if article.author %}
+        {% trans "Rédigé par" %} {{ article.author.get_full_name|default:article.author.username }}
+        {% else %}
+        {% trans "Rédigé par l'équipe Care Circle" %}
+        {% endif %}
+        · {{ article.updated_at|date:'d/m/Y' }}
+    </div>
+</div>
+
+<div class="cc-card article-content">
+    <p>{{ article.content|linebreaks }}</p>
+</div>
+
+<p class="reassurance small mt-3">⚠️ {% trans "Information à visée éducative — elle ne remplace pas un avis médical professionnel. En cas de doute, consultez un médecin." %}</p>
+
+{% if related %}
+<div class="cc-card mt-4">
+    <h5 class="fw-bold mb-3">{% trans "À lire aussi" %}</h5>
+    {% for a in related %}
+    <a href="{% url 'resource_article_detail' a.slug %}" class="d-block py-2 text-decoration-none {% if not forloop.last %}border-bottom{% endif %}" style="border-color:var(--border)!important;">
+        <span class="category-pill">{{ a.category.name }}</span> <strong>{{ a.title }}</strong>
+    </a>
+    {% endfor %}
+</div>
+{% endif %}
+{% endblock %}

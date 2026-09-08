@@ -1,0 +1,14 @@
+{% load i18n %}
+{% for msg in messages %}
+<div class="d-flex mb-3 {% if msg.sender == user %}justify-content-end{% endif %}">
+    <div class="p-3 rounded" style="max-width: 70%; {% if msg.sender == user %}background: var(--navy); color: var(--white);{% else %}background: var(--white); border: 1px solid var(--border);{% endif %}">
+        <div class="small mb-1">
+            <strong style="{% if msg.sender == user %}color:var(--blue-accent-2){% else %}color:var(--blue-accent){% endif %}">{{ msg.sender.username }}</strong>
+            <span class="text-muted-2 ms-2">{{ msg.created_at|date:'d/m/Y H:i' }}</span>
+        </div>
+        {{ msg.content }}
+    </div>
+</div>
+{% empty %}
+<p class="text-center text-muted-2 py-4">{% trans "Démarrez la conversation !" %}</p>
+{% endfor %}

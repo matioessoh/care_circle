@@ -1,38 +1,39 @@
 {% extends 'base.html' %}
+{% load i18n %}
 
-{% block title %}Entrée du {{ entry.date|date:'d/m/Y' }} - Care Circle{% endblock %}
+{% block title %}{% trans "Entrée du" %} {{ entry.date|date:'d/m/Y' }} - Care Circle{% endblock %}
 
 {% block content %}
 <div class="row justify-content-center">
     <div class="col-md-8">
-        <div class="kicker">Journal de santé</div>
+        <div class="kicker">{% trans "Journal de santé" %}</div>
         <h1 class="page-title">{{ entry.date|date:'d/m/Y' }}
             <span class="badge-status ms-2 {% if entry.mood == 'great' or entry.mood == 'good' %}green{% elif entry.mood == 'okay' %}gray{% else %}navy{% endif %}">{{ entry.get_mood_display }}</span>
         </h1>
-        <p class="reassurance mb-4">Consultation privée de votre entrée.</p>
+        <p class="reassurance mb-4">{% trans "Consultation privée de votre entrée." %}</p>
         <div class="cc-card">
-            {% if entry.sleep_hours %}<p><strong>Sommeil :</strong> {{ entry.sleep_hours }} heures</p>{% endif %}
-            {% if entry.pain_level %}<p><strong>Douleur :</strong> {{ entry.pain_level }}/10</p>{% endif %}
-            {% if entry.weight %}<p><strong>Poids :</strong> {{ entry.weight }} kg</p>{% endif %}
+            {% if entry.sleep_hours %}<p><strong>{% trans "Sommeil :" %}</strong> {{ entry.sleep_hours }} {% trans "heures" %}</p>{% endif %}
+            {% if entry.pain_level %}<p><strong>{% trans "Douleur :" %}</strong> {{ entry.pain_level }}/10</p>{% endif %}
+            {% if entry.weight %}<p><strong>{% trans "Poids :" %}</strong> {{ entry.weight }} kg</p>{% endif %}
             {% if entry.symptoms %}
-            <h6>Symptômes</h6>
+            <h6>{% trans "Symptômes" %}</h6>
             <p>{{ entry.symptoms }}</p>
             {% endif %}
             {% if entry.medications %}
-            <h6>Médicaments pris</h6>
+            <h6>{% trans "Médicaments pris" %}</h6>
             <p>{{ entry.medications }}</p>
             {% endif %}
             {% if entry.notes %}
-            <h6>Notes</h6>
+            <h6>{% trans "Notes" %}</h6>
             <p>{{ entry.notes }}</p>
             {% endif %}
             <div class="d-flex gap-2 mt-4">
-                <a href="{% url 'entry_edit' entry.pk %}" class="btn-cc btn-cc-primary"><i class="fas fa-edit"></i> Modifier</a>
-                <a href="{% url 'entry_delete' entry.pk %}" class="btn-cc btn-cc-outline" style="color:#C0392B;border-color:#E8C4C4;"><i class="fas fa-trash"></i> Supprimer</a>
-                <a href="{% url 'entry_list' %}" class="btn-cc btn-cc-outline"><i class="fas fa-arrow-left"></i> Retour</a>
+                <a href="{% url 'entry_edit' entry.pk %}" class="btn-cc btn-cc-primary"><i class="fas fa-edit"></i> {% trans "Modifier" %}</a>
+                <a href="{% url 'entry_delete' entry.pk %}" class="btn-cc btn-cc-outline" style="color:#C0392B;border-color:#E8C4C4;"><i class="fas fa-trash"></i> {% trans "Supprimer" %}</a>
+                <a href="{% url 'entry_list' %}" class="btn-cc btn-cc-outline"><i class="fas fa-arrow-left"></i> {% trans "Retour" %}</a>
             </div>
         </div>
-        <p class="reassurance small mt-3 mb-0">Votre journal est strictement confidentiel.</p>
+        <p class="reassurance small mt-3 mb-0">{% trans "Votre journal est strictement confidentiel." %}</p>
     </div>
 </div>
 {% endblock %}

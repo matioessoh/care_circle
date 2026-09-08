@@ -1,23 +1,24 @@
 {% extends 'base.html' %}
+{% load i18n %}
 
-{% block title %}Accueil - CareCircle{% endblock %}
+{% block title %}{% trans "Accueil" %} - CareCircle{% endblock %}
 
 {% block content %}
 <!-- Hero -->
 <section class="text-center py-5">
-    <span class="kicker">BIENVENUE DANS LE CERCLE</span>
-    <h1 class="font-serif fw-bold" style="font-size:48px;margin-top:10px;">Vous n'êtes pas seul·e <em style="color:var(--blue-accent);">ici.</em></h1>
+    <span class="kicker">{% trans "BIENVENUE DANS LE CERCLE" %}</span>
+    <h1 class="font-serif fw-bold" style="font-size:48px;margin-top:10px;">{% blocktrans %}Vous n'êtes pas seul·e{% endblocktrans %} <em style="color:var(--blue-accent);">{% trans "ici." %}</em></h1>
     <p class="mx-auto text-muted-2" style="max-width:560px;font-size:17px;margin-top:12px;">
-        CareCircle réunit des patients, des proches et des professionnels de santé autour d'un accompagnement humain, connecté et confidentiel.
+        {% trans "CareCircle réunit des patients, des proches et des professionnels de santé autour d'un accompagnement humain, connecté et confidentiel." %}
     </p>
     {% if not user.is_authenticated %}
     <div class="mt-4 d-flex justify-content-center gap-3 flex-wrap">
-        <a href="{% url 'register' %}" class="btn-cc btn-cc-primary">Rejoindre le cercle <i class="fas fa-arrow-right"></i></a>
-        <a href="{% url 'post_list' %}" class="btn-cc btn-cc-outline">Découvrir la communauté</a>
+        <a href="{% url 'register' %}" class="btn-cc btn-cc-primary">{% trans "Rejoindre le cercle" %} <i class="fas fa-arrow-right"></i></a>
+        <a href="{% url 'post_list' %}" class="btn-cc btn-cc-outline">{% trans "Découvrir la communauté" %}</a>
     </div>
     {% else %}
     <div class="mt-4 d-flex justify-content-center gap-3 flex-wrap">
-        <a href="{% url 'journal_dashboard' %}" class="btn-cc btn-cc-primary">Votre espace <i class="fas fa-arrow-right"></i></a>
+        <a href="{% url 'journal_dashboard' %}" class="btn-cc btn-cc-primary">{% trans "Votre espace" %} <i class="fas fa-arrow-right"></i></a>
     </div>
     {% endif %}
 </section>
@@ -25,30 +26,30 @@
 <!-- Fonctionnalités -->
 <section class="my-5">
     <div class="text-center mb-4">
-        <span class="kicker">MON SUIVI</span>
-        <h2 class="font-serif fw-bold" style="font-size:34px;">Un espace pensé pour vous.</h2>
+        <span class="kicker">{% trans "MON SUIVI" %}</span>
+        <h2 class="font-serif fw-bold" style="font-size:34px;">{% trans "Un espace pensé pour vous." %}</h2>
     </div>
     <div class="grid-3">
         <div class="cc-card">
             <span class="card-icon icon-blue"><i class="fas fa-users"></i></span>
-            <div class="card-tag">COMMUNAUTÉ</div>
-            <div class="card-title">Partagez et échangez</div>
-            <p class="card-desc">Rejoignez des discussions bienveillantes autour de sujets qui vous ressemblent.</p>
-            <a href="{% url 'post_list' %}" class="card-action">Visiter la communauté <i class="fas fa-arrow-right"></i></a>
+            <div class="card-tag">{% trans "COMMUNAUTÉ" %}</div>
+            <div class="card-title">{% trans "Partagez et échangez" %}</div>
+            <p class="card-desc">{% trans "Rejoignez des discussions bienveillantes autour de sujets qui vous ressemblent." %}</p>
+            <a href="{% url 'post_list' %}" class="card-action">{% trans "Visiter la communauté" %} <i class="fas fa-arrow-right"></i></a>
         </div>
         <div class="cc-card">
             <span class="card-icon icon-green"><i class="fas fa-calendar-check"></i></span>
-            <div class="card-tag">SOINS</div>
-            <div class="card-title">Vos rendez-vous</div>
-            <p class="card-desc">Réservez et gérez vos consultations auprès de professionnels de confiance.</p>
-            <a href="{% url 'doctor_list' %}" class="card-action">Trouver un médecin <i class="fas fa-arrow-right"></i></a>
+            <div class="card-tag">{% trans "SOINS" %}</div>
+            <div class="card-title">{% trans "Vos rendez-vous" %}</div>
+            <p class="card-desc">{% trans "Réservez et gérez vos consultations auprès de professionnels de confiance." %}</p>
+            <a href="{% url 'doctor_list' %}" class="card-action">{% trans "Trouver un médecin" %} <i class="fas fa-arrow-right"></i></a>
         </div>
         <div class="cc-card">
             <span class="card-icon icon-navy"><i class="fas fa-book-medical"></i></span>
-            <div class="card-tag">SUIVI</div>
-            <div class="card-title">Votre journal de santé</div>
-            <p class="card-desc">Suivez votre état au quotidien et gardez l'essentiel à portée de main.</p>
-            <a href="{% url 'journal_dashboard' %}" class="card-action">Ouvrir mon suivi <i class="fas fa-arrow-right"></i></a>
+            <div class="card-tag">{% trans "SUIVI" %}</div>
+            <div class="card-title">{% trans "Votre journal de santé" %}</div>
+            <p class="card-desc">{% trans "Suivez votre état au quotidien et gardez l'essentiel à portée de main." %}</p>
+            <a href="{% url 'journal_dashboard' %}" class="card-action">{% trans "Ouvrir mon suivi" %} <i class="fas fa-arrow-right"></i></a>
         </div>
     </div>
 </section>
@@ -56,10 +57,10 @@
 <!-- Réassurance -->
 <section class="info-panel mx-auto my-5" style="max-width:760px;">
     <i class="fas fa-shield-alt"></i>
-    <h5>Vos données restent confidentielles</h5>
-    <p>CareCircle protège vos informations de santé et votre vie privée. Vos données ne sont jamais partagées sans votre accord.</p>
+    <h5>{% trans "Vos données restent confidentielles" %}</h5>
+    <p>{% trans "CareCircle protège vos informations de santé et votre vie privée. Vos données ne sont jamais partagées sans votre accord." %}</p>
     <div class="mt-2" style="font-size:13px;color:var(--text-secondary);">
-        La plateforme ne remplace ni un avis médical, ni une consultation. En cas d'urgence, contactez les services d'urgence de votre pays.
+        {% trans "La plateforme ne remplace ni un avis médical, ni une consultation. En cas d'urgence, contactez les services d'urgence de votre pays." %}
     </div>
 </section>
 {% endblock %}

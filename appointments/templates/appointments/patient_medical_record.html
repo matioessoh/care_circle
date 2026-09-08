@@ -1,75 +1,89 @@
 {% extends 'base.html' %}
+{% load i18n %}
 
-{% block title %}Dossier médical - {{ patient.username }}{% endblock %}
+{% block title %}{% trans "Dossier médical" %} - {{ patient.username }}{% endblock %}
 
 {% block content %}
 <div class="d-flex justify-content-between align-items-center mb-2">
     <div>
-        <div class="kicker">Espace médecin</div>
-        <h1 class="page-title">Dossier médical</h1>
+        <div class="kicker">{% trans "Espace médecin" %}</div>
+        <h1 class="page-title">{% trans "Dossier médical" %}</h1>
         <p class="reassurance mb-0">{{ patient.get_full_name|default:patient.username }}</p>
     </div>
-    <a href="{% url 'doctor_dashboard' %}" class="btn-cc btn-cc-outline"><i class="fas fa-arrow-left"></i> Retour au tableau de bord</a>
+    <a href="{% url 'doctor_dashboard' %}" class="btn-cc btn-cc-outline"><i class="fas fa-arrow-left"></i> {% trans "Retour au tableau de bord" %}</a>
 </div>
 
 <div class="alert alert-danger mt-3" role="alert" style="border-radius:var(--radius-md);">
-    <i class="fas fa-lock"></i> <strong>Confidentialité médicale</strong> — Les informations ci-dessous sont strictement confidentielles. Elles ne doivent être consultées que dans le cadre d'une prise en charge médicale de ce patient. Toute divulgation est interdite.
+    <i class="fas fa-lock"></i> <strong>{% trans "Confidentialité médicale" %}</strong> — {% trans "Les informations ci-dessous sont strictement confidentielles. Elles ne doivent être consultées que dans le cadre d'une prise en charge médicale de ce patient. Toute divulgation est interdite." %}
 </div>
 
 <div class="row mt-3">
     <div class="col-md-5 mb-3">
         <div class="cc-card">
-            <h6 class="kicker" style="color:var(--blue-accent);">Identification</h6>
-            <p><strong>Nom complet :</strong> {{ patient.get_full_name|default:'—' }}</p>
-            <p><strong>Pseudo :</strong> @{{ patient.username }}</p>
-            <p><strong>Email :</strong> {{ patient.email|default:'—' }}</p>
+            <h6 class="kicker" style="color:var(--blue-accent);">{% trans "Identification" %}</h6>
+            <p><strong>{% trans "Nom complet :" %}</strong> {{ patient.get_full_name|default:'—' }}</p>
+            <p><strong>{% trans "Pseudo :" %}</strong> @{{ patient.username }}</p>
+            <p><strong>{% trans "Email :" %}</strong> {{ patient.email|default:'—' }}</p>
         </div>
         <div class="cc-card mt-3">
-            <h6 class="kicker" style="color:var(--blue-accent);">Historique des rendez-vous</h6>
+            <h6 class="kicker" style="color:var(--blue-accent);">{% trans "Historique des rendez-vous" %}</h6>
             {% for a in appointments %}
             <div class="pb-2 {% if not forloop.last %}border-bottom mb-2{% endif %}" style="border-color: var(--border) !important;">
                 <strong>{{ a.date|date:'d/m/Y' }} {{ a.time|time:'H:i' }}</strong> — {{ a.title }}
-                {% if a.status == 'completed' %}<span class="badge-status blue">Terminé</span>
-                {% elif a.status == 'confirmed' %}<span class="badge-status green">Confirmé</span>
-                {% elif a.status == 'pending' %}<span class="badge-status gray">En attente</span>
+                {% if a.status == 'completed' %}<span class="badge-status blue">{% trans "Terminé" %}</span>
+                {% elif a.status == 'confirmed' %}<span class="badge-status green">{% trans "Confirmé" %}</span>
+                {% elif a.status == 'pending' %}<span class="badge-status gray">{% trans "En attente" %}</span>
                 {% endif %}
                 {% if a.doctor_notes %}<div class="text-muted-2 small mt-1"><i class="fas fa-sticky-note"></i> {{ a.doctor_notes|truncatechars:80 }}</div>{% endif %}
             </div>
             {% empty %}
-            <p class="text-muted-2">Aucun rendez-vous avec ce patient.</p>
+            <p class="text-muted-2">{% trans "Aucun rendez-vous avec ce patient." %}</p>
             {% endfor %}
         </div>
     </div>
     <div class="col-md-7 mb-3">
         {% if has_relation %}
         <div class="cc-card">
-            <h6 class="kicker" style="color:var(--blue-accent);"><i class="fas fa-file-medical me-1"></i> Profil médical</h6>
-            {% if profile %}
+            <h6 class="kicker" style="color:var(--blue-accent);"><i class="fas fa-file-medical me-1"></i> {% trans "Profil médical" %}</h6>
+            {% if profile and share_ok %}
             <div class="row mt-2">
-                <div class="col-md-6 mb-2"><strong>Date de naissance :</strong> {{ profile.date_of_birth|default:'—' }}</div>
-                <div class="col-md-6 mb-2"><strong>Âge :</strong> {% if profile.date_of_birth %}{{ profile.date_of_birth|timesince }}{% else %}—{% endif %}</div>
-                <div class="col-md-6 mb-2"><strong>Genre :</strong> {{ profile.get_gender_display|default:'—' }}</div>
-                <div class="col-md-6 mb-2"><strong>Groupe sanguin :</strong> {{ profile.blood_type|default:'—' }}</div>
-                <div class="col-md-6 mb-2"><strong>Téléphone :</strong> {{ profile.phone|default:'—' }}</div>
-                <div class="col-12 mb-2"><strong>Adresse :</strong> {{ profile.address|default:'—' }}</div>
+                <div class="col-md-6 mb-2"><strong>{% trans "Date de naissance :" %}</strong> {{ profile.date_of_birth|default:'—' }}</div>
+                <div class="col-md-6 mb-2"><strong>{% trans "Âge :" %}</strong> {% if profile.date_of_birth %}{{ profile.date_of_birth|timesince }}{% else %}—{% endif %}</div>
+                <div class="col-md-6 mb-2"><strong>{% trans "Genre :" %}</strong> {{ profile.get_gender_display|default:'—' }}</div>
+                <div class="col-md-6 mb-2"><strong>{% trans "Groupe sanguin :" %}</strong> {{ profile.blood_type|default:'—' }}</div>
+                <div class="col-md-6 mb-2"><strong>{% trans "Téléphone :" %}</strong> {{ profile.phone|default:'—' }}</div>
+                <div class="col-12 mb-2"><strong>{% trans "Adresse :" %}</strong> {{ profile.address|default:'—' }}</div>
             </div>
             <hr style="border-color: var(--border);">
-            <h6><strong>Allergies :</strong></h6>
-            <p>{{ profile.allergies|default:'Aucune' }}</p>
-            <h6><strong>Conditions médicales :</strong></h6>
-            <p>{{ profile.medical_conditions|default:'Aucune' }}</p>
-            <h6><strong>Contact d'urgence :</strong></h6>
+            <h6><strong>{% trans "Allergies :" %}</strong></h6>
+            <p>{% if profile.allergies %}{{ profile.allergies }}{% else %}{% trans "Aucune" %}{% endif %}</p>
+            <h6><strong>{% trans "Conditions médicales :" %}</strong></h6>
+            <p>{% if profile.medical_conditions %}{{ profile.medical_conditions }}{% else %}{% trans "Aucune" %}{% endif %}</p>
+            <h6><strong>{% trans "Contact d'urgence :" %}</strong></h6>
             <p>{{ profile.emergency_contact|default:'—' }}{% if profile.emergency_phone %} ({{ profile.emergency_phone }}){% endif %}</p>
+            {% elif profile %}
+            <div class="empty-state">
+                <i class="fas fa-user-lock"></i>
+                <h5>{% trans "Accès aux données médicales restreint" %}</h5>
+                <p>{% trans "Ce patient n'a pas encore autorisé le partage de son dossier médical avec les médecins. Le profil médical détaillé et le journal de santé restent confidentiels." %}</p>
+            </div>
             {% else %}
-            <p class="text-muted-2">Ce patient n'a pas encore complété son profil médical.</p>
+            <p class="text-muted-2">{% trans "Ce patient n'a pas encore complété son profil médical." %}</p>
             {% endif %}
         </div>
+        {% if share_ok %}
+        <div class="cc-card mt-3">
+            <h6 class="kicker" style="color:var(--green);"><i class="fas fa-book-medical me-1"></i> {% trans "Journal de santé" %}</h6>
+            <p class="text-muted-2 small">{% trans "Le patient vous a autorisé à consulter son journal de santé (entrées, médicaments, signes vitaux)." %}</p>
+            <a href="{% url 'doctor_view_journal' patient.id %}" class="btn-cc btn-cc-primary"><i class="fas fa-stethoscope"></i> {% trans "Consulter le journal de santé" %}</a>
+        </div>
+        {% endif %}
         {% else %}
         <div class="cc-card">
             <div class="text-center py-5">
                 <i class="fas fa-ban fa-3x mb-3" style="color:var(--text-secondary);"></i>
-                <h5>Accès restreint</h5>
-                <p class="text-muted-2">Vous devez avoir un rendez-vous (passé, confirmé ou en attente) avec ce patient pour consulter son dossier médical.</p>
+                <h5>{% trans "Accès restreint" %}</h5>
+                <p class="text-muted-2">{% trans "Vous devez avoir un rendez-vous (passé, confirmé ou en attente) avec ce patient pour consulter son dossier médical." %}</p>
             </div>
         </div>
         {% endif %}

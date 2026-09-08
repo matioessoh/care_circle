@@ -1,18 +1,20 @@
 {% extends 'base.html' %}
+{% load i18n %}
 
-{% block title %}Mes connexions - Care Circle{% endblock %}
+
+{% block title %}{% trans "Mes connexions" %} - Care Circle{% endblock %}
 
 {% block content %}
 <div class="mb-2">
-    <div class="kicker">Réseau</div>
-    <h1 class="page-title">Mes connexions</h1>
-    <p class="reassurance mb-0">Gérez vos liens avec la communauté.</p>
+    <div class="kicker">{% trans "Réseau" %}</div>
+    <h1 class="page-title">{% trans "Mes connexions" %}</h1>
+    <p class="reassurance mb-0">{% trans "Gérez vos liens avec la communauté." %}</p>
 </div>
 
 <div class="row mt-4">
     <div class="col-md-4 mb-3">
         <div class="cc-card">
-            <h6 class="kicker" style="color:var(--blue-accent);"><i class="fas fa-inbox me-1"></i> Demandes reçues</h6>
+            <h6 class="kicker" style="color:var(--blue-accent);"><i class="fas fa-inbox me-1"></i> {% trans "Demandes reçues" %}</h6>
             {% for c in received %}
             <div class="d-flex justify-content-between align-items-center mb-2">
                 <div>
@@ -20,39 +22,39 @@
                     <div class="mt-1">
                         <form method="post" action="{% url 'accept_connection' c.id %}">
                             {% csrf_token %}
-                            <button class="btn-cc btn-cc-green" style="padding:6px 12px;font-size:13px;"><i class="fas fa-check"></i> Accepter</button>
+                            <button class="btn-cc btn-cc-green" style="padding:6px 12px;font-size:13px;"><i class="fas fa-check"></i> {% trans "Accepter" %}</button>
                         </form>
                     </div>
                 </div>
             </div>
             {% empty %}
-            <p class="text-muted-2">Aucune demande.</p>
+            <p class="text-muted-2">{% trans "Aucune demande." %}</p>
             {% endfor %}
         </div>
     </div>
     <div class="col-md-4 mb-3">
         <div class="cc-card">
-            <h6 class="kicker" style="color:var(--blue-accent);"><i class="fas fa-paper-plane me-1"></i> Demandes envoyées</h6>
+            <h6 class="kicker" style="color:var(--blue-accent);"><i class="fas fa-paper-plane me-1"></i> {% trans "Demandes envoyées" %}</h6>
             {% for c in sent %}
-            <p><strong>{{ c.to_user }}</strong> <span class="badge-status gray ms-2">En attente</span></p>
+            <p><strong>{{ c.to_user }}</strong> <span class="badge-status gray ms-2">{% trans "En attente" %}</span></p>
             {% empty %}
-            <p class="text-muted-2">Aucune demande.</p>
+            <p class="text-muted-2">{% trans "Aucune demande." %}</p>
             {% endfor %}
         </div>
     </div>
     <div class="col-md-4 mb-3">
         <div class="cc-card">
-            <h6 class="kicker" style="color:var(--blue-accent);"><i class="fas fa-check-circle me-1"></i> Connexions acceptées</h6>
+            <h6 class="kicker" style="color:var(--blue-accent);"><i class="fas fa-check-circle me-1"></i> {% trans "Connexions acceptées" %}</h6>
             {% for c, other in accepted_pairs %}
             <p>
                 <strong>{{ other.username }}</strong>
                 <a href="{% url 'start_conversation' other.id %}" class="btn-cc btn-cc-outline float-end" style="padding:3px 10px;font-size:12px;"><i class="fas fa-comment"></i></a>
             </p>
             {% empty %}
-            <p class="text-muted-2">Aucune connexion.</p>
+            <p class="text-muted-2">{% trans "Aucune connexion." %}</p>
             {% endfor %}
         </div>
     </div>
 </div>
-<p class="reassurance small mt-3 mb-0">Vos connexions et échanges restent strictement confidentiels.</p>
+<p class="reassurance small mt-3 mb-0">{% trans "Vos connexions et échanges restent strictement confidentiels." %}</p>
 {% endblock %}

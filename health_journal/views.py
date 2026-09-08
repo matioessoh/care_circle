@@ -3,6 +3,8 @@ from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 from django.utils.dateparse import parse_date, parse_datetime
 from django.db.models import Avg
+from django.http import HttpResponse
+import csv
 from .models import HealthEntry, Medication, VitalSign
 
 
@@ -132,3 +134,54 @@ def vitals_create(request):
         messages.success(request, 'Signes vitaux enregistrés.')
         return redirect('vitals_list')
     return render(request, 'health_journal/vitals_create.html')
+
+
+@login_required
+def export_journal(request):
+    """Export CSV complet du journal de santé de l'utilisateur connecté."""
+    response = HttpResponse(content_type='text/csv')
+    response['Content-Disposition'] = 'attachment; filename="journal_sante.csv"'
+    response.write('\ufeff')
+    writer = csv.writer(response)
+
+    entries = HealthEntry.objects.filter(user=request.user)
+    writer.writerow(['=== ENTRÉES SANTÉ ==='])
+    writer.writerow(['Date', 'Humeur', 'Symptômes', 'Médicaments pris', 'Sommeil (h)', 'Douleur (0-10)', 'Poids (kg)', 'Notes'])
+    for e in entries:
+        writer.writerow([
+            e.date.isoformat(),
+            e.get_mood_display(),
+            e.symptoms,
+            e.medications,
+            e.sleep_hours,
+            e.pain_level,
+            e.weight,
+            e.notes,
+        ])
+
+    writer.writerow([])
+    writer.writerow(['=== MÉDICAMENTS ==='])
+    writer.writerow(['Nom', 'Dosage', 'Fréquence', 'Début', 'Fin', 'Actif', 'Notes'])
+    for m in Medication.objects.filter(user=request.user):
+        writer.writerow([
+            m.name, m.dosage, m.frequency,
+            m.start_date.isoformat() if m.start_date else '',
+            m.end_date.isoformat() if m.end_date else '',
+            'Oui' if m.is_active else 'Non',
+            m.notes,
+        ])
+
+    writer.writerow([])
+    writer.writerow(['=== SIGNES VITAUX ==='])
+    writer.writerow(['Date', 'PA syst', 'PA diast', 'FC (bpm)', 'Temp (°C)', 'Glycémie', 'Notes'])
+    for v in VitalSign.objects.filter(user=request.user):
+        writer.writerow([
+            v.date.strftime('%d/%m/%Y %H:%M'),
+            v.systolic_bp or '',
+            v.diastolic_bp or '',
+            v.heart_rate or '',
+            v.temperature or '',
+            v.blood_sugar or '',
+            v.notes,
+        ])
+    return response

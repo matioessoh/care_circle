@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+{% load i18n %}
+
+{% block title %}FAQ - Care Circle{% endblock %}
+
+{% block content %}
+<div class="d-flex justify-content-between align-items-center mb-2">
+    <div>
+        <div class="kicker">{% trans "Questions fréquentes" %}</div>
+        <h1 class="page-title">FAQ.</h1>
+        <p class="reassurance mb-0">{% trans "Les réponses aux questions les plus posées." %}</p>
+    </div>
+</div>
+
+<div class="cc-card accordion" id="faqAccordion">
+    {% for f in faqs %}
+    <div class="accordion-item border-0 {% if not forloop.last %}border-bottom{% endif %}" style="border-color:var(--border)!important;">
+        <h5 class="accordion-header">
+            <button class="accordion-button collapsed bg-transparent fw-bold" type="button" data-bs-toggle="collapse" data-bs-target="#faq{{ f.id }}" {% if not forloop.first %}aria-expanded="false"{% endif %}>
+                {{ f.question }}
+            </button>
+        </h5>
+        <div id="faq{{ f.id }}" class="accordion-collapse collapse {% if forloop.first %}show{% endif %}" data-bs-parent="#faqAccordion">
+            <div class="accordion-body py-2">
+                <p class="mb-0">{{ f.answer }}</p>
+            </div>
+        </div>
+    </div>
+    {% empty %}
+    <div class="empty-state"><h4>{% trans "Pas encore de questions" %}</h4></div>
+    {% endfor %}
+</div>
+
+<p class="reassurance small mt-3 mb-0">{% trans "Une autre question ? Écrivez-nous via la messagerie ou consultez votre médecin." %}</p>
+{% endblock %}

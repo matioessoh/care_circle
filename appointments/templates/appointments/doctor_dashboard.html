@@ -1,45 +1,46 @@
 {% extends 'base.html' %}
+{% load i18n %}
 
-{% block title %}Tableau de bord - CareCircle{% endblock %}
+{% block title %}{% trans "Tableau de bord" %} - CareCircle{% endblock %}
 
 {% block content %}
 <div class="d-flex justify-content-between align-items-start flex-wrap gap-3 mb-4">
     <div>
-        <span class="kicker">ESPACE MÉDECIN</span>
-        <h1 class="page-title">Votre journée, <em>en un coup d'œil.</em></h1>
-        <p class="text-muted-2">Bonjour Dr {{ doctor.user.get_full_name|default:doctor.user.username }}</p>
+        <span class="kicker">{% trans "Espace médecin" %}</span>
+        <h1 class="page-title">{% trans "Votre journée," %} <em>{% trans "en un coup d'œil." %}</em></h1>
+        <p class="text-muted-2">{% trans "Bonjour" %} Dr {{ doctor.user.get_full_name|default:doctor.user.username }}</p>
     </div>
     <div class="d-flex gap-2 flex-wrap">
-        <a href="{% url 'my_slots' %}" class="btn-cc btn-cc-outline"><i class="fas fa-clock"></i> Créneaux</a>
-        <a href="{% url 'appointment_create_for_patient' %}" class="btn-cc btn-cc-primary"><i class="fas fa-calendar-plus"></i> Programmer pour un patient</a>
+        <a href="{% url 'my_slots' %}" class="btn-cc btn-cc-outline"><i class="fas fa-clock"></i> {% trans "Créneaux" %}</a>
+        <a href="{% url 'appointment_create_for_patient' %}" class="btn-cc btn-cc-primary"><i class="fas fa-calendar-plus"></i> {% trans "Programmer pour un patient" %}</a>
     </div>
 </div>
 
 <div class="grid-3 mb-4">
     <div class="cc-card">
         <span class="card-icon icon-blue"><i class="fas fa-calendar-day"></i></span>
-        <div class="card-tag">AUJOURD'HUI</div>
-        <div class="card-title">{{ todays|length }} rendez-vous</div>
-        <p class="card-desc">Vos consultations du jour.</p>
+        <div class="card-tag">{% trans "AUJOURD'HUI" %}</div>
+        <div class="card-title">{{ todays|length }} {% trans "rendez-vous" %}</div>
+        <p class="card-desc">{% trans "Vos consultations du jour." %}</p>
     </div>
     <div class="cc-card">
         <span class="card-icon icon-green"><i class="fas fa-hourglass-half"></i></span>
-        <div class="card-tag">À CONFIRMER</div>
-        <div class="card-title">{{ pending|length }} demande{{ pending|length|pluralize }}</div>
-        <p class="card-desc">En attente de votre validation.</p>
+        <div class="card-tag">{% trans "À CONFIRMER" %}</div>
+        <div class="card-title">{{ pending|length }} {% trans "demande" %}{{ pending|length|pluralize }}</div>
+        <p class="card-desc">{% trans "En attente de votre validation." %}</p>
     </div>
     <div class="cc-card cc-card-featured">
         <span class="card-icon icon-navy"><i class="fas fa-users"></i></span>
-        <div class="card-tag">VOTRE PORTEFEUILLE</div>
-        <div class="card-title">{{ patients.count }} patient{{ patients.count|pluralize }}</div>
-        <p class="card-desc">Vous accompagnez {{ all_count }} rendez-vous au total.</p>
+        <div class="card-tag">{% trans "VOTRE PORTEFEUILLE" %}</div>
+        <div class="card-title">{{ patients.count }} {% trans "patient" %}{{ patients.count|pluralize }}</div>
+        <p class="card-desc">{% trans "Vous accompagnez" %} {{ all_count }} {% trans "rendez-vous au total." %}</p>
     </div>
 </div>
 
 <div class="row g-4">
     <div class="col-md-6">
         <div class="cc-card">
-            <h5 class="fw-bold mb-3"><i class="fas fa-calendar-day me-2" style="color:var(--blue-accent);"></i> Rendez-vous du jour</h5>
+            <h5 class="fw-bold mb-3"><i class="fas fa-calendar-day me-2" style="color:var(--blue-accent);"></i> {% trans "Rendez-vous du jour" %}</h5>
             {% for appt in todays %}
             <a href="{% url 'appointment_detail' appt.pk %}" class="text-decoration-none d-block">
                 <div class="d-flex justify-content-between align-items-center py-2 {% if not forloop.last %}border-bottom{% endif %}" style="border-color:var(--border)!important;">
@@ -47,37 +48,37 @@
                         <strong>{{ appt.time|time:'H:i' }}</strong> — {{ appt.patient.get_full_name|default:appt.patient.username }}
                         <div class="text-muted-2 small">{{ appt.title }}</div>
                     </div>
-                    {% if appt.status == 'pending' %}<span class="badge-status blue">À confirmer</span>
-                    {% else %}<span class="badge-status green">Confirmé</span>{% endif %}
+                    {% if appt.status == 'pending' %}<span class="badge-status blue">{% trans "À confirmer" %}</span>
+                    {% else %}<span class="badge-status green">{% trans "Confirmé" %}</span>{% endif %}
                 </div>
             </a>
             {% empty %}
             <div class="empty-state">
                 <i class="fas fa-calendar-day"></i>
-                <h4>Aucun rendez-vous aujourd'hui</h4>
-                <p>Profitez de ce temps pour préparer vos prochains RDV.</p>
+                <h4>{% trans "Aucun rendez-vous aujourd'hui" %}</h4>
+                <p>{% trans "Profitez de ce temps pour préparer vos prochains RDV." %}</p>
             </div>
             {% endfor %}
         </div>
     </div>
     <div class="col-md-6">
         <div class="cc-card">
-            <h5 class="fw-bold mb-3"><i class="fas fa-hourglass-half me-2" style="color:var(--blue-accent);"></i> Demandes en attente</h5>
+            <h5 class="fw-bold mb-3"><i class="fas fa-hourglass-half me-2" style="color:var(--blue-accent);"></i> {% trans "Demandes en attente" %}</h5>
             {% for appt in pending %}
             <a href="{% url 'appointment_detail' appt.pk %}" class="text-decoration-none d-block">
                 <div class="d-flex justify-content-between align-items-center py-2 {% if not forloop.last %}border-bottom{% endif %}" style="border-color:var(--border)!important;">
                     <div>
                         <strong>{{ appt.patient.get_full_name|default:appt.patient.username }}</strong>
-                        <div class="text-muted-2 small">{{ appt.date|date:'d/m/Y' }} à {{ appt.time|time:'H:i' }}</div>
+                        <div class="text-muted-2 small">{{ appt.date|date:'d/m/Y' }} {% trans "à" %} {{ appt.time|time:'H:i' }}</div>
                     </div>
-                    <span class="badge-status blue">En attente</span>
+                    <span class="badge-status blue">{% trans "En attente" %}</span>
                 </div>
             </a>
             {% empty %}
             <div class="empty-state">
                 <i class="fas fa-check-circle"></i>
-                <h4>Tout est à jour !</h4>
-                <p>Aucune demande de rendez-vous en attente.</p>
+                <h4>{% trans "Tout est à jour !" %}</h4>
+                <p>{% trans "Aucune demande de rendez-vous en attente." %}</p>
             </div>
             {% endfor %}
         </div>
@@ -85,21 +86,21 @@
 </div>
 
 <div class="cc-card mt-4">
-    <h5 class="fw-bold mb-3"><i class="fas fa-users me-2" style="color:var(--blue-accent);"></i> Mes patients ({{ patients.count }})</h5>
+    <h5 class="fw-bold mb-3"><i class="fas fa-users me-2" style="color:var(--blue-accent);"></i> {% trans "Mes patients" %} ({{ patients.count }})</h5>
     <div class="grid-3">
         {% for patient in patients %}
         <div class="d-flex align-items-center gap-3" style="padding:10px;border:1px solid var(--border);border-radius:var(--radius-md);">
             <span class="avatar-initials">{{ patient.username|first|upper }}</span>
             <div>
                 <strong>{{ patient.get_full_name|default:patient.username }}</strong>
-                <div><a href="{% url 'patient_medical_record' patient.id %}" class="btn-cc btn-cc-ghost" style="font-size:13px;">Dossier médical <i class="fas fa-arrow-right"></i></a></div>
+                <div><a href="{% url 'patient_medical_record' patient.id %}" class="btn-cc btn-cc-ghost" style="font-size:13px;">{% trans "Dossier médical" %} <i class="fas fa-arrow-right"></i></a></div>
             </div>
         </div>
         {% empty %}
         <div class="empty-state col-12" style="grid-column:1/-1;">
             <i class="fas fa-users"></i>
-            <h4>Aucun patient pour le moment</h4>
-            <p>Vos patients apparaîtront ici après le premier rendez-vous.</p>
+            <h4>{% trans "Aucun patient pour le moment" %}</h4>
+            <p>{% trans "Vos patients apparaîtront ici après le premier rendez-vous." %}</p>
         </div>
         {% endfor %}
     </div>

@@ -21,12 +21,15 @@ from django.conf.urls.static import static
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('i18n/', include('django.conf.urls.i18n')),
     path('', include('patients.urls')),
     path('forum/', include('forum.urls')),
     path('messaging/', include('messaging.urls')),
     path('rendez-vous/', include('appointments.urls')),
     path('journal/', include('health_journal.urls')),
     path('admin-panel/', include('admin_panel.urls')),
+    path('ressources/', include('resources.urls')),
+    path('notifications/', include('notifications.urls')),
     path('accounts/', include('django.contrib.auth.urls')),
 ]
 

@@ -1,15 +1,17 @@
 {% extends 'base.html' %}
+{% load i18n %}
 
-{% block title %}Membres - Care Circle{% endblock %}
+
+{% block title %}{% trans "Membres" %} - Care Circle{% endblock %}
 
 {% block content %}
 <div class="d-flex justify-content-between align-items-center mb-2">
     <div>
-        <div class="kicker">Communauté</div>
-        <h1 class="page-title">Membres</h1>
-        <p class="reassurance mb-0">Retrouvez les autres membres et échangez en toute confiance.</p>
+        <div class="kicker">{% trans "Communauté" %}</div>
+        <h1 class="page-title">{% trans "Membres" %}</h1>
+        <p class="reassurance mb-0">{% trans "Retrouvez les autres membres et échangez en toute confiance." %}</p>
     </div>
-    <a href="{% url 'my_connections' %}" class="btn-cc btn-cc-outline">Mes connexions</a>
+    <a href="{% url 'my_connections' %}" class="btn-cc btn-cc-outline">{% trans "Mes connexions" %}</a>
 </div>
 
 <div class="row mt-4">
@@ -21,11 +23,11 @@
                 <h6 class="mb-0">{{ member.get_full_name|default:member.username }}</h6>
                 <p class="text-muted-2 small mb-3">@{{ member.username }}</p>
                 <div class="d-flex justify-content-center gap-2 flex-wrap">
-                    <a href="{% url 'user_profile' member.username %}" class="btn-cc btn-cc-outline" style="padding:6px 12px;font-size:13px;">Voir profil</a>
+                    <a href="{% url 'user_profile' member.username %}" class="btn-cc btn-cc-outline" style="padding:6px 12px;font-size:13px;">{% trans "Voir profil" %}</a>
                     {% if member.id not in connected_ids %}
-                    <a href="{% url 'send_connection' member.id %}" class="btn-cc btn-cc-outline" style="padding:6px 12px;font-size:13px;"><i class="fas fa-user-plus"></i> Connecter</a>
+                    <a href="{% url 'send_connection' member.id %}" class="btn-cc btn-cc-outline" style="padding:6px 12px;font-size:13px;"><i class="fas fa-user-plus"></i> {% trans "Connecter" %}</a>
                     {% else %}
-                    <span class="badge-status green">Connecté</span>
+                    <span class="badge-status green">{% trans "Connecté" %}</span>
                     {% endif %}
                     <a href="{% url 'start_conversation' member.id %}" class="btn-cc btn-cc-outline" style="padding:6px 12px;font-size:13px;"><i class="fas fa-envelope"></i></a>
                 </div>
@@ -36,11 +38,11 @@
     <div class="col-12">
         <div class="empty-state">
             <i class="fas fa-user-friends"></i>
-            <h5>Aucun membre à afficher</h5>
-            <p>La communauté se construit jour après jour.</p>
+            <h5>{% trans "Aucun membre à afficher" %}</h5>
+            <p>{% trans "La communauté se construit jour après jour." %}</p>
         </div>
     </div>
     {% endfor %}
 </div>
-<p class="reassurance small mt-3 mb-0">Vos échanges restent confidentiels et respectueux.</p>
+<p class="reassurance small mt-3 mb-0">{% trans "Vos échanges restent confidentiels et respectueux." %}</p>
 {% endblock %}

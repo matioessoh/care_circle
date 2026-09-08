@@ -1,19 +1,20 @@
 {% extends 'admin_panel/base_admin.html' %}
+{% load i18n %}
 
-{% block title %}Gestion des médecins{% endblock %}
+{% block title %}{% trans "Gestion des médecins" %}{% endblock %}
 
 {% block admin_content %}
 <div class="d-flex justify-content-between align-items-center mb-4">
-    <h3><i class="fas fa-user-md"></i> Gestion des médecins</h3>
-    <a href="{% url 'admin_doctor_create' %}" class="btn btn-primary"><i class="fas fa-plus"></i> Nouveau médecin</a>
+    <h3><i class="fas fa-user-md"></i> {% trans "Gestion des médecins" %}</h3>
+    <a href="{% url 'admin_doctor_create' %}" class="btn btn-primary"><i class="fas fa-plus"></i> {% trans "Nouveau médecin" %}</a>
 </div>
 
 <form method="get" class="row g-2 mb-3">
     <div class="col-md-9">
-        <input type="text" name="q" value="{{ request.GET.q }}" class="form-control" placeholder="Rechercher par nom, spécialité...">
+        <input type="text" name="q" value="{{ request.GET.q }}" class="form-control" placeholder="{% trans "Rechercher par nom, spécialité..." %}">
     </div>
     <div class="col-md-3">
-        <button class="btn btn-primary w-100"><i class="fas fa-search"></i> Rechercher</button>
+        <button class="btn btn-primary w-100"><i class="fas fa-search"></i> {% trans "Rechercher" %}</button>
     </div>
 </form>
 
@@ -23,13 +24,13 @@
             <table class="table table-hover">
                 <thead>
                     <tr>
-                        <th>Médecin</th>
-                        <th>Spécialité</th>
-                        <th>Cabinet</th>
-                        <th>RDV</th>
-                        <th>Disponibilité</th>
-                        <th>Compte</th>
-                        <th>Actions</th>
+                        <th>{% trans "Médecin" %}</th>
+                        <th>{% trans "Spécialité" %}</th>
+                        <th>{% trans "Cabinet" %}</th>
+                        <th>{% trans "RDV" %}</th>
+                        <th>{% trans "Disponibilité" %}</th>
+                        <th>{% trans "Compte" %}</th>
+                        <th>{% trans "Actions" %}</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -43,12 +44,12 @@
                         <td>{{ doctor.clinic_name|default:'—' }}</td>
                         <td>{{ doctor.n_appointments }}</td>
                         <td>
-                            {% if doctor.is_available %}<span class="badge bg-success">Disponible</span>
-                            {% else %}<span class="badge bg-danger">Indisponible</span>{% endif %}
+                            {% if doctor.is_available %}<span class="badge bg-success">{% trans "Disponible" %}</span>
+                            {% else %}<span class="badge bg-danger">{% trans "Indisponible" %}</span>{% endif %}
                         </td>
                         <td>
-                            {% if doctor.user.is_active %}<span class="badge bg-success">Actif</span>
-                            {% else %}<span class="badge bg-danger">Désactivé</span>{% endif %}
+                            {% if doctor.user.is_active %}<span class="badge bg-success">{% trans "Actif" %}</span>
+                            {% else %}<span class="badge bg-danger">{% trans "Désactivé" %}</span>{% endif %}
                         </td>
                         <td>
                             <a href="{% url 'admin_doctor_detail' doctor.id %}" class="btn btn-sm btn-outline-secondary"><i class="fas fa-eye"></i></a>
@@ -58,25 +59,25 @@
                             <form method="post" action="{% url 'admin_doctor_toggle_available' doctor.id %}" class="d-inline">
                                 {% csrf_token %}
                                 {% if doctor.is_available %}
-                                <button class="btn btn-sm btn-outline-danger" title="Rendre indisponible"><i class="fas fa-clock"></i></button>
+                                <button class="btn btn-sm btn-outline-danger" title="{% trans "Rendre indisponible" %}"><i class="fas fa-clock"></i></button>
                                 {% else %}
-                                <button class="btn btn-sm btn-outline-success" title="Rendre disponible"><i class="fas fa-check"></i></button>
+                                <button class="btn btn-sm btn-outline-success" title="{% trans "Rendre disponible" %}"><i class="fas fa-check"></i></button>
                                 {% endif %}
                             </form>
                             {% if doctor.user.id != request.user.id %}
                             <form method="post" action="{% url 'admin_doctor_toggle_active' doctor.id %}" class="d-inline">
                                 {% csrf_token %}
                                 {% if doctor.user.is_active %}
-                                <button class="btn btn-sm btn-outline-danger" title="Désactiver le compte"><i class="fas fa-ban"></i></button>
+                                <button class="btn btn-sm btn-outline-danger" title="{% trans "Désactiver le compte" %}"><i class="fas fa-ban"></i></button>
                                 {% else %}
-                                <button class="btn btn-sm btn-outline-success" title="Réactiver"><i class="fas fa-check-circle"></i></button>
+                                <button class="btn btn-sm btn-outline-success" title="{% trans "Réactiver" %}"><i class="fas fa-check-circle"></i></button>
                                 {% endif %}
                             </form>
                             {% endif %}
                         </td>
                     </tr>
                     {% empty %}
-                    <tr><td colspan="7" class="text-muted text-center">Aucun médecin.</td></tr>
+                    <tr><td colspan="7" class="text-muted text-center">{% trans "Aucun médecin." %}</td></tr>
                     {% endfor %}
                 </tbody>
             </table>

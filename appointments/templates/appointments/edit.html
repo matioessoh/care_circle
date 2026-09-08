@@ -1,68 +1,69 @@
 {% extends 'base.html' %}
+{% load i18n %}
 
-{% block title %}Modifier rendez-vous - Care Circle{% endblock %}
+{% block title %}{% trans "Modifier rendez-vous" %} - Care Circle{% endblock %}
 
 {% block content %}
 <div class="row justify-content-center">
     <div class="col-md-8">
-        <div class="kicker">Gestion du rendez-vous</div>
-        <h1 class="page-title">Modifier le rendez-vous</h1>
-        <p class="reassurance mb-4">Mettez à jour les informations de ce rendez-vous.</p>
+        <div class="kicker">{% trans "Gestion du rendez-vous" %}</div>
+        <h1 class="page-title">{% trans "Modifier le rendez-vous" %}</h1>
+        <p class="reassurance mb-4">{% trans "Mettez à jour les informations de ce rendez-vous." %}</p>
         <div class="cc-card">
             <form method="post">
                 {% csrf_token %}
                 <div class="row">
                     <div class="col-md-8">
                         <div class="cc-field">
-                            <label>Titre</label>
+                            <label>{% trans "Titre" %}</label>
                             <input type="text" name="title" value="{{ appointment.title }}" class="cc-input" required>
                         </div>
                     </div>
                     <div class="col-md-4">
                         <div class="cc-field">
-                            <label>Statut</label>
+                            <label>{% trans "Statut" %}</label>
                             <select name="status" class="cc-input">
-                                <option value="pending" {% if appointment.status == 'pending' %}selected{% endif %}>En attente</option>
-                                <option value="confirmed" {% if appointment.status == 'confirmed' %}selected{% endif %}>Confirmé</option>
-                                <option value="completed" {% if appointment.status == 'completed' %}selected{% endif %}>Terminé</option>
-                                <option value="cancelled" {% if appointment.status == 'cancelled' %}selected{% endif %}>Annulé</option>
+                                <option value="pending" {% if appointment.status == 'pending' %}selected{% endif %}>{% trans "En attente" %}</option>
+                                <option value="confirmed" {% if appointment.status == 'confirmed' %}selected{% endif %}>{% trans "Confirmé" %}</option>
+                                <option value="completed" {% if appointment.status == 'completed' %}selected{% endif %}>{% trans "Terminé" %}</option>
+                                <option value="cancelled" {% if appointment.status == 'cancelled' %}selected{% endif %}>{% trans "Annulé" %}</option>
                             </select>
                         </div>
                     </div>
                     <div class="col-md-4">
                         <div class="cc-field">
-                            <label>Date</label>
+                            <label>{% trans "Date" %}</label>
                             <input type="date" name="date" value="{{ appointment.date|date:'Y-m-d' }}" class="cc-input" required>
                         </div>
                     </div>
                     <div class="col-md-4">
                         <div class="cc-field">
-                            <label>Heure</label>
+                            <label>{% trans "Heure" %}</label>
                             <input type="time" name="time" value="{{ appointment.time|time:'H:i' }}" class="cc-input" required>
                         </div>
                     </div>
                     <div class="col-md-4">
                         <div class="cc-field">
-                            <label>Lieu</label>
+                            <label>{% trans "Lieu" %}</label>
                             <input type="text" name="location" value="{{ appointment.location }}" class="cc-input">
                         </div>
                     </div>
                     <div class="col-12">
                         <div class="cc-field">
-                            <label>Description</label>
+                            <label>{% trans "Description" %}</label>
                             <textarea name="description" class="cc-input" rows="3">{{ appointment.description }}</textarea>
                         </div>
                     </div>
                     <div class="col-12">
                         <div class="cc-field">
-                            <label>Notes</label>
+                            <label>{% trans "Notes" %}</label>
                             <textarea name="notes" class="cc-input" rows="3">{{ appointment.notes }}</textarea>
                         </div>
                     </div>
                 </div>
                 <div class="d-flex gap-2">
-                    <button type="submit" class="btn-cc btn-cc-primary"><i class="fas fa-save"></i> Enregistrer</button>
-                    <a href="{% url 'appointment_detail' appointment.pk %}" class="btn-cc btn-cc-outline">Annuler</a>
+                    <button type="submit" class="btn-cc btn-cc-primary"><i class="fas fa-save"></i> {% trans "Enregistrer" %}</button>
+                    <a href="{% url 'appointment_detail' appointment.pk %}" class="btn-cc btn-cc-outline">{% trans "Annuler" %}</a>
                 </div>
             </form>
         </div>

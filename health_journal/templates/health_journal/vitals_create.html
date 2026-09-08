@@ -1,65 +1,66 @@
 {% extends 'base.html' %}
+{% load i18n %}
 
-{% block title %}Enregistrer signes vitaux - Care Circle{% endblock %}
+{% block title %}{% trans "Enregistrer signes vitaux" %} - Care Circle{% endblock %}
 
 {% block content %}
 <div class="row justify-content-center">
     <div class="col-md-8">
-        <div class="kicker">Journal de santé</div>
-        <h1 class="page-title">Signes vitaux</h1>
-        <p class="reassurance mb-4">Renseignez vos constantes du jour.</p>
+        <div class="kicker">{% trans "Journal de santé" %}</div>
+        <h1 class="page-title">{% trans "Signes vitaux" %}</h1>
+        <p class="reassurance mb-4">{% trans "Renseignez vos constantes du jour." %}</p>
         <div class="cc-card">
             <form method="post">
                 {% csrf_token %}
                 <div class="cc-field">
-                    <label>Date et heure <span style="color:#C0392B;">*</span></label>
+                    <label>{% trans "Date et heure" %} <span style="color:#C0392B;">*</span></label>
                     <input type="datetime-local" name="date" class="cc-input" required>
                 </div>
                 <div class="row">
                     <div class="col-md-6">
                         <div class="cc-field">
-                            <label>Pression systolique (mmHg)</label>
+                            <label>{% trans "Pression systolique (mmHg)" %}</label>
                             <input type="number" name="systolic_bp" class="cc-input">
                         </div>
                     </div>
                     <div class="col-md-6">
                         <div class="cc-field">
-                            <label>Pression diastolique (mmHg)</label>
+                            <label>{% trans "Pression diastolique (mmHg)" %}</label>
                             <input type="number" name="diastolic_bp" class="cc-input">
                         </div>
                     </div>
                     <div class="col-md-6">
                         <div class="cc-field">
-                            <label>Fréquence cardiaque (bpm)</label>
+                            <label>{% trans "Fréquence cardiaque (bpm)" %}</label>
                             <input type="number" name="heart_rate" class="cc-input">
                         </div>
                     </div>
                     <div class="col-md-6">
                         <div class="cc-field">
-                            <label>Température (°C)</label>
+                            <label>{% trans "Température (°C)" %}</label>
                             <input type="number" name="temperature" step="0.1" class="cc-input">
                         </div>
                     </div>
                     <div class="col-12">
                         <div class="cc-field">
-                            <label>Glycémie</label>
+                            <label>{% trans "Glycémie" %}</label>
                             <input type="number" name="blood_sugar" step="0.1" class="cc-input">
                         </div>
                     </div>
                     <div class="col-12">
                         <div class="cc-field">
-                            <label>Notes</label>
+                            <label>{% trans "Notes" %}</label>
                             <textarea name="notes" class="cc-input" rows="3"></textarea>
                         </div>
                     </div>
                 </div>
                 <div class="d-flex gap-2">
-                    <button type="submit" class="btn-cc btn-cc-primary"><i class="fas fa-save"></i> Enregistrer</button>
-                    <a href="{% url 'vitals_list' %}" class="btn-cc btn-cc-outline">Annuler</a>
+                    <button type="submit" class="btn-cc btn-cc-primary"><i class="fas fa-save"></i> {% trans "Enregistrer" %}</button>
+                    <a href="{% url 'vitals_list' %}" class="btn-cc btn-cc-outline">{% trans "Annuler" %}</a>
                 </div>
             </form>
         </div>
-        <p class="reassurance small mt-3 mb-0">Des valeurs anormales justifient une consultation médicale.</p>
+        <p class="reassurance small mt-3 mb-0">{% trans "Des valeurs anormales justifient une consultation médicale." %}</p>
     </div>
 </div>
 {% endblock %}

@@ -1,35 +1,36 @@
 {% extends 'admin_panel/base_admin.html' %}
+{% load i18n %}
 
-{% block title %}Administration - CareCircle{% endblock %}
+{% block title %}{% trans "Administration" %} - CareCircle{% endblock %}
 
 {% block admin_content %}
 <div class="d-flex justify-content-between align-items-start flex-wrap gap-3 mb-4">
     <div>
-        <span class="kicker">ESPACE ADMIN</span>
-        <h1 class="page-title">Vue d'ensemble.</h1>
-        <p class="text-muted-2">{{ new_users_30 }} nouveaux utilisateurs sur les 30 derniers jours.</p>
+        <span class="kicker">{% trans "ESPACE ADMIN" %}</span>
+        <h1 class="page-title">{% trans "Vue d'ensemble." %}</h1>
+        <p class="text-muted-2">{{ new_users_30 }} {% trans "nouveaux utilisateurs sur les 30 derniers jours." %}</p>
     </div>
-    <span class="badge-status green"><i class="fas fa-shield-alt"></i> Plateforme sécurisée</span>
+    <span class="badge-status green"><i class="fas fa-shield-alt"></i> {% trans "Plateforme sécurisée" %}</span>
 </div>
 
 <div class="grid-3 mb-4">
     <div class="cc-card">
         <span class="card-icon icon-blue"><i class="fas fa-users"></i></span>
-        <div class="card-tag">COMPTES</div>
+        <div class="card-tag">{% trans "COMPTES" %}</div>
         <div class="card-title" style="font-size:32px;">{{ stats.users }}</div>
-        <p class="card-desc">Utilisateurs inscrits</p>
+        <p class="card-desc">{% trans "Utilisateurs inscrits" %}</p>
     </div>
     <div class="cc-card">
         <span class="card-icon icon-green"><i class="fas fa-user-md"></i></span>
-        <div class="card-tag">PROFESSIONNELS</div>
+        <div class="card-tag">{% trans "PROFESSIONNELS" %}</div>
         <div class="card-title" style="font-size:32px;">{{ stats.doctors }}</div>
-        <p class="card-desc">Médecins <span class="text-muted-2">· {{ stats.appointments }} RDV</span></p>
+        <p class="card-desc">{% trans "Médecins" %} <span class="text-muted-2">· {{ stats.appointments }} {% trans "RDV" %}</span></p>
     </div>
     <div class="cc-card cc-card-featured">
         <span class="card-icon icon-navy"><i class="fas fa-calendar-check"></i></span>
-        <div class="card-tag">AUJOURD'HUI</div>
+        <div class="card-tag">{% trans "AUJOURD'HUI" %}</div>
         <div class="card-title" style="font-size:32px;">{{ stats.appointments_today }}</div>
-        <p class="card-desc">Rendez-vous ce jour</p>
+        <p class="card-desc">{% trans "Rendez-vous ce jour" %}</p>
     </div>
 </div>
 
@@ -37,45 +38,45 @@
     <div class="cc-card">
         <span class="card-icon icon-blue"><i class="fas fa-file-alt"></i></span>
         <div class="card-title">{{ stats.posts }}</div>
-        <p class="card-desc">Articles de la communauté</p>
+        <p class="card-desc">{% trans "Articles de la communauté" %}</p>
     </div>
     <div class="cc-card">
         <span class="card-icon icon-blue"><i class="fas fa-comments"></i></span>
         <div class="card-title">{{ stats.comments }}</div>
-        <p class="card-desc">Commentaires</p>
+        <p class="card-desc">{% trans "Commentaires" %}</p>
     </div>
     <div class="cc-card">
         <span class="card-icon {% if stats.pending_reports %}green{% else %}blue{% endif %}"><i class="fas fa-flag"></i></span>
         <div class="card-title">{{ stats.pending_reports }}</div>
-        <p class="card-desc">Signalements en attente</p>
-        <a href="{% url 'admin_reports' %}" class="card-action">Modérer <i class="fas fa-arrow-right"></i></a>
+        <p class="card-desc">{% trans "Signalements en attente" %}</p>
+        <a href="{% url 'admin_reports' %}" class="card-action">{% trans "Modérer" %} <i class="fas fa-arrow-right"></i></a>
     </div>
 </div>
 
 <div class="row g-4">
     <div class="col-md-6">
         <div class="cc-card">
-            <h5 class="fw-bold mb-3">Rendez-vous par statut</h5>
+            <h5 class="fw-bold mb-3">{% trans "Rendez-vous par statut" %}</h5>
             {% for item in appointments_by_status %}
             <div class="d-flex justify-content-between align-items-center py-2 {% if not forloop.last %}border-bottom{% endif %}" style="border-color:var(--border)!important;">
-                {% if item.status == 'pending' %}<span class="badge-status blue">En attente</span>
-                {% elif item.status == 'confirmed' %}<span class="badge-status green">Confirmé</span>
-                {% elif item.status == 'completed' %}<span class="badge-status navy">Terminé</span>
-                {% else %}<span class="badge-status gray">Annulé</span>{% endif %}
+                {% if item.status == 'pending' %}<span class="badge-status blue">{% trans "En attente" %}</span>
+                {% elif item.status == 'confirmed' %}<span class="badge-status green">{% trans "Confirmé" %}</span>
+                {% elif item.status == 'completed' %}<span class="badge-status navy">{% trans "Terminé" %}</span>
+                {% else %}<span class="badge-status gray">{% trans "Annulé" %}</span>{% endif %}
                 <strong>{{ item.n }}</strong>
             </div>
-            {% empty %}<div class="empty-state"><h4>Aucun rendez-vous</h4></div>{% endfor %}
+            {% empty %}<div class="empty-state"><h4>{% trans "Aucun rendez-vous" %}</h4></div>{% endfor %}
         </div>
     </div>
     <div class="col-md-6">
         <div class="cc-card">
-            <h5 class="fw-bold mb-3">Médecins les plus sollicités</h5>
+            <h5 class="fw-bold mb-3">{% trans "Médecins les plus sollicités" %}</h5>
             {% for doctor in doctors_top %}
             <div class="d-flex justify-content-between align-items-center py-2 {% if not forloop.last %}border-bottom{% endif %}" style="border-color:var(--border)!important;">
                 <span>{{ forloop.counter }}. Dr {{ doctor.user.get_full_name|default:doctor.user.username }} <span class="text-muted-2">({{ doctor.specialty }})</span></span>
                 <strong>{{ doctor.n }}</strong>
             </div>
-            {% empty %}<div class="empty-state"><h4>Aucun médecin</h4></div>{% endfor %}
+            {% empty %}<div class="empty-state"><h4>{% trans "Aucun médecin" %}</h4></div>{% endfor %}
         </div>
     </div>
 </div>
@@ -84,8 +85,8 @@
     <div class="col-md-6">
         <div class="cc-card">
             <div class="d-flex justify-content-between align-items-center mb-3">
-                <h5 class="fw-bold mb-0">Signalements en attente</h5>
-                <a href="{% url 'admin_reports' %}" class="btn-cc btn-cc-ghost">Voir tout <i class="fas fa-arrow-right"></i></a>
+                <h5 class="fw-bold mb-0">{% trans "Signalements en attente" %}</h5>
+                <a href="{% url 'admin_reports' %}" class="btn-cc btn-cc-ghost">{% trans "Voir tout" %} <i class="fas fa-arrow-right"></i></a>
             </div>
             {% for report in pending_reports %}
             <a href="{% url 'admin_report_detail' report.id %}" class="text-decoration-none d-block">
@@ -94,12 +95,12 @@
                     <small class="text-muted-2">{{ report.created_at|date:'d/m/Y H:i' }}</small>
                 </div>
             </a>
-            {% empty %}<div class="empty-state"><h4>Aucun signalement</h4><p>Tout est calme.</p></div>{% endfor %}
+            {% empty %}<div class="empty-state"><h4>{% trans "Aucun signalement" %}</h4><p>{% trans "Tout est calme." %}</p></div>{% endfor %}
         </div>
     </div>
     <div class="col-md-6">
         <div class="cc-card">
-            <h5 class="fw-bold mb-3">Derniers utilisateurs</h5>
+            <h5 class="fw-bold mb-3">{% trans "Derniers utilisateurs" %}</h5>
             {% for u in recent_users %}
             <a href="{% url 'admin_user_detail' u.id %}" class="text-decoration-none d-block">
                 <div class="d-flex align-items-center justify-content-between py-2 {% if not forloop.last %}border-bottom{% endif %}" style="border-color:var(--border)!important;">
@@ -110,7 +111,7 @@
                     <small class="text-muted-2">{{ u.date_joined|date:'d/m/Y' }}</small>
                 </div>
             </a>
-            {% empty %}<div class="empty-state"><h4>Aucun utilisateur</h4></div>{% endfor %}
+            {% empty %}<div class="empty-state"><h4>{% trans "Aucun utilisateur" %}</h4></div>{% endfor %}
         </div>
     </div>
 </div>

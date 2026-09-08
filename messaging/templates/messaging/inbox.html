@@ -1,15 +1,16 @@
 {% extends 'base.html' %}
+{% load i18n %}
 
-{% block title %}Messages - Care Circle{% endblock %}
+{% block title %}{% trans "Messages" %} - Care Circle{% endblock %}
 
 {% block content %}
 <div class="d-flex justify-content-between align-items-center mb-2">
     <div>
-        <div class="kicker">Messagerie privée</div>
-        <h1 class="page-title">Messages</h1>
-        <p class="reassurance mb-0">Vos échanges restent confidentiels.</p>
+        <div class="kicker">{% trans "Messagerie privée" %}</div>
+        <h1 class="page-title">{% trans "Messages" %}</h1>
+        <p class="reassurance mb-0">{% trans "Vos échanges restent confidentiels." %}</p>
     </div>
-    <a href="{% url 'members' %}" class="btn-cc btn-cc-primary"><i class="fas fa-user-plus"></i> Nouveau message</a>
+    <a href="{% url 'members' %}" class="btn-cc btn-cc-primary"><i class="fas fa-user-plus"></i> {% trans "Nouveau message" %}</a>
 </div>
 
 <div class="cc-card mt-4">
@@ -34,9 +35,9 @@
     {% empty %}
     <div class="empty-state">
         <i class="fas fa-envelope-open-text"></i>
-        <h5>Aucune conversation</h5>
-        <p>Commencez à discuter avec les membres de la communauté en toute confidentialité.</p>
-        <a href="{% url 'members' %}" class="btn-cc btn-cc-accent">Démarrer une conversation</a>
+        <h5>{% trans "Aucune conversation" %}</h5>
+        <p>{% trans "Commencez à discuter avec les membres de la communauté en toute confidentialité." %}</p>
+        <a href="{% url 'members' %}" class="btn-cc btn-cc-accent">{% trans "Démarrer une conversation" %}</a>
     </div>
     {% endfor %}
 </div>

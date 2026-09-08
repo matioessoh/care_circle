@@ -1,36 +1,37 @@
 {% extends 'base.html' %}
+{% load i18n %}
 
-{% block title %}Modifier - Care Circle{% endblock %}
+{% block title %}{% trans "Modifier" %} - Care Circle{% endblock %}
 
 {% block content %}
 <div class="row justify-content-center">
     <div class="col-md-8">
-        <div class="kicker">Espace communautaire</div>
-        <h1 class="page-title">Modifier l'article</h1>
-        <p class="reassurance mb-4">Mettez à jour votre article.</p>
+        <div class="kicker">{% trans "Espace communautaire" %}</div>
+        <h1 class="page-title">{% trans "Modifier l'article" %}</h1>
+        <p class="reassurance mb-4">{% trans "Mettez à jour votre article." %}</p>
         <div class="cc-card">
             <form method="post">
                 {% csrf_token %}
                 <div class="cc-field">
-                    <label>Titre</label>
+                    <label>{% trans "Titre" %}</label>
                     <input type="text" name="title" value="{{ post.title }}" class="cc-input" required>
                 </div>
                 <div class="cc-field">
-                    <label>Catégorie</label>
+                    <label>{% trans "Catégorie" %}</label>
                     <select name="category" class="cc-input">
-                        <option value="">Général</option>
+                        <option value="">{% trans "Général" %}</option>
                         {% for cat in categories %}
                         <option value="{{ cat.id }}" {% if post.category_id == cat.id %}selected{% endif %}>{{ cat.name }}</option>
                         {% endfor %}
                     </select>
                 </div>
                 <div class="cc-field">
-                    <label>Contenu</label>
+                    <label>{% trans "Contenu" %}</label>
                     <textarea name="content" class="cc-input" rows="8" required>{{ post.content }}</textarea>
                 </div>
                 <div class="d-flex gap-2">
-                    <button type="submit" class="btn-cc btn-cc-primary"><i class="fas fa-save"></i> Enregistrer</button>
-                    <a href="{% url 'post_detail' post.slug %}" class="btn-cc btn-cc-outline">Annuler</a>
+                    <button type="submit" class="btn-cc btn-cc-primary"><i class="fas fa-save"></i> {% trans "Enregistrer" %}</button>
+                    <a href="{% url 'post_detail' post.slug %}" class="btn-cc btn-cc-outline">{% trans "Annuler" %}</a>
                 </div>
             </form>
         </div>

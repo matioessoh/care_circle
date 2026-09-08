@@ -1,0 +1,64 @@
+{% extends 'base.html' %}
+{% load i18n %}
+
+{% block title %}{% trans "Mes notifications" %} - Care Circle{% endblock %}
+
+{% block content %}
+<div class="d-flex justify-content-between align-items-center mb-3">
+    <div>
+        <div class="kicker">{% trans "Notifications" %}</div>
+        <h1 class="page-title">{% trans "Mes notifications" %}</h1>
+        <p class="reassurance mb-0">{{ page_obj.paginator.count }} {% trans "notification(s)" %} {% trans "au total" %}
+            {% if unread_before %} · {{ unread_before }} {% trans "non lue(s) avant cette visite" %}{% endif %}
+        </p>
+    </div>
+    <div class="d-flex gap-2">
+        <a href="{% url 'notification_mark_all_read' %}" class="btn-cc btn-cc-outline"><i class="fas fa-check-double"></i> {% trans "Tout marquer comme lu" %}</a>
+    </div>
+</div>
+
+{% for n in page_obj %}
+<div class="cc-card mb-2 {% if forloop.first %}border-top-4{% endif %}">
+    <div class="d-flex align-items-start gap-3">
+        <div class="notification-icon">
+            {% if n.kind == 'appointment' %}<i class="fas fa-calendar-check"></i>
+            {% elif n.kind == 'message' %}<i class="fas fa-envelope"></i>
+            {% elif n.kind == 'connection' %}<i class="fas fa-user-friends"></i>
+            {% elif n.kind == 'forum' %}<i class="fas fa-comment"></i>
+            {% else %}<i class="fas fa-bell"></i>{% endif %}
+        </div>
+        <div class="flex-grow-1">
+            <div class="d-flex justify-content-between align-items-start">
+                <strong>{{ n.title }}</strong>
+                <span class="small text-muted-2">{{ n.timestamp|date:'d/m/Y H:i' }}</span>
+            </div>
+            {% if n.message %}<p class="text-muted-2 small mb-2">{{ n.message }}</p>{% endif %}
+            {% if n.url %}
+            <a href="{% url 'notification_mark_read' n.id %}" class="btn-cc btn-cc-ghost" style="padding:4px 10px;font-size:12px;">
+                <i class="fas fa-arrow-right"></i> {% trans "Voir" %}
+            </a>
+            {% endif %}
+        </div>
+    </div>
+</div>
+{% empty %}
+<div class="empty-state">
+    <i class="fas fa-bell-slash"></i>
+    <p class="mb-0">{% trans "Aucune notification pour le moment." %}</p>
+</div>
+{% endfor %}
+
+{% if page_obj.has_other_pages %}
+<nav class="mt-3">
+    <ul class="pagination pagination-sm">
+        {% if page_obj.has_previous %}
+        <li class="page-item"><a class="page-link" href="?page={{ page_obj.previous_page_number }}">{% trans "Précédent" %}</a></li>
+        {% endif %}
+        <li class="page-item disabled"><span class="page-link">{% trans "Page" %} {{ page_obj.number }}/{{ page_obj.paginator.num_pages }}</span></li>
+        {% if page_obj.has_next %}
+        <li class="page-item"><a class="page-link" href="?page={{ page_obj.next_page_number }}">{% trans "Suivant" %}</a></li>
+        {% endif %}
+    </ul>
+</nav>
+{% endif %}
+{% endblock %}

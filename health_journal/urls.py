@@ -12,4 +12,5 @@ urlpatterns = [
     path('medications/new/', views.medication_create, name='medication_create'),
     path('vitals/', views.vitals_list, name='vitals_list'),
     path('vitals/new/', views.vitals_create, name='vitals_create'),
+    path('export/', views.export_journal, name='journal_export'),
 ]

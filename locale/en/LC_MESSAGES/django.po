@@ -1,0 +1,2433 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: Care Circle 1.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-09-08 00:00+0000\n"
+"PO-Revision-Date: 2026-09-08 00:00+0000\n"
+"Last-Translator: Care Circle\n"
+"Language-Team: Care Circle <no@care.circle>\n"
+"Language: en\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+# health_journal\templates\health_journal\medication_create.html
+msgid "2 fois par jour"
+msgstr "twice a day"
+
+# admin_panel\templates\admin_panel\dashboard.html; appointments\templates\appointments\doctor_dashboard.html; health_journal\templates\health_journal\dashboard.html
+msgid "AUJOURD'HUI"
+msgstr "TODAY"
+
+# patients\templates\patients\connections.html
+msgid "Accepter"
+msgstr "Accept"
+
+# templates\home.html
+msgid "Accueil"
+msgstr "Home"
+
+# appointments\templates\appointments\patient_medical_record.html
+msgid "Accès aux données médicales restreint"
+msgstr "Restricted access to medical data"
+
+# appointments\templates\appointments\patient_medical_record.html
+msgid "Accès restreint"
+msgstr "Restricted access"
+
+# admin_panel\templates\admin_panel\doctor_detail.html; admin_panel\templates\admin_panel\doctors.html; admin_panel\templates\admin_panel\users.html; health_journal\templates\health_journal\medication_list.html
+msgid "Actif"
+msgstr "Active"
+
+# admin_panel\templates\admin_panel\categories.html; admin_panel\templates\admin_panel\doctors.html; admin_panel\templates\admin_panel\forum_comments.html; admin_panel\templates\admin_panel\forum_posts.html; admin_panel\templates\admin_panel\report_detail.html; admin_panel\templates\admin_panel\reports.html; admin_panel\templates\admin_panel\users.html
+msgid "Actions"
+msgstr "Actions"
+
+# admin_panel\templates\admin_panel\users.html
+msgid "Admin"
+msgstr "Admin"
+
+# admin_panel\templates\admin_panel\user_detail.html
+msgid "Administrateur"
+msgstr "Administrator"
+
+# admin_panel\templates\admin_panel\base_admin.html; admin_panel\templates\admin_panel\dashboard.html; templates\base.html
+msgid "Administration"
+msgstr "Administration"
+
+# patients\templates\patients\edit_profile.html
+msgid "Adresse"
+msgstr "Address"
+
+# admin_panel\templates\admin_panel\doctor_detail.html; appointments\templates\appointments\patient_medical_record.html; patients\templates\patients\profile.html
+msgid "Adresse :"
+msgstr "Address:"
+
+# admin_panel\templates\admin_panel\login_audit.html
+msgid "Adresse IP"
+msgstr "IP address"
+
+# admin_panel\templates\admin_panel\doctor_form.html
+msgid "Adresse du cabinet"
+msgstr "Clinic address"
+
+# templates\registration\register.html
+msgid "Adresse e-mail"
+msgstr "Email address"
+
+# templates\registration\login.html
+msgid "Adresse e-mail ou identifiant"
+msgstr "Email address or username"
+
+# appointments\templates\appointments\doctor_list.html
+msgid "Agenda"
+msgstr "Schedule"
+
+# appointments\templates\appointments\doctor_appointments.html
+msgid "Agenda de"
+msgstr "Schedule of"
+
+# appointments\templates\appointments\add_slot.html; health_journal\templates\health_journal\dashboard.html; health_journal\templates\health_journal\medication_list.html; patients\templates\patients\profile.html
+msgid "Ajouter"
+msgstr "Add"
+
+# appointments\templates\appointments\add_slot.html; appointments\templates\appointments\slots.html
+msgid "Ajouter des créneaux"
+msgstr "Add slots"
+
+# health_journal\templates\health_journal\medication_create.html; health_journal\templates\health_journal\medication_list.html
+msgid "Ajouter un médicament"
+msgstr "Add a medication"
+
+# health_journal\templates\health_journal\dashboard.html
+msgid "Ajoutez vos premières constantes."
+msgstr "Add your first readings."
+
+# health_journal\templates\health_journal\medication_list.html
+msgid "Ajoutez vos traitements pour un suivi fiable."
+msgstr "Add your treatments for reliable tracking."
+
+# appointments\templates\appointments\slots.html
+msgid "Ajoutez-en pour permettre aux patients de réserver."
+msgstr "Add some to let patients book appointments."
+
+# patients\templates\patients\edit_profile.html
+msgid "Allergies"
+msgstr "Allergies"
+
+# appointments\templates\appointments\patient_medical_record.html; patients\templates\patients\profile.html
+msgid "Allergies :"
+msgstr "Allergies:"
+
+# admin_panel\templates\admin_panel\category_delete.html; admin_panel\templates\admin_panel\category_form.html; admin_panel\templates\admin_panel\doctor_delete.html; admin_panel\templates\admin_panel\doctor_form.html; appointments\templates\appointments\add_slot.html; appointments\templates\appointments\create.html; appointments\templates\appointments\create_for_patient.html; appointments\templates\appointments\detail.html; appointments\templates\appointments\edit.html; forum\templates\forum\post_create.html; forum\templates\forum\post_delete.html; forum\templates\forum\post_edit.html; health_journal\templates\health_journal\entry_create.html; health_journal\templates\health_journal\entry_delete.html; health_journal\templates\health_journal\entry_edit.html; health_journal\templates\health_journal\medication_create.html; health_journal\templates\health_journal\vitals_create.html; patients\templates\patients\edit_profile.html
+msgid "Annuler"
+msgstr "Cancel"
+
+# admin_panel\templates\admin_panel\dashboard.html; appointments\templates\appointments\detail.html; appointments\templates\appointments\doctor_appointments.html; appointments\templates\appointments\edit.html; appointments\templates\appointments\list.html
+msgid "Annulé"
+msgstr "Cancelled"
+
+# appointments\templates\appointments\list.html
+msgid "Annulés"
+msgstr "Cancelled"
+
+# admin_panel\templates\admin_panel\forum_comments.html
+msgid "Article"
+msgstr "Article"
+
+# admin_panel\templates\admin_panel\reports.html
+msgid "Article :"
+msgstr "Article:"
+
+# forum\templates\forum\post_detail.html
+msgid "Article communautaire"
+msgstr "Community post"
+
+# admin_panel\templates\admin_panel\categories.html; admin_panel\templates\admin_panel\user_detail.html; admin_panel\templates\admin_panel\users.html; forum\templates\forum\search.html
+msgid "Articles"
+msgstr "Articles"
+
+# admin_panel\templates\admin_panel\dashboard.html
+msgid "Articles de la communauté"
+msgstr "Community articles"
+
+# forum\templates\forum\search.html
+msgid "Articles, membres et médecins."
+msgstr "Posts, members and doctors."
+
+# forum\templates\forum\post_list.html
+msgid "Aucun article pour le moment"
+msgstr "No posts yet"
+
+# admin_panel\templates\admin_panel\forum_posts.html; admin_panel\templates\admin_panel\user_detail.html
+msgid "Aucun article."
+msgstr "No articles."
+
+# admin_panel\templates\admin_panel\forum_comments.html; admin_panel\templates\admin_panel\user_detail.html
+msgid "Aucun commentaire."
+msgstr "No comments."
+
+# appointments\templates\appointments\slots.html
+msgid "Aucun créneau"
+msgstr "No slots"
+
+# appointments\templates\appointments\doctor_detail.html
+msgid "Aucun créneau disponible"
+msgstr "No available slots"
+
+# admin_panel\templates\admin_panel\doctor_detail.html
+msgid "Aucun créneau."
+msgstr "No slots."
+
+# patients\templates\patients\members.html
+msgid "Aucun membre à afficher"
+msgstr "No members to display"
+
+# admin_panel\templates\admin_panel\dashboard.html
+msgid "Aucun médecin"
+msgstr "No doctors"
+
+# appointments\templates\appointments\doctor_list.html
+msgid "Aucun médecin pour le moment"
+msgstr "No doctors yet"
+
+# admin_panel\templates\admin_panel\doctors.html
+msgid "Aucun médecin."
+msgstr "No doctors."
+
+# appointments\templates\appointments\doctor_view_journal.html
+msgid "Aucun médicament actif."
+msgstr "No active medications."
+
+# health_journal\templates\health_journal\medication_list.html
+msgid "Aucun médicament enregistré"
+msgstr "No recorded medications"
+
+# appointments\templates\appointments\doctor_dashboard.html
+msgid "Aucun patient pour le moment"
+msgstr "No patients yet"
+
+# admin_panel\templates\admin_panel\dashboard.html; appointments\templates\appointments\doctor_appointments.html; appointments\templates\appointments\list.html
+msgid "Aucun rendez-vous"
+msgstr "No appointments"
+
+# appointments\templates\appointments\doctor_dashboard.html
+msgid "Aucun rendez-vous aujourd'hui"
+msgstr "No appointments today"
+
+# appointments\templates\appointments\patient_medical_record.html
+msgid "Aucun rendez-vous avec ce patient."
+msgstr "No appointments with this patient."
+
+# appointments\templates\appointments\list.html
+msgid "Aucun rendez-vous ne correspond à ce filtre pour l'instant."
+msgstr "No appointments match this filter right now."
+
+# admin_panel\templates\admin_panel\doctor_detail.html; admin_panel\templates\admin_panel\user_detail.html
+msgid "Aucun rendez-vous."
+msgstr "No appointments."
+
+# forum\templates\forum\search.html
+msgid "Aucun résultat pour"
+msgstr "No results for"
+
+# admin_panel\templates\admin_panel\dashboard.html
+msgid "Aucun signalement"
+msgstr "No reports"
+
+# admin_panel\templates\admin_panel\reports.html
+msgid "Aucun signalement."
+msgstr "No reports."
+
+# health_journal\templates\health_journal\dashboard.html
+msgid "Aucun signe vital"
+msgstr "No vital signs"
+
+# health_journal\templates\health_journal\vitals_list.html
+msgid "Aucun signe vital enregistré"
+msgstr "No vital signs recorded"
+
+# admin_panel\templates\admin_panel\dashboard.html
+msgid "Aucun utilisateur"
+msgstr "No users"
+
+# admin_panel\templates\admin_panel\users.html
+msgid "Aucun utilisateur."
+msgstr "No users."
+
+# appointments\templates\appointments\patient_medical_record.html
+msgid "Aucune"
+msgstr "None"
+
+# admin_panel\templates\admin_panel\categories.html
+msgid "Aucune catégorie."
+msgstr "No categories."
+
+# admin_panel\templates\admin_panel\login_audit.html
+msgid "Aucune connexion enregistrée"
+msgstr "No recorded connections"
+
+# patients\templates\patients\connections.html
+msgid "Aucune connexion."
+msgstr "No connections."
+
+# appointments\templates\appointments\doctor_appointments.html
+msgid "Aucune consultation planifiée pour le moment."
+msgstr "No consultations scheduled at the moment."
+
+# messaging\templates\messaging\inbox.html
+msgid "Aucune conversation"
+msgstr "No conversations"
+
+# appointments\templates\appointments\doctor_dashboard.html
+msgid "Aucune demande de rendez-vous en attente."
+msgstr "No pending appointment requests."
+
+# patients\templates\patients\connections.html
+msgid "Aucune demande."
+msgstr "No requests."
+
+# appointments\templates\appointments\doctor_view_journal.html
+msgid "Aucune entrée dans le journal."
+msgstr "No entries in the journal."
+
+# health_journal\templates\health_journal\dashboard.html; health_journal\templates\health_journal\entry_list.html
+msgid "Aucune entrée pour le moment"
+msgstr "No entries yet"
+
+# resources\templates\resources\resources_home.html
+msgid "Aucune fiche pour le moment"
+msgstr "No factsheets yet"
+
+# resources\templates\resources\article_list.html
+msgid "Aucune fiche trouvée"
+msgstr "No factsheets found"
+
+# notifications\templates\notifications\notification_list.html
+msgid "Aucune notification pour le moment."
+msgstr "No notifications for the moment."
+
+# admin_panel\templates\admin_panel\login_audit.html
+msgid "Audit des connexions"
+msgstr "Connection audit"
+
+# admin_panel\templates\admin_panel\login_audit.html
+msgid "Audit des connexions."
+msgstr "Connection audit."
+
+# admin_panel\templates\admin_panel\forum_comments.html; admin_panel\templates\admin_panel\forum_posts.html
+msgid "Auteur"
+msgstr "Author"
+
+# patients\templates\patients\edit_profile.html
+msgid "Autorise les médecins avec qui vous avez un rendez-vous à consulter votre dossier médical et votre journal de santé. Vous pouvez retirer ce consentement à tout moment."
+msgstr "Allows doctors you have an appointment with to view your medical record and health journal. You can withdraw this consent at any time."
+
+# forum\templates\forum\post_detail.html; patients\templates\patients\edit_profile.html
+msgid "Autre"
+msgstr "Other"
+
+# templates\home.html
+msgid "BIENVENUE DANS LE CERCLE"
+msgstr "WELCOME TO THE CIRCLE"
+
+# health_journal\templates\health_journal\entry_create.html
+msgid "Bien"
+msgstr "Good"
+
+# appointments\templates\appointments\doctor_dashboard.html
+msgid "Bonjour"
+msgstr "Hello"
+
+# templates\home.html
+msgid "COMMUNAUTÉ"
+msgstr "COMMUNITY"
+
+# admin_panel\templates\admin_panel\dashboard.html
+msgid "COMPTES"
+msgstr "ACCOUNTS"
+
+# admin_panel\templates\admin_panel\doctors.html; appointments\templates\appointments\create_for_patient.html; appointments\templates\appointments\doctor_appointments.html
+msgid "Cabinet"
+msgstr "Practice"
+
+# admin_panel\templates\admin_panel\doctor_detail.html
+msgid "Cabinet :"
+msgstr "Clinic:"
+
+# appointments\templates\appointments\create.html
+msgid "Cabinet, clinique..."
+msgstr "Practice, clinic..."
+
+# templates\home.html
+msgid "CareCircle protège vos informations de santé et votre vie privée. Vos données ne sont jamais partagées sans votre accord."
+msgstr "CareCircle protects your health information and your privacy. Your data is never shared without your consent."
+
+# templates\home.html
+msgid "CareCircle réunit des patients, des proches et des professionnels de santé autour d'un accompagnement humain, connecté et confidentiel."
+msgstr "CareCircle brings together patients, families and healthcare professionals around human, connected and confidential support."
+
+# admin_panel\templates\admin_panel\forum_posts.html; forum\templates\forum\post_create.html; forum\templates\forum\post_edit.html
+msgid "Catégorie"
+msgstr "Category"
+
+# admin_panel\templates\admin_panel\categories.html
+msgid "Catégories du forum"
+msgstr "Forum categories"
+
+# appointments\templates\appointments\doctor_detail.html
+msgid "Ce médecin n'a pas de créneau ouvert pour le moment."
+msgstr "This doctor has no open slots at the moment."
+
+# appointments\templates\appointments\doctor_view_journal.html
+msgid "Ce patient a explicitement autorisé le partage de son journal de santé avec les médecins qui le prennent en charge."
+msgstr "This patient has explicitly authorized sharing their health journal with the doctors treating them."
+
+# appointments\templates\appointments\patient_medical_record.html
+msgid "Ce patient n'a pas encore autorisé le partage de son dossier médical avec les médecins. Le profil médical détaillé et le journal de santé restent confidentiels."
+msgstr "This patient has not yet authorized sharing their medical record with doctors. The detailed medical profile and health journal remain confidential."
+
+# appointments\templates\appointments\patient_medical_record.html
+msgid "Ce patient n'a pas encore complété son profil médical."
+msgstr "This patient has not completed their medical profile yet."
+
+# health_journal\templates\health_journal\medication_create.html
+msgid "Ce suivi personnel ne remplace pas l'avis de votre médecin."
+msgstr "This personal tracking does not replace your doctor's advice."
+
+# health_journal\templates\health_journal\medication_list.html
+msgid "Centralisez et suivez vos traitements."
+msgstr "Centralize and track your treatments."
+
+# resources\templates\resources\article_list.html
+msgid "Ces fiches ne remplacent pas un avis médical professionnel."
+msgstr "These factsheets do not replace professional medical advice."
+
+# patients\templates\patients\profile.html
+msgid "Ces informations restent strictement confidentielles et visibles uniquement par vous."
+msgstr "This information remains strictly confidential and visible only to you."
+
+# patients\templates\patients\edit_profile.html
+msgid "Ces informations restent strictement confidentielles."
+msgstr "This information remains strictly confidential."
+
+# forum\templates\forum\post_delete.html; health_journal\templates\health_journal\entry_delete.html
+msgid "Cette action est définitive."
+msgstr "This action is permanent."
+
+# forum\templates\forum\search.html
+msgid "Chercher"
+msgstr "Search"
+
+# health_journal\templates\health_journal\dashboard.html
+msgid "Commencez votre suivi en quelques secondes."
+msgstr "Start tracking in a few seconds."
+
+# messaging\templates\messaging\inbox.html
+msgid "Commencez à discuter avec les membres de la communauté en toute confidentialité."
+msgstr "Start chatting with community members in complete confidentiality."
+
+# health_journal\templates\health_journal\entry_list.html
+msgid "Commencez à suivre votre santé au quotidien."
+msgstr "Start tracking your health daily."
+
+# health_journal\templates\health_journal\dashboard.html
+msgid "Comment vous sentez-vous ?"
+msgstr "How are you feeling?"
+
+# admin_panel\templates\admin_panel\forum_comments.html
+msgid "Commentaire"
+msgstr "Comment"
+
+# admin_panel\templates\admin_panel\reports.html
+msgid "Commentaire :"
+msgstr "Comment:"
+
+# admin_panel\templates\admin_panel\report_detail.html
+msgid "Commentaire de"
+msgstr "Comment by"
+
+# admin_panel\templates\admin_panel\dashboard.html; admin_panel\templates\admin_panel\forum_posts.html; admin_panel\templates\admin_panel\user_detail.html; admin_panel\templates\admin_panel\users.html; forum\templates\forum\post_detail.html
+msgid "Commentaires"
+msgstr "Comments"
+
+# forum\templates\forum\post_list.html; patients\templates\patients\members.html; templates\base.html
+msgid "Communauté"
+msgstr "Community"
+
+# admin_panel\templates\admin_panel\doctors.html
+msgid "Compte"
+msgstr "Account"
+
+# admin_panel\templates\admin_panel\doctor_detail.html
+msgid "Compte :"
+msgstr "Account:"
+
+# admin_panel\templates\admin_panel\doctor_form.html
+msgid "Compte utilisateur"
+msgstr "User account"
+
+# patients\templates\patients\edit_profile.html
+msgid "Conditions médicales"
+msgstr "Medical conditions"
+
+# appointments\templates\appointments\patient_medical_record.html; patients\templates\patients\profile.html
+msgid "Conditions médicales :"
+msgstr "Medical conditions:"
+
+# patients\templates\patients\profile.html
+msgid "Confidentialité"
+msgstr "Confidentiality"
+
+# appointments\templates\appointments\patient_medical_record.html
+msgid "Confidentialité médicale"
+msgstr "Medical confidentiality"
+
+# appointments\templates\appointments\doctor_view_journal.html
+msgid "Confidentialité médicale : ces données sont strictement réservées à la prise en charge de ce patient. Toute divulgation est interdite."
+msgstr "Medical confidentiality: this data is strictly reserved for the care of this patient. Any disclosure is prohibited."
+
+# appointments\templates\appointments\detail.html
+msgid "Confirmer"
+msgstr "Confirm"
+
+# admin_panel\templates\admin_panel\category_delete.html; admin_panel\templates\admin_panel\doctor_delete.html; forum\templates\forum\post_delete.html; health_journal\templates\health_journal\entry_delete.html
+msgid "Confirmer la suppression"
+msgstr "Confirm deletion"
+
+# templates\registration\register.html
+msgid "Confirmer le mot de passe"
+msgstr "Confirm password"
+
+# appointments\templates\appointments\doctor_detail.html
+msgid "Confirmer le rendez-vous"
+msgstr "Confirm the appointment"
+
+# admin_panel\templates\admin_panel\dashboard.html; appointments\templates\appointments\detail.html; appointments\templates\appointments\doctor_appointments.html; appointments\templates\appointments\doctor_dashboard.html; appointments\templates\appointments\edit.html; appointments\templates\appointments\list.html; appointments\templates\appointments\patient_medical_record.html
+msgid "Confirmé"
+msgstr "Confirmed"
+
+# appointments\templates\appointments\list.html
+msgid "Confirmés"
+msgstr "Confirmed"
+
+# patients\templates\patients\members.html
+msgid "Connecter"
+msgstr "Connect"
+
+# appointments\templates\appointments\doctor_detail.html
+msgid "Connectez-vous"
+msgstr "Log in"
+
+# patients\templates\patients\members.html
+msgid "Connecté"
+msgstr "Connected"
+
+# templates\registration\login.html
+msgid "Connexion"
+msgstr "Sign in"
+
+# patients\templates\patients\connections.html
+msgid "Connexions acceptées"
+msgstr "Accepted connections"
+
+# forum\templates\forum\post_detail.html
+msgid "Conseil médical dangereux"
+msgstr "Dangerous medical advice"
+
+# appointments\templates\appointments\doctor_view_journal.html
+msgid "Consentement patient actif"
+msgstr "Active patient consent"
+
+# appointments\templates\appointments\create_for_patient.html
+msgid "Consultation"
+msgstr "Consultation"
+
+# health_journal\templates\health_journal\entry_detail.html
+msgid "Consultation privée de votre entrée."
+msgstr "Private view of your entry."
+
+# appointments\templates\appointments\create.html
+msgid "Consultation, contrôle..."
+msgstr "Consultation, check-up..."
+
+# appointments\templates\appointments\doctor_appointments.html
+msgid "Consultations programmées."
+msgstr "Scheduled consultations."
+
+# appointments\templates\appointments\patient_medical_record.html
+msgid "Consulter le journal de santé"
+msgstr "View the health journal"
+
+# patients\templates\patients\edit_profile.html
+msgid "Contact d'urgence"
+msgstr "Emergency contact"
+
+# appointments\templates\appointments\patient_medical_record.html; patients\templates\patients\profile.html
+msgid "Contact d'urgence :"
+msgstr "Emergency contact:"
+
+# forum\templates\forum\post_create.html; forum\templates\forum\post_edit.html
+msgid "Contenu"
+msgstr "Content"
+
+# forum\templates\forum\post_detail.html
+msgid "Contenu inapproprié"
+msgstr "Inappropriate content"
+
+# forum\templates\forum\post_detail.html
+msgid "Contenu offensant"
+msgstr "Offensive content"
+
+# admin_panel\templates\admin_panel\report_detail.html; admin_panel\templates\admin_panel\reports.html
+msgid "Contenu signalé"
+msgstr "Reported content"
+
+# admin_panel\templates\admin_panel\report_detail.html
+msgid "Contenu supprimé."
+msgstr "Content deleted."
+
+# messaging\templates\messaging\conversation.html
+msgid "Conversation"
+msgstr "Conversation"
+
+# admin_panel\templates\admin_panel\doctor_form.html
+msgid "Créer"
+msgstr "Create"
+
+# appointments\templates\appointments\create.html
+msgid "Créer le rendez-vous"
+msgstr "Create the appointment"
+
+# templates\registration\register.html
+msgid "Créer mon compte"
+msgstr "Create my account"
+
+# health_journal\templates\health_journal\dashboard.html
+msgid "Créer mon premier suivi"
+msgstr "Create my first entry"
+
+# templates\registration\login.html
+msgid "Créer un compte"
+msgstr "Create an account"
+
+# health_journal\templates\health_journal\entry_list.html
+msgid "Créer une entrée"
+msgstr "Create an entry"
+
+# appointments\templates\appointments\doctor_dashboard.html
+msgid "Créneaux"
+msgstr "Slots"
+
+# admin_panel\templates\admin_panel\doctor_detail.html
+msgid "Créneaux de disponibilité"
+msgstr "Availability slots"
+
+# appointments\templates\appointments\doctor_detail.html
+msgid "Créneaux disponibles"
+msgstr "Available slots"
+
+# admin_panel\templates\admin_panel\forum_comments.html; admin_panel\templates\admin_panel\forum_posts.html; admin_panel\templates\admin_panel\login_audit.html; admin_panel\templates\admin_panel\reports.html; appointments\templates\appointments\create.html; appointments\templates\appointments\create_for_patient.html; appointments\templates\appointments\doctor_appointments.html; appointments\templates\appointments\edit.html; appointments\templates\appointments\slots.html; health_journal\templates\health_journal\entry_create.html; health_journal\templates\health_journal\entry_edit.html
+msgid "Date"
+msgstr "Date"
+
+# admin_panel\templates\admin_panel\report_detail.html; appointments\templates\appointments\detail.html
+msgid "Date :"
+msgstr "Date:"
+
+# appointments\templates\appointments\add_slot.html; health_journal\templates\health_journal\medication_create.html
+msgid "Date de début"
+msgstr "Start date"
+
+# health_journal\templates\health_journal\medication_create.html
+msgid "Date de fin"
+msgstr "End date"
+
+# patients\templates\patients\edit_profile.html
+msgid "Date de naissance"
+msgstr "Date of birth"
+
+# appointments\templates\appointments\patient_medical_record.html; patients\templates\patients\profile.html
+msgid "Date de naissance :"
+msgstr "Date of birth:"
+
+# health_journal\templates\health_journal\vitals_create.html
+msgid "Date et heure"
+msgstr "Date and time"
+
+# appointments\templates\appointments\doctor_list.html
+msgid "De nouveaux professionnels rejoignent le cercle bientôt."
+msgstr "New professionals will join the circle soon."
+
+# appointments\templates\appointments\doctor_dashboard.html
+msgid "Demandes en attente"
+msgstr "Pending requests"
+
+# patients\templates\patients\connections.html
+msgid "Demandes envoyées"
+msgstr "Sent requests"
+
+# patients\templates\patients\connections.html
+msgid "Demandes reçues"
+msgstr "Received requests"
+
+# admin_panel\templates\admin_panel\dashboard.html
+msgid "Derniers utilisateurs"
+msgstr "Latest users"
+
+# admin_panel\templates\admin_panel\user_detail.html
+msgid "Dernière connexion :"
+msgstr "Last login:"
+
+# resources\templates\resources\resources_home.html
+msgid "Dernières fiches"
+msgstr "Latest factsheets"
+
+# resources\templates\resources\resources_home.html
+msgid "Des fiches validées et des réponses claires pour mieux vous informer."
+msgstr "Validated factsheets and clear answers to better inform you."
+
+# appointments\templates\appointments\doctor_list.html
+msgid "Des professionnels de confiance, proches de vous."
+msgstr "Trusted professionals, close to you."
+
+# health_journal\templates\health_journal\vitals_create.html
+msgid "Des valeurs anormales justifient une consultation médicale."
+msgstr "Abnormal values warrant a medical consultation."
+
+# admin_panel\templates\admin_panel\categories.html; admin_panel\templates\admin_panel\category_form.html; appointments\templates\appointments\create.html; appointments\templates\appointments\edit.html
+msgid "Description"
+msgstr "Description"
+
+# appointments\templates\appointments\doctor_detail.html; forum\templates\forum\post_detail.html
+msgid "Description (optionnel)"
+msgstr "Description (optional)"
+
+# appointments\templates\appointments\create_for_patient.html
+msgid "Description / Motif"
+msgstr "Description / Reason"
+
+# admin_panel\templates\admin_panel\report_detail.html; appointments\templates\appointments\detail.html
+msgid "Description :"
+msgstr "Description:"
+
+# admin_panel\templates\admin_panel\doctors.html
+msgid "Disponibilité"
+msgstr "Availability"
+
+# admin_panel\templates\admin_panel\doctor_detail.html
+msgid "Disponibilité :"
+msgstr "Availability:"
+
+# admin_panel\templates\admin_panel\doctor_detail.html; admin_panel\templates\admin_panel\doctor_form.html; admin_panel\templates\admin_panel\doctors.html; appointments\templates\appointments\doctor_list.html; appointments\templates\appointments\slots.html
+msgid "Disponible"
+msgstr "Available"
+
+# health_journal\templates\health_journal\medication_create.html
+msgid "Dosage"
+msgstr "Dosage"
+
+# appointments\templates\appointments\detail.html; appointments\templates\appointments\doctor_dashboard.html; appointments\templates\appointments\doctor_view_journal.html; appointments\templates\appointments\patient_medical_record.html
+msgid "Dossier médical"
+msgstr "Medical record"
+
+# appointments\templates\appointments\doctor_view_journal.html; health_journal\templates\health_journal\entry_detail.html
+msgid "Douleur :"
+msgstr "Pain:"
+
+# appointments\templates\appointments\detail.html
+msgid "Durée :"
+msgstr "Duration:"
+
+# appointments\templates\appointments\slots.html
+msgid "Début"
+msgstr "Start"
+
+# templates\base.html
+msgid "Déconnexion"
+msgstr "Sign out"
+
+# templates\home.html
+msgid "Découvrir la communauté"
+msgstr "Discover the community"
+
+# messaging\templates\messaging\inbox.html
+msgid "Démarrer une conversation"
+msgstr "Start a conversation"
+
+# messaging\templates\messaging\_messages.html; messaging\templates\messaging\conversation.html
+msgid "Démarrez la conversation !"
+msgstr "Start the conversation!"
+
+# admin_panel\templates\admin_panel\user_detail.html; admin_panel\templates\admin_panel\users.html
+msgid "Désactiver"
+msgstr "Deactivate"
+
+# admin_panel\templates\admin_panel\doctors.html
+msgid "Désactiver le compte"
+msgstr "Deactivate account"
+
+# admin_panel\templates\admin_panel\doctor_detail.html; admin_panel\templates\admin_panel\doctors.html; admin_panel\templates\admin_panel\users.html
+msgid "Désactivé"
+msgstr "Deactivated"
+
+# admin_panel\templates\admin_panel\doctor_detail.html; admin_panel\templates\admin_panel\user_detail.html
+msgid "Détails"
+msgstr "Details"
+
+# admin_panel\templates\admin_panel\report_detail.html
+msgid "Détails du signalement"
+msgstr "Report details"
+
+# health_journal\templates\health_journal\dashboard.html
+msgid "ENTRÉES"
+msgstr "ENTRIES"
+
+# admin_panel\templates\admin_panel\dashboard.html; admin_panel\templates\admin_panel\login_audit.html
+msgid "ESPACE ADMIN"
+msgstr "ADMIN AREA"
+
+# admin_panel\templates\admin_panel\users.html
+msgid "Email"
+msgstr "Email"
+
+# admin_panel\templates\admin_panel\doctor_detail.html; admin_panel\templates\admin_panel\user_detail.html; appointments\templates\appointments\patient_medical_record.html
+msgid "Email :"
+msgstr "Email:"
+
+# admin_panel\templates\admin_panel\dashboard.html; admin_panel\templates\admin_panel\report_detail.html; admin_panel\templates\admin_panel\reports.html; appointments\templates\appointments\detail.html; appointments\templates\appointments\doctor_appointments.html; appointments\templates\appointments\doctor_dashboard.html; appointments\templates\appointments\edit.html; appointments\templates\appointments\list.html; appointments\templates\appointments\patient_medical_record.html; patients\templates\patients\connections.html
+msgid "En attente"
+msgstr "Pending"
+
+# appointments\templates\appointments\doctor_dashboard.html
+msgid "En attente de votre validation."
+msgstr "Awaiting your validation."
+
+# health_journal\templates\health_journal\vitals_list.html
+msgid "En cas d'anomalie, consultez rapidement un professionnel de santé."
+msgstr "If anything looks abnormal, consult a health professional promptly."
+
+# admin_panel\templates\admin_panel\category_form.html; admin_panel\templates\admin_panel\doctor_form.html; appointments\templates\appointments\edit.html; forum\templates\forum\post_edit.html; health_journal\templates\health_journal\entry_create.html; health_journal\templates\health_journal\entry_edit.html; health_journal\templates\health_journal\medication_create.html; health_journal\templates\health_journal\vitals_create.html; health_journal\templates\health_journal\vitals_list.html; patients\templates\patients\edit_profile.html
+msgid "Enregistrer"
+msgstr "Save"
+
+# health_journal\templates\health_journal\vitals_list.html
+msgid "Enregistrer des constantes"
+msgstr "Record readings"
+
+# appointments\templates\appointments\detail.html
+msgid "Enregistrer les notes"
+msgstr "Save notes"
+
+# health_journal\templates\health_journal\vitals_create.html
+msgid "Enregistrer signes vitaux"
+msgstr "Record vital signs"
+
+# health_journal\templates\health_journal\vitals_list.html
+msgid "Enregistrez vos constantes pour suivre leur évolution."
+msgstr "Record your readings to track their evolution."
+
+# health_journal\templates\health_journal\medication_create.html
+msgid "Enregistrez votre traitement en toute confidentialité."
+msgstr "Record your treatment in complete confidentiality."
+
+# health_journal\templates\health_journal\entry_detail.html
+msgid "Entrée du"
+msgstr "Entry of"
+
+# appointments\templates\appointments\doctor_view_journal.html
+msgid "Entrées du journal"
+msgstr "Journal entries"
+
+# health_journal\templates\health_journal\dashboard.html
+msgid "Entrées récentes"
+msgstr "Recent entries"
+
+# messaging\templates\messaging\conversation.html
+msgid "Envoyer"
+msgstr "Send"
+
+# forum\templates\forum\post_detail.html
+msgid "Envoyer le signalement"
+msgstr "Send the report"
+
+# forum\templates\forum\post_delete.html; forum\templates\forum\post_edit.html; forum\templates\forum\post_list.html
+msgid "Espace communautaire"
+msgstr "Community space"
+
+# resources\templates\resources\article_list.html; resources\templates\resources\resources_home.html
+msgid "Espace d'information"
+msgstr "Information area"
+
+# appointments\templates\appointments\add_slot.html; appointments\templates\appointments\create_for_patient.html; appointments\templates\appointments\doctor_dashboard.html; appointments\templates\appointments\list.html; appointments\templates\appointments\patient_medical_record.html; appointments\templates\appointments\slots.html
+msgid "Espace médecin"
+msgstr "Doctor space"
+
+# appointments\templates\appointments\doctor_view_journal.html
+msgid "Espace médecin · Accès autorisé"
+msgstr "Doctor space · Authorized access"
+
+# forum\templates\forum\search.html
+msgid "Essayez d'autres mots-clés ou élargissez la recherche."
+msgstr "Try other keywords or broaden your search."
+
+# health_journal\templates\health_journal\entry_list.html
+msgid "Exporter"
+msgstr "Export"
+
+# patients\templates\patients\edit_profile.html
+msgid "Femme"
+msgstr "Woman"
+
+# resources\templates\resources\article_list.html
+msgid "Fiches info"
+msgstr "Info factsheets"
+
+# resources\templates\resources\article_list.html
+msgid "Fiches info santé."
+msgstr "Health info factsheets."
+
+# admin_panel\templates\admin_panel\forum_comments.html; admin_panel\templates\admin_panel\forum_posts.html; admin_panel\templates\admin_panel\users.html
+msgid "Filtrer"
+msgstr "Filter"
+
+# appointments\templates\appointments\slots.html
+msgid "Fin"
+msgstr "End"
+
+# health_journal\templates\health_journal\medication_create.html
+msgid "Fréquence"
+msgstr "Frequency"
+
+# appointments\templates\appointments\doctor_view_journal.html; health_journal\templates\health_journal\dashboard.html; health_journal\templates\health_journal\vitals_list.html
+msgid "Fréquence cardiaque"
+msgstr "Heart rate"
+
+# health_journal\templates\health_journal\vitals_create.html
+msgid "Fréquence cardiaque (bpm)"
+msgstr "Heart rate (bpm)"
+
+# health_journal\templates\health_journal\dashboard.html
+msgid "Gardez vos traitements à jour, en toute sérénité."
+msgstr "Keep your treatments up to date, with peace of mind."
+
+# patients\templates\patients\edit_profile.html
+msgid "Genre"
+msgstr "Gender"
+
+# appointments\templates\appointments\patient_medical_record.html; patients\templates\patients\profile.html
+msgid "Genre :"
+msgstr "Gender:"
+
+# admin_panel\templates\admin_panel\doctors.html
+msgid "Gestion des médecins"
+msgstr "Doctor management"
+
+# admin_panel\templates\admin_panel\reports.html
+msgid "Gestion des signalements"
+msgstr "Report management"
+
+# admin_panel\templates\admin_panel\users.html
+msgid "Gestion des utilisateurs"
+msgstr "User management"
+
+# appointments\templates\appointments\edit.html
+msgid "Gestion du rendez-vous"
+msgstr "Appointment management"
+
+# health_journal\templates\health_journal\vitals_create.html; health_journal\templates\health_journal\vitals_list.html
+msgid "Glycémie"
+msgstr "Blood sugar"
+
+# patients\templates\patients\edit_profile.html
+msgid "Groupe sanguin"
+msgstr "Blood type"
+
+# appointments\templates\appointments\patient_medical_record.html; patients\templates\patients\profile.html
+msgid "Groupe sanguin :"
+msgstr "Blood type:"
+
+# forum\templates\forum\post_create.html; forum\templates\forum\post_edit.html; forum\templates\forum\post_list.html; forum\templates\forum\search.html
+msgid "Général"
+msgstr "General"
+
+# health_journal\templates\health_journal\dashboard.html
+msgid "Gérer"
+msgstr "Manage"
+
+# appointments\templates\appointments\slots.html
+msgid "Gérez vos disponibilités pour les patients."
+msgstr "Manage your availability for patients."
+
+# patients\templates\patients\connections.html
+msgid "Gérez vos liens avec la communauté."
+msgstr "Manage your connections with the community."
+
+# forum\templates\forum\post_detail.html
+msgid "Harcèlement"
+msgstr "Harassment"
+
+# appointments\templates\appointments\create.html; appointments\templates\appointments\create_for_patient.html; appointments\templates\appointments\doctor_appointments.html; appointments\templates\appointments\edit.html
+msgid "Heure"
+msgstr "Time"
+
+# appointments\templates\appointments\detail.html
+msgid "Heure :"
+msgstr "Time:"
+
+# appointments\templates\appointments\add_slot.html
+msgid "Heure de début"
+msgstr "Start time"
+
+# appointments\templates\appointments\add_slot.html
+msgid "Heure de fin"
+msgstr "End time"
+
+# health_journal\templates\health_journal\entry_create.html; health_journal\templates\health_journal\entry_edit.html
+msgid "Heures de sommeil"
+msgstr "Hours of sleep"
+
+# appointments\templates\appointments\patient_medical_record.html
+msgid "Historique des rendez-vous"
+msgstr "Appointment history"
+
+# patients\templates\patients\edit_profile.html
+msgid "Homme"
+msgstr "Man"
+
+# admin_panel\templates\admin_panel\doctor_form.html
+msgid "Honoraires (€)"
+msgstr "Consultation fee (€)"
+
+# admin_panel\templates\admin_panel\doctor_detail.html
+msgid "Honoraires :"
+msgstr "Fee:"
+
+# health_journal\templates\health_journal\entry_create.html; health_journal\templates\health_journal\entry_edit.html
+msgid "Humeur"
+msgstr "Mood"
+
+# templates\registration\login.html
+msgid "Identifiants incorrects. Veuillez réessayer."
+msgstr "Incorrect credentials. Please try again."
+
+# appointments\templates\appointments\patient_medical_record.html
+msgid "Identification"
+msgstr "Identification"
+
+# health_journal\templates\health_journal\medication_list.html
+msgid "Inactif"
+msgstr "Inactive"
+
+# admin_panel\templates\admin_panel\doctor_detail.html; admin_panel\templates\admin_panel\doctors.html
+msgid "Indisponible"
+msgstr "Unavailable"
+
+# appointments\templates\appointments\doctor_list.html
+msgid "Indisponible pour de nouveaux RDV"
+msgstr "Unavailable for new appointments"
+
+# resources\templates\resources\resources_home.html
+msgid "Information à visée éducative — elle ne remplace pas un avis médical professionnel."
+msgstr "Educational information — it does not replace professional medical advice."
+
+# resources\templates\resources\article_detail.html
+msgid "Information à visée éducative — elle ne remplace pas un avis médical professionnel. En cas de doute, consultez un médecin."
+msgstr "Educational information — it does not replace professional medical advice. If in doubt, consult a doctor."
+
+# admin_panel\templates\admin_panel\user_detail.html
+msgid "Informations du compte"
+msgstr "Account information"
+
+# admin_panel\templates\admin_panel\doctor_form.html
+msgid "Informations du médecin"
+msgstr "Doctor information"
+
+# patients\templates\patients\profile.html
+msgid "Informations médicales"
+msgstr "Medical information"
+
+# admin_panel\templates\admin_panel\users.html; templates\registration\register.html
+msgid "Inscription"
+msgstr "Sign up"
+
+# admin_panel\templates\admin_panel\user_detail.html
+msgid "Inscription :"
+msgstr "Registration:"
+
+# appointments\templates\appointments\doctor_view_journal.html; appointments\templates\appointments\patient_medical_record.html; health_journal\templates\health_journal\entry_create.html; health_journal\templates\health_journal\entry_delete.html; health_journal\templates\health_journal\entry_detail.html; health_journal\templates\health_journal\entry_edit.html; health_journal\templates\health_journal\entry_list.html; health_journal\templates\health_journal\medication_create.html; health_journal\templates\health_journal\medication_list.html; health_journal\templates\health_journal\vitals_create.html; health_journal\templates\health_journal\vitals_list.html
+msgid "Journal de santé"
+msgstr "Health journal"
+
+# admin_panel\templates\admin_panel\login_audit.html
+msgid "Journal des tentatives de connexion (réussies et échouées)."
+msgstr "Record of login attempts (successful and failed)."
+
+# patients\templates\patients\members.html
+msgid "La communauté se construit jour après jour."
+msgstr "The community is growing day after day."
+
+# forum\templates\forum\post_detail.html
+msgid "La modération garantit un espace de confiance respectant votre santé et votre vie privée."
+msgstr "Moderation ensures a trusted space that respects your health and privacy."
+
+# templates\home.html
+msgid "La plateforme ne remplace ni un avis médical, ni une consultation. En cas d'urgence, contactez les services d'urgence de votre pays."
+msgstr "This platform does not replace medical advice or a consultation. In case of emergency, contact your country's emergency services."
+
+# appointments\templates\appointments\doctor_detail.html
+msgid "La prise de rendez-vous respecte strictement la confidentialité de vos informations de santé."
+msgstr "Booking an appointment strictly respects the confidentiality of your health information."
+
+# forum\templates\forum\search.html
+msgid "Lancez votre recherche"
+msgstr "Start your search"
+
+# admin_panel\templates\admin_panel\doctor_delete.html
+msgid "Le compte utilisateur ne sera pas supprimé. Seul le profil médecin (et ses créneaux) sera retiré."
+msgstr "The user account will not be deleted. Only the doctor profile (and its slots) will be removed."
+
+# appointments\templates\appointments\add_slot.html
+msgid "Le nombre de jours permet de répéter le même créneau sur plusieurs jours consécutifs (ex : 5 jours = toute une semaine ouvrée)."
+msgstr "The number of days repeats the same slot over several consecutive days (e.g. 5 days = a whole working week)."
+
+# appointments\templates\appointments\patient_medical_record.html
+msgid "Le patient vous a autorisé à consulter son journal de santé (entrées, médicaments, signes vitaux)."
+msgstr "The patient has authorized you to view their health journal (entries, medications, vital signs)."
+
+# admin_panel\templates\admin_panel\category_delete.html
+msgid "Les articles associés seront déplacés en « Sans catégorie »."
+msgstr "The associated articles will be moved to \"Uncategorized\"."
+
+# appointments\templates\appointments\patient_medical_record.html
+msgid "Les informations ci-dessous sont strictement confidentielles. Elles ne doivent être consultées que dans le cadre d'une prise en charge médicale de ce patient. Toute divulgation est interdite."
+msgstr "The information below is strictly confidential. It must only be consulted as part of this patient's medical care. Any disclosure is prohibited."
+
+# patients\templates\patients\profile.html
+msgid "Les informations médicales de {{ profile_user.username }} restent privées et ne sont pas affichées sur le profil public."
+msgstr "Medical information of {{ profile_user.username }} remains private and is not displayed on the public profile."
+
+# forum\templates\forum\post_create.html
+msgid "Les informations partagées ici ne remplacent pas un avis médical professionnel."
+msgstr "The information shared here does not replace professional medical advice."
+
+# resources\templates\resources\faq.html
+msgid "Les réponses aux questions les plus posées."
+msgstr "Answers to the most asked questions."
+
+# forum\templates\forum\post_list.html
+msgid "Les échanges sur cette communauté sont modérés. En cas de comportement inapproprié, utilisez le signalement — votre confidentialité est respectée."
+msgstr "Conversations here are moderated. If you see inappropriate behavior, use the report feature — your privacy is respected."
+
+# admin_panel\templates\admin_panel\doctor_detail.html
+msgid "Licence :"
+msgstr "License:"
+
+# appointments\templates\appointments\create.html; appointments\templates\appointments\create_for_patient.html; appointments\templates\appointments\edit.html
+msgid "Lieu"
+msgstr "Location"
+
+# appointments\templates\appointments\detail.html
+msgid "Lieu :"
+msgstr "Location:"
+
+# resources\templates\resources\article_list.html
+msgid "Lire la fiche"
+msgstr "Read the factsheet"
+
+# health_journal\templates\health_journal\dashboard.html; templates\home.html
+msgid "MON SUIVI"
+msgstr "MY HEALTH TRACKER"
+
+# appointments\templates\appointments\detail.html
+msgid "Marquer ce rendez-vous comme terminé"
+msgstr "Mark this appointment as completed"
+
+# appointments\templates\appointments\detail.html
+msgid "Marquer comme terminé"
+msgstr "Mark as completed"
+
+# admin_panel\templates\admin_panel\forum_comments.html; admin_panel\templates\admin_panel\forum_posts.html
+msgid "Masquer"
+msgstr "Hide"
+
+# admin_panel\templates\admin_panel\report_detail.html
+msgid "Masquer l'article"
+msgstr "Hide the article"
+
+# admin_panel\templates\admin_panel\report_detail.html
+msgid "Masquer le commentaire"
+msgstr "Hide the comment"
+
+# admin_panel\templates\admin_panel\forum_comments.html; admin_panel\templates\admin_panel\forum_posts.html
+msgid "Masqué"
+msgstr "Hidden"
+
+# admin_panel\templates\admin_panel\forum_comments.html; admin_panel\templates\admin_panel\forum_posts.html
+msgid "Masqués"
+msgstr "Hidden"
+
+# health_journal\templates\health_journal\entry_create.html
+msgid "Mauvais"
+msgstr "Bad"
+
+# forum\templates\forum\search.html
+msgid "Membre"
+msgstr "Member"
+
+# forum\templates\forum\search.html; patients\templates\patients\members.html
+msgid "Membres"
+msgstr "Members"
+
+# patients\templates\patients\connections.html; patients\templates\patients\members.html; templates\base.html
+msgid "Mes connexions"
+msgstr "My connections"
+
+# appointments\templates\appointments\doctor_list.html; appointments\templates\appointments\list.html; appointments\templates\appointments\slots.html
+msgid "Mes créneaux"
+msgstr "My slots"
+
+# health_journal\templates\health_journal\entry_list.html
+msgid "Mes entrées"
+msgstr "My entries"
+
+# health_journal\templates\health_journal\medication_list.html
+msgid "Mes médicaments"
+msgstr "My medications"
+
+# notifications\templates\notifications\notification_list.html
+msgid "Mes notifications"
+msgstr "My notifications"
+
+# appointments\templates\appointments\doctor_dashboard.html
+msgid "Mes patients"
+msgstr "My patients"
+
+# appointments\templates\appointments\list.html; templates\base.html
+msgid "Mes rendez-vous"
+msgstr "My appointments"
+
+# health_journal\templates\health_journal\vitals_list.html
+msgid "Mes signes vitaux"
+msgstr "My vital signs"
+
+# patients\templates\patients\profile.html
+msgid "Message"
+msgstr "Message"
+
+# templates\base.html
+msgid "Messagerie"
+msgstr "Messaging"
+
+# messaging\templates\messaging\conversation.html; messaging\templates\messaging\inbox.html
+msgid "Messagerie privée"
+msgstr "Private messaging"
+
+# messaging\templates\messaging\inbox.html; templates\base.html
+msgid "Messages"
+msgstr "Messages"
+
+# appointments\templates\appointments\edit.html
+msgid "Mettez à jour les informations de ce rendez-vous."
+msgstr "Update the information for this appointment."
+
+# forum\templates\forum\post_edit.html
+msgid "Mettez à jour votre article."
+msgstr "Update your post."
+
+# health_journal\templates\health_journal\entry_edit.html
+msgid "Mettez à jour votre suivi."
+msgstr "Update your tracking."
+
+# admin_panel\templates\admin_panel\doctor_detail.html; appointments\templates\appointments\detail.html; forum\templates\forum\post_edit.html; health_journal\templates\health_journal\entry_detail.html; patients\templates\patients\profile.html
+msgid "Modifier"
+msgstr "Edit"
+
+# forum\templates\forum\post_edit.html
+msgid "Modifier l'article"
+msgstr "Edit the post"
+
+# health_journal\templates\health_journal\entry_edit.html
+msgid "Modifier l'entrée"
+msgstr "Edit the entry"
+
+# admin_panel\templates\admin_panel\category_form.html
+msgid "Modifier la catégorie"
+msgstr "Edit the category"
+
+# admin_panel\templates\admin_panel\doctor_form.html
+msgid "Modifier le médecin"
+msgstr "Edit the doctor"
+
+# appointments\templates\appointments\edit.html
+msgid "Modifier le rendez-vous"
+msgstr "Edit the appointment"
+
+# patients\templates\patients\edit_profile.html
+msgid "Modifier mon profil"
+msgstr "Edit my profile"
+
+# appointments\templates\appointments\edit.html
+msgid "Modifier rendez-vous"
+msgstr "Edit appointment"
+
+# admin_panel\templates\admin_panel\doctor_form.html
+msgid "Modifier un médecin"
+msgstr "Edit a doctor"
+
+# admin_panel\templates\admin_panel\forum_posts.html
+msgid "Modération des articles"
+msgstr "Article moderation"
+
+# admin_panel\templates\admin_panel\forum_comments.html
+msgid "Modération des commentaires"
+msgstr "Comment moderation"
+
+# admin_panel\templates\admin_panel\dashboard.html
+msgid "Modérer"
+msgstr "Moderate"
+
+# patients\templates\patients\edit_profile.html
+msgid "Mon espace"
+msgstr "My space"
+
+# templates\base.html
+msgid "Mon profil"
+msgstr "My profile"
+
+# health_journal\templates\health_journal\dashboard.html
+msgid "Mon suivi"
+msgstr "My tracking"
+
+# templates\registration\login.html; templates\registration\register.html
+msgid "Mot de passe"
+msgstr "Password"
+
+# admin_panel\templates\admin_panel\reports.html; appointments\templates\appointments\doctor_appointments.html; forum\templates\forum\post_detail.html
+msgid "Motif"
+msgstr "Reason"
+
+# admin_panel\templates\admin_panel\report_detail.html
+msgid "Motif :"
+msgstr "Reason:"
+
+# appointments\templates\appointments\doctor_detail.html
+msgid "Motif de la consultation"
+msgstr "Reason for the consultation"
+
+# health_journal\templates\health_journal\dashboard.html
+msgid "MÉDICAMENTS"
+msgstr "MEDICATIONS"
+
+# admin_panel\templates\admin_panel\doctors.html; admin_panel\templates\admin_panel\user_detail.html; admin_panel\templates\admin_panel\users.html; appointments\templates\appointments\create.html; forum\templates\forum\search.html
+msgid "Médecin"
+msgstr "Doctor"
+
+# appointments\templates\appointments\detail.html
+msgid "Médecin :"
+msgstr "Doctor:"
+
+# admin_panel\templates\admin_panel\dashboard.html; admin_panel\templates\admin_panel\users.html; forum\templates\forum\search.html
+msgid "Médecins"
+msgstr "Doctors"
+
+# admin_panel\templates\admin_panel\dashboard.html
+msgid "Médecins les plus sollicités"
+msgstr "Most requested doctors"
+
+# appointments\templates\appointments\doctor_view_journal.html
+msgid "Médicaments actifs"
+msgstr "Active medications"
+
+# health_journal\templates\health_journal\entry_create.html; health_journal\templates\health_journal\entry_detail.html; health_journal\templates\health_journal\entry_edit.html
+msgid "Médicaments pris"
+msgstr "Medications taken"
+
+# admin_panel\templates\admin_panel\login_audit.html
+msgid "Navigateur"
+msgstr "Browser"
+
+# health_journal\templates\health_journal\entry_create.html; health_journal\templates\health_journal\entry_edit.html
+msgid "Niveau de douleur (0-10)"
+msgstr "Pain level (0-10)"
+
+# admin_panel\templates\admin_panel\categories.html; admin_panel\templates\admin_panel\category_form.html; health_journal\templates\health_journal\medication_create.html
+msgid "Nom"
+msgstr "Name"
+
+# admin_panel\templates\admin_panel\doctor_detail.html
+msgid "Nom :"
+msgstr "Name:"
+
+# admin_panel\templates\admin_panel\user_detail.html; appointments\templates\appointments\patient_medical_record.html
+msgid "Nom complet :"
+msgstr "Full name:"
+
+# templates\registration\register.html
+msgid "Nom d'utilisateur"
+msgstr "Username"
+
+# admin_panel\templates\admin_panel\doctor_form.html
+msgid "Nom du cabinet"
+msgstr "Clinic name"
+
+# appointments\templates\appointments\add_slot.html
+msgid "Nombre de jours (répéter)"
+msgstr "Number of days (repeat)"
+
+# admin_panel\templates\admin_panel\forum_posts.html
+msgid "Non publié"
+msgstr "Unpublished"
+
+# appointments\templates\appointments\doctor_list.html
+msgid "Nos médecins"
+msgstr "Our doctors"
+
+# appointments\templates\appointments\doctor_list.html
+msgid "Nos médecins."
+msgstr "Our doctors."
+
+# appointments\templates\appointments\create.html; appointments\templates\appointments\create_for_patient.html; appointments\templates\appointments\edit.html; health_journal\templates\health_journal\entry_create.html; health_journal\templates\health_journal\entry_detail.html; health_journal\templates\health_journal\entry_edit.html; health_journal\templates\health_journal\medication_create.html; health_journal\templates\health_journal\vitals_create.html
+msgid "Notes"
+msgstr "Notes"
+
+# appointments\templates\appointments\detail.html
+msgid "Notes de consultation"
+msgstr "Consultation notes"
+
+# appointments\templates\appointments\detail.html
+msgid "Notes de consultation :"
+msgstr "Consultation notes:"
+
+# appointments\templates\appointments\detail.html
+msgid "Notes du patient :"
+msgstr "Patient notes:"
+
+# health_journal\templates\health_journal\dashboard.html
+msgid "Notez comment vous vous sentez au quotidien."
+msgstr "Track how you feel day to day."
+
+# health_journal\templates\health_journal\entry_create.html
+msgid "Notez votre état du jour, en toute confidentialité."
+msgstr "Note how you feel today, in complete confidentiality."
+
+# notifications\templates\notifications\notification_list.html
+msgid "Notifications"
+msgstr "Notifications"
+
+# messaging\templates\messaging\inbox.html
+msgid "Nouveau message"
+msgstr "New message"
+
+# admin_panel\templates\admin_panel\doctor_form.html; admin_panel\templates\admin_panel\doctors.html
+msgid "Nouveau médecin"
+msgstr "New doctor"
+
+# appointments\templates\appointments\create.html; appointments\templates\appointments\list.html
+msgid "Nouveau rendez-vous"
+msgstr "New appointment"
+
+# forum\templates\forum\post_create.html; forum\templates\forum\post_list.html
+msgid "Nouvel article"
+msgstr "New post"
+
+# health_journal\templates\health_journal\dashboard.html
+msgid "Nouvelle"
+msgstr "New"
+
+# admin_panel\templates\admin_panel\categories.html; admin_panel\templates\admin_panel\category_form.html
+msgid "Nouvelle catégorie"
+msgstr "New category"
+
+# health_journal\templates\health_journal\entry_create.html; health_journal\templates\health_journal\entry_list.html
+msgid "Nouvelle entrée"
+msgstr "New entry"
+
+# health_journal\templates\health_journal\entry_create.html
+msgid "Nouvelle entrée santé"
+msgstr "New health entry"
+
+# admin_panel\templates\admin_panel\doctor_form.html
+msgid "Numéro de licence"
+msgstr "License number"
+
+# appointments\templates\appointments\doctor_detail.html
+msgid "Objet (optionnel)"
+msgstr "Subject (optional)"
+
+# forum\templates\forum\post_create.html
+msgid "Objet de votre article"
+msgstr "Subject of your post"
+
+# appointments\templates\appointments\detail.html
+msgid "Observations, diagnostic, traitement..."
+msgstr "Observations, diagnosis, treatment..."
+
+# appointments\templates\appointments\create_for_patient.html
+msgid "Organisez un rendez-vous au nom d'un patient."
+msgstr "Schedule an appointment on behalf of a patient."
+
+# health_journal\templates\health_journal\dashboard.html
+msgid "Ouvrir"
+msgstr "Open"
+
+# templates\home.html
+msgid "Ouvrir mon suivi"
+msgstr "Open my health tracker"
+
+# admin_panel\templates\admin_panel\dashboard.html
+msgid "PROFESSIONNELS"
+msgstr "PROFESSIONALS"
+
+# notifications\templates\notifications\notification_list.html
+msgid "Page"
+msgstr "Page"
+
+# forum\templates\forum\post_create.html
+msgid "Partage communautaire"
+msgstr "Community sharing"
+
+# patients\templates\patients\edit_profile.html
+msgid "Partager mes données médicales avec mon médecin"
+msgstr "Share my medical data with my doctor"
+
+# templates\home.html
+msgid "Partagez et échangez"
+msgstr "Share and exchange"
+
+# forum\templates\forum\post_create.html
+msgid "Partagez une expérience ou une question en toute bienveillance."
+msgstr "Share an experience or a question in a caring way."
+
+# forum\templates\forum\post_detail.html
+msgid "Participez à la discussion."
+msgstr "Join the discussion."
+
+# forum\templates\forum\post_detail.html
+msgid "Pas encore de commentaire"
+msgstr "No comments yet"
+
+# resources\templates\resources\faq.html; resources\templates\resources\resources_home.html
+msgid "Pas encore de questions"
+msgstr "No questions yet"
+
+# appointments\templates\appointments\doctor_view_journal.html
+msgid "Pas encore de signes vitaux enregistrés."
+msgstr "No vital signs recorded yet."
+
+# admin_panel\templates\admin_panel\user_detail.html
+msgid "Pas médecin"
+msgstr "Not a doctor"
+
+# health_journal\templates\health_journal\entry_create.html
+msgid "Passable"
+msgstr "Fair"
+
+# appointments\templates\appointments\slots.html
+msgid "Passé"
+msgstr "Past"
+
+# admin_panel\templates\admin_panel\user_detail.html; admin_panel\templates\admin_panel\users.html; appointments\templates\appointments\create_for_patient.html; appointments\templates\appointments\doctor_appointments.html
+msgid "Patient"
+msgstr "Patient"
+
+# appointments\templates\appointments\detail.html
+msgid "Patient :"
+msgstr "Patient:"
+
+# admin_panel\templates\admin_panel\users.html
+msgid "Patients"
+msgstr "Patients"
+
+# health_journal\templates\health_journal\dashboard.html
+msgid "Pensez à prendre vos médicaments actifs aujourd'hui comme prescrit par votre médecin."
+msgstr "Remember to take your active medications today as prescribed by your doctor."
+
+# appointments\templates\appointments\list.html
+msgid "Planification"
+msgstr "Scheduling"
+
+# templates\base.html
+msgid "Planning"
+msgstr "Schedules"
+
+# admin_panel\templates\admin_panel\dashboard.html
+msgid "Plateforme sécurisée"
+msgstr "Secure platform"
+
+# health_journal\templates\health_journal\entry_create.html; health_journal\templates\health_journal\entry_edit.html
+msgid "Poids (kg)"
+msgstr "Weight (kg)"
+
+# health_journal\templates\health_journal\entry_detail.html
+msgid "Poids :"
+msgstr "Weight:"
+
+# appointments\templates\appointments\create.html
+msgid "Pour choisir un créneau disponible,"
+msgstr "To choose an available slot,"
+
+# resources\templates\resources\article_list.html
+msgid "Pour mieux comprendre, prévenir et agir."
+msgstr "To better understand, prevent and act."
+
+# appointments\templates\appointments\list.html
+msgid "Prenez rendez-vous avec un médecin en quelques clics."
+msgstr "Book an appointment with a doctor in a few clicks."
+
+# health_journal\templates\health_journal\vitals_create.html
+msgid "Pression diastolique (mmHg)"
+msgstr "Diastolic pressure (mmHg)"
+
+# health_journal\templates\health_journal\vitals_create.html
+msgid "Pression systolique (mmHg)"
+msgstr "Systolic pressure (mmHg)"
+
+# appointments\templates\appointments\create.html
+msgid "Prise de rendez-vous"
+msgstr "Appointment booking"
+
+# patients\templates\patients\profile.html; templates\base.html
+msgid "Profil"
+msgstr "Profile"
+
+# admin_panel\templates\admin_panel\doctor_detail.html
+msgid "Profil médecin"
+msgstr "Doctor profile"
+
+# appointments\templates\appointments\patient_medical_record.html
+msgid "Profil médical"
+msgstr "Medical profile"
+
+# appointments\templates\appointments\doctor_dashboard.html
+msgid "Profitez de ce temps pour préparer vos prochains RDV."
+msgstr "Take this time to prepare your upcoming appointments."
+
+# appointments\templates\appointments\create_for_patient.html
+msgid "Programmer"
+msgstr "Schedule"
+
+# appointments\templates\appointments\create_for_patient.html; appointments\templates\appointments\doctor_dashboard.html; appointments\templates\appointments\list.html
+msgid "Programmer pour un patient"
+msgstr "Schedule for a patient"
+
+# appointments\templates\appointments\create_for_patient.html
+msgid "Programmer un rendez-vous"
+msgstr "Schedule an appointment"
+
+# admin_panel\templates\admin_panel\user_detail.html
+msgid "Promouvoir en médecin"
+msgstr "Promote to doctor"
+
+# notifications\templates\notifications\notification_list.html
+msgid "Précédent"
+msgstr "Previous"
+
+# admin_panel\templates\admin_panel\doctor_form.html
+msgid "Présentation"
+msgstr "Biography"
+
+# admin_panel\templates\admin_panel\doctor_detail.html
+msgid "Présentation :"
+msgstr "Biography:"
+
+# admin_panel\templates\admin_panel\doctor_detail.html; admin_panel\templates\admin_panel\user_detail.html; appointments\templates\appointments\patient_medical_record.html
+msgid "Pseudo :"
+msgstr "Username:"
+
+# forum\templates\forum\post_create.html; forum\templates\forum\post_detail.html
+msgid "Publier"
+msgstr "Publish"
+
+# forum\templates\forum\post_list.html
+msgid "Publier un article"
+msgstr "Publish a post"
+
+# admin_panel\templates\admin_panel\forum_posts.html
+msgid "Publié"
+msgstr "Published"
+
+# admin_panel\templates\admin_panel\forum_posts.html
+msgid "Publiés"
+msgstr "Published"
+
+# resources\templates\resources\faq.html; resources\templates\resources\resources_home.html
+msgid "Questions fréquentes"
+msgstr "Frequently asked questions"
+
+# admin_panel\templates\admin_panel\dashboard.html; admin_panel\templates\admin_panel\doctors.html
+msgid "RDV"
+msgstr "Appointments"
+
+# health_journal\templates\health_journal\dashboard.html
+msgid "Rappels de traitement"
+msgstr "Treatment reminders"
+
+# forum\templates\forum\search.html
+msgid "Recherche"
+msgstr "Search"
+
+# admin_panel\templates\admin_panel\doctors.html
+msgid "Rechercher"
+msgstr "Search"
+
+# forum\templates\forum\search.html
+msgid "Rechercher dans Care Circle."
+msgstr "Search in Care Circle."
+
+# admin_panel\templates\admin_panel\users.html
+msgid "Rechercher par nom, email ou pseudo..."
+msgstr "Search by name, email or username..."
+
+# admin_panel\templates\admin_panel\doctors.html
+msgid "Rechercher par nom, spécialité..."
+msgstr "Search by name, specialty..."
+
+# admin_panel\templates\admin_panel\forum_posts.html
+msgid "Rechercher par titre, contenu, auteur..."
+msgstr "Search by title, content, author..."
+
+# admin_panel\templates\admin_panel\forum_comments.html
+msgid "Rechercher un commentaire..."
+msgstr "Search for a comment..."
+
+# resources\templates\resources\article_list.html
+msgid "Rechercher une fiche..."
+msgstr "Search for a factsheet..."
+
+# forum\templates\forum\search.html
+msgid "Recherchez un article du forum, un membre ou un médecin."
+msgstr "Search for a forum post, a member or a doctor."
+
+# appointments\templates\appointments\detail.html
+msgid "Refuser"
+msgstr "Decline"
+
+# admin_panel\templates\admin_panel\report_detail.html
+msgid "Rejeter le signalement"
+msgstr "Dismiss the report"
+
+# admin_panel\templates\admin_panel\report_detail.html; admin_panel\templates\admin_panel\reports.html
+msgid "Rejeté"
+msgstr "Dismissed"
+
+# admin_panel\templates\admin_panel\reports.html
+msgid "Rejetés"
+msgstr "Dismissed"
+
+# templates\home.html
+msgid "Rejoignez des discussions bienveillantes autour de sujets qui vous ressemblent."
+msgstr "Join kind and caring discussions on topics that matter to you."
+
+# templates\registration\register.html
+msgid "Rejoignez un cercle de soins bienveillant."
+msgstr "Join a caring circle of support."
+
+# templates\base.html; templates\home.html
+msgid "Rejoindre le cercle"
+msgstr "Join the circle"
+
+# admin_panel\templates\admin_panel\doctor_detail.html; admin_panel\templates\admin_panel\user_detail.html
+msgid "Rendez-vous"
+msgstr "Appointments"
+
+# admin_panel\templates\admin_panel\dashboard.html
+msgid "Rendez-vous ce jour"
+msgstr "Appointments today"
+
+# appointments\templates\appointments\doctor_dashboard.html
+msgid "Rendez-vous du jour"
+msgstr "Today's appointments"
+
+# admin_panel\templates\admin_panel\dashboard.html
+msgid "Rendez-vous par statut"
+msgstr "Appointments by status"
+
+# admin_panel\templates\admin_panel\doctors.html
+msgid "Rendre disponible"
+msgstr "Make available"
+
+# admin_panel\templates\admin_panel\doctors.html
+msgid "Rendre indisponible"
+msgstr "Make unavailable"
+
+# health_journal\templates\health_journal\vitals_create.html
+msgid "Renseignez vos constantes du jour."
+msgstr "Enter your readings for today."
+
+# appointments\templates\appointments\add_slot.html
+msgid "Renseignez vos disponibilités pour permettre aux patients de réserver."
+msgstr "Fill in your availability so patients can book."
+
+# health_journal\templates\health_journal\medication_list.html
+msgid "Respectez toujours la posologie prescrite par votre médecin."
+msgstr "Always follow the dosage prescribed by your doctor."
+
+# resources\templates\resources\resources_home.html
+msgid "Ressources & FAQ"
+msgstr "Resources & FAQ"
+
+# resources\templates\resources\resources_home.html
+msgid "Ressources santé."
+msgstr "Health resources."
+
+# admin_panel\templates\admin_panel\doctor_detail.html; admin_panel\templates\admin_panel\doctor_form.html; admin_panel\templates\admin_panel\report_detail.html; admin_panel\templates\admin_panel\user_detail.html; appointments\templates\appointments\detail.html; appointments\templates\appointments\doctor_appointments.html; health_journal\templates\health_journal\entry_detail.html; messaging\templates\messaging\conversation.html
+msgid "Retour"
+msgstr "Back"
+
+# appointments\templates\appointments\patient_medical_record.html
+msgid "Retour au tableau de bord"
+msgstr "Back to the dashboard"
+
+# patients\templates\patients\members.html
+msgid "Retrouvez les autres membres et échangez en toute confiance."
+msgstr "Find other members and connect in confidence."
+
+# admin_panel\templates\admin_panel\doctors.html; admin_panel\templates\admin_panel\user_detail.html; admin_panel\templates\admin_panel\users.html
+msgid "Réactiver"
+msgstr "Reactivate"
+
+# resources\templates\resources\article_detail.html
+msgid "Rédigé par"
+msgstr "Written by"
+
+# resources\templates\resources\article_detail.html
+msgid "Rédigé par l'équipe Care Circle"
+msgstr "Written by the Care Circle team"
+
+# appointments\templates\appointments\add_slot.html
+msgid "Répétition"
+msgstr "Repetition"
+
+# patients\templates\patients\connections.html
+msgid "Réseau"
+msgstr "Network"
+
+# appointments\templates\appointments\doctor_detail.html
+msgid "Réserver"
+msgstr "Book"
+
+# appointments\templates\appointments\create.html
+msgid "Réserver un créneau chez un médecin"
+msgstr "Book a slot with a doctor"
+
+# templates\home.html
+msgid "Réservez et gérez vos consultations auprès de professionnels de confiance."
+msgstr "Book and manage your consultations with trusted professionals."
+
+# appointments\templates\appointments\create.html
+msgid "Réservez votre consultation en quelques clics, en toute confidentialité."
+msgstr "Book your consultation in a few clicks, in complete confidentiality."
+
+# admin_panel\templates\admin_panel\doctor_detail.html; appointments\templates\appointments\slots.html
+msgid "Réservé"
+msgstr "Booked"
+
+# admin_panel\templates\admin_panel\forum_comments.html; admin_panel\templates\admin_panel\forum_posts.html
+msgid "Rétablir"
+msgstr "Restore"
+
+# admin_panel\templates\admin_panel\login_audit.html
+msgid "Réussies"
+msgstr "Successful"
+
+# admin_panel\templates\admin_panel\user_detail.html; admin_panel\templates\admin_panel\users.html
+msgid "Rôles"
+msgstr "Roles"
+
+# health_journal\templates\health_journal\dashboard.html
+msgid "SIGNES VITAUX"
+msgstr "VITAL SIGNS"
+
+# templates\home.html
+msgid "SOINS"
+msgstr "CARE"
+
+# templates\home.html
+msgid "SUIVI"
+msgstr "TRACKING"
+
+# templates\base.html; templates\registration\login.html; templates\registration\register.html
+msgid "Se connecter"
+msgstr "Sign in"
+
+# templates\base.html
+msgid "Se déconnecter"
+msgstr "Sign out"
+
+# admin_panel\templates\admin_panel\report_detail.html
+msgid "Signalement"
+msgstr "Report"
+
+# admin_panel\templates\admin_panel\forum_posts.html
+msgid "Signalements"
+msgstr "Reports"
+
+# admin_panel\templates\admin_panel\dashboard.html
+msgid "Signalements en attente"
+msgstr "Pending reports"
+
+# forum\templates\forum\post_detail.html
+msgid "Signaler"
+msgstr "Report"
+
+# forum\templates\forum\post_detail.html
+msgid "Signaler l'article"
+msgstr "Report the post"
+
+# forum\templates\forum\post_detail.html
+msgid "Signaler le commentaire"
+msgstr "Report the comment"
+
+# admin_panel\templates\admin_panel\reports.html
+msgid "Signaleur"
+msgstr "Reporter"
+
+# admin_panel\templates\admin_panel\report_detail.html
+msgid "Signaleur :"
+msgstr "Reporter:"
+
+# health_journal\templates\health_journal\vitals_create.html
+msgid "Signes vitaux"
+msgstr "Vital signs"
+
+# appointments\templates\appointments\doctor_view_journal.html; health_journal\templates\health_journal\dashboard.html
+msgid "Signes vitaux récents"
+msgstr "Recent vital signs"
+
+# appointments\templates\appointments\doctor_view_journal.html; health_journal\templates\health_journal\entry_detail.html
+msgid "Sommeil :"
+msgstr "Sleep:"
+
+# admin_panel\templates\admin_panel\doctor_form.html; admin_panel\templates\admin_panel\doctors.html
+msgid "Spécialité"
+msgstr "Specialty"
+
+# admin_panel\templates\admin_panel\doctor_detail.html
+msgid "Spécialité :"
+msgstr "Specialty:"
+
+# admin_panel\templates\admin_panel\user_detail.html; admin_panel\templates\admin_panel\users.html
+msgid "Staff"
+msgstr "Staff"
+
+# admin_panel\templates\admin_panel\forum_comments.html; admin_panel\templates\admin_panel\forum_posts.html; admin_panel\templates\admin_panel\login_audit.html; admin_panel\templates\admin_panel\reports.html; admin_panel\templates\admin_panel\users.html; appointments\templates\appointments\doctor_appointments.html; appointments\templates\appointments\edit.html; appointments\templates\appointments\slots.html
+msgid "Statut"
+msgstr "Status"
+
+# admin_panel\templates\admin_panel\report_detail.html
+msgid "Statut :"
+msgstr "Status:"
+
+# admin_panel\templates\admin_panel\login_audit.html
+msgid "Succès"
+msgstr "Success"
+
+# notifications\templates\notifications\notification_list.html
+msgid "Suivant"
+msgstr "Next"
+
+# appointments\templates\appointments\list.html
+msgid "Suivez et gérez vos consultations."
+msgstr "Track and manage your consultations."
+
+# health_journal\templates\health_journal\vitals_list.html
+msgid "Suivez l'évolution de vos constantes."
+msgstr "Track the evolution of your readings."
+
+# health_journal\templates\health_journal\dashboard.html
+msgid "Suivez vos constantes et leur évolution."
+msgstr "Track your readings and their evolution."
+
+# templates\home.html
+msgid "Suivez votre état au quotidien et gardez l'essentiel à portée de main."
+msgstr "Track your health every day and keep what matters at hand."
+
+# admin_panel\templates\admin_panel\users.html
+msgid "Superusers"
+msgstr "Superusers"
+
+# admin_panel\templates\admin_panel\category_delete.html; admin_panel\templates\admin_panel\doctor_delete.html; admin_panel\templates\admin_panel\doctor_detail.html; admin_panel\templates\admin_panel\forum_comments.html; admin_panel\templates\admin_panel\forum_posts.html; forum\templates\forum\post_delete.html; health_journal\templates\health_journal\entry_delete.html; health_journal\templates\health_journal\entry_detail.html
+msgid "Supprimer"
+msgstr "Delete"
+
+# admin_panel\templates\admin_panel\forum_comments.html; admin_panel\templates\admin_panel\report_detail.html
+msgid "Supprimer ce commentaire ?"
+msgstr "Delete this comment?"
+
+# admin_panel\templates\admin_panel\report_detail.html
+msgid "Supprimer cet article ?"
+msgstr "Delete this article?"
+
+# admin_panel\templates\admin_panel\forum_posts.html
+msgid "Supprimer définitivement cet article ?"
+msgstr "Permanently delete this article?"
+
+# admin_panel\templates\admin_panel\report_detail.html
+msgid "Supprimer l'article"
+msgstr "Delete the article"
+
+# health_journal\templates\health_journal\entry_delete.html
+msgid "Supprimer l'entrée"
+msgstr "Delete the entry"
+
+# admin_panel\templates\admin_panel\category_delete.html
+msgid "Supprimer la catégorie"
+msgstr "Delete the category"
+
+# admin_panel\templates\admin_panel\report_detail.html
+msgid "Supprimer le commentaire"
+msgstr "Delete the comment"
+
+# admin_panel\templates\admin_panel\doctor_delete.html
+msgid "Supprimer le médecin"
+msgstr "Delete the doctor"
+
+# health_journal\templates\health_journal\entry_create.html; health_journal\templates\health_journal\entry_detail.html; health_journal\templates\health_journal\entry_edit.html
+msgid "Symptômes"
+msgstr "Symptoms"
+
+# appointments\templates\appointments\doctor_view_journal.html
+msgid "Symptômes :"
+msgstr "Symptoms:"
+
+# admin_panel\templates\admin_panel\doctor_form.html
+msgid "Sélectionner un utilisateur"
+msgstr "Select a user"
+
+# health_journal\templates\health_journal\dashboard.html; health_journal\templates\health_journal\vitals_list.html
+msgid "T"
+msgstr "T"
+
+# appointments\templates\appointments\doctor_list.html
+msgid "TROUVER UN PROFESSIONNEL"
+msgstr "FIND A PROFESSIONAL"
+
+# appointments\templates\appointments\doctor_dashboard.html; templates\base.html
+msgid "Tableau de bord"
+msgstr "Dashboard"
+
+# health_journal\templates\health_journal\vitals_create.html
+msgid "Température (°C)"
+msgstr "Temperature (°C)"
+
+# appointments\templates\appointments\doctor_view_journal.html; health_journal\templates\health_journal\dashboard.html; health_journal\templates\health_journal\vitals_list.html
+msgid "Tension"
+msgstr "Blood pressure"
+
+# admin_panel\templates\admin_panel\dashboard.html; appointments\templates\appointments\detail.html; appointments\templates\appointments\doctor_appointments.html; appointments\templates\appointments\edit.html; appointments\templates\appointments\list.html; appointments\templates\appointments\patient_medical_record.html
+msgid "Terminé"
+msgstr "Completed"
+
+# appointments\templates\appointments\list.html
+msgid "Terminés"
+msgstr "Completed"
+
+# templates\base.html
+msgid "Thème sombre"
+msgstr "Dark theme"
+
+# admin_panel\templates\admin_panel\forum_posts.html; appointments\templates\appointments\create.html; appointments\templates\appointments\create_for_patient.html; appointments\templates\appointments\edit.html; forum\templates\forum\post_create.html; forum\templates\forum\post_edit.html
+msgid "Titre"
+msgstr "Title"
+
+# admin_panel\templates\admin_panel\forum_comments.html; admin_panel\templates\admin_panel\forum_posts.html; appointments\templates\appointments\list.html; forum\templates\forum\post_list.html
+msgid "Tous"
+msgstr "All"
+
+# admin_panel\templates\admin_panel\users.html
+msgid "Tous les rôles"
+msgstr "All roles"
+
+# admin_panel\templates\admin_panel\login_audit.html; forum\templates\forum\search.html
+msgid "Tout"
+msgstr "All"
+
+# admin_panel\templates\admin_panel\dashboard.html
+msgid "Tout est calme."
+msgstr "All is calm."
+
+# appointments\templates\appointments\doctor_dashboard.html
+msgid "Tout est à jour !"
+msgstr "Everything is up to date!"
+
+# notifications\templates\notifications\notification_list.html
+msgid "Tout marquer comme lu"
+msgstr "Mark all as read"
+
+# health_journal\templates\health_journal\dashboard.html
+msgid "Tout voir"
+msgstr "See all"
+
+# resources\templates\resources\resources_home.html
+msgid "Toute la FAQ"
+msgstr "Whole FAQ"
+
+# resources\templates\resources\article_list.html
+msgid "Toutes"
+msgstr "All"
+
+# resources\templates\resources\article_detail.html; resources\templates\resources\resources_home.html
+msgid "Toutes les fiches"
+msgstr "All factsheets"
+
+# admin_panel\templates\admin_panel\report_detail.html; admin_panel\templates\admin_panel\reports.html
+msgid "Traité"
+msgstr "Reviewed"
+
+# admin_panel\templates\admin_panel\report_detail.html
+msgid "Traité par :"
+msgstr "Reviewed by:"
+
+# admin_panel\templates\admin_panel\reports.html
+msgid "Traités"
+msgstr "Reviewed"
+
+# appointments\templates\appointments\list.html; templates\home.html
+msgid "Trouver un médecin"
+msgstr "Find a doctor"
+
+# health_journal\templates\health_journal\entry_create.html
+msgid "Très bien"
+msgstr "Very good"
+
+# health_journal\templates\health_journal\entry_create.html
+msgid "Très mauvais"
+msgstr "Very bad"
+
+# admin_panel\templates\admin_panel\doctor_form.html; patients\templates\patients\edit_profile.html
+msgid "Téléphone"
+msgstr "Phone"
+
+# admin_panel\templates\admin_panel\doctor_detail.html; appointments\templates\appointments\patient_medical_record.html; patients\templates\patients\profile.html
+msgid "Téléphone :"
+msgstr "Phone:"
+
+# patients\templates\patients\edit_profile.html
+msgid "Téléphone d'urgence"
+msgstr "Emergency phone"
+
+# templates\home.html
+msgid "Un espace pensé pour vous."
+msgstr "A space designed for you."
+
+# forum\templates\forum\post_list.html
+msgid "Un lieu bienveillant pour échanger, s'entraider et partager vos expériences."
+msgstr "A caring place to exchange, support one another and share your experiences."
+
+# health_journal\templates\health_journal\entry_list.html
+msgid "Un suivi quotidien, simple et confidentiel."
+msgstr "Daily, simple and confidential tracking."
+
+# resources\templates\resources\faq.html
+msgid "Une autre question ? Écrivez-nous via la messagerie ou consultez votre médecin."
+msgstr "Another question? Write to us via messaging or consult your doctor."
+
+# admin_panel\templates\admin_panel\login_audit.html; admin_panel\templates\admin_panel\users.html
+msgid "Utilisateur"
+msgstr "User"
+
+# admin_panel\templates\admin_panel\dashboard.html
+msgid "Utilisateurs inscrits"
+msgstr "Registered users"
+
+# appointments\templates\appointments\doctor_dashboard.html
+msgid "VOTRE PORTEFEUILLE"
+msgstr "YOUR PRACTICE"
+
+# admin_panel\templates\admin_panel\forum_comments.html
+msgid "Visible"
+msgstr "Visible"
+
+# templates\home.html
+msgid "Visiter la communauté"
+msgstr "Visit the community"
+
+# appointments\templates\appointments\list.html; health_journal\templates\health_journal\dashboard.html; health_journal\templates\health_journal\entry_list.html; notifications\templates\notifications\notification_list.html
+msgid "Voir"
+msgstr "View"
+
+# appointments\templates\appointments\doctor_list.html
+msgid "Voir / Prendre RDV"
+msgstr "View / Book appointment"
+
+# admin_panel\templates\admin_panel\doctor_detail.html
+msgid "Voir l'"
+msgstr "View the "
+
+# admin_panel\templates\admin_panel\doctor_detail.html
+msgid "Voir le compte utilisateur"
+msgstr "View the user account"
+
+# patients\templates\patients\members.html
+msgid "Voir profil"
+msgstr "View profile"
+
+# admin_panel\templates\admin_panel\dashboard.html
+msgid "Voir tout"
+msgstr "See all"
+
+# patients\templates\patients\connections.html
+msgid "Vos connexions et échanges restent strictement confidentiels."
+msgstr "Your connections and exchanges remain strictly confidential."
+
+# appointments\templates\appointments\doctor_dashboard.html
+msgid "Vos consultations du jour."
+msgstr "Your consultations today."
+
+# templates\registration\register.html
+msgid "Vos données de santé restent confidentielles."
+msgstr "Your health data remains confidential."
+
+# patients\templates\patients\edit_profile.html
+msgid "Vos données médicales ne sont visibles que par vous et votre médecin traitant."
+msgstr "Your medical data is only visible to you and your primary care physician."
+
+# templates\home.html
+msgid "Vos données restent confidentielles"
+msgstr "Your data remains confidential"
+
+# templates\registration\login.html
+msgid "Vos données restent confidentielles."
+msgstr "Your data remains confidential."
+
+# appointments\templates\appointments\create.html
+msgid "Vos informations de santé restent strictement confidentielles et réservées à votre médecin."
+msgstr "Your health information remains strictly confidential and reserved for your doctor."
+
+# health_journal\templates\health_journal\entry_create.html
+msgid "Vos informations restent privées et à votre disposition."
+msgstr "Your information stays private and at your disposal."
+
+# appointments\templates\appointments\doctor_dashboard.html
+msgid "Vos patients apparaîtront ici après le premier rendez-vous."
+msgstr "Your patients will appear here after the first appointment."
+
+# templates\home.html
+msgid "Vos rendez-vous"
+msgstr "Your appointments"
+
+# patients\templates\patients\members.html
+msgid "Vos échanges restent confidentiels et respectueux."
+msgstr "Your exchanges remain confidential and respectful."
+
+# messaging\templates\messaging\inbox.html
+msgid "Vos échanges restent confidentiels."
+msgstr "Your exchanges remain confidential."
+
+# templates\base.html; templates\registration\login.html
+msgid "Votre communauté de soins, en toute confiance."
+msgstr "Your trusted care community."
+
+# templates\home.html
+msgid "Votre espace"
+msgstr "Your space"
+
+# templates\home.html
+msgid "Votre journal de santé"
+msgstr "Your health journal"
+
+# health_journal\templates\health_journal\entry_detail.html
+msgid "Votre journal est strictement confidentiel."
+msgstr "Your journal is strictly confidential."
+
+# health_journal\templates\health_journal\entry_list.html
+msgid "Votre journal est strictement privé. Il ne remplace pas un avis médical professionnel."
+msgstr "Your journal is strictly private. It does not replace professional medical advice."
+
+# appointments\templates\appointments\doctor_dashboard.html
+msgid "Votre journée,"
+msgstr "Your day,"
+
+# forum\templates\forum\post_create.html
+msgid "Votre message..."
+msgstr "Your message..."
+
+# health_journal\templates\health_journal\dashboard.html
+msgid "Votre parcours, en un coup d'œil."
+msgstr "Your journey, at a glance."
+
+# forum\templates\forum\search.html
+msgid "Votre recherche..."
+msgstr "Your search..."
+
+# forum\templates\forum\post_delete.html
+msgid "Voulez-vous vraiment supprimer l'article"
+msgstr "Do you really want to delete the post"
+
+# health_journal\templates\health_journal\entry_delete.html
+msgid "Voulez-vous vraiment supprimer l'entrée du"
+msgstr "Do you really want to delete the entry of"
+
+# admin_panel\templates\admin_panel\category_delete.html
+msgid "Voulez-vous vraiment supprimer la catégorie"
+msgstr "Do you really want to delete the category"
+
+# admin_panel\templates\admin_panel\doctor_delete.html
+msgid "Voulez-vous vraiment supprimer le profil médecin de"
+msgstr "Do you really want to delete the doctor profile of"
+
+# appointments\templates\appointments\doctor_dashboard.html
+msgid "Vous accompagnez"
+msgstr "You accompany"
+
+# appointments\templates\appointments\patient_medical_record.html
+msgid "Vous devez avoir un rendez-vous (passé, confirmé ou en attente) avec ce patient pour consulter son dossier médical."
+msgstr "You must have an appointment (past, confirmed or pending) with this patient to view their medical record."
+
+# templates\home.html
+msgid "Vous n'êtes pas seul·e"
+msgstr "You are not alone"
+
+# forum\templates\forum\post_list.html
+msgid "Vous pouvez démarrer la conversation en publiant le premier article."
+msgstr "You can start the conversation by publishing the first post."
+
+# templates\base.html
+msgid "Vue d'ensemble"
+msgstr "Overview"
+
+# admin_panel\templates\admin_panel\dashboard.html
+msgid "Vue d'ensemble."
+msgstr "Overview."
+
+# health_journal\templates\health_journal\dashboard.html
+msgid "actif"
+msgstr "active"
+
+# admin_panel\templates\admin_panel\doctor_detail.html
+msgid "agenda public"
+msgstr "public schedule"
+
+# notifications\templates\notifications\notification_list.html
+msgid "au total"
+msgstr "in total"
+
+# appointments\templates\appointments\doctor_view_journal.html
+msgid "consultation en tant que médecin traitant."
+msgstr "consultation as attending doctor."
+
+# appointments\templates\appointments\doctor_dashboard.html
+msgid "demande"
+msgstr "request"
+
+# health_journal\templates\health_journal\dashboard.html
+msgid "dernière"
+msgstr "entry"
+
+# appointments\templates\appointments\doctor_dashboard.html
+msgid "en un coup d'œil."
+msgstr "at a glance."
+
+# health_journal\templates\health_journal\dashboard.html
+msgid "enregistrement"
+msgstr "recording"
+
+# health_journal\templates\health_journal\entry_detail.html
+msgid "heures"
+msgstr "hours"
+
+# templates\home.html
+msgid "ici."
+msgstr "here."
+
+# notifications\templates\notifications\notification_list.html
+msgid "non lue(s) avant cette visite"
+msgstr "unread before this visit"
+
+# notifications\templates\notifications\notification_list.html
+msgid "notification(s)"
+msgstr "notification(s)"
+
+# admin_panel\templates\admin_panel\dashboard.html
+msgid "nouveaux utilisateurs sur les 30 derniers jours."
+msgstr "new users over the last 30 days."
+
+# templates\registration\login.html; templates\registration\register.html
+msgid "ou"
+msgstr "or"
+
+# admin_panel\templates\admin_panel\report_detail.html; forum\templates\forum\post_detail.html; forum\templates\forum\post_list.html; forum\templates\forum\search.html
+msgid "par"
+msgstr "by"
+
+# appointments\templates\appointments\create.html
+msgid "parcourez nos médecins"
+msgstr "browse our doctors"
+
+# appointments\templates\appointments\doctor_dashboard.html; appointments\templates\appointments\list.html
+msgid "patient"
+msgstr "patient"
+
+# appointments\templates\appointments\doctor_detail.html
+msgid "pour prendre rendez-vous."
+msgstr "to book an appointment."
+
+# appointments\templates\appointments\doctor_dashboard.html
+msgid "rendez-vous"
+msgstr "appointment"
+
+# appointments\templates\appointments\doctor_dashboard.html
+msgid "rendez-vous au total."
+msgstr "appointments in total."
+
+# admin_panel\templates\admin_panel\report_detail.html
+msgid "sur"
+msgstr "on"
+
+# admin_panel\templates\admin_panel\user_detail.html
+msgid "voir / gérer"
+msgstr "view / manage"
+
+# appointments\templates\appointments\doctor_dashboard.html
+msgid "À CONFIRMER"
+msgstr "TO CONFIRM"
+
+# appointments\templates\appointments\doctor_dashboard.html
+msgid "À confirmer"
+msgstr "To confirm"
+
+# resources\templates\resources\article_detail.html
+msgid "À lire aussi"
+msgstr "Also read"
+
+# health_journal\templates\health_journal\dashboard.html
+msgid "À prendre"
+msgstr "To take"
+
+# appointments\templates\appointments\patient_medical_record.html
+msgid "Âge :"
+msgstr "Age:"
+
+# messaging\templates\messaging\conversation.html
+msgid "Échange confidentiel et respectueux."
+msgstr "Confidential and respectful exchange."
+
+# admin_panel\templates\admin_panel\login_audit.html
+msgid "Échec"
+msgstr "Failure"
+
+# admin_panel\templates\admin_panel\login_audit.html
+msgid "Échouées"
+msgstr "Failed"
+
+# forum\templates\forum\post_detail.html
+msgid "Écrire un commentaire..."
+msgstr "Write a comment..."
+
+# messaging\templates\messaging\conversation.html
+msgid "Écrire un message..."
+msgstr "Write a message..."
+
+# health_journal\templates\health_journal\vitals_list.html
+msgid "Évolution des constantes"
+msgstr "Evolution of your readings"
+
+# appointments\templates\appointments\doctor_dashboard.html; appointments\templates\appointments\list.html
+msgid "à"
+msgstr "at"
+
+# appointments\templates\appointments\create.html
+msgid "— ou créez un rendez-vous manuellement ci-dessous."
+msgstr "— or create an appointment manually below."

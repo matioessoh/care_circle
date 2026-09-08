@@ -1,67 +1,68 @@
 {% extends 'admin_panel/base_admin.html' %}
+{% load i18n %}
 
-{% block title %}Dr {{ doctor.user.last_name }} - Détails{% endblock %}
+{% block title %}Dr {{ doctor.user.last_name }} - {% trans "Détails" %}{% endblock %}
 
 {% block admin_content %}
 <div class="d-flex justify-content-between align-items-center mb-4">
     <h3><i class="fas fa-user-md"></i> Dr {{ doctor.user.get_full_name|default:doctor.user.username }}</h3>
     <div>
-        <a href="{% url 'admin_doctor_edit' doctor.id %}" class="btn btn-outline-primary"><i class="fas fa-edit"></i> Modifier</a>
-        <a href="{% url 'admin_doctor_delete' doctor.id %}" class="btn btn-outline-danger"><i class="fas fa-trash"></i> Supprimer</a>
-        <a href="{% url 'admin_doctors' %}" class="btn btn-outline-secondary"><i class="fas fa-arrow-left"></i> Retour</a>
+        <a href="{% url 'admin_doctor_edit' doctor.id %}" class="btn btn-outline-primary"><i class="fas fa-edit"></i> {% trans "Modifier" %}</a>
+        <a href="{% url 'admin_doctor_delete' doctor.id %}" class="btn btn-outline-danger"><i class="fas fa-trash"></i> {% trans "Supprimer" %}</a>
+        <a href="{% url 'admin_doctors' %}" class="btn btn-outline-secondary"><i class="fas fa-arrow-left"></i> {% trans "Retour" %}</a>
     </div>
 </div>
 
 <div class="row">
     <div class="col-md-5 mb-3">
         <div class="card">
-            <div class="card-header"><h6 class="mb-0">Profil médecin</h6></div>
+            <div class="card-header"><h6 class="mb-0">{% trans "Profil médecin" %}</h6></div>
             <div class="card-body">
-                <p><strong>Nom :</strong> {{ doctor.user.get_full_name|default:'—' }}</p>
-                <p><strong>Pseudo :</strong> @{{ doctor.user.username }}</p>
-                <p><strong>Email :</strong> {{ doctor.user.email|default:'—' }}</p>
-                <p><strong>Spécialité :</strong> {{ doctor.specialty }}</p>
-                {% if doctor.license_number %}<p><strong>Licence :</strong> {{ doctor.license_number }}</p>{% endif %}
-                {% if doctor.clinic_name %}<p><strong>Cabinet :</strong> {{ doctor.clinic_name }}</p>{% endif %}
-                {% if doctor.clinic_address %}<p><strong>Adresse :</strong> {{ doctor.clinic_address }}</p>{% endif %}
-                {% if doctor.phone %}<p><strong>Téléphone :</strong> {{ doctor.phone }}</p>{% endif %}
-                {% if doctor.consultation_fee %}<p><strong>Honoraires :</strong> {{ doctor.consultation_fee }} €</p>{% endif %}
-                <p><strong>Disponibilité :</strong>
-                    {% if doctor.is_available %}<span class="badge bg-success">Disponible</span>
-                    {% else %}<span class="badge bg-danger">Indisponible</span>{% endif %}
+                <p><strong>{% trans "Nom :" %}</strong> {{ doctor.user.get_full_name|default:'—' }}</p>
+                <p><strong>{% trans "Pseudo :" %}</strong> @{{ doctor.user.username }}</p>
+                <p><strong>{% trans "Email :" %}</strong> {{ doctor.user.email|default:'—' }}</p>
+                <p><strong>{% trans "Spécialité :" %}</strong> {{ doctor.specialty }}</p>
+                {% if doctor.license_number %}<p><strong>{% trans "Licence :" %}</strong> {{ doctor.license_number }}</p>{% endif %}
+                {% if doctor.clinic_name %}<p><strong>{% trans "Cabinet :" %}</strong> {{ doctor.clinic_name }}</p>{% endif %}
+                {% if doctor.clinic_address %}<p><strong>{% trans "Adresse :" %}</strong> {{ doctor.clinic_address }}</p>{% endif %}
+                {% if doctor.phone %}<p><strong>{% trans "Téléphone :" %}</strong> {{ doctor.phone }}</p>{% endif %}
+                {% if doctor.consultation_fee %}<p><strong>{% trans "Honoraires :" %}</strong> {{ doctor.consultation_fee }} €</p>{% endif %}
+                <p><strong>{% trans "Disponibilité :" %}</strong>
+                    {% if doctor.is_available %}<span class="badge bg-success">{% trans "Disponible" %}</span>
+                    {% else %}<span class="badge bg-danger">{% trans "Indisponible" %}</span>{% endif %}
                 </p>
-                <p><strong>Compte :</strong>
-                    {% if doctor.user.is_active %}<span class="badge bg-success">Actif</span>
-                    {% else %}<span class="badge bg-danger">Désactivé</span>{% endif %}
+                <p><strong>{% trans "Compte :" %}</strong>
+                    {% if doctor.user.is_active %}<span class="badge bg-success">{% trans "Actif" %}</span>
+                    {% else %}<span class="badge bg-danger">{% trans "Désactivé" %}</span>{% endif %}
                 </p>
-                {% if doctor.bio %}<p><strong>Présentation :</strong> {{ doctor.bio }}</p>{% endif %}
-                <a href="{% url 'admin_user_detail' doctor.user.id %}" class="btn btn-sm btn-outline-info">Voir le compte utilisateur</a>
+                {% if doctor.bio %}<p><strong>{% trans "Présentation :" %}</strong> {{ doctor.bio }}</p>{% endif %}
+                <a href="{% url 'admin_user_detail' doctor.user.id %}" class="btn btn-sm btn-outline-info">{% trans "Voir le compte utilisateur" %}</a>
             </div>
         </div>
     </div>
     <div class="col-md-7 mb-3">
         <div class="card mb-3">
-            <div class="card-header"><h6 class="mb-0">Créneaux de disponibilité ({{ slots.count }})</h6></div>
+            <div class="card-header"><h6 class="mb-0">{% trans "Créneaux de disponibilité" %} ({{ slots.count }})</h6></div>
             <div class="card-body">
                 {% for slot in slots %}
                 <div class="d-flex justify-content-between pb-2 {% if not forloop.last %}border-bottom mb-2{% endif %}">
                     <span>{{ slot.date|date:'d/m/Y' }} {{ slot.start_time|time:'H:i' }}-{{ slot.end_time|time:'H:i' }}</span>
-                    {% if slot.is_booked %}<span class="badge bg-danger">Réservé</span>
-                    {% else %}<span class="badge bg-success">Disponible</span>{% endif %}
+                    {% if slot.is_booked %}<span class="badge bg-danger">{% trans "Réservé" %}</span>
+                    {% else %}<span class="badge bg-success">{% trans "Disponible" %}</span>{% endif %}
                 </div>
-                {% empty %}<p class="text-muted">Aucun créneau.</p>{% endfor %}
+                {% empty %}<p class="text-muted">{% trans "Aucun créneau." %}</p>{% endfor %}
             </div>
         </div>
         <div class="card">
-            <div class="card-header"><h6 class="mb-0">Rendez-vous ({{ appointments.count }})</h6></div>
+            <div class="card-header"><h6 class="mb-0">{% trans "Rendez-vous" %} ({{ appointments.count }})</h6></div>
             <div class="card-body">
-                <p class="text-muted">Voir l'<a href="{% url 'doctor_appointments' doctor.id %}">agenda public</a></p>
+                <p class="text-muted">{% trans "Voir l'" %}<a href="{% url 'doctor_appointments' doctor.id %}">{% trans "agenda public" %}</a></p>
                 {% for a in appointments %}
                 <div class="pb-2 {% if not forloop.last %}border-bottom mb-2{% endif %}">
                     {{ a.title }} — {{ a.date|date:'d/m/Y' }} {{ a.time|time:'H:i' }}
                     <span class="text-muted">({{ a.patient.get_full_name|default:a.patient.username }})</span>
                 </div>
-                {% empty %}<p class="text-muted">Aucun rendez-vous.</p>{% endfor %}
+                {% empty %}<p class="text-muted">{% trans "Aucun rendez-vous." %}</p>{% endfor %}
             </div>
         </div>
     </div>

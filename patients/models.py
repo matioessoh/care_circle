@@ -1,12 +1,13 @@
 from django.db import models
 from django.contrib.auth.models import User
+from django.utils.translation import gettext_lazy as _
 
 
 class PatientProfile(models.Model):
     GENDER_CHOICES = [
-        ('M', 'Homme'),
-        ('F', 'Femme'),
-        ('O', 'Autre'),
+        ('M', _('Homme')),
+        ('F', _('Femme')),
+        ('O', _('Autre')),
     ]
 
     user = models.OneToOneField(User, on_delete=models.CASCADE, related_name='patient_profile')
@@ -20,6 +21,11 @@ class PatientProfile(models.Model):
     emergency_contact = models.CharField('Contact d\'urgence', max_length=200, blank=True)
     emergency_phone = models.CharField('Téléphone d\'urgence', max_length=20, blank=True)
     photo = models.ImageField('Photo', upload_to='patients/photos/', blank=True, null=True)
+    share_medical_record = models.BooleanField(
+        'Partager mes données médicales avec mon médecin',
+        default=False,
+        help_text='Autorise les médecins avec qui vous avez un rendez-vous à consulter votre dossier et votre journal de santé.',
+    )
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 
