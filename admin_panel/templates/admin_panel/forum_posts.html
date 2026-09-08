@@ -1,0 +1,79 @@
+{% extends 'admin_panel/base_admin.html' %}
+
+{% block title %}Modération des articles{% endblock %}
+
+{% block admin_content %}
+<div class="d-flex justify-content-between align-items-center mb-4">
+    <h3><i class="fas fa-file-alt"></i> Modération des articles</h3>
+</div>
+
+<form method="get" class="row g-2 mb-3">
+    <div class="col-md-5">
+        <input type="text" name="q" value="{{ request.GET.q }}" class="form-control" placeholder="Rechercher par titre, contenu, auteur...">
+    </div>
+    <div class="col-md-3">
+        <select name="status" class="form-control">
+            <option value="">Tous</option>
+            <option value="hidden" {% if request.GET.status == 'hidden' %}selected{% endif %}>Masqués</option>
+            <option value="published" {% if request.GET.status == 'published' %}selected{% endif %}>Publiés</option>
+        </select>
+    </div>
+    <div class="col-md-4">
+        <button class="btn btn-primary w-100"><i class="fas fa-search"></i> Filtrer</button>
+    </div>
+</form>
+
+<div class="card">
+    <div class="card-body">
+        <table class="table table-hover">
+            <thead>
+                <tr>
+                    <th>Titre</th>
+                    <th>Auteur</th>
+                    <th>Catégorie</th>
+                    <th>Commentaires</th>
+                    <th>Signalements</th>
+                    <th>Date</th>
+                    <th>Statut</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for post in posts %}
+                <tr class="{% if post.is_hidden %}table-warning{% endif %}">
+                    <td><a href="{% url 'post_detail' post.slug %}" class="text-decoration-none">{{ post.title|truncatechars:40 }}</a></td>
+                    <td>{{ post.author }}</td>
+                    <td>{{ post.category.name|default:'—' }}</td>
+                    <td>{{ post.n_comments }}</td>
+                    <td>
+                        {% if post.n_reports %}<span class="badge bg-danger">{{ post.n_reports }}</span>{% else %}0{% endif %}
+                    </td>
+                    <td>{{ post.created_at|date:'d/m/Y' }}</td>
+                    <td>
+                        {% if post.is_hidden %}<span class="badge bg-warning text-dark">Masqué</span>
+                        {% elif not post.is_published %}<span class="badge bg-secondary">Non publié</span>
+                        {% else %}<span class="badge bg-success">Publié</span>{% endif %}
+                    </td>
+                    <td>
+                        <form method="post" action="{% url 'admin_post_toggle_hide' post.id %}" class="d-inline">
+                            {% csrf_token %}
+                            {% if post.is_hidden %}
+                            <button class="btn btn-sm btn-outline-success" title="Rétablir"><i class="fas fa-eye"></i></button>
+                            {% else %}
+                            <button class="btn btn-sm btn-outline-warning" title="Masquer"><i class="fas fa-eye-slash"></i></button>
+                            {% endif %}
+                        </form>
+                        <form method="post" action="{% url 'admin_post_delete_mod' post.id %}" class="d-inline" onsubmit="return confirm('Supprimer définitivement cet article ?');">
+                            {% csrf_token %}
+                            <button class="btn btn-sm btn-outline-danger" title="Supprimer"><i class="fas fa-trash"></i></button>
+                        </form>
+                    </td>
+                </tr>
+                {% empty %}
+                <tr><td colspan="8" class="text-muted text-center">Aucun article.</td></tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+{% endblock %}

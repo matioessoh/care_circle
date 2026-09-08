@@ -1,0 +1,50 @@
+{% extends 'base.html' %}
+
+{% block title %}Communauté - Care Circle{% endblock %}
+
+{% block content %}
+<div class="d-flex justify-content-between align-items-center mb-2">
+    <div>
+        <div class="kicker">Espace communautaire</div>
+        <h1 class="page-title">Communauté</h1>
+        <p class="reassurance mb-0">Un lieu bienveillant pour échanger, s'entraider et partager vos expériences.</p>
+    </div>
+    {% if user.is_authenticated %}
+    <a href="{% url 'post_create' %}" class="btn-cc btn-cc-primary"><i class="fas fa-plus"></i> Nouvel article</a>
+    {% endif %}
+</div>
+
+<div class="filter-pills my-4">
+    <a href="{% url 'post_list' %}" class="filter-pill {% if not current_category %}active{% endif %}">Tous</a>
+    {% for cat in categories %}
+    <a href="{% url 'post_list' %}?category={{ cat.slug }}" class="filter-pill {% if current_category == cat.slug %}active{% endif %}">{{ cat.name }}</a>
+    {% endfor %}
+</div>
+
+{% for post in posts %}
+<div class="discussion-card">
+    <div class="d-flex justify-content-between align-items-start mb-2">
+        <span class="category-pill {{ post.category.slug|default:'' }}">{{ post.category.name|default:'Général' }}</span>
+        <small class="text-muted-2">{{ post.created_at|date:'d/m/Y' }}</small>
+    </div>
+    <h5 class="mb-1"><a href="{% url 'post_detail' post.slug %}" class="text-decoration-none" style="color: var(--text-primary);">{{ post.title }}</a></h5>
+    <p class="text-muted-2 small mb-3">par {{ post.author.username }}</p>
+    <div class="text-muted-2 small d-flex gap-4">
+        <span><i class="fas fa-comment"></i> {{ post.comments.count }}</span>
+        <span><i class="fas fa-heart" style="color: #C0392B;"></i> {{ post.likes_count }}</span>
+    </div>
+</div>
+{% empty %}
+<div class="empty-state">
+    <i class="fas fa-comments"></i>
+    <h4>Aucun article pour le moment</h4>
+    <p>Vous pouvez démarrer la conversation en publiant le premier article.</p>
+    {% if user.is_authenticated %}
+    <a href="{% url 'post_create' %}" class="btn-cc btn-cc-accent">Publier un article</a>
+    {% endif %}
+</div>
+{% endfor %}
+
+<hr class="my-5">
+<p class="reassurance small mb-0">Les échanges sur cette communauté sont modérés. En cas de comportement inapproprié, utilisez le signalement — votre confidentialité est respectée.</p>
+{% endblock %}

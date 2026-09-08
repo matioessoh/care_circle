@@ -1,0 +1,61 @@
+{% extends 'base.html' %}
+
+{% block title %}Ajouter un médicament - Care Circle{% endblock %}
+
+{% block content %}
+<div class="row justify-content-center">
+    <div class="col-md-8">
+        <div class="kicker">Journal de santé</div>
+        <h1 class="page-title">Ajouter un médicament</h1>
+        <p class="reassurance mb-4">Enregistrez votre traitement en toute confidentialité.</p>
+        <div class="cc-card">
+            <form method="post">
+                {% csrf_token %}
+                <div class="row">
+                    <div class="col-md-8">
+                        <div class="cc-field">
+                            <label>Nom <span style="color:#C0392B;">*</span></label>
+                            <input type="text" name="name" class="cc-input" required>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="cc-field">
+                            <label>Dosage <span style="color:#C0392B;">*</span></label>
+                            <input type="text" name="dosage" class="cc-input" required placeholder="500mg">
+                        </div>
+                    </div>
+                    <div class="col-12">
+                        <div class="cc-field">
+                            <label>Fréquence <span style="color:#C0392B;">*</span></label>
+                            <input type="text" name="frequency" class="cc-input" required placeholder="2 fois par jour">
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="cc-field">
+                            <label>Date de début</label>
+                            <input type="date" name="start_date" class="cc-input">
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="cc-field">
+                            <label>Date de fin</label>
+                            <input type="date" name="end_date" class="cc-input">
+                        </div>
+                    </div>
+                    <div class="col-12">
+                        <div class="cc-field">
+                            <label>Notes</label>
+                            <textarea name="notes" class="cc-input" rows="3"></textarea>
+                        </div>
+                    </div>
+                </div>
+                <div class="d-flex gap-2">
+                    <button type="submit" class="btn-cc btn-cc-primary"><i class="fas fa-save"></i> Enregistrer</button>
+                    <a href="{% url 'medication_list' %}" class="btn-cc btn-cc-outline">Annuler</a>
+                </div>
+            </form>
+        </div>
+        <p class="reassurance small mt-3 mb-0">Ce suivi personnel ne remplace pas l'avis de votre médecin.</p>
+    </div>
+</div>
+{% endblock %}

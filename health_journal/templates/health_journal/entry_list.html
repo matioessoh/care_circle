@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+
+{% block title %}Mes entrées - Care Circle{% endblock %}
+
+{% block content %}
+<div class="d-flex justify-content-between align-items-center mb-2">
+    <div>
+        <div class="kicker">Journal de santé</div>
+        <h1 class="page-title">Mes entrées</h1>
+        <p class="reassurance mb-0">Un suivi quotidien, simple et confidentiel.</p>
+    </div>
+    <a href="{% url 'entry_create' %}" class="btn-cc btn-cc-primary"><i class="fas fa-plus"></i> Nouvelle entrée</a>
+</div>
+
+<div class="cc-card mt-4">
+    {% for entry in entries %}
+    <div class="d-flex justify-content-between align-items-center p-2 {% if not forloop.last %}border-bottom{% endif %}" style="border-color: var(--border) !important;">
+        <div>
+            <strong>{{ entry.date|date:'d/m/Y' }}</strong>
+            <span class="badge-status ms-2 {% if entry.mood == 'great' or entry.mood == 'good' %}green{% elif entry.mood == 'okay' %}gray{% else %}navy{% endif %}">{{ entry.get_mood_display }}</span>
+            {% if entry.symptoms %}<div class="text-muted-2 small">{{ entry.symptoms|truncatechars:60 }}</div>{% endif %}
+        </div>
+        <div class="d-flex gap-2">
+            <a href="{% url 'entry_detail' entry.pk %}" class="btn-cc btn-cc-outline" style="padding:6px 14px;font-size:14px;">Voir</a>
+            <a href="{% url 'entry_edit' entry.pk %}" class="btn-cc btn-cc-outline" style="padding:6px 14px;font-size:14px;"><i class="fas fa-edit"></i></a>
+        </div>
+    </div>
+    {% empty %}
+    <div class="empty-state">
+        <i class="fas fa-file-medical"></i>
+        <h5>Aucune entrée pour le moment</h5>
+        <p>Commencez à suivre votre santé au quotidien.</p>
+        <a href="{% url 'entry_create' %}" class="btn-cc btn-cc-accent">Créer une entrée</a>
+    </div>
+    {% endfor %}
+</div>
+<p class="reassurance small mt-3 mb-0">Votre journal est strictement privé. Il ne remplace pas un avis médical professionnel.</p>
+{% endblock %}

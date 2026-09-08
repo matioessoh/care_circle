@@ -1,0 +1,79 @@
+{% extends 'admin_panel/base_admin.html' %}
+
+{% block title %}{% if edit %}Modifier un médecin{% else %}Nouveau médecin{% endif %}{% endblock %}
+
+{% block admin_content %}
+<div class="d-flex justify-content-between align-items-center mb-4">
+    <h3><i class="fas fa-user-md"></i> {% if edit %}Modifier le médecin{% else %}Nouveau médecin{% endif %}</h3>
+    <a href="{% url 'admin_doctors' %}" class="btn btn-outline-secondary"><i class="fas fa-arrow-left"></i> Retour</a>
+</div>
+
+<div class="row justify-content-center">
+    <div class="col-md-8">
+        <div class="card">
+            <div class="card-header"><h5 class="mb-0">Informations du médecin</h5></div>
+            <div class="card-body">
+                <form method="post">
+                    {% csrf_token %}
+                    <div class="mb-3">
+                        <label class="form-label">Compte utilisateur <span class="text-danger">*</span></label>
+                        {% if edit %}
+                        <input class="form-control" value="Dr {{ doctor.user.get_full_name|default:doctor.user.username }} (@{{ doctor.user.username }})" disabled>
+                        {% else %}
+                        <select name="user" class="form-control" {% if initial_user %}disabled{% endif %}>
+                            {% if initial_user %}
+                            <option value="{{ initial_user.id }}">@{{ initial_user.username }} ({{ initial_user.get_full_name|default:'pas de nom' }})</option>
+                            {% else %}
+                            <option value="">— Sélectionner un utilisateur —</option>
+                            {% for u in users %}
+                            <option value="{{ u.id }}">@{{ u.username }} ({{ u.get_full_name|default:'pas de nom' }})</option>
+                            {% endfor %}
+                            {% endif %}
+                        </select>
+                        {% if initial_user %}<input type="hidden" name="user" value="{{ initial_user.id }}">{% endif %}
+                        {% endif %}
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6 mb-3">
+                            <label class="form-label">Spécialité <span class="text-danger">*</span></label>
+                            <input type="text" name="specialty" value="{{ doctor.specialty|default:'' }}" class="form-control" required>
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <label class="form-label">Numéro de licence</label>
+                            <input type="text" name="license_number" value="{{ doctor.license_number|default:'' }}" class="form-control">
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <label class="form-label">Nom du cabinet</label>
+                            <input type="text" name="clinic_name" value="{{ doctor.clinic_name|default:'' }}" class="form-control">
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <label class="form-label">Téléphone</label>
+                            <input type="text" name="phone" value="{{ doctor.phone|default:'' }}" class="form-control">
+                        </div>
+                        <div class="col-12 mb-3">
+                            <label class="form-label">Adresse du cabinet</label>
+                            <textarea name="clinic_address" class="form-control" rows="2">{{ doctor.clinic_address|default:'' }}</textarea>
+                        </div>
+                        <div class="col-12 mb-3">
+                            <label class="form-label">Présentation</label>
+                            <textarea name="bio" class="form-control" rows="3">{{ doctor.bio|default:'' }}</textarea>
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <label class="form-label">Honoraires (€)</label>
+                            <input type="number" name="consultation_fee" value="{{ doctor.consultation_fee|default:'' }}" step="0.01" class="form-control">
+                        </div>
+                        <div class="col-md-6 mb-3 d-flex align-items-end">
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" name="is_available" id="is_available" {% if doctor.is_available %}checked{% endif %}>
+                                <label class="form-check-label" for="is_available">Disponible</label>
+                            </div>
+                        </div>
+                    </div>
+                    <button type="submit" class="btn btn-primary"><i class="fas fa-save"></i> {% if edit %}Enregistrer{% else %}Créer{% endif %}</button>
+                    <a href="{% url 'admin_doctors' %}" class="btn btn-secondary">Annuler</a>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

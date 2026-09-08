@@ -1,0 +1,87 @@
+{% extends 'admin_panel/base_admin.html' %}
+
+{% block title %}{{ user.username }} - Détails{% endblock %}
+
+{% block admin_content %}
+<div class="d-flex justify-content-between align-items-center mb-4">
+    <h3><i class="fas fa-user"></i> {{ user.get_full_name|default:user.username }}</h3>
+    <div>
+        <a href="{% url 'admin_users' %}" class="btn btn-outline-secondary"><i class="fas fa-arrow-left"></i> Retour</a>
+        {% if user.id != request.user.id %}
+        <form method="post" action="{% url 'admin_user_toggle_active' user.id %}" class="d-inline">
+            {% csrf_token %}
+            {% if user.is_active %}
+            <button class="btn btn-outline-danger"><i class="fas fa-ban"></i> Désactiver</button>
+            {% else %}
+            <button class="btn btn-outline-success"><i class="fas fa-check-circle"></i> Réactiver</button>
+            {% endif %}
+        </form>
+        {% endif %}
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-6 mb-3">
+        <div class="card">
+            <div class="card-header"><h6 class="mb-0">Informations du compte</h6></div>
+            <div class="card-body">
+                <p><strong>Pseudo :</strong> {{ user.username }}</p>
+                <p><strong>Nom complet :</strong> {{ user.get_full_name|default:'—' }}</p>
+                <p><strong>Email :</strong> {{ user.email|default:'—' }}</p>
+                <p><strong>Inscription :</strong> {{ user.date_joined|date:'d/m/Y H:i' }}</p>
+                <p><strong>Dernière connexion :</strong> {{ user.last_login|date:'d/m/Y H:i' }}</p>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-6 mb-3">
+        <div class="card">
+            <div class="card-header"><h6 class="mb-0">Rôles</h6></div>
+            <div class="card-body">
+                {% if doctor %}
+                <p><span class="badge bg-success">Médecin</span> {{ doctor.specialty }} — <a href="{% url 'admin_doctor_detail' doctor.id %}">voir / gérer</a></p>
+                {% else %}
+                <p><span class="badge bg-secondary">Pas médecin</span> <a href="{% url 'admin_doctor_create_for_user' user.id %}" class="btn btn-sm btn-outline-success">Promouvoir en médecin</a></p>
+                {% endif %}
+                {% if profile %}<p><span class="badge bg-info text-dark">Patient</span></p>{% endif %}
+                {% if user.is_staff %}<p><span class="badge bg-secondary">Staff</span></p>{% endif %}
+                {% if user.is_superuser %}<p><span class="badge bg-primary">Administrateur</span></p>{% endif %}
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-4 mb-3">
+        <div class="card">
+            <div class="card-header">Rendez-vous ({{ appointments.count }})</div>
+            <div class="card-body">
+                {% for a in appointments %}
+                <div class="pb-2 {% if not forloop.last %}border-bottom mb-2{% endif %}">
+                    {{ a.title }} <small class="text-muted">{{ a.date|date:'d/m/Y' }}</small>
+                </div>
+                {% empty %}<p class="text-muted">Aucun rendez-vous.</p>{% endfor %}
+            </div>
+        </div>
+    </div>
+    <div class="col-md-4 mb-3">
+        <div class="card">
+            <div class="card-header">Articles ({{ posts.count }})</div>
+            <div class="card-body">
+                {% for p in posts %}
+                <div class="pb-2 {% if not forloop.last %}border-bottom mb-2{% endif %}">{{ p.title }}</div>
+                {% empty %}<p class="text-muted">Aucun article.</p>{% endfor %}
+            </div>
+        </div>
+    </div>
+    <div class="col-md-4 mb-3">
+        <div class="card">
+            <div class="card-header">Commentaires ({{ comments.count }})</div>
+            <div class="card-body">
+                {% for c in comments %}
+                <div class="pb-2 {% if not forloop.last %}border-bottom mb-2{% endif %}">{{ c.content|truncatechars:60 }}</div>
+                {% empty %}<p class="text-muted">Aucun commentaire.</p>{% endfor %}
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

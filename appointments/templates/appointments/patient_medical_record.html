@@ -1,0 +1,78 @@
+{% extends 'base.html' %}
+
+{% block title %}Dossier médical - {{ patient.username }}{% endblock %}
+
+{% block content %}
+<div class="d-flex justify-content-between align-items-center mb-2">
+    <div>
+        <div class="kicker">Espace médecin</div>
+        <h1 class="page-title">Dossier médical</h1>
+        <p class="reassurance mb-0">{{ patient.get_full_name|default:patient.username }}</p>
+    </div>
+    <a href="{% url 'doctor_dashboard' %}" class="btn-cc btn-cc-outline"><i class="fas fa-arrow-left"></i> Retour au tableau de bord</a>
+</div>
+
+<div class="alert alert-danger mt-3" role="alert" style="border-radius:var(--radius-md);">
+    <i class="fas fa-lock"></i> <strong>Confidentialité médicale</strong> — Les informations ci-dessous sont strictement confidentielles. Elles ne doivent être consultées que dans le cadre d'une prise en charge médicale de ce patient. Toute divulgation est interdite.
+</div>
+
+<div class="row mt-3">
+    <div class="col-md-5 mb-3">
+        <div class="cc-card">
+            <h6 class="kicker" style="color:var(--blue-accent);">Identification</h6>
+            <p><strong>Nom complet :</strong> {{ patient.get_full_name|default:'—' }}</p>
+            <p><strong>Pseudo :</strong> @{{ patient.username }}</p>
+            <p><strong>Email :</strong> {{ patient.email|default:'—' }}</p>
+        </div>
+        <div class="cc-card mt-3">
+            <h6 class="kicker" style="color:var(--blue-accent);">Historique des rendez-vous</h6>
+            {% for a in appointments %}
+            <div class="pb-2 {% if not forloop.last %}border-bottom mb-2{% endif %}" style="border-color: var(--border) !important;">
+                <strong>{{ a.date|date:'d/m/Y' }} {{ a.time|time:'H:i' }}</strong> — {{ a.title }}
+                {% if a.status == 'completed' %}<span class="badge-status blue">Terminé</span>
+                {% elif a.status == 'confirmed' %}<span class="badge-status green">Confirmé</span>
+                {% elif a.status == 'pending' %}<span class="badge-status gray">En attente</span>
+                {% endif %}
+                {% if a.doctor_notes %}<div class="text-muted-2 small mt-1"><i class="fas fa-sticky-note"></i> {{ a.doctor_notes|truncatechars:80 }}</div>{% endif %}
+            </div>
+            {% empty %}
+            <p class="text-muted-2">Aucun rendez-vous avec ce patient.</p>
+            {% endfor %}
+        </div>
+    </div>
+    <div class="col-md-7 mb-3">
+        {% if has_relation %}
+        <div class="cc-card">
+            <h6 class="kicker" style="color:var(--blue-accent);"><i class="fas fa-file-medical me-1"></i> Profil médical</h6>
+            {% if profile %}
+            <div class="row mt-2">
+                <div class="col-md-6 mb-2"><strong>Date de naissance :</strong> {{ profile.date_of_birth|default:'—' }}</div>
+                <div class="col-md-6 mb-2"><strong>Âge :</strong> {% if profile.date_of_birth %}{{ profile.date_of_birth|timesince }}{% else %}—{% endif %}</div>
+                <div class="col-md-6 mb-2"><strong>Genre :</strong> {{ profile.get_gender_display|default:'—' }}</div>
+                <div class="col-md-6 mb-2"><strong>Groupe sanguin :</strong> {{ profile.blood_type|default:'—' }}</div>
+                <div class="col-md-6 mb-2"><strong>Téléphone :</strong> {{ profile.phone|default:'—' }}</div>
+                <div class="col-12 mb-2"><strong>Adresse :</strong> {{ profile.address|default:'—' }}</div>
+            </div>
+            <hr style="border-color: var(--border);">
+            <h6><strong>Allergies :</strong></h6>
+            <p>{{ profile.allergies|default:'Aucune' }}</p>
+            <h6><strong>Conditions médicales :</strong></h6>
+            <p>{{ profile.medical_conditions|default:'Aucune' }}</p>
+            <h6><strong>Contact d'urgence :</strong></h6>
+            <p>{{ profile.emergency_contact|default:'—' }}{% if profile.emergency_phone %} ({{ profile.emergency_phone }}){% endif %}</p>
+            {% else %}
+            <p class="text-muted-2">Ce patient n'a pas encore complété son profil médical.</p>
+            {% endif %}
+        </div>
+        {% else %}
+        <div class="cc-card">
+            <div class="text-center py-5">
+                <i class="fas fa-ban fa-3x mb-3" style="color:var(--text-secondary);"></i>
+                <h5>Accès restreint</h5>
+                <p class="text-muted-2">Vous devez avoir un rendez-vous (passé, confirmé ou en attente) avec ce patient pour consulter son dossier médical.</p>
+            </div>
+        </div>
+        {% endif %}
+    </div>
+</div>
+{% endblock %}

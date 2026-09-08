@@ -1,0 +1,48 @@
+{% extends 'base.html' %}
+
+{% block title %}Conversation - Care Circle{% endblock %}
+
+{% block content %}
+<div class="d-flex justify-content-between align-items-center mb-2">
+    <div>
+        <div class="kicker">Messagerie privée</div>
+        <h1 class="page-title">{{ other_user.username }}</h1>
+        <p class="reassurance mb-0">Échange confidentiel et respectueux.</p>
+    </div>
+    <a href="{% url 'inbox' %}" class="btn-cc btn-cc-outline"><i class="fas fa-arrow-left"></i> Retour</a>
+</div>
+
+<div class="cc-card mt-4">
+    <div id="chatBox" class="p-2" style="max-height: 60vh; overflow-y: auto; background: var(--bg-app); border-radius: var(--radius-md);">
+        {% for msg in messages %}
+        <div class="d-flex mb-3 {% if msg.sender == user %}justify-content-end{% endif %}">
+            <div class="p-3 rounded" style="max-width: 70%; {% if msg.sender == user %}background: var(--navy); color: var(--white);{% else %}background: var(--white); border: 1px solid var(--border);{% endif %}">
+                <div class="small mb-1">
+                    <strong style="{% if msg.sender == user %}color:var(--blue-accent-2){% else %}color:var(--blue-accent){% endif %}">{{ msg.sender.username }}</strong>
+                    <span class="text-muted-2 ms-2">{{ msg.created_at|date:'d/m/Y H:i' }}</span>
+                </div>
+                {{ msg.content }}
+            </div>
+        </div>
+        {% empty %}
+        <p class="text-center text-muted-2 py-4">Démarrez la conversation !</p>
+        {% endfor %}
+    </div>
+    <div class="border-top pt-3 mt-3" style="border-color: var(--border) !important;">
+        <form method="post">
+            {% csrf_token %}
+            <div class="d-flex gap-2">
+                <input type="text" name="content" class="cc-input" placeholder="Écrire un message..." required>
+                <button class="btn-cc btn-cc-primary" type="submit"><i class="fas fa-paper-plane"></i> Envoyer</button>
+            </div>
+        </form>
+    </div>
+</div>
+{% endblock %}
+
+{% block extra_js %}
+<script>
+    var chatBox = document.getElementById('chatBox');
+    if (chatBox) { chatBox.scrollTop = chatBox.scrollHeight; }
+</script>
+{% endblock %}

@@ -1,0 +1,97 @@
+{% extends 'admin_panel/base_admin.html' %}
+
+{% block title %}Signalement #{{ report.id }}{% endblock %}
+
+{% block admin_content %}
+<div class="d-flex justify-content-between align-items-center mb-4">
+    <h3><i class="fas fa-flag"></i> Signalement #{{ report.id }}</h3>
+    <a href="{% url 'admin_reports' %}" class="btn btn-outline-secondary"><i class="fas fa-arrow-left"></i> Retour</a>
+</div>
+
+<div class="row">
+    <div class="col-md-7 mb-3">
+        <div class="card">
+            <div class="card-header">Contenu signalé</div>
+            <div class="card-body">
+                {% if report.post %}
+                <h5>{{ report.post.title }}</h5>
+                <p class="text-muted small">par {{ report.post.author }} — {{ report.post.created_at|date:'d/m/Y H:i' }}</p>
+                <div class="p-3 bg-light rounded">{{ report.post.content }}</div>
+                {% elif report.comment %}
+                <p class="text-muted small">Commentaire de {{ report.comment.author }} sur « {{ report.comment.post.title }} »</p>
+                <div class="p-3 bg-light rounded">{{ report.comment.content }}</div>
+                {% else %}
+                <p class="text-muted">Contenu supprimé.</p>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+    <div class="col-md-5 mb-3">
+        <div class="card">
+            <div class="card-header">Détails du signalement</div>
+            <div class="card-body">
+                <p><strong>Signaleur :</strong> {{ report.reporter }}</p>
+                <p><strong>Motif :</strong> {{ report.get_reason_display }}</p>
+                {% if report.description %}<p><strong>Description :</strong> {{ report.description }}</p>{% endif %}
+                <p><strong>Date :</strong> {{ report.created_at|date:'d/m/Y H:i' }}</p>
+                <p><strong>Statut :</strong>
+                    {% if report.status == 'pending' %}<span class="badge bg-danger">En attente</span>
+                    {% elif report.status == 'reviewed' %}<span class="badge bg-success">Traité</span>
+                    {% else %}<span class="badge bg-secondary">Rejeté</span>{% endif %}
+                </p>
+                {% if report.resolved_by %}
+                <p><strong>Traité par :</strong> {{ report.resolved_by }} — {{ report.resolved_at|date:'d/m/Y H:i' }}</p>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</div>
+
+{% if report.status == 'pending' %}
+<div class="card">
+    <div class="card-header">Actions</div>
+    <div class="card-body">
+        <div class="row g-2">
+            {% if report.post %}
+            <div class="col-md-3">
+                <form method="post" action="{% url 'admin_report_action' report.id %}">
+                    {% csrf_token %}
+                    <input type="hidden" name="action" value="hide_post">
+                    <button class="btn btn-warning w-100"><i class="fas fa-eye-slash"></i> Masquer l'article</button>
+                </form>
+            </div>
+            <div class="col-md-3">
+                <form method="post" action="{% url 'admin_report_action' report.id %}" onsubmit="return confirm('Supprimer cet article ?');">
+                    {% csrf_token %}
+                    <input type="hidden" name="action" value="delete_post">
+                    <button class="btn btn-danger w-100"><i class="fas fa-trash"></i> Supprimer l'article</button>
+                </form>
+            </div>
+            {% elif report.comment %}
+            <div class="col-md-3">
+                <form method="post" action="{% url 'admin_report_action' report.id %}">
+                    {% csrf_token %}
+                    <input type="hidden" name="action" value="hide_comment">
+                    <button class="btn btn-warning w-100"><i class="fas fa-eye-slash"></i> Masquer le commentaire</button>
+                </form>
+            </div>
+            <div class="col-md-3">
+                <form method="post" action="{% url 'admin_report_action' report.id %}" onsubmit="return confirm('Supprimer ce commentaire ?');">
+                    {% csrf_token %}
+                    <input type="hidden" name="action" value="delete_comment">
+                    <button class="btn btn-danger w-100"><i class="fas fa-trash"></i> Supprimer le commentaire</button>
+                </form>
+            </div>
+            {% endif %}
+            <div class="col-md-3">
+                <form method="post" action="{% url 'admin_report_action' report.id %}">
+                    {% csrf_token %}
+                    <input type="hidden" name="action" value="dismiss">
+                    <button class="btn btn-secondary w-100"><i class="fas fa-times"></i> Rejeter le signalement</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+{% endif %}
+{% endblock %}

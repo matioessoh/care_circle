@@ -1,0 +1,49 @@
+{% extends 'base.html' %}
+
+{% block title %}Mes créneaux - Care Circle{% endblock %}
+
+{% block content %}
+<div class="d-flex justify-content-between align-items-center mb-2">
+    <div>
+        <div class="kicker">Espace médecin</div>
+        <h1 class="page-title">Mes créneaux</h1>
+        <p class="reassurance mb-0">Gérez vos disponibilités pour les patients.</p>
+    </div>
+    <a href="{% url 'add_slot' %}" class="btn-cc btn-cc-primary"><i class="fas fa-plus"></i> Ajouter des créneaux</a>
+</div>
+
+<div class="cc-card mt-4">
+    <div class="table-responsive">
+        <table class="table table-hover align-middle" style="border-color: var(--border);">
+            <thead>
+                <tr style="color: var(--text-secondary);">
+                    <th>Date</th>
+                    <th>Début</th>
+                    <th>Fin</th>
+                    <th>Statut</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for slot in slots %}
+                <tr>
+                    <td>{{ slot.date|date:'d/m/Y' }}</td>
+                    <td>{{ slot.start_time|time:'H:i' }}</td>
+                    <td>{{ slot.end_time|time:'H:i' }}</td>
+                    <td>
+                        {% if slot.id in booked_slot_ids or slot.is_booked %}
+                        <span class="badge-status navy">Réservé</span>
+                        {% elif slot.is_past %}
+                        <span class="badge-status gray">Passé</span>
+                        {% else %}
+                        <span class="badge-status green">Disponible</span>
+                        {% endif %}
+                    </td>
+                </tr>
+                {% empty %}
+                <tr><td colspan="4"><div class="empty-state my-2"><i class="fas fa-clock"></i><h5>Aucun créneau</h5><p>Ajoutez-en pour permettre aux patients de réserver.</p></div></td></tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+{% endblock %}

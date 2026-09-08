@@ -1,0 +1,66 @@
+{% extends 'base.html' %}
+
+{% block title %}Mes rendez-vous - Care Circle{% endblock %}
+
+{% block content %}
+<div class="d-flex justify-content-between align-items-center mb-2">
+    <div>
+        <div class="kicker">{% if is_doctor %}Espace médecin{% else %}Planification{% endif %}</div>
+        <h1 class="page-title">{% if is_doctor %}Mes rendez-vous{% else %}Mes rendez-vous{% endif %}</h1>
+        <p class="reassurance mb-0">Suivez et gérez vos consultations.</p>
+    </div>
+    <div class="d-flex gap-2 flex-wrap">
+        <a href="{% url 'doctor_list' %}" class="btn-cc btn-cc-outline"><i class="fas fa-user-md"></i> Trouver un médecin</a>
+        {% if is_doctor %}
+        <a href="{% url 'appointment_create_for_patient' %}" class="btn-cc btn-cc-primary"><i class="fas fa-plus"></i> Programmer pour un patient</a>
+        <a href="{% url 'my_slots' %}" class="btn-cc btn-cc-outline"><i class="fas fa-clock"></i> Mes créneaux</a>
+        {% else %}
+        <a href="{% url 'appointment_create' %}" class="btn-cc btn-cc-primary"><i class="fas fa-plus"></i> Nouveau rendez-vous</a>
+        {% endif %}
+    </div>
+</div>
+
+<div class="filter-pills my-4">
+    <a href="{% url 'appointment_list' %}" class="filter-pill {% if not current_status %}active{% endif %}">Tous</a>
+    <a href="{% url 'appointment_list' %}?status=pending" class="filter-pill {% if current_status == 'pending' %}active{% endif %}">En attente</a>
+    <a href="{% url 'appointment_list' %}?status=confirmed" class="filter-pill {% if current_status == 'confirmed' %}active{% endif %}">Confirmés</a>
+    <a href="{% url 'appointment_list' %}?status=completed" class="filter-pill {% if current_status == 'completed' %}active{% endif %}">Terminés</a>
+    <a href="{% url 'appointment_list' %}?status=cancelled" class="filter-pill {% if current_status == 'cancelled' %}active{% endif %}">Annulés</a>
+</div>
+
+{% for appt in appointments %}
+<div class="discussion-card">
+    <div class="d-flex justify-content-between align-items-center gap-3">
+        <div>
+            <strong>
+                {% if is_doctor %}
+                {{ appt.patient.get_full_name|default:appt.patient.username }}
+                <span class="text-muted-2 small">(patient)</span>
+                {% else %}
+                {{ appt.title }}
+                {% if appt.doctor %}<span class="text-muted-2 small">- Dr {{ appt.doctor.user.last_name }}</span>{% endif %}
+                {% endif %}
+            </strong>
+            <div class="text-muted-2 small">
+                {{ appt.date|date:'d/m/Y' }} à {{ appt.time|time:'H:i' }}
+                {% if appt.location %} - {{ appt.location }}{% endif %}
+            </div>
+        </div>
+        <div class="d-flex align-items-center gap-2">
+            {% if appt.status == 'pending' %}<span class="badge-status gray">En attente</span>
+            {% elif appt.status == 'confirmed' %}<span class="badge-status green">Confirmé</span>
+            {% elif appt.status == 'completed' %}<span class="badge-status blue">Terminé</span>
+            {% else %}<span class="badge-status navy">Annulé</span>{% endif %}
+            <a href="{% url 'appointment_detail' appt.pk %}" class="btn-cc btn-cc-outline" style="padding:6px 14px;font-size:14px;">Voir</a>
+        </div>
+    </div>
+</div>
+{% empty %}
+<div class="empty-state">
+    <i class="fas fa-calendar-check"></i>
+    <h5>Aucun rendez-vous</h5>
+    <p>{% if is_doctor %}Aucun rendez-vous ne correspond à ce filtre pour l'instant.{% else %}Prenez rendez-vous avec un médecin en quelques clics.{% endif %}</p>
+    {% if not is_doctor %}<a href="{% url 'doctor_list' %}" class="btn-cc btn-cc-accent">Trouver un médecin</a>{% endif %}
+</div>
+{% endfor %}
+{% endblock %}

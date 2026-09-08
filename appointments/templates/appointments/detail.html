@@ -1,0 +1,90 @@
+{% extends 'base.html' %}
+
+{% block title %}{{ appointment.title }} - Care Circle{% endblock %}
+
+{% block content %}
+<div class="row justify-content-center">
+    <div class="col-md-8">
+        <div class="card">
+            <div class="card-header d-flex justify-content-between align-items-center">
+                <h5 class="mb-0">{{ appointment.title }}</h5>
+                {% if appointment.status == 'pending' %}<span class="badge bg-warning text-dark">En attente</span>
+                {% elif appointment.status == 'confirmed' %}<span class="badge bg-success">Confirmé</span>
+                {% elif appointment.status == 'completed' %}<span class="badge bg-primary">Terminé</span>
+                {% else %}<span class="badge bg-danger">Annulé</span>{% endif %}
+            </div>
+            <div class="card-body">
+                {% if appointment.doctor %}<p><strong>Médecin :</strong> Dr {{ appointment.doctor.user.get_full_name|default:appointment.doctor.user.username }} <span class="text-muted">({{ appointment.doctor.specialty }})</span></p>{% endif %}
+                {% if is_doctor %}
+                <p><strong>Patient :</strong> {{ appointment.patient.get_full_name|default:appointment.patient.username }}
+                    <a href="{% url 'patient_medical_record' appointment.patient.id %}" class="btn btn-sm btn-outline-info ms-2"><i class="fas fa-folder-open"></i> Dossier médical</a>
+                </p>
+                {% endif %}
+                <p><strong>Date :</strong> {{ appointment.date|date:'d/m/Y' }}</p>
+                <p><strong>Heure :</strong> {{ appointment.time|time:'H:i' }}</p>
+                {% if appointment.duration %}<p><strong>Durée :</strong> {{ appointment.duration }}</p>{% endif %}
+                {% if appointment.location %}<p><strong>Lieu :</strong> {{ appointment.location }}</p>{% endif %}
+                {% if appointment.description %}<p><strong>Description :</strong> {{ appointment.description }}</p>{% endif %}
+                {% if appointment.notes %}<p><strong>Notes du patient :</strong> {{ appointment.notes }}</p>{% endif %}
+
+                {% if is_doctor and appointment.status == 'pending' %}
+                <div class="d-flex gap-2 mt-3">
+                    <form method="post" action="{% url 'appointment_update_status' appointment.pk %}" class="d-inline">
+                        {% csrf_token %}
+                        <input type="hidden" name="status" value="confirmed">
+                        <button class="btn btn-success"><i class="fas fa-check"></i> Confirmer</button>
+                    </form>
+                    <form method="post" action="{% url 'appointment_update_status' appointment.pk %}" class="d-inline">
+                        {% csrf_token %}
+                        <input type="hidden" name="status" value="cancelled">
+                        <button class="btn btn-danger"><i class="fas fa-times"></i> Refuser</button>
+                    </form>
+                </div>
+                {% endif %}
+
+                {% if is_doctor and appointment.status == 'confirmed' %}
+                <form method="post" action="{% url 'appointment_update_status' appointment.pk %}" class="d-inline mt-3">
+                    {% csrf_token %}
+                    <input type="hidden" name="status" value="completed">
+                    <button class="btn btn-primary"><i class="fas fa-check-double"></i> Marquer comme terminé</button>
+                </form>
+                {% endif %}
+
+                {% if is_doctor %}
+                <div class="card mt-3 border-info">
+                    <div class="card-header bg-info text-white"><h6 class="mb-0"><i class="fas fa-sticky-note"></i> Notes de consultation</h6></div>
+                    <div class="card-body">
+                        <form method="post" action="{% url 'appointment_consult_notes' appointment.pk %}">
+                            {% csrf_token %}
+                            <textarea name="doctor_notes" class="form-control mb-2" rows="4" placeholder="Observations, diagnostic, traitement...">{{ appointment.doctor_notes }}</textarea>
+                            <div class="form-check mb-2">
+                                <input class="form-check-input" type="checkbox" name="mark_completed" id="markCompleted">
+                                <label class="form-check-label" for="markCompleted">Marquer ce rendez-vous comme terminé</label>
+                            </div>
+                            <button class="btn btn-info"><i class="fas fa-save"></i> Enregistrer les notes</button>
+                        </form>
+                    </div>
+                </div>
+                {% elif appointment.doctor_notes %}
+                <p><strong>Notes de consultation :</strong> {{ appointment.doctor_notes }}</p>
+                {% endif %}
+
+                <div class="mt-4">
+                    {% if appointment.status != 'cancelled' %}
+                    {% if not is_doctor %}
+                    <a href="{% url 'appointment_edit' appointment.pk %}" class="btn btn-primary"><i class="fas fa-edit"></i> Modifier</a>
+                    {% endif %}
+                    {% if appointment.status != 'completed' %}
+                    <form method="post" action="{% url 'appointment_cancel' appointment.pk %}" class="d-inline">
+                        {% csrf_token %}
+                        <button class="btn btn-danger"><i class="fas fa-times"></i> Annuler</button>
+                    </form>
+                    {% endif %}
+                    {% endif %}
+                    <a href="{% url 'appointment_list' %}" class="btn btn-secondary"><i class="fas fa-arrow-left"></i> Retour</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

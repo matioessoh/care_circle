@@ -1,0 +1,53 @@
+{% extends 'base.html' %}
+
+{% block title %}Ajouter des créneaux - Care Circle{% endblock %}
+
+{% block content %}
+<div class="row justify-content-center">
+    <div class="col-md-8">
+        <div class="kicker">Espace médecin</div>
+        <h1 class="page-title">Ajouter des créneaux</h1>
+        <p class="reassurance mb-4">Renseignez vos disponibilités pour permettre aux patients de réserver.</p>
+        <div class="cc-card">
+            <form method="post">
+                {% csrf_token %}
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="cc-field">
+                            <label>Date de début <span style="color:#C0392B;">*</span></label>
+                            <input type="date" name="start_date" class="cc-input" required>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="cc-field">
+                            <label>Nombre de jours (répéter) <span style="color:#C0392B;">*</span></label>
+                            <input type="number" name="repeat_days" class="cc-input" value="1" min="1" max="30" required>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="cc-field">
+                            <label>Heure de début <span style="color:#C0392B;">*</span></label>
+                            <input type="time" name="start_time" class="cc-input" required>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="cc-field">
+                            <label>Heure de fin <span style="color:#C0392B;">*</span></label>
+                            <input type="time" name="end_time" class="cc-input" required>
+                        </div>
+                    </div>
+                </div>
+                <div class="info-panel mb-4">
+                    <i class="fas fa-info-circle"></i>
+                    <h5>Répétition</h5>
+                    <p>Le nombre de jours permet de répéter le même créneau sur plusieurs jours consécutifs (ex : 5 jours = toute une semaine ouvrée).</p>
+                </div>
+                <div class="d-flex gap-2">
+                    <button type="submit" class="btn-cc btn-cc-primary"><i class="fas fa-plus"></i> Ajouter</button>
+                    <a href="{% url 'my_slots' %}" class="btn-cc btn-cc-outline">Annuler</a>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}

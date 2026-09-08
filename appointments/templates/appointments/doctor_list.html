@@ -1,0 +1,44 @@
+{% extends 'base.html' %}
+
+{% block title %}Nos médecins - CareCircle{% endblock %}
+
+{% block content %}
+<div class="d-flex justify-content-between align-items-start flex-wrap gap-3 mb-4">
+    <div>
+        <span class="kicker">TROUVER UN PROFESSIONNEL</span>
+        <h1 class="page-title">Nos médecins.</h1>
+        <p class="text-muted-2">Des professionnels de confiance, proches de vous.</p>
+    </div>
+    {% if user.doctor_profile %}
+    <a href="{% url 'my_slots' %}" class="btn-cc btn-cc-outline"><i class="fas fa-clock"></i> Mes créneaux</a>
+    {% endif %}
+</div>
+
+<div class="grid-3">
+    {% for doctor in doctors %}
+    <div class="cc-card" style="text-align:center;">
+        <div class="avatar-circle-lg mx-auto mb-3" style="background:var(--blue-accent);">{{ doctor.user.last_name|default:doctor.user.username|first|upper }}</div>
+        <h5 class="fw-bold mb-1">Dr {{ doctor.user.get_full_name|default:doctor.user.username }}</h5>
+        <p class="text-muted-2 mb-2">{{ doctor.specialty }}</p>
+        {% if doctor.clinic_name %}<p class="small text-muted-2 mb-2"><i class="fas fa-hospital"></i> {{ doctor.clinic_name }}</p>{% endif %}
+        <div class="mb-3">
+            {% if doctor.is_available %}
+            <span class="badge-status green"><i class="fas fa-circle" style="font-size:6px;"></i> Disponible</span>
+            {% else %}
+            <span class="badge-status gray"><i class="fas fa-circle" style="font-size:6px;"></i> Indisponible pour de nouveaux RDV</span>
+            {% endif %}
+        </div>
+        <div class="d-flex justify-content-center gap-2">
+            <a href="{% url 'doctor_detail' doctor.pk %}" class="btn-cc btn-cc-{% if doctor.is_available %}primary{% else %}outline{% endif %}" style="padding:9px 16px;font-size:14px;"><i class="fas fa-calendar-plus"></i> Voir / Prendre RDV</a>
+            <a href="{% url 'doctor_appointments' doctor.pk %}" class="btn-cc btn-cc-ghost">Agenda</a>
+        </div>
+    </div>
+    {% empty %}
+    <div class="empty-state" style="grid-column:1/-1;">
+        <i class="fas fa-user-md"></i>
+        <h4>Aucun médecin pour le moment</h4>
+        <p>De nouveaux professionnels rejoignent le cercle bientôt.</p>
+    </div>
+    {% endfor %}
+</div>
+{% endblock %}

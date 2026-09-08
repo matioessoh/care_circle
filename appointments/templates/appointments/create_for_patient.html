@@ -1,0 +1,70 @@
+{% extends 'base.html' %}
+
+{% block title %}Programmer un rendez-vous - Care Circle{% endblock %}
+
+{% block content %}
+<div class="row justify-content-center">
+    <div class="col-md-8">
+        <div class="kicker">Espace médecin</div>
+        <h1 class="page-title">Programmer pour un patient</h1>
+        <p class="reassurance mb-4">Organisez un rendez-vous au nom d'un patient.</p>
+        <div class="cc-card">
+            <form method="post">
+                {% csrf_token %}
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="cc-field">
+                            <label>Patient <span style="color:#C0392B;">*</span></label>
+                            <select name="patient" class="cc-input" required>
+                                {% for patient in patients %}
+                                <option value="{{ patient.id }}">{{ patient.get_full_name|default:patient.username }} (@{{ patient.username }})</option>
+                                {% endfor %}
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="cc-field">
+                            <label>Titre <span style="color:#C0392B;">*</span></label>
+                            <input type="text" name="title" class="cc-input" required placeholder="Consultation">
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="cc-field">
+                            <label>Date <span style="color:#C0392B;">*</span></label>
+                            <input type="date" name="date" class="cc-input" required>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="cc-field">
+                            <label>Heure <span style="color:#C0392B;">*</span></label>
+                            <input type="time" name="time" class="cc-input" required>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="cc-field">
+                            <label>Lieu</label>
+                            <input type="text" name="location" class="cc-input" placeholder="Cabinet">
+                        </div>
+                    </div>
+                    <div class="col-12">
+                        <div class="cc-field">
+                            <label>Description / Motif</label>
+                            <textarea name="description" class="cc-input" rows="3"></textarea>
+                        </div>
+                    </div>
+                    <div class="col-12">
+                        <div class="cc-field">
+                            <label>Notes</label>
+                            <textarea name="notes" class="cc-input" rows="3"></textarea>
+                        </div>
+                    </div>
+                </div>
+                <div class="d-flex gap-2">
+                    <button type="submit" class="btn-cc btn-cc-green"><i class="fas fa-calendar-check"></i> Programmer</button>
+                    <a href="{% url 'appointment_list' %}" class="btn-cc btn-cc-outline">Annuler</a>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}

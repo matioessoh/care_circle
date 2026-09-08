@@ -1,0 +1,160 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}CareCircle{% endblock %}</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <link href="{% static 'css/carecircle.css' %}" rel="stylesheet">
+    {% block extra_head %}{% endblock %}
+</head>
+<body class="{% if user_role == 'doctor' %}role-doctor{% elif user_role == 'admin' %}role-admin{% else %}role-patient{% endif %}">
+
+{% if user_role == 'doctor' %}
+<!-- ======================= ESPACE MÉDECIN : sidebar marine fixe ======================= -->
+<aside class="sidebar-doctor">
+    <a class="brand-logo" href="{% url 'doctor_dashboard' %}">
+        <span class="ring-icon"><i class="fas fa-heartbeat"></i></span>
+        <span class="brand-text">Care<span class="circle">Circle</span></span>
+    </a>
+    <ul class="sidebar-nav">
+        <li class="nav-item">
+            <a class="nav-link {% if request.resolver_match.url_name == 'doctor_dashboard' %}active{% endif %}" href="{% url 'doctor_dashboard' %}"><i class="fas fa-th-large"></i> Tableau de bord</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link {% if request.resolver_match.url_name == 'my_slots' or request.resolver_match.url_name == 'add_slot' %}active{% endif %}" href="{% url 'my_slots' %}"><i class="far fa-calendar-alt"></i> Planning</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link {% if request.resolver_match.url_name == 'appointment_list' or request.resolver_match.url_name == 'appointment_detail' or request.resolver_match.url_name == 'patient_medical_record' %}active{% endif %}" href="{% url 'appointment_list' %}"><i class="fas fa-calendar-check"></i> Rendez-vous</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link {% if request.resolver_match.url_name == 'inbox' or request.resolver_match.url_name == 'conversation' %}active{% endif %}" href="{% url 'inbox' %}"><i class="fas fa-envelope"></i> Messagerie</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link {% if request.resolver_match.url_name == 'profile' %}active{% endif %}" href="{% url 'profile' %}"><i class="fas fa-user"></i> Profil</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link {% if request.resolver_match.url_name == 'post_list' %}active{% endif %}" href="{% url 'post_list' %}"><i class="fas fa-users"></i> Communauté</a>
+        </li>
+    </ul>
+    <div class="sidebar-footer">
+        <i class="fas fa-shield-alt"></i>
+        <span>Une plateforme sécurisée pour des soins connectés et humains.</span>
+    </div>
+    <form method="post" action="{% url 'logout' %}" class="mt-3">
+        {% csrf_token %}
+        <button type="submit" class="nav-link w-100" style="display:flex;align-items:center;gap:12px;background:rgba(255,255,255,0.06);color:rgba(255,255,255,0.85);border:none;padding:11px 14px;border-radius:var(--radius-md);cursor:pointer;">
+            <i class="fas fa-sign-out-alt" style="width:20px;text-align:center;"></i> Se déconnecter
+        </button>
+    </form>
+</aside>
+{% elif user_role == 'admin' %}
+<!-- ======================= ESPACE ADMIN : topbar marine + sidebar blanche ======================= -->
+<div class="admin-topbar">
+    <a class="brand-logo" href="{% url 'admin_dashboard' %}">
+        <span class="ring-icon"><i class="fas fa-heartbeat"></i></span>
+        <span class="brand-text">Care<span class="circle">Circle</span></span>
+    </a>
+    <div class="d-flex align-items-center gap-3">
+        <i class="fas fa-shield-alt opacity-75"></i>
+        <div class="avatar-initials" style="width:36px;height:36px;">{{ user.username|first|upper }}{% if user.username|length > 1 %}{{ user.username|slice:"1:2"|upper }}{% endif %}</div>
+        <form method="post" action="{% url 'logout' %}" class="m-0">
+            {% csrf_token %}
+            <button type="submit" class="btn-cc btn-cc-accent" style="padding:8px 16px;font-size:14px;"><i class="fas fa-sign-out-alt"></i> Déconnexion</button>
+        </form>
+    </div>
+</div>
+<aside class="admin-sidebar">
+    <ul class="sidebar-nav" style="margin-top:0;">
+        <li class="nav-item">
+            <a class="nav-link {% if request.resolver_match.url_name == 'admin_dashboard' %}active{% endif %}" href="{% url 'admin_dashboard' %}"><i class="fas fa-th-large"></i> Administration</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link {% if request.resolver_match.url_name == 'admin_categories' %}active{% endif %}" href="{% url 'admin_categories' %}"><i class="fas fa-tags"></i> Pathologies</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link {% if request.resolver_match.url_name == 'admin_users' or request.resolver_match.url_name == 'admin_user_detail' or request.resolver_match.url_name == 'admin_doctors' or request.resolver_match.url_name == 'admin_doctor_detail' %}active{% endif %}" href="{% url 'admin_users' %}"><i class="fas fa-users"></i> Comptes</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link {% if request.resolver_match.url_name == 'admin_reports' or request.resolver_match.url_name == 'admin_report_detail' %}active{% endif %}" href="{% url 'admin_reports' %}"><i class="fas fa-flag"></i> Modération</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link {% if request.resolver_match.url_name == 'admin_forum_posts' or request.resolver_match.url_name == 'admin_forum_comments' %}active{% endif %}" href="{% url 'admin_forum_posts' %}"><i class="fas fa-file-alt"></i> Forum</a>
+        </li>
+    </ul>
+    <div class="admin-sidebar-help">
+        <i class="fas fa-question-circle mb-1"></i>
+        <div><strong>Besoin d'aide ?</strong><br>Consulter la documentation.</div>
+    </div>
+</aside>
+{% else %}
+<!-- ======================= ESPACE PATIENT / LANDING : navbar top blanche ======================= -->
+<nav class="navbar navbar-expand-lg patient-navbar">
+    <div class="container">
+        <a class="brand-logo" href="{% url 'home' %}">
+            <span class="ring-icon"><i class="fas fa-heartbeat"></i></span>
+            <span class="brand-text">Care<span class="circle">Circle</span></span>
+        </a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#ccNav">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="ccNav">
+            <ul class="navbar-nav mx-auto">
+                {% if user.is_authenticated %}
+                <li class="nav-item"><a class="nav-link {% if request.resolver_match.url_name == 'journal_dashboard' %}active{% endif %}" href="{% url 'journal_dashboard' %}"><i class="fas fa-th-large me-1"></i> Vue d'ensemble</a></li>
+                <li class="nav-item"><a class="nav-link {% if request.resolver_match.url_name == 'appointment_list' or request.resolver_match.url_name == 'doctor_list' or request.resolver_match.url_name == 'appointment_detail' %}active{% endif %}" href="{% url 'appointment_list' %}"><i class="fas fa-calendar-check me-1"></i> Mes rendez-vous</a></li>
+                <li class="nav-item"><a class="nav-link {% if request.resolver_match.url_name == 'post_list' or request.resolver_match.url_name == 'post_detail' %}active{% endif %}" href="{% url 'post_list' %}"><i class="fas fa-users me-1"></i> Communauté</a></li>
+                <li class="nav-item"><a class="nav-link {% if request.resolver_match.url_name == 'inbox' or request.resolver_match.url_name == 'conversation' %}active{% endif %}" href="{% url 'inbox' %}"><i class="fas fa-envelope me-1"></i> Messages</a></li>
+                {% else %}
+                <li class="nav-item text-muted-2 py-2">Votre communauté de soins, en toute confiance.</li>
+                {% endif %}
+            </ul>
+            <ul class="navbar-nav align-items-center">
+                {% if user.is_authenticated %}
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle d-flex align-items-center gap-2" href="#" data-bs-toggle="dropdown">
+                        <span class="avatar-initials" style="width:34px;height:34px;font-size:13px;">{{ user.username|first|upper }}</span>
+                        <span class="d-none d-md-inline">{{ user.username }}</span>
+                    </a>
+                    <ul class="dropdown-menu dropdown-menu-end shadow">
+                        <li><a class="dropdown-item" href="{% url 'profile' %}"><i class="fas fa-user"></i> Mon profil</a></li>
+                        <li><a class="dropdown-item" href="{% url 'my_connections' %}"><i class="fas fa-user-friends"></i> Mes connexions</a></li>
+                        {% if user.is_superuser %}
+                        <li><hr class="dropdown-divider"></li>
+                        <li><a class="dropdown-item" href="{% url 'admin_dashboard' %}"><i class="fas fa-tachometer-alt"></i> Administration</a></li>
+                        {% endif %}
+                        <li><hr class="dropdown-divider"></li>
+                        <li><form method="post" action="{% url 'logout' %}">{% csrf_token %}<button class="dropdown-item" type="submit"><i class="fas fa-sign-out-alt"></i> Déconnexion</button></form></li>
+                    </ul>
+                </li>
+                {% else %}
+                <li class="nav-item"><a class="btn-cc btn-cc-outline me-2" href="{% url 'register' %}">Rejoindre le cercle</a></li>
+                <li class="nav-item"><a class="btn-cc btn-cc-primary" href="{% url 'login' %}">Se connecter <i class="fas fa-arrow-right"></i></a></li>
+                {% endif %}
+            </ul>
+        </div>
+    </div>
+</nav>
+{% endif %}
+
+<main class="role-main {% if user_role == 'doctor' %}with-doctor-sidebar{% elif user_role == 'admin' %}with-admin-sidebar{% else %}role-main-nopad{% endif %}">
+    {% if messages %}
+        {% for message in messages %}
+        <div class="alert alert-{{ message.tags|default:'info' }} alert-dismissible fade show" role="alert">
+            {{ message }}
+            <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+        </div>
+        {% endfor %}
+    {% endif %}
+    <div class="{% if user_role == 'patient' or user_role == 'guest' %}container{% endif %}">
+        {% block content %}{% endblock %}
+    </div>
+</main>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+{% block extra_js %}{% endblock %}
+</body>
+</html>

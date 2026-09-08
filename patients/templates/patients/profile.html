@@ -1,0 +1,62 @@
+{% extends 'base.html' %}
+
+{% block title %}{{ profile_user.username }} - Profil{% endblock %}
+
+{% block content %}
+<div class="row">
+    <div class="col-md-4">
+        <div class="cc-card">
+            <div class="text-center">
+                {% if profile.photo %}
+                <img src="{{ profile.photo.url }}" class="rounded-circle mb-3" width="96" height="96" alt="Photo" style="object-fit:cover;">
+                {% else %}
+                <div class="avatar-initials mx-auto mb-3" style="width:88px;height:88px;font-size:32px;">{{ profile_user.username|first|upper }}</div>
+                {% endif %}
+                <h4 class="mb-0">{{ profile_user.get_full_name|default:profile_user.username }}</h4>
+                <p class="text-muted-2">@{{ profile_user.username }}</p>
+                {% if is_self %}
+                <a href="{% url 'edit_profile' %}" class="btn-cc btn-cc-primary"><i class="fas fa-edit"></i> Modifier</a>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+    <div class="col-md-8">
+        {% if is_self %}
+        <div class="cc-card">
+            <h5 class="kicker" style="color:var(--blue-accent);">Informations médicales</h5>
+            <div class="row mt-2">
+                <div class="col-md-6 mb-2"><strong>Date de naissance :</strong> {{ profile.date_of_birth|default:'—' }}</div>
+                <div class="col-md-6 mb-2"><strong>Genre :</strong> {{ profile.get_gender_display|default:'—' }}</div>
+                <div class="col-md-6 mb-2"><strong>Groupe sanguin :</strong> {{ profile.blood_type|default:'—' }}</div>
+                <div class="col-md-6 mb-2"><strong>Téléphone :</strong> {{ profile.phone|default:'—' }}</div>
+                <div class="col-12 mb-2"><strong>Adresse :</strong> {{ profile.address|default:'—' }}</div>
+            </div>
+            <hr style="border-color: var(--border);">
+            <h6><strong>Allergies :</strong></h6>
+            <p>{{ profile.allergies|default:'Aucune' }}</p>
+            <h6><strong>Conditions médicales :</strong></h6>
+            <p>{{ profile.medical_conditions|default:'Aucune' }}</p>
+            <h6><strong>Contact d'urgence :</strong></h6>
+            <p>{{ profile.emergency_contact|default:'—' }}{% if profile.emergency_phone %} ({{ profile.emergency_phone }}){% endif %}</p>
+            <p class="reassurance small mt-3 mb-0">Ces informations restent strictement confidentielles et visibles uniquement par vous.</p>
+        </div>
+        {% else %}
+        <div class="cc-card">
+            <div class="text-center py-4">
+                <i class="fas fa-user-shield fa-3x mb-3" style="color:var(--blue-accent);"></i>
+                <h5>Confidentialité</h5>
+                <p class="text-muted-2">Les informations médicales de {{ profile_user.username }} restent privées et ne sont pas affichées sur le profil public.</p>
+            </div>
+        </div>
+        {% if profile_user != user and user.is_authenticated %}
+        <div class="cc-card mt-3">
+            <div class="text-center">
+                <a href="{% url 'send_connection' profile_user.id %}" class="btn-cc btn-cc-outline me-2"><i class="fas fa-user-plus"></i> Ajouter</a>
+                <a href="{% url 'start_conversation' profile_user.id %}" class="btn-cc btn-cc-primary"><i class="fas fa-envelope"></i> Message</a>
+            </div>
+        </div>
+        {% endif %}
+        {% endif %}
+    </div>
+</div>
+{% endblock %}

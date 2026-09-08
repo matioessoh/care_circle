@@ -1,0 +1,32 @@
+from django.urls import path
+from . import views
+
+urlpatterns = [
+    path('', views.dashboard, name='admin_dashboard'),
+    path('users/', views.user_list, name='admin_users'),
+    path('users/<int:user_id>/', views.user_detail, name='admin_user_detail'),
+    path('users/<int:user_id>/toggle-active/', views.user_toggle_active, name='admin_user_toggle_active'),
+    path('doctors/', views.doctor_list_admin, name='admin_doctors'),
+    path('doctors/new/', views.doctor_create, name='admin_doctor_create'),
+    path('doctors/new/for-user/<int:user_id>/', views.doctor_create, name='admin_doctor_create_for_user'),
+    path('doctors/<int:doctor_id>/', views.doctor_detail_admin, name='admin_doctor_detail'),
+    path('doctors/<int:doctor_id>/edit/', views.doctor_edit, name='admin_doctor_edit'),
+    path('doctors/<int:doctor_id>/delete/', views.doctor_delete, name='admin_doctor_delete'),
+    path('doctors/<int:doctor_id>/toggle-available/', views.doctor_toggle_available, name='admin_doctor_toggle_available'),
+    path('doctors/<int:doctor_id>/toggle-active/', views.doctor_toggle_active, name='admin_doctor_toggle_active'),
+    path('forum/posts/', views.forum_posts, name='admin_forum_posts'),
+    path('forum/posts/<int:post_id>/hide/', views.post_toggle_hide, name='admin_post_toggle_hide'),
+    path('forum/posts/<int:post_id>/delete/', views.post_delete_mod, name='admin_post_delete_mod'),
+    path('forum/comments/', views.forum_comments, name='admin_forum_comments'),
+    path('forum/comments/<int:comment_id>/hide/', views.comment_toggle_hide, name='admin_comment_toggle_hide'),
+    path('forum/comments/<int:comment_id>/delete/', views.comment_delete_mod, name='admin_comment_delete_mod'),
+    path('forum/categories/', views.categories_list, name='admin_categories'),
+    path('forum/categories/new/', views.category_create, name='admin_category_create'),
+    path('forum/categories/<int:category_id>/edit/', views.category_edit, name='admin_category_edit'),
+    path('forum/categories/<int:category_id>/delete/', views.category_delete, name='admin_category_delete'),
+    path('reports/', views.reports_list, name='admin_reports'),
+    path('reports/<int:report_id>/', views.report_detail, name='admin_report_detail'),
+    path('reports/<int:report_id>/action/', views.report_action, name='admin_report_action'),
+    path('export/users/', views.export_users, name='admin_export_users'),
+    path('export/appointments/', views.export_appointments, name='admin_export_appointments'),
+]

@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+
+{% block title %}Mes médicaments - Care Circle{% endblock %}
+
+{% block content %}
+<div class="d-flex justify-content-between align-items-center mb-2">
+    <div>
+        <div class="kicker">Journal de santé</div>
+        <h1 class="page-title">Mes médicaments</h1>
+        <p class="reassurance mb-0">Centralisez et suivez vos traitements.</p>
+    </div>
+    <a href="{% url 'medication_create' %}" class="btn-cc btn-cc-primary"><i class="fas fa-plus"></i> Ajouter</a>
+</div>
+
+<div class="cc-card mt-4">
+    {% for med in medications %}
+    <div class="d-flex justify-content-between align-items-center p-2 {% if not forloop.last %}border-bottom{% endif %}" style="border-color: var(--border) !important;">
+        <div>
+            <strong>{{ med.name }}</strong> <span class="text-muted-2">- {{ med.dosage }}</span>
+            <div class="text-muted-2 small">{{ med.frequency }}
+                {% if med.is_active %}<span class="badge-status green ms-2">Actif</span>
+                {% else %}<span class="badge-status gray ms-2">Inactif</span>{% endif %}
+            </div>
+        </div>
+    </div>
+    {% empty %}
+    <div class="empty-state">
+        <i class="fas fa-pills"></i>
+        <h5>Aucun médicament enregistré</h5>
+        <p>Ajoutez vos traitements pour un suivi fiable.</p>
+        <a href="{% url 'medication_create' %}" class="btn-cc btn-cc-accent">Ajouter un médicament</a>
+    </div>
+    {% endfor %}
+</div>
+<p class="reassurance small mt-3 mb-0">Respectez toujours la posologie prescrite par votre médecin.</p>
+{% endblock %}

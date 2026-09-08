@@ -1,0 +1,84 @@
+{% extends 'base.html' %}
+
+{% block title %}Modifier mon profil - Care Circle{% endblock %}
+
+{% block content %}
+<div class="row justify-content-center">
+    <div class="col-md-8">
+        <div class="kicker">Mon espace</div>
+        <h1 class="page-title">Modifier mon profil</h1>
+        <p class="reassurance mb-4">Ces informations restent strictement confidentielles.</p>
+        <div class="cc-card">
+            <form method="post">
+                {% csrf_token %}
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="cc-field">
+                            <label>Date de naissance</label>
+                            <input type="date" name="date_of_birth" value="{{ profile.date_of_birth|date:'Y-m-d' }}" class="cc-input">
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="cc-field">
+                            <label>Genre</label>
+                            <select name="gender" class="cc-input">
+                                <option value="">—</option>
+                                <option value="M" {% if profile.gender == 'M' %}selected{% endif %}>Homme</option>
+                                <option value="F" {% if profile.gender == 'F' %}selected{% endif %}>Femme</option>
+                                <option value="O" {% if profile.gender == 'O' %}selected{% endif %}>Autre</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="cc-field">
+                            <label>Téléphone</label>
+                            <input type="text" name="phone" value="{{ profile.phone }}" class="cc-input">
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="cc-field">
+                            <label>Groupe sanguin</label>
+                            <input type="text" name="blood_type" value="{{ profile.blood_type }}" class="cc-input" placeholder="A+, B-, O+...">
+                        </div>
+                    </div>
+                    <div class="col-12">
+                        <div class="cc-field">
+                            <label>Adresse</label>
+                            <textarea name="address" class="cc-input">{{ profile.address }}</textarea>
+                        </div>
+                    </div>
+                    <div class="col-12">
+                        <div class="cc-field">
+                            <label>Allergies</label>
+                            <textarea name="allergies" class="cc-input">{{ profile.allergies }}</textarea>
+                        </div>
+                    </div>
+                    <div class="col-12">
+                        <div class="cc-field">
+                            <label>Conditions médicales</label>
+                            <textarea name="medical_conditions" class="cc-input">{{ profile.medical_conditions }}</textarea>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="cc-field">
+                            <label>Contact d'urgence</label>
+                            <input type="text" name="emergency_contact" value="{{ profile.emergency_contact }}" class="cc-input">
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="cc-field">
+                            <label>Téléphone d'urgence</label>
+                            <input type="text" name="emergency_phone" value="{{ profile.emergency_phone }}" class="cc-input">
+                        </div>
+                    </div>
+                </div>
+                <div class="d-flex gap-2">
+                    <button type="submit" class="btn-cc btn-cc-primary"><i class="fas fa-save"></i> Enregistrer</button>
+                    <a href="{% url 'profile' %}" class="btn-cc btn-cc-outline">Annuler</a>
+                </div>
+            </form>
+        </div>
+        <p class="reassurance small mt-3 mb-0">Vos données médicales ne sont visibles que par vous et votre médecin traitant.</p>
+    </div>
+</div>
+{% endblock %}

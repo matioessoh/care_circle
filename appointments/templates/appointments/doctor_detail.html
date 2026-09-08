@@ -1,0 +1,67 @@
+{% extends 'base.html' %}
+
+{% block title %}Dr {{ doctor.user.last_name }} - Care Circle{% endblock %}
+
+{% block content %}
+<div class="row">
+    <div class="col-md-4 mb-3">
+        <div class="cc-card">
+            <div class="text-center mb-3">
+                <div class="avatar-initials mx-auto mb-3" style="width:72px;height:72px;font-size:26px;background:var(--green);">{{ doctor.user.last_name|default:doctor.user.username|first|upper }}</div>
+                <h5 class="mb-0">Dr {{ doctor.user.get_full_name|default:doctor.user.username }}</h5>
+                <p class="text-muted-2 mb-0">{{ doctor.specialty }}</p>
+            </div>
+            {% if doctor.bio %}<p class="text-muted-2 small text-center mb-3">{{ doctor.bio }}</p>{% endif %}
+            <hr style="border-color: var(--border);">
+            {% if doctor.clinic_name %}<p class="mb-1"><i class="fas fa-hospital me-2" style="color:var(--blue-accent);"></i> {{ doctor.clinic_name }}</p>{% endif %}
+            {% if doctor.clinic_address %}<p class="mb-1"><i class="fas fa-map-marker-alt me-2" style="color:var(--blue-accent);"></i> {{ doctor.clinic_address }}</p>{% endif %}
+            {% if doctor.phone %}<p class="mb-1"><i class="fas fa-phone me-2" style="color:var(--blue-accent);"></i> {{ doctor.phone }}</p>{% endif %}
+            {% if doctor.consultation_fee %}<p class="mb-0"><i class="fas fa-euro-sign me-2" style="color:var(--blue-accent);"></i> {{ doctor.consultation_fee }} €</p>{% endif %}
+        </div>
+    </div>
+    <div class="col-md-8">
+        <div class="cc-card">
+            <h5 class="mb-3"><i class="far fa-calendar-alt me-2" style="color:var(--blue-accent);"></i>Créneaux disponibles</h5>
+            {% if user.is_authenticated %}
+            <form method="post" action="{% url 'appointment_create' %}">
+                {% csrf_token %}
+                <input type="hidden" name="doctor" value="{{ doctor.pk }}">
+                {% for slot in slots %}
+                <label class="discussion-card d-flex justify-content-between align-items-center" style="cursor:pointer;">
+                    <span>
+                        <strong>{{ slot.date|date:'l d/m/Y' }}</strong> -
+                        {{ slot.start_time|time:'H:i' }} à {{ slot.end_time|time:'H:i' }}
+                    </span>
+                    <span class="d-flex align-items-center gap-2">
+                        <input type="radio" name="slot" value="{{ slot.pk }}" required class="form-check-input">Réserver
+                    </span>
+                </label>
+                {% empty %}
+                <div class="empty-state">
+                    <i class="far fa-calendar-times"></i>
+                    <h5>Aucun créneau disponible</h5>
+                    <p>Ce médecin n'a pas de créneau ouvert pour le moment.</p>
+                </div>
+                {% endfor %}
+                {% if slots %}
+                <div class="mt-3">
+                    <div class="cc-field">
+                        <label>Objet (optionnel)</label>
+                        <input type="text" name="title" class="cc-input" placeholder="Motif de la consultation">
+                    </div>
+                    <div class="cc-field">
+                        <label>Description (optionnel)</label>
+                        <textarea name="description" class="cc-input" rows="2"></textarea>
+                    </div>
+                    <button class="btn-cc btn-cc-green" type="submit"><i class="fas fa-calendar-check"></i> Confirmer le rendez-vous</button>
+                </div>
+                {% endif %}
+            </form>
+            {% else %}
+            <p><a href="{% url 'login' %}" class="alert-link" style="color:var(--blue-accent); font-weight:600;">Connectez-vous</a> pour prendre rendez-vous.</p>
+            {% endif %}
+        </div>
+        <p class="reassurance small mt-3 mb-0">La prise de rendez-vous respecte strictement la confidentialité de vos informations de santé.</p>
+    </div>
+</div>
+{% endblock %}

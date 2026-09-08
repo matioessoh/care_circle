@@ -1,0 +1,115 @@
+{% extends 'base.html' %}
+
+{% block title %}Mon suivi - CareCircle{% endblock %}
+
+{% block content %}
+<span class="kicker">MON SUIVI · AUJOURD'HUI</span>
+<h1 class="page-title">Comment vous sentez-vous ?</h1>
+<p class="text-muted-2 mb-4">Votre parcours, en un coup d'œil.</p>
+
+<div class="grid-3 mb-4">
+    <a href="{% url 'entry_list' %}" class="text-decoration-none">
+        <div class="cc-card">
+            <span class="card-icon icon-blue"><i class="fas fa-file-medical"></i></span>
+            <div class="card-tag">ENTRÉES</div>
+            <div class="card-title">{{ entries.count }} dernière{{ entries.count|pluralize }}</div>
+            <p class="card-desc">Notez comment vous vous sentez au quotidien.</p>
+            <span class="card-action">Tout voir <i class="fas fa-arrow-right"></i></span>
+        </div>
+    </a>
+    <a href="{% url 'medication_list' %}" class="text-decoration-none">
+        <div class="cc-card">
+            <span class="card-icon icon-green"><i class="fas fa-pills"></i></span>
+            <div class="card-tag">MÉDICAMENTS</div>
+            <div class="card-title">{{ medications.count }} actif{{ medications.count|pluralize }}</div>
+            <p class="card-desc">Gardez vos traitements à jour, en toute sérénité.</p>
+            <span class="card-action">Gérer <i class="fas fa-arrow-right"></i></span>
+        </div>
+    </a>
+    <a href="{% url 'vitals_list' %}" class="text-decoration-none">
+        <div class="cc-card">
+            <span class="card-icon icon-navy"><i class="fas fa-heart-pulse"></i></span>
+            <div class="card-tag">SIGNES VITAUX</div>
+            <div class="card-title">{{ recent_vitals.count }} enregistrement{{ recent_vitals.count|pluralize }}</div>
+            <p class="card-desc">Suivez vos constantes et leur évolution.</p>
+            <span class="card-action">Ouvrir <i class="fas fa-arrow-right"></i></span>
+        </div>
+    </a>
+</div>
+
+{% if medications %}
+<div class="cc-card mb-4">
+    <div class="d-flex justify-content-between align-items-center mb-3">
+        <h5 class="fw-bold mb-0"><i class="fas fa-bell" style="color:var(--blue-accent);"></i> Rappels de traitement</h5>
+        <a href="{% url 'medication_list' %}" class="btn-cc btn-cc-ghost">Gérer <i class="fas fa-arrow-right"></i></a>
+    </div>
+    <p class="reassurance small mb-3">Pensez à prendre vos médicaments actifs aujourd'hui comme prescrit par votre médecin.</p>
+    <div class="row g-3">
+        {% for med in medications %}
+        <div class="col-md-6">
+            <div class="d-flex align-items-center gap-2 p-2 border rounded" style="border-color:var(--border)!important;">
+                <i class="fas fa-pills" style="color:var(--green);"></i>
+                <div class="flex-grow-1">
+                    <strong>{{ med.name }}</strong>
+                    <div class="small text-muted-2">{{ med.dosage }} · {{ med.frequency }}</div>
+                </div>
+                <span class="badge-status green">À prendre</span>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+{% endif %}
+
+<div class="row g-4">
+    <div class="col-md-7">
+        <div class="cc-card">
+            <div class="d-flex justify-content-between align-items-center mb-3">
+                <h5 class="mb-0 fw-bold">Entrées récentes</h5>
+                <a href="{% url 'entry_create' %}" class="btn-cc btn-cc-primary" style="padding:8px 16px;font-size:14px;"><i class="fas fa-plus"></i> Nouvelle</a>
+            </div>
+            {% for entry in entries %}
+            <div class="d-flex justify-content-between align-items-center py-2 {% if not forloop.last %}border-bottom{% endif %}" style="border-color:var(--border)!important;">
+                <div>
+                    <strong>{{ entry.date|date:'d/m/Y' }}</strong>
+                    <span class="badge-status {% if entry.mood == 'great' or entry.mood == 'good' %}green{% elif entry.mood == 'okay' %}blue{% else %}gray{% endif %} ms-2">{{ entry.get_mood_display }}</span>
+                </div>
+                <a href="{% url 'entry_detail' entry.pk %}" class="btn-cc btn-cc-ghost">Voir <i class="fas fa-arrow-right"></i></a>
+            </div>
+            {% empty %}
+            <div class="empty-state">
+                <i class="fas fa-sparkles"></i>
+                <h4>Aucune entrée pour le moment</h4>
+                <p>Commencez votre suivi en quelques secondes.</p>
+                <a href="{% url 'entry_create' %}" class="btn-cc btn-cc-primary">Créer mon premier suivi</a>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+    <div class="col-md-5">
+        <div class="cc-card">
+            <h5 class="fw-bold mb-3">Signes vitaux récents</h5>
+            {% for vital in recent_vitals %}
+            <div class="py-2 {% if not forloop.last %}border-bottom{% endif %}" style="border-color:var(--border)!important;">
+                <strong>{{ vital.date|date:'d/m/Y H:i' }}</strong>
+                <div class="small text-muted-2">
+                    {% if vital.systolic_bp %}PA: {{ vital.systolic_bp }}/{{ vital.diastolic_bp }} mmHg · {% endif %}
+                    {% if vital.heart_rate %}FC: {{ vital.heart_rate }} bpm · {% endif %}
+                    {% if vital.temperature %}T: {{ vital.temperature }}°C{% endif %}
+                </div>
+            </div>
+            {% empty %}
+            <div class="empty-state">
+                <i class="fas fa-heart-pulse"></i>
+                <h4>Aucun signe vital</h4>
+                <p>Ajoutez vos premières constantes.</p>
+                <a href="{% url 'vitals_create' %}" class="btn-cc btn-cc-outline">Ajouter</a>
+            </div>
+            {% endfor %}
+            {% if recent_vitals %}
+            <a href="{% url 'vitals_create' %}" class="btn-cc btn-cc-outline mt-3"><i class="fas fa-plus"></i> Ajouter</a>
+            {% endif %}
+        </div>
+    </div>
+</div>
+{% endblock %}
