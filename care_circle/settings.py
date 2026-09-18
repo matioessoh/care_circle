@@ -100,6 +100,7 @@ INSTALLED_APPS = [
 ]
 
 MIDDLEWARE = [
+    'care_circle.middleware.SecurityHeadersMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'whitenoise.middleware.WhiteNoiseMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
@@ -283,3 +284,49 @@ if not DEBUG:
     SECURE_HSTS_PRELOAD = True
     SECURE_CONTENT_TYPE_NOSNIFF = True
     SECURE_REFERRER_POLICY = 'same-origin'
+
+# Cookies : jamais accessibles au JavaScript, restreints à une même origine.
+SESSION_COOKIE_HTTPONLY = True
+CSRF_COOKIE_HTTPONLY = True
+SESSION_COOKIE_SAMESITE = 'Lax'
+CSRF_COOKIE_SAMESITE = 'Lax'
+
+# Refus explicite de tout inline-iframe (défense en profondeur, en plus de la CSP frame-src).
+X_FRAME_OPTIONS = 'DENY'
+
+
+# ---------------------------------------------------------------------------
+# En-têtes de sécurité supplémentaires (ajoutés par SecurityHeadersMiddleware)
+# ---------------------------------------------------------------------------
+SECURITY_HEADERS = {
+    # Autorise l'utilisation de la page dans un même cadre uniquement.
+    'X-Frame-Options': 'DENY',
+    # Bloque la détection de type MIME par le navigateur.
+    'X-Content-Type-Options': 'nosniff',
+    # Protection XSS des anciens navigateurs.
+    'X-XSS-Protection': '1; mode=block',
+    # Restreint quelles fonctionnalités API les navigateurs exposent.
+    'Permissions-Policy': 'geolocation=(), microphone=(), camera=(), payment=(), usb=(), battery=()',
+    # Empêche le navigateur de deviner le sens (protection XSS en transparence).
+    'Cross-Origin-Opener-Policy': 'same-origin',
+    'Cross-Origin-Resource-Policy': 'same-origin',
+}
+
+# Sources autorisées pour la Content-Security-Policy.
+# `script-src` / `script-src-attr` reçoivent automatiquement le nonce
+# de la requête en plus des sources ci-dessous.
+CSP_SOURCES = {
+    'default-src': ["'self'"],
+    # Scripts : le nonce est injecté par le middleware ; Bootstrap chargé depuis jsDelivr.
+    'script-src': ["'self'", 'https://cdn.jsdelivr.net', 'https://cdnjs.cloudflare.com', 'https://fonts.googleapis.com'],
+    'script-src-attr': ["'none'"],
+    # Styles : Bootstrap/Font Awesome depuis CDN ; styles inline autorisés (tailwind-like inline styles du projet).
+    'style-src': ["'self'", "'unsafe-inline'", 'https://cdn.jsdelivr.net', 'https://cdnjs.cloudflare.com', 'https://fonts.googleapis.com'],
+    'font-src': ["'self'", 'data:', 'https://cdn.jsdelivr.net', 'https://cdnjs.cloudflare.com', 'https://fonts.gstatic.com'],
+    'img-src': ["'self'", 'data:', 'https://cdn.jsdelivr.net', 'https://cdnjs.cloudflare.com'],
+    'connect-src': ["'self'"],
+    'frame-src': ["'none'"],
+    'object-src': ["'none'"],
+    'base-uri': ["'self'"],
+    'form-action': ["'self'"],
+}

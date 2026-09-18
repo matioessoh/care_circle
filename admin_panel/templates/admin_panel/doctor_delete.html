@@ -1,22 +1,45 @@
 {% extends 'admin_panel/base_admin.html' %}
 {% load i18n %}
 
-{% block title %}{% trans "Supprimer le médecin" %}{% endblock %}
+{% block title %}{% if deactivate %}{% trans "Désactiver le compte médecin" %}{% else %}{% trans "Supprimer le médecin" %}{% endif %}{% endblock %}
 
 {% block admin_content %}
 <div class="row justify-content-center">
     <div class="col-md-6">
         <div class="card">
-            <div class="card-header bg-danger text-white"><h5 class="mb-0">{% trans "Confirmer la suppression" %}</h5></div>
+            <div class="card-header {% if deactivate %}bg-warning text-dark{% else %}bg-danger text-white{% endif %}">
+                <h5 class="mb-0">{% if deactivate %}<i class="fas fa-exclamation-triangle"></i> {% trans "Confirmer la désactivation du compte" %}{% else %}<i class="fas fa-trash"></i> {% trans "Confirmer la suppression du profil" %}{% endif %}</h5>
+            </div>
             <div class="card-body">
+                {% if deactivate %}
+                <p>{% trans "Voulez-vous vraiment désactiver le compte du Dr" %} <strong>{{ doctor.user.get_full_name|default:doctor.user.username }}</strong> ?</p>
+                <div class="mb-3">
+                    <span class="badge bg-success">{% trans "Médecin" %}</span>
+                    <span class="badge bg-secondary">@{{ doctor.user.username }}</span>
+                    <span class="badge bg-secondary">{{ doctor.user.email|default:'pas d\'e-mail' }}</span>
+                    <span class="badge bg-secondary">{{ doctor.specialty }}</span>
+                </div>
+                <ul class="small text-muted mb-3" style="list-style:disc;padding-left:1.2em;">
+                    <li>{% trans "Le compte utilisateur du médecin sera désactivé (is_active = False)." %}</li>
+                    <li>{% trans "Il ne pourra plus se connecter ni accéder à son tableau de bord médecin." %}</li>
+                    <li>{% trans "Toutes ses données seront conservées (RDV, créneaux, patients suivis)." %}</li>
+                    <li>{% trans "Vous pourrez réactiver son compte à tout moment." %}</li>
+                </ul>
+                {% else %}
                 <p>{% trans "Voulez-vous vraiment supprimer le profil médecin de" %} <strong>Dr {{ doctor.user.get_full_name|default:doctor.user.username }}</strong> ?</p>
                 <div class="alert alert-warning">
                     {% trans "Le compte utilisateur ne sera pas supprimé. Seul le profil médecin (et ses créneaux) sera retiré." %}
                 </div>
+                {% endif %}
+
                 <form method="post">
                     {% csrf_token %}
+                    {% if deactivate %}
+                    <button type="submit" class="btn btn-warning"><i class="fas fa-ban"></i> {% trans "Désactiver ce compte" %}</button>
+                    {% else %}
                     <button type="submit" class="btn btn-danger"><i class="fas fa-trash"></i> {% trans "Supprimer" %}</button>
-                    <a href="{% url 'admin_doctor_detail' doctor.id %}" class="btn btn-secondary">{% trans "Annuler" %}</a>
+                    {% endif %}
+                    <a href="{% url 'admin_doctors' %}" class="btn btn-secondary">{% trans "Annuler" %}</a>
                 </form>
             </div>
         </div>

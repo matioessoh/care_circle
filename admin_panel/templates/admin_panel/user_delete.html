@@ -1,0 +1,47 @@
+{% extends 'admin_panel/base_admin.html' %}
+{% load i18n %}
+
+{% block title %}{% trans "Désactiver le compte" %}{% endblock %}
+
+{% block admin_content %}
+<div class="row justify-content-center">
+    <div class="col-md-6">
+        <div class="card">
+            <div class="card-header bg-warning text-dark"><h5 class="mb-0"><i class="fas fa-exclamation-triangle"></i> {% trans "Confirmer la désactivation" %}</h5></div>
+            <div class="card-body">
+                <p>{% trans "Voulez-vous vraiment désactiver le compte de" %} <strong>{{ target_user.get_full_name|default:target_user.username }}</strong> ?</p>
+
+                <div class="mb-3">
+                    <span class="badge bg-secondary">{% if target_user.doctor_profile %}{% trans "Médecin" %}{% elif target_user.patient_profile %}{% trans "Patient" %}{% else %}{% trans "Utilisateur" %}{% endif %}</span>
+                    <span class="badge bg-secondary">@{{ target_user.username }}</span>
+                    <span class="badge bg-secondary">{{ target_user.email|default:'pas d\'e-mail' }}</span>
+                </div>
+
+                <ul class="small text-muted mb-3" style="list-style:disc;padding-left:1.2em;">
+                    <li>{% trans "Le compte sera désactivé (is_active = False)." %}</li>
+                    <li>{% trans "L'utilisateur ne pourra plus se connecter ni accéder à son tableau de bord." %}</li>
+                    <li>{% trans "Toutes ses données (RDV, journal de santé, posts, messages) seront conservées intactes." %}</li>
+                    <li>{% trans "Vous pourrez réactiver le compte à tout moment depuis la liste des utilisateurs." %}</li>
+                </ul>
+
+                <div class="alert alert-danger small py-2 mb-3">
+                    <i class="fas fa-ban"></i> {% trans "Aucune donnée ne sera supprimée. Cette action est réversible." %}
+                </div>
+
+                {% if target_user == user %}
+                <div class="alert alert-info small py-2 mb-3">
+                    <i class="fas fa-info-circle"></i> {% trans "Vous ne pouvez pas désactiver votre propre compte." %}
+                </div>
+                <a href="{% url 'admin_users' %}" class="btn btn-secondary">{% trans "Retour" %}</a>
+                {% else %}
+                <form method="post">
+                    {% csrf_token %}
+                    <button type="submit" class="btn btn-warning"><i class="fas fa-ban"></i> {% trans "Désactiver ce compte" %}</button>
+                    <a href="{% url 'admin_users' %}" class="btn btn-secondary">{% trans "Annuler" %}</a>
+                </form>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,71 @@
+{% extends 'admin_panel/base_admin.html' %}
+{% load i18n %}
+
+{% block title %}{% trans "Nouveau compte médecin" %}{% endblock %}
+
+{% block admin_content %}
+<div class="d-flex justify-content-between align-items-center mb-4">
+    <h3><i class="fas fa-user-plus"></i> {% trans "Créer un compte médecin" %}</h3>
+    <a href="{% url 'admin_doctors' %}" class="btn btn-outline-secondary"><i class="fas fa-arrow-left"></i> {% trans "Retour" %}</a>
+</div>
+
+<div class="row justify-content-center">
+    <div class="col-md-8">
+        {% if messages %}
+        <div class="mb-3">
+            {% for message in messages %}
+            <div class="alert alert-{{ message.tags|default:'danger' }} alert-dismissible fade show py-2 small" role="alert">
+                {{ message }}
+                <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+            </div>
+            {% endfor %}
+        </div>
+        {% endif %}
+
+        <div class="card">
+            <div class="card-header"><h5 class="mb-0">{% trans "Informations du médecin" %}</h5></div>
+            <div class="card-body">
+                <p class="text-muted small mb-3">
+                    <i class="fas fa-info-circle"></i>
+                    {% trans "Le compte est créé avec un identifiant et un mot de passe généré, puis ses identifiants sont envoyés par e-mail pour qu'il puisse se connecter et accéder directement à son tableau de bord." %}
+                </p>
+                <form method="post">
+                    {% csrf_token %}
+                    <div class="row">
+                        <div class="col-md-6 mb-3">
+                            <label class="form-label">{% trans "Prénom" %} <span class="text-danger">*</span></label>
+                            <input type="text" name="first_name" value="{{ initial.first_name|default:'' }}" class="form-control" required>
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <label class="form-label">{% trans "Nom" %} <span class="text-danger">*</span></label>
+                            <input type="text" name="last_name" value="{{ initial.last_name|default:'' }}" class="form-control" required>
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <label class="form-label">{% trans "Adresse e-mail" %} <span class="text-danger">*</span></label>
+                            <input type="email" name="email" value="{{ initial.email|default:'' }}" class="form-control" required>
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <label class="form-label">{% trans "Téléphone" %}</label>
+                            <input type="text" name="phone" value="{{ initial.phone|default:'' }}" class="form-control">
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <label class="form-label">{% trans "Spécialité" %} <span class="text-danger">*</span></label>
+                            <input type="text" name="specialty" value="{{ initial.specialty|default:'' }}" class="form-control" required placeholder="{% trans "Ex : Médecine générale" %}">
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <label class="form-label">{% trans "Numéro de licence" %}</label>
+                            <input type="text" name="license_number" value="{{ initial.license_number|default:'' }}" class="form-control">
+                        </div>
+                        <div class="col-12 mb-3">
+                            <label class="form-label">{% trans "Nom du cabinet" %}</label>
+                            <input type="text" name="clinic_name" value="{{ initial.clinic_name|default:'' }}" class="form-control">
+                        </div>
+                    </div>
+                    <button type="submit" class="btn btn-primary"><i class="fas fa-user-plus"></i> {% trans "Créer le compte et envoyer les identifiants" %}</button>
+                    <a href="{% url 'admin_doctors' %}" class="btn btn-secondary">{% trans "Annuler" %}</a>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

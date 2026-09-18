@@ -1,0 +1,76 @@
+{% extends 'admin_panel/base_admin.html' %}
+{% load i18n %}
+
+{% block title %}{% trans "Compte médecin créé" %}{% endblock %}
+
+{% block admin_content %}
+<div class="row justify-content-center">
+    <div class="col-md-7">
+        <div class="text-center mb-3">
+            <span class="ring-icon" style="width:64px;height:64px;font-size:26px;"><i class="fas fa-check-circle"></i></span>
+            <h3 class="mt-3">{% trans "Compte médecin créé" %}</h3>
+            <p class="text-muted">{% trans "Voici les identifiants à transmettre au médecin en dehors de la plateforme." %}</p>
+        </div>
+
+        {% if email_sent %}
+        <div class="alert alert-success py-2">
+            <i class="fas fa-envelope-open-text"></i> {% trans "Un e-mail avec ces identifiants a été envoyé au médecin." %}
+        </div>
+        {% else %}
+        <div class="alert alert-warning py-2">
+            <i class="fas fa-exclamation-triangle"></i>
+            {% trans "L'envoi automatique par e-mail n'est pas configuré. Transmettez ces identifiants au médecin par le canal de votre choix (WhatsApp, SMS, etc.)." %}
+        </div>
+        {% endif %}
+
+        <div class="card">
+            <div class="card-header"><h5 class="mb-0">{% trans "Identifiants de connexion" %}</h5></div>
+            <div class="card-body">
+                <dl class="row mb-0">
+                    <dt class="col-4 col-form-label">{% trans "Nom" %}</dt>
+                    <dd class="col-8">Dr {{ user.get_full_name|default:user.username }}</dd>
+                    <dt class="col-4 col-form-label">{% trans "Rôle" %}</dt>
+                    <dd class="col-8">{% trans "Médecin" %}</dd>
+                    <dt class="col-4 col-form-label">{% trans "Lien de connexion" %}</dt>
+                    <dd class="col-8"><a href="{% url 'login' %}" target="_blank">{{ request.scheme }}://{{ request.get_host }}{% url 'login' %}</a></dd>
+                    <dt class="col-4 col-form-label">{% trans "Identifiant" %}</dt>
+                    <dd class="col-8"><strong class="font-monospace" id="cc-username">{{ user.username }}</strong></dd>
+                    <dt class="col-4 col-form-label">{% trans "Mot de passe" %}</dt>
+                    <dd class="col-8"><strong class="font-monospace" id="cc-password">{{ password }}</strong></dd>
+                </dl>
+                <div class="alert alert-danger mt-3 py-2 small mb-2">
+                    <i class="fas fa-exclamation-circle"></i>
+                    {% trans "Ces informations ne seront plus affichées après cette page. Sauvegardez-les avant de continuer." %}
+                </div>
+                <button type="button" id="copy-creds" class="btn btn-outline-secondary btn-sm"><i class="fas fa-copy"></i> {% trans "Copier les identifiants" %}</button>
+            </div>
+        </div>
+
+        <div class="text-center mt-3">
+            <a href="{% url 'admin_doctors' %}" class="btn btn-primary"><i class="fas fa-arrow-left"></i> {% trans "Retour aux médecins" %}</a>
+        </div>
+    </div>
+</div>
+
+<script nonce="{{ request.csp_nonce }}">
+function copyCredentials() {
+    var u = document.getElementById('cc-username');
+    var p = document.getElementById('cc-password');
+    var url = window.location.origin + "{% url 'login' %}";
+    var text = "CareCircle - Identifiants médecin\nIdentifiant : " + u.textContent + "\nMot de passe : " + p.textContent + "\nLien : " + url;
+    if (navigator.clipboard) {
+        navigator.clipboard.writeText(text).then(function () { alert('Identifiants copiés.'); });
+    } else {
+        var ta = document.createElement('textarea');
+        ta.value = text;
+        document.body.appendChild(ta);
+        ta.select();
+        document.execCommand('copy');
+        document.body.removeChild(ta);
+        alert('Identifiants copiés.');
+    }
+}
+var btn = document.getElementById('copy-creds');
+if (btn) btn.addEventListener('click', copyCredentials);
+</script>
+{% endblock %}

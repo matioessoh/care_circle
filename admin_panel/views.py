@@ -3,6 +3,9 @@ from django.contrib.auth.decorators import user_passes_test
 from django.contrib.auth.models import User
 from django.contrib import messages
 from django.utils import timezone
+from django.utils.crypto import get_random_string
+from django.core.mail import send_mail
+from django.conf import settings
 from django.http import HttpResponse
 from datetime import date
 from django.db.models import Count, Q
@@ -95,13 +98,31 @@ def user_list(request):
 def user_toggle_active(request, user_id):
     user = get_object_or_404(User, id=user_id)
     if user == request.user:
-        messages.error(request, 'Vous ne pouvez pas désactiver votre propre compte.')
+        messages.error(request, 'Vous ne pouvez pas modifier votre propre compte.')
     else:
         user.is_active = not user.is_active
         user.save()
         state = 'activé' if user.is_active else 'désactivé'
         messages.success(request, f"Compte de {user.username} {state}.")
     return redirect('admin_users')
+
+
+@admin_required
+def user_deactivate(request, user_id):
+    """Page de confirmation avant la désactivation du compte d'un utilisateur (patient, médecin, etc.)."""
+    user = get_object_or_404(User, id=user_id)
+    if user == request.user:
+        messages.error(request, 'Vous ne pouvez pas désactiver votre propre compte.')
+        return redirect('admin_users')
+    if request.method == 'POST':
+        if not user.is_active:
+            messages.info(request, f"Le compte de {user.username} est déjà désactivé.")
+        else:
+            user.is_active = False
+            user.save()
+            messages.success(request, f"Compte de {user.username} désactivé. Il ne peut plus se connecter.")
+        return redirect('admin_users')
+    return render(request, 'admin_panel/user_delete.html', {'target_user': user})
 
 
 @admin_required
@@ -182,6 +203,104 @@ def doctor_create(request, user_id=None):
 
 
 @admin_required
+def doctor_account_create(request):
+    """Créer un compte complet pour un médecin : utilisateur + profil Docteur,
+    avec un mot de passe généré et envoyé par email."""
+    if request.method == 'POST':
+        first_name = request.POST.get('first_name', '').strip()
+        last_name = request.POST.get('last_name', '').strip()
+        email = request.POST.get('email', '').strip()
+        specialty = request.POST.get('specialty', '').strip()
+        phone = request.POST.get('phone', '').strip()
+        clinic_name = request.POST.get('clinic_name', '').strip()
+        license_number = request.POST.get('license_number', '').strip()
+
+        errors = []
+        if not email:
+            errors.append("L'adresse e-mail est obligatoire.")
+        elif User.objects.filter(email__iexact=email).exists():
+            errors.append("Un compte existe déjà avec cette adresse e-mail.")
+        if not first_name and not last_name:
+            errors.append("Le nom est obligatoire.")
+        if not specialty:
+            errors.append("La spécialité est obligatoire.")
+
+        if not errors:
+            # Username généré à partir du nom (plus un suffixe si nécessaire).
+            base = (first_name or last_name).lower().replace(' ', '_')[:12]
+            username = base
+            while User.objects.filter(username=username).exists():
+                username = f"{base}_{get_random_string(4).lower()}"
+
+            # Mot de passe aléatoire robuste (respecte les validateurs Django).
+            password = get_random_string(14)
+            while not any(c.isupper() for c in password) or not any(c.isdigit() for c in password):
+                password = get_random_string(14)
+
+            user = User.objects.create_user(
+                username=username,
+                email=email,
+                password=password,
+                first_name=first_name,
+                last_name=last_name,
+                is_active=True,
+            )
+            Doctor.objects.create(
+                user=user,
+                specialty=specialty,
+                license_number=license_number,
+                clinic_name=clinic_name,
+                phone=phone,
+                is_available=True,
+            )
+
+            # Envoi des identifiants par email.
+            email_sent = False
+            if settings.EMAIL_BACKEND.endswith('smtp.EmailBackend'):
+                try:
+                    send_mail(
+                        subject='Vos identifiants de connexion — CareCircle',
+                        message=(
+                            f"Bonjour Dr {first_name} {last_name},\n\n"
+                            "Votre compte médecin a été créé sur CareCircle.\n\n"
+                            f"Lien de connexion : https://care-circle-hazel.vercel.app/accounts/login/\n"
+                            f"Identifiant : {username}\n"
+                            f"Mot de passe : {password}\n\n"
+                            "Vous pouvez modifier votre mot de passe après la première connexion.\n"
+                            "L'équipe CareCircle."
+                        ),
+                        from_email=settings.DEFAULT_FROM_EMAIL,
+                        recipient_list=[email],
+                        fail_silently=False,
+                    )
+                    email_sent = True
+                except Exception:
+                    email_sent = False
+
+            return render(request, 'admin_panel/doctor_account_created.html', {
+                'user': user,
+                'password': password,
+                'email_sent': email_sent,
+            })
+
+        for err in errors:
+            messages.error(request, err)
+        return render(request, 'admin_panel/doctor_account_form.html', {
+            'initial': {
+                'first_name': first_name,
+                'last_name': last_name,
+                'email': email,
+                'specialty': specialty,
+                'phone': phone,
+                'clinic_name': clinic_name,
+                'license_number': license_number,
+            },
+        })
+
+    return render(request, 'admin_panel/doctor_account_form.html', {})
+
+
+@admin_required
 def doctor_edit(request, doctor_id):
     doctor = get_object_or_404(Doctor, id=doctor_id)
     if request.method == 'POST':
@@ -224,17 +343,36 @@ def doctor_delete(request, doctor_id):
 
 @admin_required
 def doctor_toggle_active(request, doctor_id):
-    """Activer/désactiver le compte utilisateur du médecin."""
+    """Réactiver le compte utilisateur du médecin (désactivation via page de confirmation)."""
     doctor = get_object_or_404(Doctor, id=doctor_id)
     user = doctor.user
     if user == request.user:
         messages.error(request, 'Vous ne pouvez pas désactiver votre propre compte.')
+    elif user.is_active:
+        return redirect('admin_doctor_deactivate', doctor_id=doctor.id)
     else:
-        user.is_active = not user.is_active
+        user.is_active = True
         user.save()
-        state = 'réactivé' if user.is_active else 'désactivé'
-        messages.success(request, f"Compte du Dr {user.get_full_name() or user.username} {state}.")
+        messages.success(request, f"Compte du Dr {user.get_full_name() or user.username} réactivé.")
     return redirect('admin_doctors')
+
+
+@admin_required
+def doctor_deactivate(request, doctor_id):
+    """Page de confirmation avant la désactivation du compte du médecin."""
+    doctor = get_object_or_404(Doctor, id=doctor_id)
+    user = doctor.user
+    if user == request.user:
+        messages.error(request, 'Vous ne pouvez pas désactiver votre propre compte.')
+    elif request.method == 'POST':
+        if not user.is_active:
+            messages.info(request, f"Le compte de Dr {user.get_full_name() or user.username} est déjà désactivé.")
+        else:
+            user.is_active = False
+            user.save()
+            messages.success(request, f"Compte du Dr {user.get_full_name() or user.username} désactivé. Il ne peut plus se connecter.")
+        return redirect('admin_doctors')
+    return render(request, 'admin_panel/doctor_delete.html', {'doctor': doctor, 'deactivate': True})
 
 
 @admin_required

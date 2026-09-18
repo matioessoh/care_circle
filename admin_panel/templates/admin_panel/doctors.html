@@ -6,7 +6,10 @@
 {% block admin_content %}
 <div class="d-flex justify-content-between align-items-center mb-4">
     <h3><i class="fas fa-user-md"></i> {% trans "Gestion des médecins" %}</h3>
-    <a href="{% url 'admin_doctor_create' %}" class="btn btn-primary"><i class="fas fa-plus"></i> {% trans "Nouveau médecin" %}</a>
+    <div>
+        <a href="{% url 'admin_doctor_create' %}" class="btn btn-outline-primary me-1"><i class="fas fa-user-md"></i> {% trans "Profil médecin" %}</a>
+        <a href="{% url 'admin_doctor_account_create' %}" class="btn btn-primary"><i class="fas fa-user-plus"></i> {% trans "Nouveau compte médecin" %}</a>
+    </div>
 </div>
 
 <form method="get" class="row g-2 mb-3">
@@ -65,14 +68,14 @@
                                 {% endif %}
                             </form>
                             {% if doctor.user.id != request.user.id %}
+                            {% if doctor.user.is_active %}
+                            <a href="{% url 'admin_doctor_deactivate' doctor.id %}" class="btn btn-sm btn-outline-danger" title="{% trans "Désactiver le compte" %}"><i class="fas fa-ban"></i></a>
+                            {% else %}
                             <form method="post" action="{% url 'admin_doctor_toggle_active' doctor.id %}" class="d-inline">
                                 {% csrf_token %}
-                                {% if doctor.user.is_active %}
-                                <button class="btn btn-sm btn-outline-danger" title="{% trans "Désactiver le compte" %}"><i class="fas fa-ban"></i></button>
-                                {% else %}
                                 <button class="btn btn-sm btn-outline-success" title="{% trans "Réactiver" %}"><i class="fas fa-check-circle"></i></button>
-                                {% endif %}
                             </form>
+                            {% endif %}
                             {% endif %}
                         </td>
                     </tr>

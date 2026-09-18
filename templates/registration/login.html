@@ -37,7 +37,7 @@
                 <div class="position-relative">
                     <i class="fas fa-lock position-absolute text-muted" style="left:14px;top:13px;"></i>
                     <input type="password" name="password" id="password" class="cc-input" style="padding-left:40px;" required>
-                    <button type="button" class="btn p-0 position-absolute" style="right:12px;top:10px;color:var(--text-secondary);" onclick="togglePw()"><i class="fas fa-eye" id="pwIcon"></i></button>
+                    <button type="button" id="pwToggle" class="btn p-0 position-absolute" style="right:12px;top:10px;color:var(--text-secondary);"><i class="fas fa-eye" id="pwIcon"></i></button>
                 </div>
             </div>
             <button type="submit" class="btn-cc btn-cc-primary w-100" style="justify-content:center;margin-top:6px;">{% trans "Se connecter" %}</button>
@@ -54,12 +54,14 @@
 {% endblock %}
 
 {% block extra_js %}
-<script>
+<script nonce="{{ request.csp_nonce }}">
 function togglePw() {
     const p = document.getElementById('password');
     const ic = document.getElementById('pwIcon');
     if (p.type === 'password') { p.type = 'text'; ic.className = 'fas fa-eye-slash'; }
     else { p.type = 'password'; ic.className = 'fas fa-eye'; }
 }
+const pwToggle = document.getElementById('pwToggle');
+if (pwToggle) pwToggle.addEventListener('click', togglePw);
 </script>
 {% endblock %}
