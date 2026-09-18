@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+{% load i18n %}
+
+{% block title %}{% trans "Conditions d'utilisation" %} - CareCircle{% endblock %}
+
+{% block content %}
+<div class="mx-auto py-4" style="max-width:860px;">
+    <div class="text-center mb-4">
+        <span class="kicker">{% trans "CONDITIONS" %}</span>
+        <h1 class="page-title">{% trans "Conditions d'utilisation" %}</h1>
+        <p class="reassurance mx-auto" style="max-width:620px;">{% trans "En utilisant CareCircle, vous acceptez les conditions suivantes." %}</p>
+    </div>
+
+    <div class="cc-card mb-4">
+        <h5 class="fw-bold mb-2">1. {% trans "Utilisation de la plateforme" %}</h5>
+        <p class="mb-0 text-muted-2">{% trans "CareCircle met à disposition des outils de suivi, d'information et d'entraide. La plateforme doit être utilisée de manière respectueuse, dans le cadre des lois en vigueur." %}</p>
+    </div>
+    <div class="cc-card mb-4">
+        <h5 class="fw-bold mb-2">2. {% trans "Compte et responsabilité" %}</h5>
+        <p class="mb-0 text-muted-2">{% trans "Vous êtes responsable de la confidentialité de vos identifiants et de l'activité de votre compte. Un pseudonyme est recommandé pour préserver votre anonymat." %}</p>
+    </div>
+    <div class="cc-card mb-4">
+        <h5 class="fw-bold mb-2">3. {% trans "Contenu publié" %}</h5>
+        <p class="mb-0 text-muted-2">{% trans "Les messages et contenus publiés doivent rester respectueux. Tout contenu offensant, discriminatoire ou contraire à la loi peut être modéré ou supprimé." %}</p>
+    </div>
+    <div class="cc-card mb-4">
+        <h5 class="fw-bold mb-2">4. {% trans "Absence d'avis médical" %}</h5>
+        <p class="mb-0 text-muted-2">{% trans "Les informations diffusées ne remplacent ni un avis médical ni une consultation. En cas d'urgence, contactez les services d'urgence de votre pays." %}</p>
+    </div>
+    <div class="cc-card mb-4">
+        <h5 class="fw-bold mb-2">5. {% trans "Modification des conditions" %}</h5>
+        <p class="mb-0 text-muted-2">{% trans "Les présentes conditions peuvent être mises à jour. Les utilisateurs en seront informés par la plateforme." %}</p>
+    </div>
+</div>
+{% endblock %}

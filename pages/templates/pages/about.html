@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+{% load i18n %}
+
+{% block title %}{% trans "À propos" %} - CareCircle{% endblock %}
+
+{% block content %}
+<div class="mx-auto py-4" style="max-width:860px;">
+    <div class="text-center mb-4">
+        <span class="kicker">{% trans "À PROPOS" %}</span>
+        <h1 class="page-title">{% trans "Qui sommes-nous ?" %}</h1>
+        <p class="reassurance mx-auto" style="max-width:620px;">{% trans "CareCircle est une plateforme d'information, de suivi et d'entraide dédiée aux personnes vivant avec le VIH, le diabète ou la drépanocytose, ainsi qu'à leurs proches." %}</p>
+    </div>
+
+    <div class="cc-card mb-4">
+        <h5 class="fw-bold mb-2"><i class="fas fa-bullseye" style="color:var(--blue-accent);"></i> {% trans "Notre mission" %}</h5>
+        <p class="mb-0 text-muted-2">{% trans "Permettre à chacun de vivre mieux avec sa condition, en offrant des outils de suivi de santé, un accès à des ressources fiables et le soutien d'une communauté bienveillante, le tout dans le strict respect de la confidentialité." %}</p>
+    </div>
+
+    <div class="cc-card mb-4">
+        <h5 class="fw-bold mb-2"><i class="fas fa-heart" style="color:var(--blue-accent);"></i> {% trans "Nos valeurs" %}</h5>
+        <ul class="mb-0" style="color:var(--text-secondary);">
+            <li>{% trans "Confidentialité : vos données de santé ne sont jamais partagées sans votre accord." %}</li>
+            <li>{% trans "Bienveillance : une communauté respectueuse où l'on échange sous pseudonyme." %}</li>
+            <li>{% trans "Fiabilité : des informations validées et des professionnels référencés." %}</li>
+            <li>{% trans "Accessibilité : une plateforme simple, pensée pour tous." %}</li>
+        </ul>
+    </div>
+
+    <div class="cc-card mb-4">
+        <div class="reassurance mb-0" style="font-size:13px;">
+            <i class="fas fa-shield-alt me-1" style="color:var(--blue-accent);"></i>
+            {% trans "CareCircle ne remplace ni un avis médical, ni une consultation. En cas d'urgence, contactez les services d'urgence de votre pays." %}
+        </div>
+    </div>
+</div>
+{% endblock %}

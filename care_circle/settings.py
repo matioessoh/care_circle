@@ -64,8 +64,17 @@ DEBUG = _env_bool('DJANGO_DEBUG', default=False)
 ALLOWED_HOSTS = [
     h.strip() for h in os.environ.get(
         'DJANGO_ALLOWED_HOSTS',
-        'localhost,127.0.0.1',
+        'localhost,127.0.0.1,.vercel.app',
     ).split(',') if h.strip()
+]
+
+# Origines approuvées pour la protection CSRF (formulaires POST en HTTPS).
+# Nécessaire sur Vercel (https://*.vercel.app) et pour un domaine personnalisé.
+CSRF_TRUSTED_ORIGINS = [
+    o.strip() for o in os.environ.get(
+        'DJANGO_CSRF_TRUSTED_ORIGINS',
+        'https://*.vercel.app',
+    ).split(',') if o.strip()
 ]
 
 
@@ -87,10 +96,12 @@ INSTALLED_APPS = [
     'audit',
     'resources',
     'notifications',
+    'pages',
 ]
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.locale.LocaleMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -125,6 +136,11 @@ WSGI_APPLICATION = 'care_circle.wsgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/6.1/ref/settings/#databases
+#
+# En production (Vercel + Neon) : la variable d'environnement DATABASE_URL
+# fournie par Vercel/Neon contient une URL PostgreSQL complète, par ex. :
+#   postgresql://user:password@host.neon.tech/dbname?sslmode=require
+# En développement local, on retombe sur SQLite (db.sqlite3).
 
 DATABASES = {
     'default': {
@@ -132,6 +148,21 @@ DATABASES = {
         'NAME': BASE_DIR / 'db.sqlite3',
     }
 }
+
+_database_url = os.environ.get('DATABASE_URL', '').strip()
+if _database_url:
+    import urllib.parse
+
+    _parsed = urllib.parse.urlparse(_database_url)
+    DATABASES['default'] = {
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': _parsed.path.lstrip('/'),
+        'USER': urllib.parse.unquote(_parsed.username or ''),
+        'PASSWORD': urllib.parse.unquote(_parsed.password or ''),
+        'HOST': _parsed.hostname,
+        'PORT': _parsed.port or '5432',
+        'CONN_MAX_AGE': 60,
+    }
 
 
 # Password validation
@@ -167,7 +198,7 @@ LOCALE_PATHS = [
     BASE_DIR / 'locale',
 ]
 
-TIME_ZONE = 'Africa/Abidjan'
+TIME_ZONE = 'Africa/Douala'
 
 LOGIN_REDIRECT_URL = 'home'
 
@@ -183,9 +214,25 @@ USE_TZ = True
 
 STATIC_URL = 'static/'
 
+# Répertoire cible de `collectstatic` — requis par Vercel pour servir les
+# fichiers statiques depuis le CDN après déploiement.
+STATIC_ROOT = BASE_DIR / 'staticfiles'
+
 STATICFILES_DIRS = [
     BASE_DIR / 'static',
 ]
+
+# Compression/caching des fichiers statiques en production (WhiteNoise).
+# Désactivé localement pour garder le comportement DEBUG simple.
+WHITENOISE_USE_FINDERS = DEBUG
+STORAGES = {
+    'default': {
+        'BACKEND': 'django.core.files.storage.FileSystemStorage',
+    },
+    'staticfiles': {
+        'BACKEND': 'whitenoise.storage.CompressedManifestStaticFilesStorage' if not DEBUG else 'django.contrib.staticfiles.storage.StaticFilesStorage',
+    },
+}
 
 MEDIA_URL = 'media/'
 MEDIA_ROOT = BASE_DIR / 'media'

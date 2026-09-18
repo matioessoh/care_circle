@@ -20,9 +20,17 @@ msgstr "twice a day"
 msgid "AUJOURD'HUI"
 msgstr "TODAY"
 
+# pages\templates\pages\terms.html
+msgid "Absence d'avis médical"
+msgstr "No medical advice"
+
 # patients\templates\patients\connections.html
 msgid "Accepter"
 msgstr "Accept"
+
+# pages\templates\pages\about.html
+msgid "Accessibilité : une plateforme simple, pensée pour tous."
+msgstr "Accessibility: a simple platform, designed for everyone."
 
 # templates\home.html
 msgid "Accueil"
@@ -56,7 +64,7 @@ msgstr "Administrator"
 msgid "Administration"
 msgstr "Administration"
 
-# patients\templates\patients\edit_profile.html
+# pages\templates\pages\contact.html; patients\templates\patients\edit_profile.html
 msgid "Adresse"
 msgstr "Address"
 
@@ -336,6 +344,10 @@ msgstr "WELCOME TO THE CIRCLE"
 msgid "Bien"
 msgstr "Good"
 
+# pages\templates\pages\about.html
+msgid "Bienveillance : une communauté respectueuse où l'on échange sous pseudonyme."
+msgstr "Kindness: a respectful community where you exchange under a pseudonym."
+
 # appointments\templates\appointments\doctor_dashboard.html
 msgid "Bonjour"
 msgstr "Hello"
@@ -347,6 +359,18 @@ msgstr "COMMUNITY"
 # admin_panel\templates\admin_panel\dashboard.html
 msgid "COMPTES"
 msgstr "ACCOUNTS"
+
+# pages\templates\pages\terms.html
+msgid "CONDITIONS"
+msgstr "TERMS"
+
+# pages\templates\pages\privacy.html
+msgid "CONFIDENTIALITÉ"
+msgstr "PRIVACY"
+
+# pages\templates\pages\contact.html
+msgid "CONTACT"
+msgstr "CONTACT"
 
 # admin_panel\templates\admin_panel\doctors.html; appointments\templates\appointments\create_for_patient.html; appointments\templates\appointments\doctor_appointments.html
 msgid "Cabinet"
@@ -360,13 +384,25 @@ msgstr "Clinic:"
 msgid "Cabinet, clinique..."
 msgstr "Practice, clinic..."
 
+# pages\templates\pages\about.html; templates\base.html
+msgid "CareCircle est une plateforme d'information, de suivi et d'entraide dédiée aux personnes vivant avec le VIH, le diabète ou la drépanocytose, ainsi qu'à leurs proches."
+msgstr "CareCircle is an information, tracking and support platform dedicated to people living with HIV, diabetes or sickle cell disease, as well as their loved ones."
+
+# templates\home.html
+msgid "CareCircle est une plateforme d’information, de suivi et d’entraide dédiée aux personnes vivant avec le VIH, le diabète ou la drépanocytose, ainsi qu’à leurs proches aidants. Échangez sous pseudonyme, accédez à des ressources fiables et bénéficiez du soutien d’une communauté bienveillante, dans le respect de votre confidentialité. CareCircle accompagne votre quotidien en vous donnant l'acces a des ressources fiables et entrer en contact avec des professionnels referencés sur notre plateforme"
+msgstr "CareCircle is an information, tracking and support platform dedicated to people living with HIV, diabetes or sickle cell disease, as well as their caregivers. Exchange under a pseudonym, access reliable resources and benefit from the support of a caring community, with respect for your confidentiality. CareCircle supports your daily life by giving you access to reliable resources and connecting you with professionals listed on our platform."
+
+# pages\templates\pages\terms.html
+msgid "CareCircle met à disposition des outils de suivi, d'information et d'entraide. La plateforme doit être utilisée de manière respectueuse, dans le cadre des lois en vigueur."
+msgstr "CareCircle provides tracking, information and support tools. The platform must be used respectfully and in accordance with applicable law."
+
+# pages\templates\pages\about.html
+msgid "CareCircle ne remplace ni un avis médical, ni une consultation. En cas d'urgence, contactez les services d'urgence de votre pays."
+msgstr "CareCircle is not a substitute for medical advice or a consultation. In case of emergency, contact your country's emergency services."
+
 # templates\home.html
 msgid "CareCircle protège vos informations de santé et votre vie privée. Vos données ne sont jamais partagées sans votre accord."
 msgstr "CareCircle protects your health information and your privacy. Your data is never shared without your consent."
-
-# templates\home.html
-msgid "CareCircle réunit des patients, des proches et des professionnels de santé autour d'un accompagnement humain, connecté et confidentiel."
-msgstr "CareCircle brings together patients, families and healthcare professionals around human, connected and confidential support."
 
 # admin_panel\templates\admin_panel\forum_posts.html; forum\templates\forum\post_create.html; forum\templates\forum\post_edit.html
 msgid "Catégorie"
@@ -452,9 +488,13 @@ msgstr "Comment by"
 msgid "Commentaires"
 msgstr "Comments"
 
-# forum\templates\forum\post_list.html; patients\templates\patients\members.html; templates\base.html
+# forum\templates\forum\post_list.html; pages\templates\pages\contact.html; patients\templates\patients\members.html; templates\base.html
 msgid "Communauté"
 msgstr "Community"
+
+# templates\base.html
+msgid "Communauté bienveillante"
+msgstr "Caring community"
 
 # admin_panel\templates\admin_panel\doctors.html
 msgid "Compte"
@@ -464,13 +504,21 @@ msgstr "Account"
 msgid "Compte :"
 msgstr "Account:"
 
+# pages\templates\pages\terms.html
+msgid "Compte et responsabilité"
+msgstr "Account and responsibility"
+
 # admin_panel\templates\admin_panel\doctor_form.html
 msgid "Compte utilisateur"
 msgstr "User account"
 
+# pages\templates\pages\terms.html; templates\base.html
+msgid "Conditions d'utilisation"
+msgstr "Terms of use"
+
 # patients\templates\patients\edit_profile.html
-msgid "Conditions médicales"
-msgstr "Medical conditions"
+msgid "Conditions médicales (Pathologies)"
+msgstr "Medical conditions (Pathologies)"
 
 # appointments\templates\appointments\patient_medical_record.html; patients\templates\patients\profile.html
 msgid "Conditions médicales :"
@@ -479,6 +527,10 @@ msgstr "Medical conditions:"
 # patients\templates\patients\profile.html
 msgid "Confidentialité"
 msgstr "Confidentiality"
+
+# pages\templates\pages\about.html
+msgid "Confidentialité : vos données de santé ne sont jamais partagées sans votre accord."
+msgstr "Confidentiality: your health data is never shared without your consent."
 
 # appointments\templates\appointments\patient_medical_record.html
 msgid "Confidentialité médicale"
@@ -560,6 +612,10 @@ msgstr "Scheduled consultations."
 msgid "Consulter le journal de santé"
 msgstr "View the health journal"
 
+# pages\templates\pages\contact.html; pages\templates\pages\privacy.html; templates\base.html
+msgid "Contact"
+msgstr "Contact"
+
 # patients\templates\patients\edit_profile.html
 msgid "Contact d'urgence"
 msgstr "Emergency contact"
@@ -579,6 +635,10 @@ msgstr "Inappropriate content"
 # forum\templates\forum\post_detail.html
 msgid "Contenu offensant"
 msgstr "Offensive content"
+
+# pages\templates\pages\terms.html
+msgid "Contenu publié"
+msgstr "Published content"
 
 # admin_panel\templates\admin_panel\report_detail.html; admin_panel\templates\admin_panel\reports.html
 msgid "Contenu signalé"
@@ -724,6 +784,10 @@ msgstr "Availability:"
 msgid "Disponible"
 msgstr "Available"
 
+# pages\templates\pages\privacy.html
+msgid "Données collectées"
+msgstr "Data collected"
+
 # health_journal\templates\health_journal\medication_create.html
 msgid "Dosage"
 msgstr "Dosage"
@@ -735,6 +799,10 @@ msgstr "Medical record"
 # appointments\templates\appointments\doctor_view_journal.html; health_journal\templates\health_journal\entry_detail.html
 msgid "Douleur :"
 msgstr "Pain:"
+
+# pages\templates\pages\contact.html
+msgid "Du lundi au vendredi, 8h - 18h."
+msgstr "Monday to Friday, 8am - 6pm."
 
 # appointments\templates\appointments\detail.html
 msgid "Durée :"
@@ -808,6 +876,10 @@ msgstr "Awaiting your validation."
 msgid "En cas d'anomalie, consultez rapidement un professionnel de santé."
 msgstr "If anything looks abnormal, consult a health professional promptly."
 
+# pages\templates\pages\terms.html
+msgid "En utilisant CareCircle, vous acceptez les conditions suivantes."
+msgstr "By using CareCircle, you agree to the following terms."
+
 # admin_panel\templates\admin_panel\category_form.html; admin_panel\templates\admin_panel\doctor_form.html; appointments\templates\appointments\edit.html; forum\templates\forum\post_edit.html; health_journal\templates\health_journal\entry_create.html; health_journal\templates\health_journal\entry_edit.html; health_journal\templates\health_journal\medication_create.html; health_journal\templates\health_journal\vitals_create.html; health_journal\templates\health_journal\vitals_list.html; patients\templates\patients\edit_profile.html
 msgid "Enregistrer"
 msgstr "Save"
@@ -879,6 +951,10 @@ msgstr "Export"
 # patients\templates\patients\edit_profile.html
 msgid "Femme"
 msgstr "Woman"
+
+# pages\templates\pages\about.html
+msgid "Fiabilité : des informations validées et des professionnels référencés."
+msgstr "Reliability: validated information and registered professionals."
 
 # resources\templates\resources\article_list.html
 msgid "Fiches info"
@@ -1056,7 +1132,7 @@ msgstr "Sign up"
 msgid "Inscription :"
 msgstr "Registration:"
 
-# appointments\templates\appointments\doctor_view_journal.html; appointments\templates\appointments\patient_medical_record.html; health_journal\templates\health_journal\entry_create.html; health_journal\templates\health_journal\entry_delete.html; health_journal\templates\health_journal\entry_detail.html; health_journal\templates\health_journal\entry_edit.html; health_journal\templates\health_journal\entry_list.html; health_journal\templates\health_journal\medication_create.html; health_journal\templates\health_journal\medication_list.html; health_journal\templates\health_journal\vitals_create.html; health_journal\templates\health_journal\vitals_list.html
+# appointments\templates\appointments\doctor_view_journal.html; appointments\templates\appointments\patient_medical_record.html; health_journal\templates\health_journal\entry_create.html; health_journal\templates\health_journal\entry_delete.html; health_journal\templates\health_journal\entry_detail.html; health_journal\templates\health_journal\entry_edit.html; health_journal\templates\health_journal\entry_list.html; health_journal\templates\health_journal\medication_create.html; health_journal\templates\health_journal\medication_list.html; health_journal\templates\health_journal\vitals_create.html; health_journal\templates\health_journal\vitals_list.html; templates\base.html
 msgid "Journal de santé"
 msgstr "Health journal"
 
@@ -1079,6 +1155,10 @@ msgstr "This platform does not replace medical advice or a consultation. In case
 # appointments\templates\appointments\doctor_detail.html
 msgid "La prise de rendez-vous respecte strictement la confidentialité de vos informations de santé."
 msgstr "Booking an appointment strictly respects the confidentiality of your health information."
+
+# pages\templates\pages\privacy.html
+msgid "La protection de vos données de santé est au cœur de CareCircle."
+msgstr "Protecting your health data is at the heart of CareCircle."
 
 # forum\templates\forum\search.html
 msgid "Lancez votre recherche"
@@ -1104,6 +1184,10 @@ msgstr "The associated articles will be moved to \"Uncategorized\"."
 msgid "Les informations ci-dessous sont strictement confidentielles. Elles ne doivent être consultées que dans le cadre d'une prise en charge médicale de ce patient. Toute divulgation est interdite."
 msgstr "The information below is strictly confidential. It must only be consulted as part of this patient's medical care. Any disclosure is prohibited."
 
+# pages\templates\pages\terms.html
+msgid "Les informations diffusées ne remplacent ni un avis médical ni une consultation. En cas d'urgence, contactez les services d'urgence de votre pays."
+msgstr "The information provided is not a substitute for medical advice or a consultation. In case of emergency, contact your country's emergency services."
+
 # patients\templates\patients\profile.html
 msgid "Les informations médicales de {{ profile_user.username }} restent privées et ne sont pas affichées sur le profil public."
 msgstr "Medical information of {{ profile_user.username }} remains private and is not displayed on the public profile."
@@ -1111,6 +1195,14 @@ msgstr "Medical information of {{ profile_user.username }} remains private and i
 # forum\templates\forum\post_create.html
 msgid "Les informations partagées ici ne remplacent pas un avis médical professionnel."
 msgstr "The information shared here does not replace professional medical advice."
+
+# pages\templates\pages\terms.html
+msgid "Les messages et contenus publiés doivent rester respectueux. Tout contenu offensant, discriminatoire ou contraire à la loi peut être modéré ou supprimé."
+msgstr "Messages and published content must remain respectful. Any offensive, discriminatory or unlawful content may be moderated or removed."
+
+# pages\templates\pages\terms.html
+msgid "Les présentes conditions peuvent être mises à jour. Les utilisateurs en seront informés par la plateforme."
+msgstr "These terms may be updated. Users will be informed through the platform."
 
 # resources\templates\resources\faq.html
 msgid "Les réponses aux questions les plus posées."
@@ -1224,6 +1316,10 @@ msgstr "Messaging"
 msgid "Messagerie privée"
 msgstr "Private messaging"
 
+# templates\base.html
+msgid "Messagerie sécurisée"
+msgstr "Secure messaging"
+
 # messaging\templates\messaging\inbox.html; templates\base.html
 msgid "Messages"
 msgstr "Messages"
@@ -1239,6 +1335,10 @@ msgstr "Update your post."
 # health_journal\templates\health_journal\entry_edit.html
 msgid "Mettez à jour votre suivi."
 msgstr "Update your tracking."
+
+# pages\templates\pages\terms.html
+msgid "Modification des conditions"
+msgstr "Changes to the terms"
 
 # admin_panel\templates\admin_panel\doctor_detail.html; appointments\templates\appointments\detail.html; forum\templates\forum\post_edit.html; health_journal\templates\health_journal\entry_detail.html; patients\templates\patients\profile.html
 msgid "Modifier"
@@ -1380,6 +1480,10 @@ msgstr "Number of days (repeat)"
 msgid "Non publié"
 msgstr "Unpublished"
 
+# templates\base.html
+msgid "Nos fonctionnalités"
+msgstr "Our features"
+
 # appointments\templates\appointments\doctor_list.html
 msgid "Nos médecins"
 msgstr "Our doctors"
@@ -1387,6 +1491,10 @@ msgstr "Our doctors"
 # appointments\templates\appointments\doctor_list.html
 msgid "Nos médecins."
 msgstr "Our doctors."
+
+# pages\templates\pages\about.html
+msgid "Nos valeurs"
+msgstr "Our values"
 
 # appointments\templates\appointments\create.html; appointments\templates\appointments\create_for_patient.html; appointments\templates\appointments\edit.html; health_journal\templates\health_journal\entry_create.html; health_journal\templates\health_journal\entry_detail.html; health_journal\templates\health_journal\entry_edit.html; health_journal\templates\health_journal\medication_create.html; health_journal\templates\health_journal\vitals_create.html
 msgid "Notes"
@@ -1415,6 +1523,18 @@ msgstr "Note how you feel today, in complete confidentiality."
 # notifications\templates\notifications\notification_list.html
 msgid "Notifications"
 msgstr "Notifications"
+
+# pages\templates\pages\about.html
+msgid "Notre mission"
+msgstr "Our mission"
+
+# pages\templates\pages\privacy.html
+msgid "Nous collectons uniquement les informations que vous saisissez volontairement : profil, journal de santé, rendez-vous et messages. Vous y accédez sous pseudonyme."
+msgstr "We only collect the information you voluntarily enter: profile, health journal, appointments and messages. You access them under a pseudonym."
+
+# pages\templates\pages\contact.html
+msgid "Nous contacter"
+msgstr "Contact us"
 
 # messaging\templates\messaging\inbox.html
 msgid "Nouveau message"
@@ -1484,6 +1604,14 @@ msgstr "PROFESSIONALS"
 msgid "Page"
 msgstr "Page"
 
+# pages\templates\pages\contact.html
+msgid "Par e-mail"
+msgstr "By email"
+
+# pages\templates\pages\contact.html
+msgid "Par téléphone"
+msgstr "By phone"
+
 # forum\templates\forum\post_create.html
 msgid "Partage communautaire"
 msgstr "Community sharing"
@@ -1544,6 +1672,10 @@ msgstr "Patients"
 msgid "Pensez à prendre vos médicaments actifs aujourd'hui comme prescrit par votre médecin."
 msgstr "Remember to take your active medications today as prescribed by your doctor."
 
+# pages\templates\pages\about.html
+msgid "Permettre à chacun de vivre mieux avec sa condition, en offrant des outils de suivi de santé, un accès à des ressources fiables et le soutien d'une communauté bienveillante, le tout dans le strict respect de la confidentialité."
+msgstr "Enable everyone to live better with their condition by offering health tracking tools, access to reliable resources and the support of a caring community, all with strict respect for confidentiality."
+
 # appointments\templates\appointments\list.html
 msgid "Planification"
 msgstr "Scheduling"
@@ -1564,6 +1696,10 @@ msgstr "Weight (kg)"
 msgid "Poids :"
 msgstr "Weight:"
 
+# pages\templates\pages\privacy.html; templates\base.html
+msgid "Politique de confidentialité"
+msgstr "Privacy policy"
+
 # appointments\templates\appointments\create.html
 msgid "Pour choisir un créneau disponible,"
 msgstr "To choose an available slot,"
@@ -1571,6 +1707,10 @@ msgstr "To choose an available slot,"
 # resources\templates\resources\article_list.html
 msgid "Pour mieux comprendre, prévenir et agir."
 msgstr "To better understand, prevent and act."
+
+# pages\templates\pages\privacy.html
+msgid "Pour toute question relative à vos données, écrivez-nous à support@carecircle.app."
+msgstr "For any question regarding your data, write to us at support@carecircle.app."
 
 # appointments\templates\appointments\list.html
 msgid "Prenez rendez-vous avec un médecin en quelques clics."
@@ -1656,6 +1796,10 @@ msgstr "Published"
 msgid "Questions fréquentes"
 msgstr "Frequently asked questions"
 
+# pages\templates\pages\about.html
+msgid "Qui sommes-nous ?"
+msgstr "Who are we?"
+
 # admin_panel\templates\admin_panel\dashboard.html; admin_panel\templates\admin_panel\doctors.html
 msgid "RDV"
 msgstr "Appointments"
@@ -1720,6 +1864,10 @@ msgstr "Dismissed"
 msgid "Rejoignez des discussions bienveillantes autour de sujets qui vous ressemblent."
 msgstr "Join kind and caring discussions on topics that matter to you."
 
+# pages\templates\pages\contact.html
+msgid "Rejoignez les discussions et échangez avec d'autres membres."
+msgstr "Join the discussions and exchange with other members."
+
 # templates\registration\register.html
 msgid "Rejoignez un cercle de soins bienveillant."
 msgstr "Join a caring circle of support."
@@ -1739,6 +1887,10 @@ msgstr "Appointments today"
 # appointments\templates\appointments\doctor_dashboard.html
 msgid "Rendez-vous du jour"
 msgstr "Today's appointments"
+
+# templates\base.html
+msgid "Rendez-vous médicaux"
+msgstr "Medical appointments"
 
 # admin_panel\templates\admin_panel\dashboard.html
 msgid "Rendez-vous par statut"
@@ -1768,6 +1920,10 @@ msgstr "Always follow the dosage prescribed by your doctor."
 msgid "Ressources & FAQ"
 msgstr "Resources & FAQ"
 
+# templates\base.html
+msgid "Ressources santé fiables"
+msgstr "Trusted health resources"
+
 # resources\templates\resources\resources_home.html
 msgid "Ressources santé."
 msgstr "Health resources."
@@ -1795,6 +1951,10 @@ msgstr "Written by"
 # resources\templates\resources\article_detail.html
 msgid "Rédigé par l'équipe Care Circle"
 msgstr "Written by the Care Circle team"
+
+# pages\templates\pages\contact.html
+msgid "Réponse sous 48h ouvrées."
+msgstr "Reply within 48 business hours."
 
 # appointments\templates\appointments\add_slot.html
 msgid "Répétition"
@@ -1992,6 +2152,10 @@ msgstr "Symptoms"
 msgid "Symptômes :"
 msgstr "Symptoms:"
 
+# pages\templates\pages\privacy.html
+msgid "Sécurité"
+msgstr "Security"
+
 # admin_panel\templates\admin_panel\doctor_form.html
 msgid "Sélectionner un utilisateur"
 msgstr "Select a user"
@@ -2035,6 +2199,10 @@ msgstr "Title"
 # admin_panel\templates\admin_panel\forum_comments.html; admin_panel\templates\admin_panel\forum_posts.html; appointments\templates\appointments\list.html; forum\templates\forum\post_list.html
 msgid "Tous"
 msgstr "All"
+
+# templates\base.html
+msgid "Tous droits réservés."
+msgstr "All rights reserved."
 
 # admin_panel\templates\admin_panel\users.html
 msgid "Tous les rôles"
@@ -2124,6 +2292,10 @@ msgstr "Daily, simple and confidential tracking."
 msgid "Une autre question ? Écrivez-nous via la messagerie ou consultez votre médecin."
 msgstr "Another question? Write to us via messaging or consult your doctor."
 
+# pages\templates\pages\contact.html
+msgid "Une question, un besoin d'aide ou une suggestion ? Notre équipe vous répond."
+msgstr "A question, a need for help or a suggestion? Our team will answer you."
+
 # admin_panel\templates\admin_panel\login_audit.html; admin_panel\templates\admin_panel\users.html
 msgid "Utilisateur"
 msgstr "User"
@@ -2131,6 +2303,14 @@ msgstr "User"
 # admin_panel\templates\admin_panel\dashboard.html
 msgid "Utilisateurs inscrits"
 msgstr "Registered users"
+
+# pages\templates\pages\terms.html
+msgid "Utilisation de la plateforme"
+msgstr "Use of the platform"
+
+# pages\templates\pages\privacy.html
+msgid "Utilisation des données"
+msgstr "Use of data"
 
 # appointments\templates\appointments\doctor_dashboard.html
 msgid "VOTRE PORTEFEUILLE"
@@ -2140,7 +2320,7 @@ msgstr "YOUR PRACTICE"
 msgid "Visible"
 msgstr "Visible"
 
-# templates\home.html
+# pages\templates\pages\contact.html; templates\home.html
 msgid "Visiter la communauté"
 msgstr "Visit the community"
 
@@ -2192,6 +2372,14 @@ msgstr "Your data remains confidential"
 msgid "Vos données restent confidentielles."
 msgstr "Your data remains confidential."
 
+# pages\templates\pages\privacy.html
+msgid "Vos données servent exclusivement au fonctionnement de la plateforme (suivi, rendez-vous, messagerie). Elles ne sont jamais vendues ni partagées sans votre accord."
+msgstr "Your data is used exclusively for the operation of the platform (tracking, appointments, messaging). It is never sold or shared without your consent."
+
+# pages\templates\pages\privacy.html
+msgid "Vos droits"
+msgstr "Your rights"
+
 # appointments\templates\appointments\create.html
 msgid "Vos informations de santé restent strictement confidentielles et réservées à votre médecin."
 msgstr "Your health information remains strictly confidential and reserved for your doctor."
@@ -2199,6 +2387,10 @@ msgstr "Your health information remains strictly confidential and reserved for y
 # health_journal\templates\health_journal\entry_create.html
 msgid "Vos informations restent privées et à votre disposition."
 msgstr "Your information stays private and at your disposal."
+
+# pages\templates\pages\privacy.html
+msgid "Vos informations sont sécurisées et accessibles uniquement par vous et, le cas échéant, les professionnels de santé autorisés dans le cadre de vos soins."
+msgstr "Your information is secure and accessible only by you and, where applicable, the health professionals authorized as part of your care."
 
 # appointments\templates\appointments\doctor_dashboard.html
 msgid "Vos patients apparaîtront ici après le premier rendez-vous."
@@ -2280,9 +2472,17 @@ msgstr "You must have an appointment (past, confirmed or pending) with this pati
 msgid "Vous n'êtes pas seul·e"
 msgstr "You are not alone"
 
+# pages\templates\pages\privacy.html
+msgid "Vous pouvez consulter, corriger ou supprimer vos données à tout moment depuis votre profil, ou nous contacter à support@carecircle.app."
+msgstr "You can view, correct or delete your data at any time from your profile, or contact us at support@carecircle.app."
+
 # forum\templates\forum\post_list.html
 msgid "Vous pouvez démarrer la conversation en publiant le premier article."
 msgstr "You can start the conversation by publishing the first post."
+
+# pages\templates\pages\terms.html
+msgid "Vous êtes responsable de la confidentialité de vos identifiants et de l'activité de votre compte. Un pseudonyme est recommandé pour préserver votre anonymat."
+msgstr "You are responsible for the confidentiality of your credentials and your account activity. A pseudonym is recommended to preserve your anonymity."
 
 # templates\base.html
 msgid "Vue d'ensemble"
@@ -2384,6 +2584,10 @@ msgstr "view / manage"
 msgid "À CONFIRMER"
 msgstr "TO CONFIRM"
 
+# pages\templates\pages\about.html
+msgid "À PROPOS"
+msgstr "ABOUT"
+
 # appointments\templates\appointments\doctor_dashboard.html
 msgid "À confirmer"
 msgstr "To confirm"
@@ -2395,6 +2599,10 @@ msgstr "Also read"
 # health_journal\templates\health_journal\dashboard.html
 msgid "À prendre"
 msgstr "To take"
+
+# pages\templates\pages\about.html; templates\base.html
+msgid "À propos"
+msgstr "About"
 
 # appointments\templates\appointments\patient_medical_record.html
 msgid "Âge :"

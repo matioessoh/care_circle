@@ -30,6 +30,7 @@ urlpatterns = [
     path('admin-panel/', include('admin_panel.urls')),
     path('ressources/', include('resources.urls')),
     path('notifications/', include('notifications.urls')),
+    path('pages/', include('pages.urls')),
     path('accounts/', include('django.contrib.auth.urls')),
 ]
 

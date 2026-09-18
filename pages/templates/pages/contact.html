@@ -1,0 +1,44 @@
+{% extends 'base.html' %}
+{% load i18n %}
+
+{% block title %}{% trans "Contact" %} - CareCircle{% endblock %}
+
+{% block content %}
+<div class="mx-auto py-4" style="max-width:860px;">
+    <div class="text-center mb-4">
+        <span class="kicker">{% trans "CONTACT" %}</span>
+        <h1 class="page-title">{% trans "Nous contacter" %}</h1>
+        <p class="reassurance mx-auto" style="max-width:620px;">{% trans "Une question, un besoin d'aide ou une suggestion ? Notre équipe vous répond." %}</p>
+    </div>
+
+    <div class="row g-4">
+        <div class="col-md-6">
+            <div class="cc-card h-100">
+                <h5 class="fw-bold mb-3"><i class="fas fa-envelope" style="color:var(--blue-accent);"></i> {% trans "Par e-mail" %}</h5>
+                <p class="mb-1"><a href="mailto:support@carecircle.app" style="color:var(--blue-accent);">support@carecircle.app</a></p>
+                <p class="small text-muted-2 mb-0">{% trans "Réponse sous 48h ouvrées." %}</p>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="cc-card h-100">
+                <h5 class="fw-bold mb-3"><i class="fas fa-phone" style="color:var(--blue-accent);"></i> {% trans "Par téléphone" %}</h5>
+                <p class="mb-1">+237 658 77 80 81</p>
+                <p class="small text-muted-2 mb-0">{% trans "Du lundi au vendredi, 8h - 18h." %}</p>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="cc-card h-100">
+                <h5 class="fw-bold mb-3"><i class="fas fa-map-marker-alt" style="color:var(--blue-accent);"></i> {% trans "Adresse" %}</h5>
+                <p class="mb-0 text-muted-2">Douala, Cameroun</p>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="cc-card h-100">
+                <h5 class="fw-bold mb-3"><i class="fas fa-users" style="color:var(--blue-accent);"></i> {% trans "Communauté" %}</h5>
+                <p class="mb-0 text-muted-2">{% trans "Rejoignez les discussions et échangez avec d'autres membres." %}</p>
+                <a href="{% url 'post_list' %}" class="card-action">{% trans "Visiter la communauté" %} <i class="fas fa-arrow-right"></i></a>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

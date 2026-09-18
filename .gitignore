@@ -8,6 +8,8 @@ venv/
 # Environnement
 .env
 .env.production
+.env.local
+.vercel/
 
 # Django
 db.sqlite3
@@ -19,3 +21,6 @@ staticfiles/
 .DS_Store
 Thumbs.db
 *.log
+
+.vercel
+.env*

@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+{% load i18n %}
+
+{% block title %}{% trans "Politique de confidentialité" %} - CareCircle{% endblock %}
+
+{% block content %}
+<div class="mx-auto py-4" style="max-width:860px;">
+    <div class="text-center mb-4">
+        <span class="kicker">{% trans "CONFIDENTIALITÉ" %}</span>
+        <h1 class="page-title">{% trans "Politique de confidentialité" %}</h1>
+        <p class="reassurance mx-auto" style="max-width:620px;">{% trans "La protection de vos données de santé est au cœur de CareCircle." %}</p>
+    </div>
+
+    <div class="cc-card mb-4">
+        <h5 class="fw-bold mb-2">1. {% trans "Données collectées" %}</h5>
+        <p class="mb-0 text-muted-2">{% trans "Nous collectons uniquement les informations que vous saisissez volontairement : profil, journal de santé, rendez-vous et messages. Vous y accédez sous pseudonyme." %}</p>
+    </div>
+    <div class="cc-card mb-4">
+        <h5 class="fw-bold mb-2">2. {% trans "Utilisation des données" %}</h5>
+        <p class="mb-0 text-muted-2">{% trans "Vos données servent exclusivement au fonctionnement de la plateforme (suivi, rendez-vous, messagerie). Elles ne sont jamais vendues ni partagées sans votre accord." %}</p>
+    </div>
+    <div class="cc-card mb-4">
+        <h5 class="fw-bold mb-2">3. {% trans "Sécurité" %}</h5>
+        <p class="mb-0 text-muted-2">{% trans "Vos informations sont sécurisées et accessibles uniquement par vous et, le cas échéant, les professionnels de santé autorisés dans le cadre de vos soins." %}</p>
+    </div>
+    <div class="cc-card mb-4">
+        <h5 class="fw-bold mb-2">4. {% trans "Vos droits" %}</h5>
+        <p class="mb-0 text-muted-2">{% trans "Vous pouvez consulter, corriger ou supprimer vos données à tout moment depuis votre profil, ou nous contacter à support@carecircle.app." %}</p>
+    </div>
+    <div class="cc-card mb-4">
+        <h5 class="fw-bold mb-2">5. {% trans "Contact" %}</h5>
+        <p class="mb-0 text-muted-2">{% trans "Pour toute question relative à vos données, écrivez-nous à support@carecircle.app." %}</p>
+    </div>
+</div>
+{% endblock %}
