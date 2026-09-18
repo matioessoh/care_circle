@@ -1,4 +1,5 @@
 from datetime import date, timedelta
+import logging
 
 from django.core.management.base import BaseCommand
 from django.core.mail import send_mail
@@ -6,6 +7,9 @@ from django.conf import settings
 
 from appointments.models import Appointment
 from health_journal.models import Medication
+
+
+logger = logging.getLogger(__name__)
 
 
 class Command(BaseCommand):
@@ -43,7 +47,7 @@ class Command(BaseCommand):
                 )
                 sent += 1
             except Exception:
-                pass
+                logger.exception("Échec envoi rappel RDV %s à %s", app.pk, app.patient.email)
 
         # Rappels de médicaments actifs
         for med in Medication.objects.filter(is_active=True).select_related('user'):
@@ -67,6 +71,6 @@ class Command(BaseCommand):
                 )
                 sent += 1
             except Exception:
-                pass
+                logger.exception("Échec envoi rappel médication %s à %s", med.pk, med.user.email)
 
         self.stdout.write(self.style.SUCCESS(f"{sent} email(s) de rappel envoyé(s)."))

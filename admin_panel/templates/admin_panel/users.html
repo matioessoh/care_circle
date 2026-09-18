@@ -6,6 +6,7 @@
 {% block admin_content %}
 <div class="d-flex justify-content-between align-items-center mb-4">
     <h3><i class="fas fa-users"></i> {% trans "Gestion des utilisateurs" %}</h3>
+    <a href="{% url 'admin_doctor_account_create' %}" class="btn btn-primary"><i class="fas fa-user-plus"></i> {% trans "Ajouter un médecin" %}</a>
 </div>
 
 <form method="get" class="row g-2 mb-3">

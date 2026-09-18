@@ -7,7 +7,12 @@ from django.contrib.auth.decorators import user_passes_test
 from django.core.mail import send_mail
 from django.conf import settings
 from datetime import date, timedelta
+import logging
+
 from .models import Appointment, Doctor, AvailabilitySlot
+
+
+logger = logging.getLogger(__name__)
 
 
 def _get_doctor(user):
@@ -129,7 +134,7 @@ def appointment_update_status(request, pk):
                         fail_silently=True,
                     )
                 except Exception:
-                    pass
+                    logger.exception("Échec envoi notification patient RDV %s", appointment.pk)
     return redirect('appointment_detail', pk=pk)
 
 
@@ -247,7 +252,7 @@ def appointment_create(request):
                     fail_silently=True,
                 )
             except Exception:
-                pass
+                logger.exception("Échec envoi notification médecin RDV %s", pk)
         messages.success(request, 'Rendez-vous créé avec succès.')
         return redirect('appointment_list')
     doctors = Doctor.objects.filter(is_available=True).exclude(user__is_superuser=True).exclude(user__is_staff=True).select_related('user')
@@ -298,7 +303,7 @@ def appointment_create_for_patient(request):
                     fail_silently=True,
                 )
             except Exception:
-                pass
+                logger.exception("Échec envoi notification patient RDV programmé %s", pk)
         messages.success(request, 'Rendez-vous programmé pour le patient.')
         return redirect('appointment_list')
     patients = (User.objects
