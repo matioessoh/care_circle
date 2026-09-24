@@ -9,6 +9,9 @@ def user_role(request):
             role = 'doctor'
         else:
             role = 'patient'
+    public_booking_pages = {'appointment_create', 'appointment_create_anonymous'}
+    if request.resolver_match and request.resolver_match.url_name in public_booking_pages:
+        role = 'patient' if user.is_authenticated else 'guest'
     return {
         'user_role': role,
         'is_doctor_role': role == 'doctor',
