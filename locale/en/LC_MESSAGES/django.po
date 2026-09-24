@@ -12,6 +12,10 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
+# appointments\templates\appointments\create_anonymous.html
+msgid "+237 6XX XX XX XX"
+msgstr ""
+
 # health_journal\templates\health_journal\medication_create.html
 msgid "2 fois par jour"
 msgstr "twice a day"
@@ -43,6 +47,14 @@ msgstr "Restricted access to medical data"
 # appointments\templates\appointments\patient_medical_record.html
 msgid "Accès restreint"
 msgstr "Restricted access"
+
+# forum\templates\forum\community_list.html
+msgid "Accès réservé"
+msgstr ""
+
+# forum\templates\forum\community_list.html; templates\home.html
+msgid "Accéder au forum"
+msgstr ""
 
 # admin_panel\templates\admin_panel\doctor_detail.html; admin_panel\templates\admin_panel\doctors.html; admin_panel\templates\admin_panel\users.html; health_journal\templates\health_journal\medication_list.html
 msgid "Actif"
@@ -80,7 +92,7 @@ msgstr "IP address"
 msgid "Adresse du cabinet"
 msgstr "Clinic address"
 
-# templates\registration\register.html
+# admin_panel\templates\admin_panel\doctor_account_form.html; templates\registration\register.html
 msgid "Adresse e-mail"
 msgstr "Email address"
 
@@ -103,6 +115,10 @@ msgstr "Add"
 # appointments\templates\appointments\add_slot.html; appointments\templates\appointments\slots.html
 msgid "Ajouter des créneaux"
 msgstr "Add slots"
+
+# admin_panel\templates\admin_panel\users.html
+msgid "Ajouter un médecin"
+msgstr ""
 
 # health_journal\templates\health_journal\medication_create.html; health_journal\templates\health_journal\medication_list.html
 msgid "Ajouter un médicament"
@@ -128,7 +144,7 @@ msgstr "Allergies"
 msgid "Allergies :"
 msgstr "Allergies:"
 
-# admin_panel\templates\admin_panel\category_delete.html; admin_panel\templates\admin_panel\category_form.html; admin_panel\templates\admin_panel\doctor_delete.html; admin_panel\templates\admin_panel\doctor_form.html; appointments\templates\appointments\add_slot.html; appointments\templates\appointments\create.html; appointments\templates\appointments\create_for_patient.html; appointments\templates\appointments\detail.html; appointments\templates\appointments\edit.html; forum\templates\forum\post_create.html; forum\templates\forum\post_delete.html; forum\templates\forum\post_edit.html; health_journal\templates\health_journal\entry_create.html; health_journal\templates\health_journal\entry_delete.html; health_journal\templates\health_journal\entry_edit.html; health_journal\templates\health_journal\medication_create.html; health_journal\templates\health_journal\vitals_create.html; patients\templates\patients\edit_profile.html
+# admin_panel\templates\admin_panel\category_delete.html; admin_panel\templates\admin_panel\category_form.html; admin_panel\templates\admin_panel\doctor_account_form.html; admin_panel\templates\admin_panel\doctor_delete.html; admin_panel\templates\admin_panel\doctor_form.html; admin_panel\templates\admin_panel\user_delete.html; appointments\templates\appointments\add_slot.html; appointments\templates\appointments\create.html; appointments\templates\appointments\create_for_patient.html; appointments\templates\appointments\create_patient_account.html; appointments\templates\appointments\detail.html; appointments\templates\appointments\edit.html; forum\templates\forum\community_post_create.html; forum\templates\forum\post_create.html; forum\templates\forum\post_delete.html; forum\templates\forum\post_edit.html; health_journal\templates\health_journal\entry_create.html; health_journal\templates\health_journal\entry_delete.html; health_journal\templates\health_journal\entry_edit.html; health_journal\templates\health_journal\medication_create.html; health_journal\templates\health_journal\vitals_create.html; patients\templates\patients\edit_profile.html
 msgid "Annuler"
 msgstr "Cancel"
 
@@ -139,6 +155,14 @@ msgstr "Cancelled"
 # appointments\templates\appointments\list.html
 msgid "Annulés"
 msgstr "Cancelled"
+
+# appointments\templates\appointments\doctor_detail.html
+msgid "Appeler"
+msgstr ""
+
+# appointments\templates\appointments\doctor_dashboard.html
+msgid "Après une consultation, créez le compte de ces patients et transmettez-leur leurs identifiants."
+msgstr ""
 
 # admin_panel\templates\admin_panel\forum_comments.html
 msgid "Article"
@@ -163,6 +187,10 @@ msgstr "Community articles"
 # forum\templates\forum\search.html
 msgid "Articles, membres et médecins."
 msgstr "Posts, members and doctors."
+
+# forum\templates\forum\community_detail.html
+msgid "Aucun article dans ce forum"
+msgstr ""
 
 # forum\templates\forum\post_list.html
 msgid "Aucun article pour le moment"
@@ -211,6 +239,10 @@ msgstr "No active medications."
 # health_journal\templates\health_journal\medication_list.html
 msgid "Aucun médicament enregistré"
 msgstr "No recorded medications"
+
+# appointments\templates\appointments\doctor_detail.html
+msgid "Aucun numéro de téléphone. Il sera affiché ici dès que le médecin l'aura renseigné."
+msgstr ""
 
 # appointments\templates\appointments\doctor_dashboard.html
 msgid "Aucun patient pour le moment"
@@ -272,6 +304,14 @@ msgstr "None"
 msgid "Aucune catégorie."
 msgstr "No categories."
 
+# forum\templates\forum\community_list.html
+msgid "Aucune communauté pour le moment"
+msgstr ""
+
+# appointments\templates\appointments\create_patient_account.html
+msgid "Aucune communauté pour le moment. Les communautés sont créées par l'administration."
+msgstr ""
+
 # admin_panel\templates\admin_panel\login_audit.html
 msgid "Aucune connexion enregistrée"
 msgstr "No recorded connections"
@@ -295,6 +335,10 @@ msgstr "No pending appointment requests."
 # patients\templates\patients\connections.html
 msgid "Aucune demande."
 msgstr "No requests."
+
+# admin_panel\templates\admin_panel\user_delete.html
+msgid "Aucune donnée ne sera supprimée. Cette action est réversible."
+msgstr ""
 
 # appointments\templates\appointments\doctor_view_journal.html
 msgid "Aucune entrée dans le journal."
@@ -348,11 +392,15 @@ msgstr "Good"
 msgid "Bienveillance : une communauté respectueuse où l'on échange sous pseudonyme."
 msgstr "Kindness: a respectful community where you exchange under a pseudonym."
 
+# appointments\templates\appointments\patient_set_password.html
+msgid "Bienvenue sur votre espace patient"
+msgstr ""
+
 # appointments\templates\appointments\doctor_dashboard.html
 msgid "Bonjour"
 msgstr "Hello"
 
-# templates\home.html
+# forum\templates\forum\community_detail.html; forum\templates\forum\community_list.html; templates\home.html
 msgid "COMMUNAUTÉ"
 msgstr "COMMUNITY"
 
@@ -379,6 +427,10 @@ msgstr "Practice"
 # admin_panel\templates\admin_panel\doctor_detail.html
 msgid "Cabinet :"
 msgstr "Clinic:"
+
+# appointments\templates\appointments\create_anonymous.html
+msgid "Cabinet, Téléconsultation, Domicile..."
+msgstr ""
 
 # appointments\templates\appointments\create.html
 msgid "Cabinet, clinique..."
@@ -412,6 +464,14 @@ msgstr "Category"
 msgid "Catégories du forum"
 msgstr "Forum categories"
 
+# appointments\templates\appointments\patient_set_password_invalid.html
+msgid "Ce lien d'activation n'est plus valide : il a expiré (24 h) ou a déjà été utilisé pour choisir un mot de passe."
+msgstr ""
+
+# appointments\templates\appointments\patient_set_password.html
+msgid "Ce lien est à usage unique. Vous serez connecté automatiquement après avoir choisi votre mot de passe."
+msgstr ""
+
 # appointments\templates\appointments\doctor_detail.html
 msgid "Ce médecin n'a pas de créneau ouvert pour le moment."
 msgstr "This doctor has no open slots at the moment."
@@ -419,6 +479,10 @@ msgstr "This doctor has no open slots at the moment."
 # appointments\templates\appointments\doctor_view_journal.html
 msgid "Ce patient a explicitement autorisé le partage de son journal de santé avec les médecins qui le prennent en charge."
 msgstr "This patient has explicitly authorized sharing their health journal with the doctors treating them."
+
+# appointments\templates\appointments\patient_account_created.html
+msgid "Ce patient avait déjà un compte. Le rendez-vous y a été rattaché."
+msgstr ""
 
 # appointments\templates\appointments\patient_medical_record.html
 msgid "Ce patient n'a pas encore autorisé le partage de son dossier médical avec les médecins. Le profil médical détaillé et le journal de santé restent confidentiels."
@@ -440,6 +504,10 @@ msgstr "Centralize and track your treatments."
 msgid "Ces fiches ne remplacent pas un avis médical professionnel."
 msgstr "These factsheets do not replace professional medical advice."
 
+# admin_panel\templates\admin_panel\doctor_account_created.html
+msgid "Ces informations ne seront plus affichées après cette page. Sauvegardez-les avant de continuer."
+msgstr ""
+
 # patients\templates\patients\profile.html
 msgid "Ces informations restent strictement confidentielles et visibles uniquement par vous."
 msgstr "This information remains strictly confidential and visible only to you."
@@ -452,9 +520,21 @@ msgstr "This information remains strictly confidential."
 msgid "Cette action est définitive."
 msgstr "This action is permanent."
 
+# forum\templates\forum\community_locked.html
+msgid "Cette communauté est réservée aux patients inscrits par leur médecin. Demandez à votre médecin de vous y ajouter à l'issue d'une consultation."
+msgstr ""
+
 # forum\templates\forum\search.html
 msgid "Chercher"
 msgstr "Search"
+
+# appointments\templates\appointments\patient_set_password.html
+msgid "Choisir mon mot de passe"
+msgstr ""
+
+# appointments\templates\appointments\patient_set_password.html
+msgid "Choisissez votre mot de passe pour activer votre compte et accéder à votre tableau de bord."
+msgstr ""
 
 # health_journal\templates\health_journal\dashboard.html
 msgid "Commencez votre suivi en quelques secondes."
@@ -496,6 +576,18 @@ msgstr "Community"
 msgid "Communauté bienveillante"
 msgstr "Caring community"
 
+# forum\templates\forum\community_list.html; templates\base.html
+msgid "Communautés"
+msgstr ""
+
+# appointments\templates\appointments\patient_account_created.html
+msgid "Communautés / forums d'accès"
+msgstr ""
+
+# forum\templates\forum\community_list.html
+msgid "Communautés thérapeutiques"
+msgstr ""
+
 # admin_panel\templates\admin_panel\doctors.html
 msgid "Compte"
 msgstr "Account"
@@ -508,9 +600,17 @@ msgstr "Account:"
 msgid "Compte et responsabilité"
 msgstr "Account and responsibility"
 
+# admin_panel\templates\admin_panel\doctor_account_created.html
+msgid "Compte médecin créé"
+msgstr ""
+
 # admin_panel\templates\admin_panel\doctor_form.html
 msgid "Compte utilisateur"
 msgstr "User account"
+
+# appointments\templates\appointments\create_patient_account.html
+msgid "Compte-rendu de consultation"
+msgstr ""
 
 # pages\templates\pages\terms.html; templates\base.html
 msgid "Conditions d'utilisation"
@@ -544,9 +644,21 @@ msgstr "Medical confidentiality: this data is strictly reserved for the care of 
 msgid "Confirmer"
 msgstr "Confirm"
 
-# admin_panel\templates\admin_panel\category_delete.html; admin_panel\templates\admin_panel\doctor_delete.html; forum\templates\forum\post_delete.html; health_journal\templates\health_journal\entry_delete.html
+# admin_panel\templates\admin_panel\user_delete.html
+msgid "Confirmer la désactivation"
+msgstr ""
+
+# admin_panel\templates\admin_panel\doctor_delete.html
+msgid "Confirmer la désactivation du compte"
+msgstr ""
+
+# admin_panel\templates\admin_panel\category_delete.html; forum\templates\forum\post_delete.html; health_journal\templates\health_journal\entry_delete.html
 msgid "Confirmer la suppression"
 msgstr "Confirm deletion"
+
+# admin_panel\templates\admin_panel\doctor_delete.html
+msgid "Confirmer la suppression du profil"
+msgstr ""
 
 # templates\registration\register.html
 msgid "Confirmer le mot de passe"
@@ -555,6 +667,10 @@ msgstr "Confirm password"
 # appointments\templates\appointments\doctor_detail.html
 msgid "Confirmer le rendez-vous"
 msgstr "Confirm the appointment"
+
+# appointments\templates\appointments\patient_set_password.html
+msgid "Confirmez le mot de passe"
+msgstr ""
 
 # admin_panel\templates\admin_panel\dashboard.html; appointments\templates\appointments\detail.html; appointments\templates\appointments\doctor_appointments.html; appointments\templates\appointments\doctor_dashboard.html; appointments\templates\appointments\edit.html; appointments\templates\appointments\list.html; appointments\templates\appointments\patient_medical_record.html
 msgid "Confirmé"
@@ -624,7 +740,11 @@ msgstr "Emergency contact"
 msgid "Contact d'urgence :"
 msgstr "Emergency contact:"
 
-# forum\templates\forum\post_create.html; forum\templates\forum\post_edit.html
+# appointments\templates\appointments\doctor_detail.html
+msgid "Contact privé"
+msgstr ""
+
+# forum\templates\forum\community_post_create.html; forum\templates\forum\post_create.html; forum\templates\forum\post_edit.html
 msgid "Contenu"
 msgstr "Content"
 
@@ -652,9 +772,29 @@ msgstr "Content deleted."
 msgid "Conversation"
 msgstr "Conversation"
 
+# admin_panel\templates\admin_panel\doctor_account_created.html
+msgid "Copier les identifiants"
+msgstr ""
+
 # admin_panel\templates\admin_panel\doctor_form.html
 msgid "Créer"
 msgstr "Create"
+
+# appointments\templates\appointments\doctor_dashboard.html
+msgid "Créer le compte"
+msgstr ""
+
+# appointments\templates\appointments\create_patient_account.html
+msgid "Créer le compte et envoyer le lien de connexion"
+msgstr ""
+
+# admin_panel\templates\admin_panel\doctor_account_form.html
+msgid "Créer le compte et envoyer les identifiants"
+msgstr ""
+
+# appointments\templates\appointments\create_patient_account.html
+msgid "Créer le compte patient"
+msgstr ""
 
 # appointments\templates\appointments\create.html
 msgid "Créer le rendez-vous"
@@ -672,9 +812,17 @@ msgstr "Create my first entry"
 msgid "Créer un compte"
 msgstr "Create an account"
 
+# admin_panel\templates\admin_panel\doctor_account_form.html
+msgid "Créer un compte médecin"
+msgstr ""
+
 # health_journal\templates\health_journal\entry_list.html
 msgid "Créer une entrée"
 msgstr "Create an entry"
+
+# appointments\templates\appointments\create_anonymous.html
+msgid "Créneau disponible"
+msgstr ""
 
 # appointments\templates\appointments\doctor_dashboard.html
 msgid "Créneaux"
@@ -688,7 +836,7 @@ msgstr "Availability slots"
 msgid "Créneaux disponibles"
 msgstr "Available slots"
 
-# admin_panel\templates\admin_panel\forum_comments.html; admin_panel\templates\admin_panel\forum_posts.html; admin_panel\templates\admin_panel\login_audit.html; admin_panel\templates\admin_panel\reports.html; appointments\templates\appointments\create.html; appointments\templates\appointments\create_for_patient.html; appointments\templates\appointments\doctor_appointments.html; appointments\templates\appointments\edit.html; appointments\templates\appointments\slots.html; health_journal\templates\health_journal\entry_create.html; health_journal\templates\health_journal\entry_edit.html
+# admin_panel\templates\admin_panel\forum_comments.html; admin_panel\templates\admin_panel\forum_posts.html; admin_panel\templates\admin_panel\login_audit.html; admin_panel\templates\admin_panel\reports.html; appointments\templates\appointments\create.html; appointments\templates\appointments\create_anonymous.html; appointments\templates\appointments\create_for_patient.html; appointments\templates\appointments\doctor_appointments.html; appointments\templates\appointments\edit.html; appointments\templates\appointments\slots.html; health_journal\templates\health_journal\entry_create.html; health_journal\templates\health_journal\entry_edit.html
 msgid "Date"
 msgstr "Date"
 
@@ -760,7 +908,7 @@ msgstr "Abnormal values warrant a medical consultation."
 msgid "Description"
 msgstr "Description"
 
-# appointments\templates\appointments\doctor_detail.html; forum\templates\forum\post_detail.html
+# appointments\templates\appointments\create_anonymous.html; appointments\templates\appointments\doctor_detail.html; forum\templates\forum\post_detail.html
 msgid "Description (optionnel)"
 msgstr "Description (optional)"
 
@@ -820,6 +968,10 @@ msgstr "Sign out"
 msgid "Découvrir la communauté"
 msgstr "Discover the community"
 
+# appointments\templates\appointments\patient_set_password.html
+msgid "Définir mon mot de passe & me connecter"
+msgstr ""
+
 # messaging\templates\messaging\inbox.html
 msgid "Démarrer une conversation"
 msgstr "Start a conversation"
@@ -828,13 +980,21 @@ msgstr "Start a conversation"
 msgid "Démarrez la conversation !"
 msgstr "Start the conversation!"
 
-# admin_panel\templates\admin_panel\user_detail.html; admin_panel\templates\admin_panel\users.html
+# admin_panel\templates\admin_panel\user_detail.html
 msgid "Désactiver"
 msgstr "Deactivate"
 
-# admin_panel\templates\admin_panel\doctors.html
+# admin_panel\templates\admin_panel\doctor_delete.html; admin_panel\templates\admin_panel\user_delete.html
+msgid "Désactiver ce compte"
+msgstr ""
+
+# admin_panel\templates\admin_panel\doctors.html; admin_panel\templates\admin_panel\user_delete.html; admin_panel\templates\admin_panel\users.html
 msgid "Désactiver le compte"
 msgstr "Deactivate account"
+
+# admin_panel\templates\admin_panel\doctor_delete.html
+msgid "Désactiver le compte médecin"
+msgstr ""
 
 # admin_panel\templates\admin_panel\doctor_detail.html; admin_panel\templates\admin_panel\doctors.html; admin_panel\templates\admin_panel\users.html
 msgid "Désactivé"
@@ -856,7 +1016,7 @@ msgstr "ENTRIES"
 msgid "ESPACE ADMIN"
 msgstr "ADMIN AREA"
 
-# admin_panel\templates\admin_panel\users.html
+# admin_panel\templates\admin_panel\users.html; appointments\templates\appointments\create_anonymous.html; appointments\templates\appointments\create_patient_account.html; appointments\templates\appointments\patient_account_created.html
 msgid "Email"
 msgstr "Email"
 
@@ -924,7 +1084,11 @@ msgstr "Send"
 msgid "Envoyer le signalement"
 msgstr "Send the report"
 
-# forum\templates\forum\post_delete.html; forum\templates\forum\post_edit.html; forum\templates\forum\post_list.html
+# appointments\templates\appointments\create_anonymous.html
+msgid "Envoyer ma demande de rendez-vous"
+msgstr ""
+
+# forum\templates\forum\community_list.html; forum\templates\forum\post_delete.html; forum\templates\forum\post_edit.html; forum\templates\forum\post_list.html
 msgid "Espace communautaire"
 msgstr "Community space"
 
@@ -932,7 +1096,7 @@ msgstr "Community space"
 msgid "Espace d'information"
 msgstr "Information area"
 
-# appointments\templates\appointments\add_slot.html; appointments\templates\appointments\create_for_patient.html; appointments\templates\appointments\doctor_dashboard.html; appointments\templates\appointments\list.html; appointments\templates\appointments\patient_medical_record.html; appointments\templates\appointments\slots.html
+# appointments\templates\appointments\add_slot.html; appointments\templates\appointments\create_for_patient.html; appointments\templates\appointments\create_patient_account.html; appointments\templates\appointments\doctor_dashboard.html; appointments\templates\appointments\list.html; appointments\templates\appointments\patient_medical_record.html; appointments\templates\appointments\slots.html
 msgid "Espace médecin"
 msgstr "Doctor space"
 
@@ -944,9 +1108,21 @@ msgstr "Doctor space · Authorized access"
 msgid "Essayez d'autres mots-clés ou élargissez la recherche."
 msgstr "Try other keywords or broaden your search."
 
+# admin_panel\templates\admin_panel\doctor_account_form.html
+msgid "Ex : Médecine générale"
+msgstr ""
+
+# appointments\templates\appointments\create_anonymous.html
+msgid "Ex: Consultation générale, Suivi diabète..."
+msgstr ""
+
 # health_journal\templates\health_journal\entry_list.html
 msgid "Exporter"
 msgstr "Export"
+
+# forum\templates\forum\community_post_create.html
+msgid "FORUM PRIVÉ"
+msgstr ""
 
 # patients\templates\patients\edit_profile.html
 msgid "Femme"
@@ -1028,6 +1204,10 @@ msgstr "Blood type:"
 msgid "Général"
 msgstr "General"
 
+# appointments\templates\appointments\detail.html
+msgid "Générer & envoyer le lien de connexion"
+msgstr ""
+
 # health_journal\templates\health_journal\dashboard.html
 msgid "Gérer"
 msgstr "Manage"
@@ -1044,7 +1224,7 @@ msgstr "Manage your connections with the community."
 msgid "Harcèlement"
 msgstr "Harassment"
 
-# appointments\templates\appointments\create.html; appointments\templates\appointments\create_for_patient.html; appointments\templates\appointments\doctor_appointments.html; appointments\templates\appointments\edit.html
+# appointments\templates\appointments\create.html; appointments\templates\appointments\create_anonymous.html; appointments\templates\appointments\create_for_patient.html; appointments\templates\appointments\doctor_appointments.html; appointments\templates\appointments\edit.html
 msgid "Heure"
 msgstr "Time"
 
@@ -1084,6 +1264,14 @@ msgstr "Fee:"
 msgid "Humeur"
 msgstr "Mood"
 
+# admin_panel\templates\admin_panel\doctor_account_created.html; appointments\templates\appointments\patient_account_created.html
+msgid "Identifiant"
+msgstr ""
+
+# admin_panel\templates\admin_panel\doctor_account_created.html
+msgid "Identifiants de connexion"
+msgstr ""
+
 # templates\registration\login.html
 msgid "Identifiants incorrects. Veuillez réessayer."
 msgstr "Incorrect credentials. Please try again."
@@ -1092,9 +1280,17 @@ msgstr "Incorrect credentials. Please try again."
 msgid "Identification"
 msgstr "Identification"
 
+# admin_panel\templates\admin_panel\doctor_delete.html
+msgid "Il ne pourra plus se connecter ni accéder à son tableau de bord médecin."
+msgstr ""
+
 # health_journal\templates\health_journal\medication_list.html
 msgid "Inactif"
 msgstr "Inactive"
+
+# appointments\templates\appointments\create_patient_account.html
+msgid "Inclure le patient dans des communautés et forums"
+msgstr ""
 
 # admin_panel\templates\admin_panel\doctor_detail.html; admin_panel\templates\admin_panel\doctors.html
 msgid "Indisponible"
@@ -1116,9 +1312,13 @@ msgstr "Educational information — it does not replace professional medical adv
 msgid "Informations du compte"
 msgstr "Account information"
 
-# admin_panel\templates\admin_panel\doctor_form.html
+# admin_panel\templates\admin_panel\doctor_account_form.html; admin_panel\templates\admin_panel\doctor_form.html
 msgid "Informations du médecin"
 msgstr "Doctor information"
+
+# appointments\templates\appointments\patient_account_created.html
+msgid "Informations du patient"
+msgstr ""
 
 # patients\templates\patients\profile.html
 msgid "Informations médicales"
@@ -1132,6 +1332,10 @@ msgstr "Sign up"
 msgid "Inscription :"
 msgstr "Registration:"
 
+# appointments\templates\appointments\create_anonymous.html
+msgid "Jean Dupont"
+msgstr ""
+
 # appointments\templates\appointments\doctor_view_journal.html; appointments\templates\appointments\patient_medical_record.html; health_journal\templates\health_journal\entry_create.html; health_journal\templates\health_journal\entry_delete.html; health_journal\templates\health_journal\entry_detail.html; health_journal\templates\health_journal\entry_edit.html; health_journal\templates\health_journal\entry_list.html; health_journal\templates\health_journal\medication_create.html; health_journal\templates\health_journal\medication_list.html; health_journal\templates\health_journal\vitals_create.html; health_journal\templates\health_journal\vitals_list.html; templates\base.html
 msgid "Journal de santé"
 msgstr "Health journal"
@@ -1139,6 +1343,18 @@ msgstr "Health journal"
 # admin_panel\templates\admin_panel\login_audit.html
 msgid "Journal des tentatives de connexion (réussies et échouées)."
 msgstr "Record of login attempts (successful and failed)."
+
+# forum\templates\forum\community_list.html
+msgid "L'accès à une communauté vous est ouvert par votre médecin à l'issue d'une consultation. Les échanges y restent confidentiels."
+msgstr ""
+
+# admin_panel\templates\admin_panel\doctor_account_created.html
+msgid "L'envoi automatique par e-mail n'est pas configuré. Transmettez ces identifiants au médecin par le canal de votre choix (WhatsApp, SMS, etc.)."
+msgstr ""
+
+# admin_panel\templates\admin_panel\user_delete.html
+msgid "L'utilisateur ne pourra plus se connecter ni accéder à son tableau de bord."
+msgstr ""
 
 # patients\templates\patients\members.html
 msgid "La communauté se construit jour après jour."
@@ -1160,25 +1376,65 @@ msgstr "Booking an appointment strictly respects the confidentiality of your hea
 msgid "La protection de vos données de santé est au cœur de CareCircle."
 msgstr "Protecting your health data is at the heart of CareCircle."
 
+# forum\templates\forum\community_detail.html
+msgid "Lancez le premier échange de la communauté."
+msgstr ""
+
 # forum\templates\forum\search.html
 msgid "Lancez votre recherche"
 msgstr "Start your search"
+
+# admin_panel\templates\admin_panel\doctor_account_form.html
+msgid "Le compte est créé avec un identifiant et un mot de passe généré, puis ses identifiants sont envoyés par e-mail pour qu'il puisse se connecter et accéder directement à son tableau de bord."
+msgstr ""
+
+# admin_panel\templates\admin_panel\user_delete.html
+msgid "Le compte sera désactivé (is_active = False)."
+msgstr ""
+
+# admin_panel\templates\admin_panel\doctor_delete.html
+msgid "Le compte utilisateur du médecin sera désactivé (is_active = False)."
+msgstr ""
 
 # admin_panel\templates\admin_panel\doctor_delete.html
 msgid "Le compte utilisateur ne sera pas supprimé. Seul le profil médecin (et ses créneaux) sera retiré."
 msgstr "The user account will not be deleted. Only the doctor profile (and its slots) will be removed."
 
+# appointments\templates\appointments\patient_account_created.html
+msgid "Le lien de connexion a été envoyé par email à"
+msgstr ""
+
 # appointments\templates\appointments\add_slot.html
 msgid "Le nombre de jours permet de répéter le même créneau sur plusieurs jours consécutifs (ex : 5 jours = toute une semaine ouvrée)."
 msgstr "The number of days repeats the same slot over several consecutive days (e.g. 5 days = a whole working week)."
+
+# appointments\templates\appointments\patient_account_created.html
+msgid "Le patient a été rattaché à un compte. Il va choisir lui-même son mot de passe via le lien à usage unique (valable 24 h)."
+msgstr ""
+
+# appointments\templates\appointments\patient_account_created.html
+msgid "Le patient pourra y accéder dès qu'il aura défini son mot de passe."
+msgstr ""
+
+# appointments\templates\appointments\create_patient_account.html
+msgid "Le patient recevra par email un lien de connexion à usage unique (valable 24 h). Il choisira lui-même son mot de passe et accédera à son espace patient et à ses communautés. En développement, le lien est affiché une seule fois après validation."
+msgstr ""
 
 # appointments\templates\appointments\patient_medical_record.html
 msgid "Le patient vous a autorisé à consulter son journal de santé (entrées, médicaments, signes vitaux)."
 msgstr "The patient has authorized you to view their health journal (entries, medications, vital signs)."
 
+# appointments\templates\appointments\create_patient_account.html
+msgid "Le patient y aura accès dès qu'il aura défini son mot de passe via le lien de connexion."
+msgstr ""
+
 # admin_panel\templates\admin_panel\category_delete.html
 msgid "Les articles associés seront déplacés en « Sans catégorie »."
 msgstr "The associated articles will be moved to \"Uncategorized\"."
+
+# appointments\templates\appointments\create_anonymous.html
+msgid "Les créneaux affichés sont pour les 30 prochains jours."
+msgstr ""
 
 # appointments\templates\appointments\patient_medical_record.html
 msgid "Les informations ci-dessous sont strictement confidentielles. Elles ne doivent être consultées que dans le cadre d'une prise en charge médicale de ce patient. Toute divulgation est interdite."
@@ -1208,6 +1464,10 @@ msgstr "These terms may be updated. Users will be informed through the platform.
 msgid "Les réponses aux questions les plus posées."
 msgstr "Answers to the most asked questions."
 
+# forum\templates\forum\community_detail.html
+msgid "Les échanges de cette communauté restent privés : ils ne sont visibles que par les patients inscrits par leur médecin."
+msgstr ""
+
 # forum\templates\forum\post_list.html
 msgid "Les échanges sur cette communauté sont modérés. En cas de comportement inapproprié, utilisez le signalement — votre confidentialité est respectée."
 msgstr "Conversations here are moderated. If you see inappropriate behavior, use the report feature — your privacy is respected."
@@ -1216,9 +1476,33 @@ msgstr "Conversations here are moderated. If you see inappropriate behavior, use
 msgid "Licence :"
 msgstr "License:"
 
+# admin_panel\templates\admin_panel\doctor_account_created.html
+msgid "Lien de connexion"
+msgstr ""
+
+# appointments\templates\appointments\patient_account_created.html
+msgid "Lien de connexion (à usage unique)"
+msgstr ""
+
+# appointments\templates\appointments\patient_account_created.html
+msgid "Lien de connexion envoyé"
+msgstr ""
+
+# appointments\templates\appointments\patient_set_password_invalid.html
+msgid "Lien expiré"
+msgstr ""
+
+# appointments\templates\appointments\patient_set_password_invalid.html
+msgid "Lien expiré ou déjà utilisé"
+msgstr ""
+
 # appointments\templates\appointments\create.html; appointments\templates\appointments\create_for_patient.html; appointments\templates\appointments\edit.html
 msgid "Lieu"
 msgstr "Location"
+
+# appointments\templates\appointments\create_anonymous.html
+msgid "Lieu (optionnel)"
+msgstr ""
 
 # appointments\templates\appointments\detail.html
 msgid "Lieu :"
@@ -1228,11 +1512,15 @@ msgstr "Location:"
 msgid "Lire la fiche"
 msgstr "Read the factsheet"
 
+# templates\home.html
+msgid "MES COMMUNAUTÉS"
+msgstr ""
+
 # health_journal\templates\health_journal\dashboard.html; templates\home.html
 msgid "MON SUIVI"
 msgstr "MY HEALTH TRACKER"
 
-# appointments\templates\appointments\detail.html
+# appointments\templates\appointments\create_patient_account.html; appointments\templates\appointments\detail.html
 msgid "Marquer ce rendez-vous comme terminé"
 msgstr "Mark this appointment as completed"
 
@@ -1271,6 +1559,10 @@ msgstr "Member"
 # forum\templates\forum\search.html; patients\templates\patients\members.html
 msgid "Membres"
 msgstr "Members"
+
+# forum\templates\forum\community_list.html; templates\base.html
+msgid "Mes communautés"
+msgstr ""
 
 # patients\templates\patients\connections.html; patients\templates\patients\members.html; templates\base.html
 msgid "Mes connexions"
@@ -1336,6 +1628,10 @@ msgstr "Update your post."
 msgid "Mettez à jour votre suivi."
 msgstr "Update your tracking."
 
+# appointments\templates\appointments\patient_account_created.html
+msgid "Mode développement : l'email n'est pas envoyé. Copiez le lien ci-dessous et transmettez-le au patient (à usage unique, valable"
+msgstr ""
+
 # pages\templates\pages\terms.html
 msgid "Modification des conditions"
 msgstr "Changes to the terms"
@@ -1400,7 +1696,11 @@ msgstr "My profile"
 msgid "Mon suivi"
 msgstr "My tracking"
 
-# templates\registration\login.html; templates\registration\register.html
+# templates\base.html
+msgid "Mon tableau de bord"
+msgstr ""
+
+# admin_panel\templates\admin_panel\doctor_account_created.html; templates\registration\login.html; templates\registration\register.html
 msgid "Mot de passe"
 msgstr "Password"
 
@@ -1412,21 +1712,29 @@ msgstr "Reason"
 msgid "Motif :"
 msgstr "Reason:"
 
-# appointments\templates\appointments\doctor_detail.html
+# appointments\templates\appointments\create_anonymous.html; appointments\templates\appointments\doctor_detail.html
 msgid "Motif de la consultation"
 msgstr "Reason for the consultation"
+
+# appointments\templates\appointments\create_anonymous.html
+msgid "Motif et détails"
+msgstr ""
 
 # health_journal\templates\health_journal\dashboard.html
 msgid "MÉDICAMENTS"
 msgstr "MEDICATIONS"
 
-# admin_panel\templates\admin_panel\doctors.html; admin_panel\templates\admin_panel\user_detail.html; admin_panel\templates\admin_panel\users.html; appointments\templates\appointments\create.html; forum\templates\forum\search.html
+# admin_panel\templates\admin_panel\doctor_account_created.html; admin_panel\templates\admin_panel\doctor_delete.html; admin_panel\templates\admin_panel\doctors.html; admin_panel\templates\admin_panel\user_delete.html; admin_panel\templates\admin_panel\user_detail.html; admin_panel\templates\admin_panel\users.html; appointments\templates\appointments\create.html; appointments\templates\appointments\create_anonymous.html; forum\templates\forum\search.html
 msgid "Médecin"
 msgstr "Doctor"
 
 # appointments\templates\appointments\detail.html
 msgid "Médecin :"
 msgstr "Doctor:"
+
+# appointments\templates\appointments\create_anonymous.html
+msgid "Médecin et créneau"
+msgstr ""
 
 # admin_panel\templates\admin_panel\dashboard.html; admin_panel\templates\admin_panel\users.html; forum\templates\forum\search.html
 msgid "Médecins"
@@ -1448,17 +1756,25 @@ msgstr "Medications taken"
 msgid "Navigateur"
 msgstr "Browser"
 
+# appointments\templates\appointments\patient_account_created.html
+msgid "Ne pas diffuser : ce lien permet de choisir le mot de passe du patient. Il expirera après 24 h ou dès son utilisation."
+msgstr ""
+
 # health_journal\templates\health_journal\entry_create.html; health_journal\templates\health_journal\entry_edit.html
 msgid "Niveau de douleur (0-10)"
 msgstr "Pain level (0-10)"
 
-# admin_panel\templates\admin_panel\categories.html; admin_panel\templates\admin_panel\category_form.html; health_journal\templates\health_journal\medication_create.html
+# admin_panel\templates\admin_panel\categories.html; admin_panel\templates\admin_panel\category_form.html; admin_panel\templates\admin_panel\doctor_account_created.html; admin_panel\templates\admin_panel\doctor_account_form.html; appointments\templates\appointments\patient_account_created.html; health_journal\templates\health_journal\medication_create.html
 msgid "Nom"
 msgstr "Name"
 
 # admin_panel\templates\admin_panel\doctor_detail.html
 msgid "Nom :"
 msgstr "Name:"
+
+# appointments\templates\appointments\create_anonymous.html; appointments\templates\appointments\create_patient_account.html
+msgid "Nom complet"
+msgstr ""
 
 # admin_panel\templates\admin_panel\user_detail.html; appointments\templates\appointments\patient_medical_record.html
 msgid "Nom complet :"
@@ -1468,7 +1784,7 @@ msgstr "Full name:"
 msgid "Nom d'utilisateur"
 msgstr "Username"
 
-# admin_panel\templates\admin_panel\doctor_form.html
+# admin_panel\templates\admin_panel\doctor_account_form.html; admin_panel\templates\admin_panel\doctor_form.html
 msgid "Nom du cabinet"
 msgstr "Clinic name"
 
@@ -1479,6 +1795,10 @@ msgstr "Number of days (repeat)"
 # admin_panel\templates\admin_panel\forum_posts.html
 msgid "Non publié"
 msgstr "Unpublished"
+
+# admin_panel\templates\admin_panel\doctors.html
+msgid "Non renseigné"
+msgstr ""
 
 # templates\base.html
 msgid "Nos fonctionnalités"
@@ -1536,11 +1856,23 @@ msgstr "We only collect the information you voluntarily enter: profile, health j
 msgid "Nous contacter"
 msgstr "Contact us"
 
+# admin_panel\templates\admin_panel\doctor_account_form.html; admin_panel\templates\admin_panel\doctors.html
+msgid "Nouveau compte médecin"
+msgstr ""
+
+# appointments\templates\appointments\patient_account_created.html
+msgid "Nouveau compte patient créé avec succès."
+msgstr ""
+
 # messaging\templates\messaging\inbox.html
 msgid "Nouveau message"
 msgstr "New message"
 
-# admin_panel\templates\admin_panel\doctor_form.html; admin_panel\templates\admin_panel\doctors.html
+# appointments\templates\appointments\patient_set_password.html
+msgid "Nouveau mot de passe"
+msgstr ""
+
+# admin_panel\templates\admin_panel\doctor_form.html
 msgid "Nouveau médecin"
 msgstr "New doctor"
 
@@ -1548,7 +1880,7 @@ msgstr "New doctor"
 msgid "Nouveau rendez-vous"
 msgstr "New appointment"
 
-# forum\templates\forum\post_create.html; forum\templates\forum\post_list.html
+# forum\templates\forum\community_detail.html; forum\templates\forum\community_post_create.html; forum\templates\forum\post_create.html; forum\templates\forum\post_list.html
 msgid "Nouvel article"
 msgstr "New post"
 
@@ -1568,7 +1900,7 @@ msgstr "New entry"
 msgid "Nouvelle entrée santé"
 msgstr "New health entry"
 
-# admin_panel\templates\admin_panel\doctor_form.html
+# admin_panel\templates\admin_panel\doctor_account_form.html; admin_panel\templates\admin_panel\doctor_form.html
 msgid "Numéro de licence"
 msgstr "License number"
 
@@ -1579,6 +1911,10 @@ msgstr "Subject (optional)"
 # forum\templates\forum\post_create.html
 msgid "Objet de votre article"
 msgstr "Subject of your post"
+
+# appointments\templates\appointments\create_patient_account.html
+msgid "Observations, diagnostic, traitement, ordonnance..."
+msgstr ""
 
 # appointments\templates\appointments\detail.html
 msgid "Observations, diagnostic, traitement..."
@@ -1628,6 +1964,10 @@ msgstr "Share and exchange"
 msgid "Partagez une expérience ou une question en toute bienveillance."
 msgstr "Share an experience or a question in a caring way."
 
+# forum\templates\forum\community_post_create.html
+msgid "Partagez votre expérience, posez vos questions..."
+msgstr ""
+
 # forum\templates\forum\post_detail.html
 msgid "Participez à la discussion."
 msgstr "Join the discussion."
@@ -1656,13 +1996,21 @@ msgstr "Fair"
 msgid "Passé"
 msgstr "Past"
 
-# admin_panel\templates\admin_panel\user_detail.html; admin_panel\templates\admin_panel\users.html; appointments\templates\appointments\create_for_patient.html; appointments\templates\appointments\doctor_appointments.html
+# admin_panel\templates\admin_panel\user_delete.html; admin_panel\templates\admin_panel\user_detail.html; admin_panel\templates\admin_panel\users.html; appointments\templates\appointments\create_for_patient.html; appointments\templates\appointments\doctor_appointments.html
 msgid "Patient"
 msgstr "Patient"
+
+# appointments\templates\appointments\create_patient_account.html
+msgid "Patient (sans compte)"
+msgstr ""
 
 # appointments\templates\appointments\detail.html
 msgid "Patient :"
 msgstr "Patient:"
+
+# appointments\templates\appointments\detail.html
+msgid "Patient sans compte"
+msgstr ""
 
 # admin_panel\templates\admin_panel\users.html
 msgid "Patients"
@@ -1712,6 +2060,18 @@ msgstr "To better understand, prevent and act."
 msgid "Pour toute question relative à vos données, écrivez-nous à support@carecircle.app."
 msgstr "For any question regarding your data, write to us at support@carecircle.app."
 
+# forum\templates\forum\community_locked.html
+msgid "Prendre rendez-vous"
+msgstr ""
+
+# appointments\templates\appointments\doctor_detail.html; templates\home.html
+msgid "Prendre rendez-vous sans compte"
+msgstr ""
+
+# appointments\templates\appointments\create_anonymous.html
+msgid "Prendre un rendez-vous"
+msgstr ""
+
 # appointments\templates\appointments\list.html
 msgid "Prenez rendez-vous avec un médecin en quelques clics."
 msgstr "Book an appointment with a doctor in a few clicks."
@@ -1732,7 +2092,7 @@ msgstr "Appointment booking"
 msgid "Profil"
 msgstr "Profile"
 
-# admin_panel\templates\admin_panel\doctor_detail.html
+# admin_panel\templates\admin_panel\doctor_detail.html; admin_panel\templates\admin_panel\doctors.html
 msgid "Profil médecin"
 msgstr "Doctor profile"
 
@@ -1760,9 +2120,17 @@ msgstr "Schedule an appointment"
 msgid "Promouvoir en médecin"
 msgstr "Promote to doctor"
 
+# appointments\templates\appointments\create_anonymous.html
+msgid "Précisez vos symptômes, antécédents, questions..."
+msgstr ""
+
 # notifications\templates\notifications\notification_list.html
 msgid "Précédent"
 msgstr "Previous"
+
+# admin_panel\templates\admin_panel\doctor_account_form.html
+msgid "Prénom"
+msgstr ""
 
 # admin_panel\templates\admin_panel\doctor_form.html
 msgid "Présentation"
@@ -1776,11 +2144,15 @@ msgstr "Biography:"
 msgid "Pseudo :"
 msgstr "Username:"
 
-# forum\templates\forum\post_create.html; forum\templates\forum\post_detail.html
+# forum\templates\forum\community_post_create.html; forum\templates\forum\post_create.html; forum\templates\forum\post_detail.html
 msgid "Publier"
 msgstr "Publish"
 
-# forum\templates\forum\post_list.html
+# forum\templates\forum\community_post_create.html
+msgid "Publier dans la communauté"
+msgstr ""
+
+# forum\templates\forum\community_detail.html; forum\templates\forum\post_list.html
 msgid "Publier un article"
 msgstr "Publish a post"
 
@@ -1876,6 +2248,10 @@ msgstr "Join a caring circle of support."
 msgid "Rejoindre le cercle"
 msgstr "Join the circle"
 
+# appointments\templates\appointments\create_anonymous.html
+msgid "Remplissez le formulaire ci-dessous. Aucun compte n'est nécessaire. Le médecin vous confirmera par email."
+msgstr ""
+
 # admin_panel\templates\admin_panel\doctor_detail.html; admin_panel\templates\admin_panel\user_detail.html
 msgid "Rendez-vous"
 msgstr "Appointments"
@@ -1888,6 +2264,10 @@ msgstr "Appointments today"
 msgid "Rendez-vous du jour"
 msgstr "Today's appointments"
 
+# appointments\templates\appointments\patient_account_created.html
+msgid "Rendez-vous lié"
+msgstr ""
+
 # templates\base.html
 msgid "Rendez-vous médicaux"
 msgstr "Medical appointments"
@@ -1895,6 +2275,10 @@ msgstr "Medical appointments"
 # admin_panel\templates\admin_panel\dashboard.html
 msgid "Rendez-vous par statut"
 msgstr "Appointments by status"
+
+# appointments\templates\appointments\doctor_dashboard.html
+msgid "Rendez-vous à finaliser — créer le compte patient"
+msgstr ""
 
 # admin_panel\templates\admin_panel\doctors.html
 msgid "Rendre disponible"
@@ -1912,6 +2296,14 @@ msgstr "Enter your readings for today."
 msgid "Renseignez vos disponibilités pour permettre aux patients de réserver."
 msgstr "Fill in your availability so patients can book."
 
+# appointments\templates\appointments\detail.html
+msgid "Renvoyer le lien"
+msgstr ""
+
+# appointments\templates\appointments\detail.html
+msgid "Renvoyer un lien à usage unique (valable 24 h)"
+msgstr ""
+
 # health_journal\templates\health_journal\medication_list.html
 msgid "Respectez toujours la posologie prescrite par votre médecin."
 msgstr "Always follow the dosage prescribed by your doctor."
@@ -1928,21 +2320,33 @@ msgstr "Trusted health resources"
 msgid "Ressources santé."
 msgstr "Health resources."
 
-# admin_panel\templates\admin_panel\doctor_detail.html; admin_panel\templates\admin_panel\doctor_form.html; admin_panel\templates\admin_panel\report_detail.html; admin_panel\templates\admin_panel\user_detail.html; appointments\templates\appointments\detail.html; appointments\templates\appointments\doctor_appointments.html; health_journal\templates\health_journal\entry_detail.html; messaging\templates\messaging\conversation.html
+# admin_panel\templates\admin_panel\doctor_account_form.html; admin_panel\templates\admin_panel\doctor_detail.html; admin_panel\templates\admin_panel\doctor_form.html; admin_panel\templates\admin_panel\report_detail.html; admin_panel\templates\admin_panel\user_delete.html; admin_panel\templates\admin_panel\user_detail.html; appointments\templates\appointments\detail.html; appointments\templates\appointments\doctor_appointments.html; health_journal\templates\health_journal\entry_detail.html; messaging\templates\messaging\conversation.html
 msgid "Retour"
 msgstr "Back"
 
-# appointments\templates\appointments\patient_medical_record.html
+# appointments\templates\appointments\patient_account_created.html; appointments\templates\appointments\patient_medical_record.html
 msgid "Retour au tableau de bord"
 msgstr "Back to the dashboard"
+
+# forum\templates\forum\community_locked.html
+msgid "Retour aux communautés"
+msgstr ""
+
+# admin_panel\templates\admin_panel\doctor_account_created.html
+msgid "Retour aux médecins"
+msgstr ""
 
 # patients\templates\patients\members.html
 msgid "Retrouvez les autres membres et échangez en toute confiance."
 msgstr "Find other members and connect in confidence."
 
-# admin_panel\templates\admin_panel\doctors.html; admin_panel\templates\admin_panel\user_detail.html; admin_panel\templates\admin_panel\users.html
+# admin_panel\templates\admin_panel\doctors.html; admin_panel\templates\admin_panel\user_detail.html
 msgid "Réactiver"
 msgstr "Reactivate"
+
+# admin_panel\templates\admin_panel\users.html
+msgid "Réactiver le compte"
+msgstr ""
 
 # resources\templates\resources\article_detail.html
 msgid "Rédigé par"
@@ -1992,6 +2396,10 @@ msgstr "Restore"
 msgid "Réussies"
 msgstr "Successful"
 
+# admin_panel\templates\admin_panel\doctor_account_created.html
+msgid "Rôle"
+msgstr ""
+
 # admin_panel\templates\admin_panel\user_detail.html; admin_panel\templates\admin_panel\users.html
 msgid "Rôles"
 msgstr "Roles"
@@ -2008,13 +2416,21 @@ msgstr "CARE"
 msgid "SUIVI"
 msgstr "TRACKING"
 
-# templates\base.html; templates\registration\login.html; templates\registration\register.html
+# appointments\templates\appointments\patient_set_password_invalid.html; templates\base.html; templates\registration\login.html; templates\registration\register.html
 msgid "Se connecter"
 msgstr "Sign in"
 
 # templates\base.html
 msgid "Se déconnecter"
 msgstr "Sign out"
+
+# appointments\templates\appointments\patient_set_password_invalid.html
+msgid "Si le lien a expiré, veuillez contacter le"
+msgstr ""
+
+# appointments\templates\appointments\patient_set_password_invalid.html
+msgid "Si le lien a été utilisé, vous avez déjà un mot de passe :"
+msgstr ""
 
 # admin_panel\templates\admin_panel\report_detail.html
 msgid "Signalement"
@@ -2060,7 +2476,7 @@ msgstr "Recent vital signs"
 msgid "Sommeil :"
 msgstr "Sleep:"
 
-# admin_panel\templates\admin_panel\doctor_form.html; admin_panel\templates\admin_panel\doctors.html
+# admin_panel\templates\admin_panel\doctor_account_form.html; admin_panel\templates\admin_panel\doctor_form.html; admin_panel\templates\admin_panel\doctors.html
 msgid "Spécialité"
 msgstr "Specialty"
 
@@ -2192,7 +2608,7 @@ msgstr "Completed"
 msgid "Thème sombre"
 msgstr "Dark theme"
 
-# admin_panel\templates\admin_panel\forum_posts.html; appointments\templates\appointments\create.html; appointments\templates\appointments\create_for_patient.html; appointments\templates\appointments\edit.html; forum\templates\forum\post_create.html; forum\templates\forum\post_edit.html
+# admin_panel\templates\admin_panel\forum_posts.html; appointments\templates\appointments\create.html; appointments\templates\appointments\create_for_patient.html; appointments\templates\appointments\edit.html; forum\templates\forum\community_post_create.html; forum\templates\forum\post_create.html; forum\templates\forum\post_edit.html
 msgid "Titre"
 msgstr "Title"
 
@@ -2207,6 +2623,10 @@ msgstr "All rights reserved."
 # admin_panel\templates\admin_panel\users.html
 msgid "Tous les rôles"
 msgstr "All roles"
+
+# appointments\templates\appointments\doctor_dashboard.html
+msgid "Tous vos rendez-vous sont rattachés à un compte patient."
+msgstr ""
 
 # admin_panel\templates\admin_panel\login_audit.html; forum\templates\forum\search.html
 msgid "Tout"
@@ -2236,9 +2656,21 @@ msgstr "Whole FAQ"
 msgid "Toutes"
 msgstr "All"
 
+# templates\home.html
+msgid "Toutes les communautés"
+msgstr ""
+
 # resources\templates\resources\article_detail.html; resources\templates\resources\resources_home.html
 msgid "Toutes les fiches"
 msgstr "All factsheets"
+
+# admin_panel\templates\admin_panel\user_delete.html
+msgid "Toutes ses données (RDV, journal de santé, posts, messages) seront conservées intactes."
+msgstr ""
+
+# admin_panel\templates\admin_panel\doctor_delete.html
+msgid "Toutes ses données seront conservées (RDV, créneaux, patients suivis)."
+msgstr ""
 
 # admin_panel\templates\admin_panel\report_detail.html; admin_panel\templates\admin_panel\reports.html
 msgid "Traité"
@@ -2264,7 +2696,7 @@ msgstr "Very good"
 msgid "Très mauvais"
 msgstr "Very bad"
 
-# admin_panel\templates\admin_panel\doctor_form.html; patients\templates\patients\edit_profile.html
+# admin_panel\templates\admin_panel\doctor_account_form.html; admin_panel\templates\admin_panel\doctor_form.html; admin_panel\templates\admin_panel\doctors.html; appointments\templates\appointments\create_anonymous.html; appointments\templates\appointments\create_patient_account.html; patients\templates\patients\edit_profile.html
 msgid "Téléphone"
 msgstr "Phone"
 
@@ -2275,6 +2707,14 @@ msgstr "Phone:"
 # patients\templates\patients\edit_profile.html
 msgid "Téléphone d'urgence"
 msgstr "Emergency phone"
+
+# admin_panel\templates\admin_panel\doctor_account_created.html
+msgid "Un e-mail avec ces identifiants a été envoyé au médecin."
+msgstr ""
+
+# appointments\templates\appointments\create_anonymous.html
+msgid "Un email de confirmation sera envoyé au médecin. Vous serez notifié dès que le rendez-vous sera confirmé."
+msgstr ""
 
 # templates\home.html
 msgid "Un espace pensé pour vous."
@@ -2296,7 +2736,7 @@ msgstr "Another question? Write to us via messaging or consult your doctor."
 msgid "Une question, un besoin d'aide ou une suggestion ? Notre équipe vous répond."
 msgstr "A question, a need for help or a suggestion? Our team will answer you."
 
-# admin_panel\templates\admin_panel\login_audit.html; admin_panel\templates\admin_panel\users.html
+# admin_panel\templates\admin_panel\login_audit.html; admin_panel\templates\admin_panel\user_delete.html; admin_panel\templates\admin_panel\users.html
 msgid "Utilisateur"
 msgstr "User"
 
@@ -2324,6 +2764,10 @@ msgstr "Visible"
 msgid "Visiter la communauté"
 msgstr "Visit the community"
 
+# admin_panel\templates\admin_panel\doctor_account_created.html
+msgid "Voici les identifiants à transmettre au médecin en dehors de la plateforme."
+msgstr ""
+
 # appointments\templates\appointments\list.html; health_journal\templates\health_journal\dashboard.html; health_journal\templates\health_journal\entry_list.html; notifications\templates\notifications\notification_list.html
 msgid "Voir"
 msgstr "View"
@@ -2339,6 +2783,10 @@ msgstr "View the "
 # admin_panel\templates\admin_panel\doctor_detail.html
 msgid "Voir le compte utilisateur"
 msgstr "View the user account"
+
+# appointments\templates\appointments\patient_account_created.html
+msgid "Voir le rendez-vous"
+msgstr ""
 
 # patients\templates\patients\members.html
 msgid "Voir profil"
@@ -2380,6 +2828,14 @@ msgstr "Your data is used exclusively for the operation of the platform (trackin
 msgid "Vos droits"
 msgstr "Your rights"
 
+# templates\home.html
+msgid "Vos espaces d'entraide."
+msgstr ""
+
+# appointments\templates\appointments\create_anonymous.html
+msgid "Vos informations"
+msgstr ""
+
 # appointments\templates\appointments\create.html
 msgid "Vos informations de santé restent strictement confidentielles et réservées à votre médecin."
 msgstr "Your health information remains strictly confidential and reserved for your doctor."
@@ -2407,6 +2863,10 @@ msgstr "Your exchanges remain confidential and respectful."
 # messaging\templates\messaging\inbox.html
 msgid "Vos échanges restent confidentiels."
 msgstr "Your exchanges remain confidential."
+
+# forum\templates\forum\community_post_create.html
+msgid "Votre article ne sera visible que par les membres de cette communauté."
+msgstr ""
 
 # templates\base.html; templates\registration\login.html
 msgid "Votre communauté de soins, en toute confiance."
@@ -2436,6 +2896,10 @@ msgstr "Your day,"
 msgid "Votre message..."
 msgstr "Your message..."
 
+# forum\templates\forum\community_list.html
+msgid "Votre médecin pourra vous ouvrir l'accès à une communauté après une consultation."
+msgstr ""
+
 # health_journal\templates\health_journal\dashboard.html
 msgid "Votre parcours, en un coup d'œil."
 msgstr "Your journey, at a glance."
@@ -2443,6 +2907,18 @@ msgstr "Your journey, at a glance."
 # forum\templates\forum\search.html
 msgid "Votre recherche..."
 msgstr "Your search..."
+
+# forum\templates\forum\community_post_create.html
+msgid "Votre sujet..."
+msgstr ""
+
+# admin_panel\templates\admin_panel\user_delete.html
+msgid "Voulez-vous vraiment désactiver le compte de"
+msgstr ""
+
+# admin_panel\templates\admin_panel\doctor_delete.html
+msgid "Voulez-vous vraiment désactiver le compte du Dr"
+msgstr ""
 
 # forum\templates\forum\post_delete.html
 msgid "Voulez-vous vraiment supprimer l'article"
@@ -2469,8 +2945,24 @@ msgid "Vous devez avoir un rendez-vous (passé, confirmé ou en attente) avec ce
 msgstr "You must have an appointment (past, confirmed or pending) with this patient to view their medical record."
 
 # templates\home.html
+msgid "Vous n'avez pas encore de communauté. Après votre première consultation, votre médecin pourra vous ouvrir l'accès à une communauté d'entraide adaptée."
+msgstr ""
+
+# templates\home.html
 msgid "Vous n'êtes pas seul·e"
 msgstr "You are not alone"
+
+# admin_panel\templates\admin_panel\user_delete.html
+msgid "Vous ne pouvez pas désactiver votre propre compte."
+msgstr ""
+
+# admin_panel\templates\admin_panel\user_delete.html
+msgid "Vous pourrez réactiver le compte à tout moment depuis la liste des utilisateurs."
+msgstr ""
+
+# admin_panel\templates\admin_panel\doctor_delete.html
+msgid "Vous pourrez réactiver son compte à tout moment."
+msgstr ""
 
 # pages\templates\pages\privacy.html
 msgid "Vous pouvez consulter, corriger ou supprimer vos données à tout moment depuis votre profil, ou nous contacter à support@carecircle.app."
@@ -2492,6 +2984,10 @@ msgstr "Overview"
 msgid "Vue d'ensemble."
 msgstr "Overview."
 
+# appointments\templates\appointments\doctor_detail.html
+msgid "WhatsApp"
+msgstr ""
+
 # health_journal\templates\health_journal\dashboard.html
 msgid "actif"
 msgstr "active"
@@ -2503,6 +2999,10 @@ msgstr "public schedule"
 # notifications\templates\notifications\notification_list.html
 msgid "au total"
 msgstr "in total"
+
+# appointments\templates\appointments\patient_set_password.html
+msgid "chez"
+msgstr ""
 
 # appointments\templates\appointments\doctor_view_journal.html
 msgid "consultation en tant que médecin traitant."
@@ -2516,6 +3016,10 @@ msgstr "request"
 msgid "dernière"
 msgstr "entry"
 
+# appointments\templates\appointments\patient_set_password.html; appointments\templates\appointments\patient_set_password_invalid.html
+msgid "du"
+msgstr ""
+
 # appointments\templates\appointments\doctor_dashboard.html
 msgid "en un coup d'œil."
 msgstr "at a glance."
@@ -2524,13 +3028,37 @@ msgstr "at a glance."
 msgid "enregistrement"
 msgstr "recording"
 
+# appointments\templates\appointments\patient_account_created.html
+msgid "et expire dans"
+msgstr ""
+
+# appointments\templates\appointments\patient_account_created.html
+msgid "forum privé"
+msgstr ""
+
 # health_journal\templates\health_journal\entry_detail.html
 msgid "heures"
 msgstr "hours"
 
+# appointments\templates\appointments\patient_account_created.html
+msgid "heures)."
+msgstr ""
+
+# appointments\templates\appointments\patient_account_created.html
+msgid "heures."
+msgstr ""
+
 # templates\home.html
 msgid "ici."
 msgstr "here."
+
+# appointments\templates\appointments\create_anonymous.html
+msgid "jean@email.com"
+msgstr ""
+
+# forum\templates\forum\community_detail.html; forum\templates\forum\community_list.html
+msgid "membre"
+msgstr ""
 
 # notifications\templates\notifications\notification_list.html
 msgid "non lue(s) avant cette visite"
@@ -2548,7 +3076,7 @@ msgstr "new users over the last 30 days."
 msgid "ou"
 msgstr "or"
 
-# admin_panel\templates\admin_panel\report_detail.html; forum\templates\forum\post_detail.html; forum\templates\forum\post_list.html; forum\templates\forum\search.html
+# admin_panel\templates\admin_panel\report_detail.html; forum\templates\forum\community_detail.html; forum\templates\forum\post_detail.html; forum\templates\forum\post_list.html; forum\templates\forum\search.html
 msgid "par"
 msgstr "by"
 
@@ -2561,8 +3089,12 @@ msgid "patient"
 msgstr "patient"
 
 # appointments\templates\appointments\doctor_detail.html
-msgid "pour prendre rendez-vous."
-msgstr "to book an appointment."
+msgid "pour prendre rendez-vous avec un compte, ou réservez directement sans compte :"
+msgstr ""
+
+# appointments\templates\appointments\patient_set_password_invalid.html
+msgid "pour qu'il vous envoie un nouveau lien (rendez-vous"
+msgstr ""
 
 # appointments\templates\appointments\doctor_dashboard.html
 msgid "rendez-vous"
@@ -2571,6 +3103,10 @@ msgstr "appointment"
 # appointments\templates\appointments\doctor_dashboard.html
 msgid "rendez-vous au total."
 msgstr "appointments in total."
+
+# appointments\templates\appointments\doctor_dashboard.html; appointments\templates\appointments\list.html
+msgid "sans compte"
+msgstr ""
 
 # admin_panel\templates\admin_panel\report_detail.html
 msgid "sur"
@@ -2591,6 +3127,10 @@ msgstr "ABOUT"
 # appointments\templates\appointments\doctor_dashboard.html
 msgid "À confirmer"
 msgstr "To confirm"
+
+# appointments\templates\appointments\create_patient_account.html
+msgid "À l'issue de la consultation, remplissez le compte-rendu. Le compte est créé et un lien de connexion à usage unique (valable 24 h) est envoyé par email au patient pour qu'il choisisse son mot de passe."
+msgstr ""
 
 # resources\templates\resources\article_detail.html
 msgid "À lire aussi"
@@ -2620,6 +3160,10 @@ msgstr "Failure"
 msgid "Échouées"
 msgstr "Failed"
 
+# appointments\templates\appointments\doctor_detail.html
+msgid "Écrire en privé au médecin"
+msgstr ""
+
 # forum\templates\forum\post_detail.html
 msgid "Écrire un commentaire..."
 msgstr "Write a comment..."
@@ -2636,6 +3180,18 @@ msgstr "Evolution of your readings"
 msgid "à"
 msgstr "at"
 
+# appointments\templates\appointments\create_anonymous.html
+msgid "— Choisir un médecin —"
+msgstr ""
+
+# appointments\templates\appointments\create_anonymous.html
+msgid "— D'abord choisir un médecin —"
+msgstr ""
+
 # appointments\templates\appointments\create.html
 msgid "— ou créez un rendez-vous manuellement ci-dessous."
 msgstr "— or create an appointment manually below."
+
+# appointments\templates\appointments\patient_set_password.html
+msgid "— rendez-vous"
+msgstr ""

@@ -15,6 +15,7 @@
     <div class="mt-4 d-flex justify-content-center gap-3 flex-wrap">
         <a href="{% url 'register' %}" class="btn-cc btn-cc-primary">{% trans "Rejoindre le cercle" %} <i class="fas fa-arrow-right"></i></a>
         <a href="{% url 'post_list' %}" class="btn-cc btn-cc-outline">{% trans "Découvrir la communauté" %}</a>
+        <a href="{% url 'appointment_create_anonymous' %}" class="btn-cc btn-cc-accent"><i class="fas fa-calendar-plus"></i> {% trans "Prendre rendez-vous sans compte" %}</a>
     </div>
     {% else %}
     <div class="mt-4 d-flex justify-content-center gap-3 flex-wrap">
@@ -22,6 +23,36 @@
     </div>
     {% endif %}
 </section>
+
+<!-- Mes communautés (réservées aux patients authentifiés) -->
+{% if user.is_authenticated %}
+<section class="my-5">
+    <div class="d-flex justify-content-between align-items-center mb-4 flex-wrap gap-2">
+        <div>
+            <span class="kicker">{% trans "MES COMMUNAUTÉS" %}</span>
+            <h2 class="font-serif fw-bold mb-0" style="font-size:30px;">{% trans "Vos espaces d'entraide." %}</h2>
+        </div>
+        <a href="{% url 'community_list' %}" class="card-action">{% trans "Toutes les communautés" %} <i class="fas fa-arrow-right"></i></a>
+    </div>
+    <div class="grid-3">
+        {% for c in my_communities %}
+        <a href="{% url 'community_detail' c.slug %}" class="text-decoration-none d-block">
+            <div class="cc-card">
+                <div class="card-tag">{% trans "COMMUNAUTÉ" %}</div>
+                <div class="card-title">{{ c.name }}</div>
+                {% if c.description %}<p class="card-desc">{{ c.description }}</p>{% endif %}
+                <div class="card-action">{% trans "Accéder au forum" %} <i class="fas fa-arrow-right"></i></div>
+            </div>
+        </a>
+        {% empty %}
+        <div class="cc-card" style="grid-column:1/-1;">
+            <div class="card-desc mb-2">{% trans "Vous n'avez pas encore de communauté. Après votre première consultation, votre médecin pourra vous ouvrir l'accès à une communauté d'entraide adaptée." %}</div>
+            <a href="{% url 'doctor_list' %}" class="card-action">{% trans "Trouver un médecin" %} <i class="fas fa-arrow-right"></i></a>
+        </div>
+        {% endfor %}
+    </div>
+</section>
+{% endif %}
 
 <!-- Fonctionnalités -->
 <section class="my-5">

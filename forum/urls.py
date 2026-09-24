@@ -4,6 +4,9 @@ from . import views
 urlpatterns = [
     path('', views.post_list, name='post_list'),
     path('search/', views.advanced_search, name='forum_search'),
+    path('communities/', views.community_list, name='community_list'),
+    path('communities/<slug:slug>/', views.community_detail, name='community_detail'),
+    path('communities/<slug:slug>/post/new/', views.community_post_create, name='community_post_create'),
     path('post/new/', views.post_create, name='post_create'),
     path('post/<slug:slug>/', views.post_detail, name='post_detail'),
     path('post/<slug:slug>/edit/', views.post_edit, name='post_edit'),

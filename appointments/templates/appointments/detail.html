@@ -17,9 +17,25 @@
             <div class="card-body">
                 {% if appointment.doctor %}<p><strong>{% trans "Médecin :" %}</strong> Dr {{ appointment.doctor.user.get_full_name|default:appointment.doctor.user.username }} <span class="text-muted">({{ appointment.doctor.specialty }})</span></p>{% endif %}
                 {% if is_doctor %}
-                <p><strong>{% trans "Patient :" %}</strong> {{ appointment.patient.get_full_name|default:appointment.patient.username }}
+                {% if not appointment.patient %}
+                <div class="card mb-3 border-success">
+                    <div class="card-body py-3 d-flex justify-content-between align-items-center flex-wrap gap-2">
+                        <div>
+                            <strong class="text-success"><i class="fas fa-user-plus"></i> {% trans "Patient sans compte" %}</strong>
+                            <div class="small text-muted-2">
+                                {{ appointment.patient_name|default:"—" }} • {{ appointment.patient_email|default:"—" }}
+                                {% if appointment.patient_phone %} • {{ appointment.patient_phone }}{% endif %}
+                            </div>
+                        </div>
+                        <a href="{% url 'appointment_create_patient_account' appointment.pk %}" class="btn btn-success"><i class="fas fa-key"></i> {% trans "Générer & envoyer le lien de connexion" %}</a>
+                    </div>
+                </div>
+                {% else %}
+                <p><strong>{% trans "Patient :" %}</strong> {{ appointment.patient_label }}
                     <a href="{% url 'patient_medical_record' appointment.patient.id %}" class="btn btn-sm btn-outline-info ms-2"><i class="fas fa-folder-open"></i> {% trans "Dossier médical" %}</a>
+                    <a href="{% url 'appointment_resend_login_link' appointment.pk %}" class="btn btn-sm btn-outline-warning ms-1" title="{% trans "Renvoyer un lien à usage unique (valable 24 h)" %}"><i class="fas fa-paper-plane"></i> {% trans "Renvoyer le lien" %}</a>
                 </p>
+                {% endif %}
                 {% endif %}
                 <p><strong>{% trans "Date :" %}</strong> {{ appointment.date|date:'d/m/Y' }}</p>
                 <p><strong>{% trans "Heure :" %}</strong> {{ appointment.time|time:'H:i' }}</p>

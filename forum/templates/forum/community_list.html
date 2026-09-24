@@ -1,0 +1,51 @@
+{% extends 'base.html' %}
+{% load i18n %}
+
+{% block title %}{% trans "Communautés" %} - CareCircle{% endblock %}
+
+{% block content %}
+<div class="d-flex justify-content-between align-items-center mb-2">
+    <div>
+        <div class="kicker">{% trans "Espace communautaire" %}</div>
+        <h1 class="page-title">{% trans "Communautés thérapeutiques" %}</h1>
+        <p class="reassurance mb-0">{% trans "L'accès à une communauté vous est ouvert par votre médecin à l'issue d'une consultation. Les échanges y restent confidentiels." %}</p>
+    </div>
+</div>
+
+{% if user.is_authenticated and my_communities %}
+<div class="cc-card mb-4">
+    <h5 class="fw-bold mb-3"><i class="fas fa-check-circle me-2" style="color:var(--green);"></i> {% trans "Mes communautés" %}</h5>
+    <div class="grid-3">
+        {% for c in my_communities %}
+        <a href="{% url 'community_detail' c.slug %}" class="text-decoration-none">
+            <div class="discussion-card d-flex justify-content-between align-items-center">
+                <div>
+                    <strong>{{ c.name }}</strong>
+                    <div class="small text-muted-2"><i class="fas fa-users me-1"></i>{{ c.members_count }} {% trans "membre" %}{{ c.members_count|pluralize }}</div>
+                </div>
+                <i class="fas fa-arrow-right" style="color:var(--blue-accent);"></i>
+            </div>
+        </a>
+        {% endfor %}
+    </div>
+</div>
+{% endif %}
+
+<div class="grid-3">
+    {% for c in communities %}
+    <div class="cc-card">
+        <div class="card-tag">{% trans "COMMUNAUTÉ" %}</div>
+        <div class="card-title">{{ c.name }}</div>
+        {% if c.description %}<p class="card-desc">{{ c.description }}</p>{% endif %}
+        <div class="small text-muted-2 mb-2"><i class="fas fa-users me-1"></i>{{ c.members_count }} {% trans "membre" %}{{ c.members_count|pluralize }}</div>
+        <a class="card-action" href="{% url 'community_detail' c.slug %}">{% if c.id in my_ids %}{% trans "Accéder au forum" %}{% else %}{% trans "Accès réservé" %}{% endif %} <i class="fas fa-arrow-right"></i></a>
+    </div>
+    {% empty %}
+    <div class="empty-state col-12" style="grid-column:1/-1;">
+        <i class="fas fa-users"></i>
+        <h4>{% trans "Aucune communauté pour le moment" %}</h4>
+        <p>{% trans "Votre médecin pourra vous ouvrir l'accès à une communauté après une consultation." %}</p>
+    </div>
+    {% endfor %}
+</div>
+{% endblock %}

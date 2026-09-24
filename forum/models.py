@@ -23,11 +23,59 @@ class Category(models.Model):
         super().save(*args, **kwargs)
 
 
+class Community(models.Model):
+    """Communauté thérapeutique. Seul un médecin peut y inscrire un patient."""
+    name = models.CharField('Nom', max_length=100)
+    slug = models.SlugField(unique=True, blank=True)
+    description = models.TextField('Description', blank=True)
+    created_by = models.ForeignKey(User, on_delete=models.SET_NULL, null=True, blank=True, related_name='created_communities')
+    is_active = models.BooleanField('Active', default=True)
+    created_at = models.DateTimeField(auto_now_add=True)
+    members = models.ManyToManyField(
+        User, through='CommunityMembership', through_fields=('community', 'user'),
+        related_name='communities'
+    )
+
+    class Meta:
+        verbose_name = 'Communauté'
+        verbose_name_plural = 'Communautés'
+        ordering = ['name']
+
+    def __str__(self):
+        return self.name
+
+    def save(self, *args, **kwargs):
+        if not self.slug:
+            self.slug = slugify(self.name)
+        super().save(*args, **kwargs)
+
+    @property
+    def members_count(self):
+        return self.memberships.count()
+
+
+class CommunityMembership(models.Model):
+    """Inscription d'un patient dans une communauté par un médecin."""
+    community = models.ForeignKey(Community, on_delete=models.CASCADE, related_name='memberships')
+    user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='community_memberships')
+    added_by = models.ForeignKey(User, on_delete=models.SET_NULL, null=True, blank=True, related_name='added_community_memberships')
+    created_at = models.DateTimeField(auto_now_add=True)
+
+    class Meta:
+        verbose_name = 'Membre de communauté'
+        verbose_name_plural = 'Membres de communautés'
+        unique_together = ('community', 'user')
+
+    def __str__(self):
+        return f"{self.user} -> {self.community}"
+
+
 class Post(models.Model):
     title = models.CharField('Titre', max_length=200)
     slug = models.SlugField(unique=True)
     author = models.ForeignKey(User, on_delete=models.CASCADE, related_name='forum_posts')
     category = models.ForeignKey(Category, on_delete=models.SET_NULL, null=True, blank=True, related_name='posts')
+    community = models.ForeignKey(Community, on_delete=models.CASCADE, null=True, blank=True, related_name='posts')
     content = models.TextField('Contenu')
     is_published = models.BooleanField('Publié', default=True)
     is_hidden = models.BooleanField('Masqué par modération', default=False)

@@ -30,7 +30,7 @@
                 <tr>
                     <td>{{ appt.date|date:'d/m/Y' }}</td>
                     <td>{{ appt.time|time:'H:i' }}</td>
-                    <td>{{ appt.patient.get_full_name|default:appt.patient.username }}</td>
+                    <td>{{ appt.patient_label }}</td>
                     <td>{{ appt.title }}</td>
                     <td>
                         {% if appt.status == 'pending' %}<span class="badge-status gray">{% trans "En attente" %}</span>

@@ -35,8 +35,9 @@
         <div>
             <strong>
                 {% if is_doctor %}
-                {{ appt.patient.get_full_name|default:appt.patient.username }}
-                <span class="text-muted-2 small">({% trans "patient" %})</span>
+                {{ appt.patient_label }}
+                {% if not appt.patient %}<span class="text-muted-2 small">({% trans "sans compte" %})</span>
+                {% else %}<span class="text-muted-2 small">({% trans "patient" %})</span>{% endif %}
                 {% else %}
                 {{ appt.title }}
                 {% if appt.doctor %}<span class="text-muted-2 small">- Dr {{ appt.doctor.user.last_name }}</span>{% endif %}

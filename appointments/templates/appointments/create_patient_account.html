@@ -1,0 +1,89 @@
+{% extends 'base.html' %}
+{% load i18n %}
+
+{% block title %}{% trans "Créer le compte patient" %} - CareCircle{% endblock %}
+
+{% block content %}
+<div class="row justify-content-center">
+    <div class="col-md-8 col-lg-7">
+        <div class="mb-3">
+            <div class="kicker">{% trans "Espace médecin" %}</div>
+            <h1 class="page-title">{% trans "Créer le compte patient" %}</h1>
+            <p class="reassurance mb-0">{% trans "À l'issue de la consultation, remplissez le compte-rendu. Le compte est créé et un lien de connexion à usage unique (valable 24 h) est envoyé par email au patient pour qu'il choisisse son mot de passe." %}</p>
+        </div>
+
+        <form method="post">
+            {% csrf_token %}
+
+            <div class="cc-card mb-4">
+                <h5 class="fw-bold mb-3"><i class="fas fa-user me-2" style="color:var(--green);"></i> {% trans "Patient (sans compte)" %}</h5>
+                <div class="row g-3">
+                    <div class="col-md-6">
+                        <label class="form-label">{% trans "Nom complet" %} <span class="text-danger">*</span></label>
+                        <input type="text" name="patient_name" class="form-control" value="{{ appointment.patient_name }}" required>
+                    </div>
+                    <div class="col-md-6">
+                        <label class="form-label">{% trans "Email" %} <span class="text-danger">*</span></label>
+                        <input type="email" name="patient_email" class="form-control" value="{{ appointment.patient_email }}" required>
+                    </div>
+                    <div class="col-12">
+                        <label class="form-label">{% trans "Téléphone" %}</label>
+                        <input type="text" name="patient_phone" class="form-control" value="{{ appointment.patient_phone }}" disabled>
+                    </div>
+                </div>
+                <hr style="border-color:var(--border);">
+                <div class="small text-muted-2">
+                    <i class="fas fa-calendar-check me-1"></i>
+                    {{ appointment.title }} — {{ appointment.date|date:'d/m/Y' }} à {{ appointment.time|time:'H:i' }}
+                    <span class="badge bg-warning text-dark ms-2">{{ appointment.get_status_display }}</span>
+                </div>
+            </div>
+
+            <div class="cc-card mb-4">
+                <h5 class="fw-bold mb-3"><i class="fas fa-sticky-note me-2" style="color:var(--blue-accent);"></i> {% trans "Compte-rendu de consultation" %}</h5>
+                <textarea name="doctor_notes" class="form-control" rows="6" placeholder="{% trans "Observations, diagnostic, traitement, ordonnance..." %}">{{ appointment.doctor_notes }}</textarea>
+            </div>
+
+            <div class="cc-card mb-4">
+                <h5 class="fw-bold mb-3"><i class="fas fa-users me-2" style="color:var(--blue-accent);"></i> {% trans "Inclure le patient dans des communautés et forums" %}</h5>
+                <p class="text-muted-2 small">{% trans "Le patient y aura accès dès qu'il aura défini son mot de passe via le lien de connexion." %}</p>
+                <div class="row g-2">
+                    {% for community in communities %}
+                    <div class="col-md-6">
+                        <label class="discussion-card d-flex align-items-start gap-2" style="cursor:pointer;">
+                            <input type="checkbox" name="communities" value="{{ community.id }}" class="form-check-input mt-1">
+                            <span>
+                                <strong>{{ community.name }}</strong>
+                                {% if community.description %}<div class="small text-muted-2">{{ community.description }}</div>{% endif %}
+                            </span>
+                        </label>
+                    </div>
+                    {% empty %}
+                    <div class="col-12">
+                        <div class="alert alert-warning py-2 mb-0 small">
+                            <i class="fas fa-exclamation-triangle me-1"></i>
+                            {% trans "Aucune communauté pour le moment. Les communautés sont créées par l'administration." %}
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+
+            <div class="form-check mb-4">
+                <input class="form-check-input" type="checkbox" name="mark_completed" id="markCompleted">
+                <label class="form-check-label" for="markCompleted">{% trans "Marquer ce rendez-vous comme terminé" %}</label>
+            </div>
+
+            <div class="alert alert-warning small mb-4">
+                <i class="fas fa-exclamation-triangle me-1"></i>
+                {% blocktrans %}Le patient recevra par email un lien de connexion à usage unique (valable 24 h). Il choisira lui-même son mot de passe et accédera à son espace patient et à ses communautés. En développement, le lien est affiché une seule fois après validation.{% endblocktrans %}
+            </div>
+
+            <div class="d-flex gap-2 flex-wrap">
+                <button type="submit" class="btn-cc btn-cc-primary"><i class="fas fa-paper-plane"></i> {% trans "Créer le compte et envoyer le lien de connexion" %}</button>
+                <a href="{% url 'appointment_detail' appointment.pk %}" class="btn-cc btn-cc-outline"><i class="fas fa-arrow-left"></i> {% trans "Annuler" %}</a>
+            </div>
+        </form>
+    </div>
+</div>
+{% endblock %}

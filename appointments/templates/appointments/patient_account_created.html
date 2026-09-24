@@ -1,0 +1,110 @@
+{% extends 'base.html' %}
+{% load i18n %}
+
+{% block title %}{% trans "Lien de connexion envoyé" %} - CareCircle{% endblock %}
+
+{% block content %}
+<div class="container py-5">
+    <div class="row justify-content-center">
+        <div class="col-md-7">
+            <div class="text-center mb-4">
+                <span class="ring-icon ring-icon-lg mx-auto mb-3" style="background:var(--green);"><i class="fas fa-envelope-open"></i></span>
+                <h1 class="page-title">{% trans "Lien de connexion envoyé" %}</h1>
+                <p class="text-muted-2">{% trans "Le patient a été rattaché à un compte. Il va choisir lui-même son mot de passe via le lien à usage unique (valable 24 h)." %}</p>
+            </div>
+
+            {% if created %}
+            <div class="alert alert-success mb-4">
+                <i class="fas fa-check-circle"></i> {% trans "Nouveau compte patient créé avec succès." %}
+            </div>
+            {% else %}
+            <div class="alert alert-info mb-4">
+                <i class="fas fa-info-circle"></i> {% trans "Ce patient avait déjà un compte. Le rendez-vous y a été rattaché." %}
+            </div>
+            {% endif %}
+
+            {% if email_sent %}
+            <div class="alert alert-success mb-4">
+                <i class="fas fa-envelope"></i> {% trans "Le lien de connexion a été envoyé par email à" %} <strong>{{ user.email }}</strong> {% trans "et expire dans" %} {{ expiry_hours }} {% trans "heures." %}
+            </div>
+            {% else %}
+            <div class="alert alert-warning mb-4">
+                <i class="fas fa-exclamation-triangle"></i> {% trans "Mode développement : l'email n'est pas envoyé. Copiez le lien ci-dessous et transmettez-le au patient (à usage unique, valable" %} {{ expiry_hours }} {% trans "heures)." %}
+            </div>
+            {% endif %}
+
+            <div class="card mb-4">
+                <div class="card-header"><h5 class="mb-0"><i class="fas fa-user"></i> {% trans "Informations du patient" %}</h5></div>
+                <div class="card-body">
+                    <dl class="row mb-0">
+                        <dt class="col-4 col-form-label">{% trans "Nom" %}</dt>
+                        <dd class="col-8">{{ user.get_full_name|default:user.username }}</dd>
+                        <dt class="col-4 col-form-label">{% trans "Email" %}</dt>
+                        <dd class="col-8">{{ user.email }}</dd>
+                        <dt class="col-4 col-form-label">{% trans "Identifiant" %}</dt>
+                        <dd class="col-8"><span class="font-monospace">{{ user.username }}</span></dd>
+                        <dt class="col-4 col-form-label">{% trans "Rendez-vous lié" %}</dt>
+                        <dd class="col-8">{{ appointment.title }} — {{ appointment.date|date:'d/m/Y' }} {{ appointment.time|time:'H:i' }}</dd>
+                    </dl>
+                </div>
+            </div>
+
+            {% if communities %}
+            <div class="card mb-4">
+                <div class="card-header bg-success text-white"><h5 class="mb-0"><i class="fas fa-users"></i> {% trans "Communautés / forums d'accès" %}</h5></div>
+                <div class="card-body">
+                    <ul class="mb-2">
+                        {% for c in communities %}
+                        <li><a href="{% url 'community_detail' c.slug %}"><i class="fas fa-users me-1" style="color:var(--green);"></i> {{ c.name }}</a> — {% trans "forum privé" %}</li>
+                        {% endfor %}
+                    </ul>
+                    <p class="small text-muted-2 mb-0">{% trans "Le patient pourra y accéder dès qu'il aura défini son mot de passe." %}</p>
+                </div>
+            </div>
+            {% endif %}
+
+            {% if link %}
+            <div class="card mb-4">
+                <div class="card-header bg-warning text-dark"><h5 class="mb-0"><i class="fas fa-link"></i> {% trans "Lien de connexion (à usage unique)" %}</h5></div>
+                <div class="card-body">
+                    <div class="alert alert-danger py-2 small mb-2">
+                        <i class="fas fa-exclamation-circle"></i> {% trans "Ne pas diffuser : ce lien permet de choisir le mot de passe du patient. Il expirera après 24 h ou dès son utilisation." %}
+                    </div>
+                    <div class="d-flex gap-2">
+                        <input type="text" class="form-control font-monospace" id="login-link" value="{{ link }}" readonly onclick="this.select()">
+                        <button type="button" id="copy-link" class="btn btn-outline-secondary"><i class="fas fa-copy"></i></button>
+                    </div>
+                </div>
+            </div>
+            {% endif %}
+
+            <div class="d-grid gap-2">
+                <a href="{% url 'appointment_detail' appointment.pk %}" class="btn btn-primary"><i class="fas fa-eye"></i> {% trans "Voir le rendez-vous" %}</a>
+                <a href="{% url 'doctor_dashboard' %}" class="btn btn-outline-secondary"><i class="fas fa-arrow-left"></i> {% trans "Retour au tableau de bord" %}</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script nonce="{{ request.csp_nonce }}">
+document.addEventListener('DOMContentLoaded', function() {
+    const btn = document.getElementById('copy-link');
+    const input = document.getElementById('login-link');
+    if (btn && input) {
+        btn.addEventListener('click', function() {
+            input.select();
+            if (navigator.clipboard) {
+                navigator.clipboard.writeText(input.value).then(function() {
+                    btn.innerHTML = '<i class="fas fa-check"></i>';
+                    setTimeout(() => btn.innerHTML = '<i class="fas fa-copy"></i>', 2000);
+                });
+            } else {
+                document.execCommand('copy');
+                btn.innerHTML = '<i class="fas fa-check"></i>';
+                setTimeout(() => btn.innerHTML = '<i class="fas fa-copy"></i>', 2000);
+            }
+        });
+    }
+});
+</script>
+{% endblock %}

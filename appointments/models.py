@@ -1,6 +1,7 @@
 from django.db import models
 from django.contrib.auth.models import User
 from django.utils import timezone
+import re
 
 
 class Doctor(models.Model):
@@ -19,6 +20,16 @@ class Doctor(models.Model):
         verbose_name = 'Médecin'
         verbose_name_plural = 'Médecins'
         ordering = ['user__last_name', 'user__first_name']
+
+    @property
+    def phone_digits(self):
+        """Numéro au format international sans séparateurs (pour WhatsApp)."""
+        return re.sub(r'\D', '', self.phone or '')
+
+    @property
+    def whatsapp_url(self):
+        digits = self.phone_digits
+        return f"https://wa.me/{digits}" if digits else ''
 
     def __str__(self):
         name = self.user.get_full_name() or self.user.username
@@ -57,7 +68,10 @@ class Appointment(models.Model):
         ('completed', 'Terminé'),
     ]
 
-    patient = models.ForeignKey(User, on_delete=models.CASCADE, related_name='patient_appointments')
+    patient = models.ForeignKey(User, on_delete=models.CASCADE, related_name='patient_appointments', null=True, blank=True)
+    patient_name = models.CharField('Nom patient', max_length=200, blank=True)
+    patient_email = models.EmailField('Email patient', blank=True)
+    patient_phone = models.CharField('Téléphone patient', max_length=20, blank=True)
     doctor = models.ForeignKey(Doctor, on_delete=models.SET_NULL, related_name='appointments', null=True, blank=True)
     slot = models.OneToOneField(AvailabilitySlot, on_delete=models.SET_NULL, related_name='appointment', null=True, blank=True)
     title = models.CharField('Titre', max_length=200)
@@ -69,6 +83,8 @@ class Appointment(models.Model):
     status = models.CharField('Statut', max_length=10, choices=STATUS_CHOICES, default='pending')
     notes = models.TextField('Notes', blank=True)
     doctor_notes = models.TextField('Notes de consultation', blank=True)
+    credentials_sent = models.BooleanField('Identifiants transmis', default=False)
+    credentials_sent_at = models.DateTimeField('Identifiants transmis le', null=True, blank=True)
     created_by = models.ForeignKey(User, on_delete=models.SET_NULL, null=True, blank=True, related_name='created_appointments')
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
@@ -80,6 +96,12 @@ class Appointment(models.Model):
 
     def __str__(self):
         return f"{self.title} - {self.date} {self.time}"
+
+    @property
+    def patient_label(self):
+        if self.patient:
+            return self.patient.get_full_name() or self.patient.username
+        return self.patient_name or 'Patient sans compte'
 
     def save(self, *args, **kwargs):
         if self.slot and not self.slot.is_booked:

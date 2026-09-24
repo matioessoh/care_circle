@@ -26,14 +26,19 @@ def appointment_notifications(sender, instance, created, **kwargs):
     url = reverse('appointment_detail', args=[instance.pk])
     # Nouveau rendez-vous demandé -> prévenir le médecin
     if created:
-        if instance.doctor and instance.doctor.user_id != instance.patient_id:
+        if instance.doctor and (not instance.patient or instance.doctor.user_id != instance.patient_id):
+            if instance.patient:
+                patient_label = instance.patient.get_full_name() or instance.patient.username
+            elif instance.patient_name:
+                patient_label = instance.patient_name
+            else:
+                patient_label = 'Un patient'
             notify(
                 user=instance.doctor.user,
                 kind='appointment',
                 title='Nouveau rendez-vous demandé',
-                message=f"{instance.patient.get_full_name() or instance.patient.username} "
-                        f"a demandé un rendez-vous : {instance.title} "
-                        f"{_pretty_date(instance.date)}.",
+                message=f"{patient_label} a demandé un rendez-vous : "
+                        f"{instance.title} {_pretty_date(instance.date)}.",
                 url=url,
             )
         return
@@ -43,8 +48,8 @@ def appointment_notifications(sender, instance, created, **kwargs):
     doctor_name = ''
     if instance.doctor:
         doctor_name = f"Le Dr {instance.doctor.user.get_full_name() or instance.doctor.user.username} "
-    # Changement de statut -> prévenir le patient
-    if prev != current:
+    # Changement de statut -> prévenir le patient (si un compte existe)
+    if prev != current and instance.patient:
         if current == 'confirmed':
             notify(
                 user=instance.patient,

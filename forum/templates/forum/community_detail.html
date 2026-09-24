@@ -1,0 +1,45 @@
+{% extends 'base.html' %}
+{% load i18n %}
+
+{% block title %}{{ community.name }} - CareCircle{% endblock %}
+
+{% block content %}
+<div class="d-flex justify-content-between align-items-center mb-2 flex-wrap gap-3">
+    <div>
+        <div class="kicker">{% trans "COMMUNAUTÉ" %}</div>
+        <h1 class="page-title">{{ community.name }}</h1>
+        {% if community.description %}<p class="reassurance mb-0">{{ community.description }}</p>{% endif %}
+        <div class="small text-muted-2 mt-2"><i class="fas fa-users me-1"></i>{{ community.members_count }} {% trans "membre" %}{{ community.members_count|pluralize }}</div>
+    </div>
+    {% if is_member %}
+    <a href="{% url 'community_post_create' community.slug %}" class="btn-cc btn-cc-primary"><i class="fas fa-plus"></i> {% trans "Nouvel article" %}</a>
+    {% endif %}
+</div>
+
+{% for post in posts %}
+<div class="discussion-card">
+    <div class="d-flex justify-content-between align-items-start mb-2">
+        <span class="category-pill">{{ community.name }}</span>
+        <small class="text-muted-2">{{ post.created_at|date:'d/m/Y' }}</small>
+    </div>
+    <h5 class="mb-1"><a href="{% url 'post_detail' post.slug %}" class="text-decoration-none" style="color: var(--text-primary);">{{ post.title }}</a></h5>
+    <p class="text-muted-2 small mb-3">{% trans "par" %} {{ post.author.username }}</p>
+    <div class="text-muted-2 small d-flex gap-4">
+        <span><i class="fas fa-comment"></i> {{ post.comments.count }}</span>
+        <span><i class="fas fa-heart" style="color:#C0392B;"></i> {{ post.likes_count }}</span>
+    </div>
+</div>
+{% empty %}
+<div class="empty-state">
+    <i class="fas fa-comments"></i>
+    <h4>{% trans "Aucun article dans ce forum" %}</h4>
+    <p>{% trans "Lancez le premier échange de la communauté." %}</p>
+    {% if is_member %}
+    <a href="{% url 'community_post_create' community.slug %}" class="btn-cc btn-cc-accent">{% trans "Publier un article" %}</a>
+    {% endif %}
+</div>
+{% endfor %}
+
+<hr class="my-5">
+<p class="reassurance small mb-0">{% trans "Les échanges de cette communauté restent privés : ils ne sont visibles que par les patients inscrits par leur médecin." %}</p>
+{% endblock %}

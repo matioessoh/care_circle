@@ -16,8 +16,28 @@
             <hr style="border-color: var(--border);">
             {% if doctor.clinic_name %}<p class="mb-1"><i class="fas fa-hospital me-2" style="color:var(--blue-accent);"></i> {{ doctor.clinic_name }}</p>{% endif %}
             {% if doctor.clinic_address %}<p class="mb-1"><i class="fas fa-map-marker-alt me-2" style="color:var(--blue-accent);"></i> {{ doctor.clinic_address }}</p>{% endif %}
-            {% if doctor.phone %}<p class="mb-1"><i class="fas fa-phone me-2" style="color:var(--blue-accent);"></i> {{ doctor.phone }}</p>{% endif %}
+            {% if doctor.phone %}
+            <p class="mb-1">
+                <i class="fas fa-phone me-2" style="color:var(--blue-accent);"></i>
+                <a href="tel:{{ doctor.phone }}" class="text-decoration-none" style="color:var(--blue-accent);">{{ doctor.phone }}</a>
+            </p>
+            {% endif %}
             {% if doctor.consultation_fee %}<p class="mb-0"><i class="fas fa-euro-sign me-2" style="color:var(--blue-accent);"></i> {{ doctor.consultation_fee }} €</p>{% endif %}
+            <hr style="border-color: var(--border);">
+            <p class="small text-muted-2 mb-2">{% trans "Contact privé" %}</p>
+            {% if doctor.phone %}
+            <div class="d-flex gap-2 flex-wrap">
+                <a href="tel:{{ doctor.phone }}" class="btn btn-sm btn-outline-primary"><i class="fas fa-phone"></i> {% trans "Appeler" %}</a>
+                {% if doctor.whatsapp_url %}
+                <a href="{{ doctor.whatsapp_url }}" target="_blank" rel="noopener" class="btn btn-sm btn-outline-success"><i class="fab fa-whatsapp"></i> {% trans "WhatsApp" %}</a>
+                {% endif %}
+            </div>
+            {% else %}
+            <p class="small text-muted-2 mb-0">{% trans "Aucun numéro de téléphone. Il sera affiché ici dès que le médecin l'aura renseigné." %}</p>
+            {% endif %}
+            {% if user.is_authenticated and user.id != doctor.user.id %}
+            <a href="{% url 'start_conversation' doctor.user.id %}" class="btn btn-sm btn-primary mt-3 w-100"><i class="fas fa-comment-medical"></i> {% trans "Écrire en privé au médecin" %}</a>
+            {% endif %}
         </div>
     </div>
     <div class="col-md-8">
@@ -59,7 +79,8 @@
                 {% endif %}
             </form>
             {% else %}
-            <p><a href="{% url 'login' %}" class="alert-link" style="color:var(--blue-accent); font-weight:600;">{% trans "Connectez-vous" %}</a> {% trans "pour prendre rendez-vous." %}</p>
+            <p><a href="{% url 'login' %}" class="alert-link" style="color:var(--blue-accent); font-weight:600;">{% trans "Connectez-vous" %}</a> {% trans "pour prendre rendez-vous avec un compte, ou réservez directement sans compte :" %}</p>
+            <a href="{% url 'appointment_create_anonymous' %}?doctor={{ doctor.pk }}" class="btn-cc btn-cc-primary"><i class="fas fa-calendar-plus"></i> {% trans "Prendre rendez-vous sans compte" %}</a>
             {% endif %}
         </div>
         <p class="reassurance small mt-3 mb-0">{% trans "La prise de rendez-vous respecte strictement la confidentialité de vos informations de santé." %}</p>

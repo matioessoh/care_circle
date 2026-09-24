@@ -45,7 +45,8 @@
             <a href="{% url 'appointment_detail' appt.pk %}" class="text-decoration-none d-block">
                 <div class="d-flex justify-content-between align-items-center py-2 {% if not forloop.last %}border-bottom{% endif %}" style="border-color:var(--border)!important;">
                     <div>
-                        <strong>{{ appt.time|time:'H:i' }}</strong> — {{ appt.patient.get_full_name|default:appt.patient.username }}
+                        <strong>{{ appt.time|time:'H:i' }}</strong> — {{ appt.patient_label }}
+                        {% if not appt.patient %}<span class="badge bg-warning text-dark ms-1">{% trans "sans compte" %}</span>{% endif %}
                         <div class="text-muted-2 small">{{ appt.title }}</div>
                     </div>
                     {% if appt.status == 'pending' %}<span class="badge-status blue">{% trans "À confirmer" %}</span>
@@ -68,7 +69,8 @@
             <a href="{% url 'appointment_detail' appt.pk %}" class="text-decoration-none d-block">
                 <div class="d-flex justify-content-between align-items-center py-2 {% if not forloop.last %}border-bottom{% endif %}" style="border-color:var(--border)!important;">
                     <div>
-                        <strong>{{ appt.patient.get_full_name|default:appt.patient.username }}</strong>
+                        <strong>{{ appt.patient_label }}</strong>
+                        {% if not appt.patient %}<span class="badge bg-warning text-dark ms-1">{% trans "sans compte" %}</span>{% endif %}
                         <div class="text-muted-2 small">{{ appt.date|date:'d/m/Y' }} {% trans "à" %} {{ appt.time|time:'H:i' }}</div>
                     </div>
                     <span class="badge-status blue">{% trans "En attente" %}</span>
@@ -84,6 +86,29 @@
         </div>
     </div>
 </div>
+
+{% if no_account %}
+<div class="cc-card mt-4 border-start border-4" style="border-color:var(--green)!important;">
+    <h5 class="fw-bold mb-1"><i class="fas fa-user-plus me-2" style="color:var(--green);"></i> {% trans "Rendez-vous à finaliser — créer le compte patient" %}</h5>
+    <p class="text-muted-2 small mb-3">{% trans "Après une consultation, créez le compte de ces patients et transmettez-leur leurs identifiants." %}</p>
+    {% for appt in no_account %}
+    <a href="{% url 'appointment_create_patient_account' appt.pk %}" class="text-decoration-none d-block">
+        <div class="d-flex justify-content-between align-items-center py-2 {% if not forloop.last %}border-bottom{% endif %}" style="border-color:var(--border)!important;">
+            <div>
+                <strong>{{ appt.patient_name }}</strong>
+                <div class="text-muted-2 small">{{ appt.patient_email }} • {{ appt.date|date:'d/m/Y' }} {% trans "à" %} {{ appt.time|time:'H:i' }}</div>
+            </div>
+            <span class="btn-cc btn-cc-green" style="font-size:13px;padding:6px 12px;">{% trans "Créer le compte" %} <i class="fas fa-arrow-right"></i></span>
+        </div>
+    </a>
+    {% empty %}
+    <div class="empty-state" style="padding:24px;">
+        <i class="fas fa-user-check"></i>
+        <p>{% trans "Tous vos rendez-vous sont rattachés à un compte patient." %}</p>
+    </div>
+    {% endfor %}
+</div>
+{% endif %}
 
 <div class="cc-card mt-4">
     <h5 class="fw-bold mb-3"><i class="fas fa-users me-2" style="color:var(--blue-accent);"></i> {% trans "Mes patients" %} ({{ patients.count }})</h5>

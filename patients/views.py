@@ -10,7 +10,10 @@ from .models import PatientProfile, Connection
 
 
 def home(request):
-    return render(request, 'home.html')
+    my_communities = []
+    if request.user.is_authenticated:
+        my_communities = request.user.communities.filter(is_active=True)
+    return render(request, 'home.html', {'my_communities': my_communities})
 
 
 def register(request):

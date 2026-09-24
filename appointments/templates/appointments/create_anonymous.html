@@ -1,0 +1,176 @@
+{% extends 'base.html' %}
+{% load i18n %}
+
+{% block title %}{% trans "Prendre un rendez-vous" %} - CareCircle{% endblock %}
+
+{% block content %}
+<div class="container py-5">
+    <div class="row justify-content-center">
+        <div class="col-md-8 col-lg-7">
+            <div class="text-center mb-4">
+                <span class="ring-icon ring-icon-lg mx-auto mb-3"><i class="fas fa-calendar-plus"></i></span>
+                <h1 class="page-title">{% trans "Prendre un rendez-vous" %}</h1>
+                <p class="text-muted-2">{% trans "Remplissez le formulaire ci-dessous. Aucun compte n'est nécessaire. Le médecin vous confirmera par email." %}</p>
+            </div>
+
+            {% if messages %}
+            <div class="mb-3">
+                {% for message in messages %}
+                <div class="alert alert-{{ message.tags|default:'info' }} alert-dismissible fade show py-2" role="alert">
+                    {{ message }}
+                    <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+                </div>
+                {% endfor %}
+            </div>
+            {% endif %}
+
+            <div class="card">
+                <div class="card-body p-4">
+                    <form method="post" id="appointment-form">
+                        {% csrf_token %}
+
+                        <input type="hidden" name="doctor" value="{{ request.GET.doctor|default:'' }}">
+
+                        <!-- Infos patient (anonyme) -->
+                        <div class="card mb-4">
+                            <div class="card-header bg-light"><h5 class="mb-0"><i class="fas fa-user"></i> {% trans "Vos informations" %}</h5></div>
+                            <div class="card-body">
+                                <div class="row">
+                                    <div class="col-md-6 mb-3">
+                                        <label class="form-label">{% trans "Nom complet" %} <span class="text-danger">*</span></label>
+                                        <input type="text" name="patient_name" class="form-control" required placeholder="{% trans "Jean Dupont" %}">
+                                    </div>
+                                    <div class="col-md-6 mb-3">
+                                        <label class="form-label">{% trans "Email" %} <span class="text-danger">*</span></label>
+                                        <input type="email" name="patient_email" class="form-control" required placeholder="{% trans "jean@email.com" %}">
+                                    </div>
+                                    <div class="col-12 mb-3">
+                                        <label class="form-label">{% trans "Téléphone" %}</label>
+                                        <input type="tel" name="patient_phone" class="form-control" placeholder="{% trans "+237 6XX XX XX XX" %}">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Choix médecin et créneau -->
+                        <div class="card mb-4">
+                            <div class="card-header bg-light"><h5 class="mb-0"><i class="fas fa-user-md"></i> {% trans "Médecin et créneau" %}</h5></div>
+                            <div class="card-body">
+                                <div class="mb-3">
+                                    <label class="form-label">{% trans "Médecin" %} <span class="text-danger">*</span></label>
+                                    <select name="doctor" id="doctor-select" class="form-control" required>
+                                        <option value="">{% trans "— Choisir un médecin —" %}</option>
+                                        {% for doc in doctors %}
+                                        <option value="{{ doc.id }}">Dr {{ doc.user.get_full_name|default:doc.user.username }} - {{ doc.specialty }}</option>
+                                        {% endfor %}
+                                    </select>
+                                </div>
+
+                                <div id="slots-container" class="d-none">
+                                    <label class="form-label">{% trans "Créneau disponible" %} <span class="text-danger">*</span></label>
+                                    <select name="slot" id="slot-select" class="form-control" required>
+                                        <option value="">{% trans "— D'abord choisir un médecin —" %}</option>
+                                    </select>
+                                    <div class="form-text">{% trans "Les créneaux affichés sont pour les 30 prochains jours." %}</div>
+                                </div>
+
+                                <div id="manual-datetime" class="d-none mt-3">
+                                    <div class="row">
+                                        <div class="col-md-6 mb-3">
+                                            <label class="form-label">{% trans "Date" %} <span class="text-danger">*</span></label>
+                                            <input type="date" name="date" id="manual-date" class="form-control" min="{% now 'Y-m-d' %}">
+                                        </div>
+                                        <div class="col-md-6 mb-3">
+                                            <label class="form-label">{% trans "Heure" %} <span class="text-danger">*</span></label>
+                                            <input type="time" name="time" id="manual-time" class="form-control">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Motif et détails -->
+                        <div class="card mb-4">
+                            <div class="card-header bg-light"><h5 class="mb-0"><i class="fas fa-notes-medical"></i> {% trans "Motif et détails" %}</h5></div>
+                            <div class="card-body">
+                                <div class="mb-3">
+                                    <label class="form-label">{% trans "Motif de la consultation" %} <span class="text-danger">*</span></label>
+                                    <input type="text" name="title" class="form-control" required placeholder="{% trans "Ex: Consultation générale, Suivi diabète..." %}">
+                                </div>
+                                <div class="mb-3">
+                                    <label class="form-label">{% trans "Description (optionnel)" %}</label>
+                                    <textarea name="description" class="form-control" rows="3" placeholder="{% trans "Précisez vos symptômes, antécédents, questions..." %}"></textarea>
+                                </div>
+                                <div class="mb-3">
+                                    <label class="form-label">{% trans "Lieu (optionnel)" %}</label>
+                                    <input type="text" name="location" class="form-control" placeholder="{% trans "Cabinet, Téléconsultation, Domicile..." %}">
+                                </div>
+                            </div>
+                        </div>
+
+                        <button type="submit" class="btn btn-primary btn-lg w-100"><i class="fas fa-paper-plane"></i> {% trans "Envoyer ma demande de rendez-vous" %}</button>
+                        <p class="text-center text-muted-2 small mt-3">{% trans "Un email de confirmation sera envoyé au médecin. Vous serez notifié dès que le rendez-vous sera confirmé." %}</p>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block extra_js %}
+<script nonce="{{ request.csp_nonce }}">
+document.addEventListener('DOMContentLoaded', function() {
+    const doctorSelect = document.getElementById('doctor-select');
+    const slotsContainer = document.getElementById('slots-container');
+    const slotSelect = document.getElementById('slot-select');
+    const manualDatetime = document.getElementById('manual-datetime');
+    const manualDate = document.getElementById('manual-date');
+    const manualTime = document.getElementById('manual-time');
+
+    // Pré-sélectionner le médecin si passé en paramètre URL
+    const urlParams = new URLSearchParams(window.location.search);
+    const doctorParam = urlParams.get('doctor');
+    if (doctorParam && doctorSelect.querySelector(`option[value="${doctorParam}"]`)) {
+        doctorSelect.value = doctorParam;
+        doctorSelect.dispatchEvent(new Event('change'));
+    }
+
+    doctorSelect.addEventListener('change', function() {
+        const doctorId = this.value;
+        if (doctorId) {
+            // Charger les créneaux via AJAX
+            fetch(`/rendez-vous/api/doctor/${doctorId}/slots/`)
+                .then(r => r.json())
+                .then(data => {
+                    slotSelect.innerHTML = '<option value="">— Choisir un créneau —</option>';
+                    if (data.slots && data.slots.length > 0) {
+                        data.slots.forEach(s => {
+                            const opt = document.createElement('option');
+                            opt.value = s.id;
+                            const start = s.start_time.slice(0,5);
+                            const end = s.end_time.slice(0,5);
+                            opt.textContent = `${s.date} • ${start} - ${end}`;
+                            slotSelect.appendChild(opt);
+                        });
+                        slotsContainer.classList.remove('d-none');
+                        manualDatetime.classList.add('d-none');
+                        manualDate.required = false;
+                        manualTime.required = false;
+                        slotSelect.required = true;
+                    } else {
+                        slotsContainer.classList.add('d-none');
+                        manualDatetime.classList.remove('d-none');
+                        manualDate.required = true;
+                        manualTime.required = true;
+                        slotSelect.required = false;
+                    }
+                });
+        } else {
+            slotsContainer.classList.add('d-none');
+            manualDatetime.classList.add('d-none');
+        }
+    });
+});
+</script>
+{% endblock %}

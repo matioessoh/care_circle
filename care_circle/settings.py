@@ -205,6 +205,8 @@ LOGIN_REDIRECT_URL = 'home'
 
 LOGOUT_REDIRECT_URL = 'home'
 
+PASSWORD_RESET_TIMEOUT = 60 * 60 * 24  # 24 h: validité du lien de connexion envoyé au patient
+
 USE_I18N = True
 
 USE_TZ = True

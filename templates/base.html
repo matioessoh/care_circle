@@ -47,6 +47,9 @@
             <a class="nav-link {% if request.resolver_match.url_name == 'post_list' %}active{% endif %}" href="{% url 'post_list' %}"><i class="fas fa-users"></i> {% trans "Communauté" %}</a>
         </li>
         <li class="nav-item">
+            <a class="nav-link {% if request.resolver_match.url_name == 'community_list' or request.resolver_match.url_name == 'community_detail' %}active{% endif %}" href="{% url 'community_list' %}"><i class="fas fa-hands-helping"></i> {% trans "Communautés" %}</a>
+        </li>
+        <li class="nav-item">
             <a class="nav-link {% if request.resolver_match.url_name == 'notification_list' %}active{% endif %}" href="{% url 'notification_list' %}">
                 <i class="fas fa-bell"></i> Notifications
                 {% if unread_notifications_count %}<span class="badge" style="background:var(--blue-accent-2);">{{ unread_notifications_count }}</span>{% endif %}
@@ -136,6 +139,7 @@
                 <li class="nav-item"><a class="nav-link {% if request.resolver_match.url_name == 'journal_dashboard' %}active{% endif %}" href="{% url 'journal_dashboard' %}"><i class="fas fa-th-large me-1"></i> {% trans "Vue d'ensemble" %}</a></li>
                 <li class="nav-item"><a class="nav-link {% if request.resolver_match.url_name == 'appointment_list' or request.resolver_match.url_name == 'doctor_list' or request.resolver_match.url_name == 'appointment_detail' %}active{% endif %}" href="{% url 'appointment_list' %}"><i class="fas fa-calendar-check me-1"></i> {% trans "Mes rendez-vous" %}</a></li>
                 <li class="nav-item"><a class="nav-link {% if request.resolver_match.url_name == 'post_list' or request.resolver_match.url_name == 'post_detail' %}active{% endif %}" href="{% url 'post_list' %}"><i class="fas fa-users me-1"></i> {% trans "Communauté" %}</a></li>
+                <li class="nav-item"><a class="nav-link {% if request.resolver_match.url_name == 'community_list' or request.resolver_match.url_name == 'community_detail' %}active{% endif %}" href="{% url 'community_list' %}"><i class="fas fa-hands-helping me-1"></i> {% trans "Mes communautés" %}</a></li>
                 <li class="nav-item"><a class="nav-link {% if request.resolver_match.url_name == 'inbox' or request.resolver_match.url_name == 'conversation' %}active{% endif %}" href="{% url 'inbox' %}"><i class="fas fa-envelope me-1"></i> {% trans "Messages" %}</a></li>
                 {% else %}
                 <li class="nav-item text-muted-2 py-2">{% trans "Votre communauté de soins, en toute confiance." %}</li>
