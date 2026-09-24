@@ -116,6 +116,9 @@
         <li class="nav-item">
             <a class="nav-link {% if request.resolver_match.url_name == 'admin_forum_posts' or request.resolver_match.url_name == 'admin_forum_comments' %}active{% endif %}" href="{% url 'admin_forum_posts' %}"><i class="fas fa-file-alt"></i> Forum</a>
         </li>
+        <li class="nav-item">
+            <a class="nav-link {% if request.resolver_match.url_name == 'admin_communities' or request.resolver_match.url_name == 'admin_community_create' or request.resolver_match.url_name == 'admin_community_edit' %}active{% endif %}" href="{% url 'admin_communities' %}"><i class="fas fa-hands-helping"></i> Forums</a>
+        </li>
     </ul>
     <div class="admin-sidebar-help">
         <i class="fas fa-question-circle mb-1"></i>

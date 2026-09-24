@@ -1,0 +1,53 @@
+{% extends 'admin_panel/base_admin.html' %}
+{% load i18n %}
+
+{% block title %}{% trans "Forums" %} - CareCircle{% endblock %}
+
+{% block admin_content %}
+<div class="d-flex justify-content-between align-items-center mb-4">
+    <h3><i class="fas fa-hands-helping"></i> {% trans "Forums du site" %}</h3>
+    <a href="{% url 'admin_community_create' %}" class="btn btn-primary"><i class="fas fa-plus"></i> {% trans "Créer un forum" %}</a>
+</div>
+
+<div class="card">
+    <div class="card-body">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>{% trans "Forum" %}</th>
+                    <th>{% trans "Description" %}</th>
+                    <th>{% trans "Membres" %}</th>
+                    <th>{% trans "Articles" %}</th>
+                    <th>{% trans "Créé par" %}</th>
+                    <th>{% trans "Statut" %}</th>
+                    <th>{% trans "Actions" %}</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for community in communities %}
+                <tr>
+                    <td>{{ community.name }}</td>
+                    <td>{{ community.description|default:'—' }}</td>
+                    <td>{{ community.n_members }}</td>
+                    <td>{{ community.n_posts }}</td>
+                    <td>{% if community.created_by %}{{ community.created_by.get_full_name|default:community.created_by.username }}{% else %}—{% endif %}</td>
+                    <td>
+                        {% if community.is_active %}<span class="badge bg-success">{% trans "Active" %}</span>
+                        {% else %}<span class="badge bg-secondary">{% trans "Inactive" %}</span>{% endif %}
+                    </td>
+                    <td>
+                        <a href="{% url 'admin_community_toggle_active' community.id %}" class="btn btn-sm btn-outline-{% if community.is_active %}secondary{% else %}success{% endif %}" title="{% trans 'Activer / désactiver' %}">
+                            <i class="fas fa-{% if community.is_active %}eye-slash{% else %}eye{% endif %}"></i>
+                        </a>
+                        <a href="{% url 'admin_community_edit' community.id %}" class="btn btn-sm btn-outline-primary" title="{% trans 'Modifier' %}"><i class="fas fa-edit"></i></a>
+                        <a href="{% url 'admin_community_delete' community.id %}" class="btn btn-sm btn-outline-danger" title="{% trans 'Supprimer' %}"><i class="fas fa-trash"></i></a>
+                    </td>
+                </tr>
+                {% empty %}
+                <tr><td colspan="7" class="text-muted text-center">{% trans "Aucun forum. Créez le premier forum du site." %}</td></tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+{% endblock %}

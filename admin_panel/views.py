@@ -15,7 +15,7 @@ from audit.models import LoginLog
 
 from patients.models import PatientProfile
 from appointments.models import Doctor, Appointment, AvailabilitySlot
-from forum.models import Post, Comment, Category, Report
+from forum.models import Community, Post, Comment, Category, Report
 from messaging.models import Conversation, Message
 
 
@@ -480,6 +480,72 @@ def category_delete(request, category_id):
         messages.success(request, f"Catégorie « {name} » supprimée.")
         return redirect('admin_categories')
     return render(request, 'admin_panel/category_delete.html', {'category': category})
+
+
+@admin_required
+def communities_list(request):
+    communities = (Community.objects
+                   .select_related('created_by')
+                   .annotate(n_members=Count('memberships'), n_posts=Count('posts'))
+                   .order_by('name'))
+    return render(request, 'admin_panel/communities.html', {'communities': communities})
+
+
+@admin_required
+def community_create(request):
+    if request.method == 'POST':
+        name = (request.POST.get('name') or '').strip()
+        description = request.POST.get('description', '')
+        is_active = request.POST.get('is_active') == 'on'
+        if name:
+            Community.objects.create(
+                name=name,
+                description=description,
+                is_active=is_active,
+                created_by=request.user,
+            )
+            messages.success(request, f"Communauté « {name} » créée.")
+            return redirect('admin_communities')
+        messages.error(request, 'Le nom est obligatoire.')
+    return render(request, 'admin_panel/community_form.html')
+
+
+@admin_required
+def community_edit(request, community_id):
+    community = get_object_or_404(Community, id=community_id)
+    if request.method == 'POST':
+        name = (request.POST.get('name') or '').strip()
+        if not name:
+            messages.error(request, 'Le nom est obligatoire.')
+        else:
+            community.name = name
+            community.description = request.POST.get('description', '')
+            community.is_active = request.POST.get('is_active') == 'on'
+            community.save()
+            messages.success(request, 'Communauté modifiée.')
+            return redirect('admin_communities')
+    return render(request, 'admin_panel/community_form.html', {'community': community})
+
+
+@admin_required
+def community_delete(request, community_id):
+    community = get_object_or_404(Community, id=community_id)
+    if request.method == 'POST':
+        name = community.name
+        community.delete()
+        messages.success(request, f"Communauté « {name} » supprimée.")
+        return redirect('admin_communities')
+    return render(request, 'admin_panel/community_delete.html', {'community': community})
+
+
+@admin_required
+def community_toggle_active(request, community_id):
+    community = get_object_or_404(Community, id=community_id)
+    community.is_active = not community.is_active
+    community.save()
+    state = 'réactivée' if community.is_active else 'désactivée'
+    messages.success(request, f"Communauté « {community.name} » {state}.")
+    return redirect('admin_communities')
 
 
 @admin_required
