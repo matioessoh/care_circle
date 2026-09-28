@@ -628,7 +628,7 @@ def appointment_create(request):
                     fail_silently=True,
                 )
             except Exception:
-                logger.exception("Échec envoi notification médecin RDV %s", pk)
+                logger.exception("Échec envoi notification médecin RDV %s", appointment.pk)
         messages.success(request, 'Rendez-vous créé avec succès.')
         return redirect('appointment_list')
     doctors = Doctor.objects.filter(is_available=True).exclude(user__is_superuser=True).exclude(user__is_staff=True).select_related('user')
@@ -649,7 +649,7 @@ def appointment_create_for_patient(request):
             messages.error(request, 'Veuillez remplir tous les champs obligatoires.')
             return redirect('appointment_create_for_patient')
 
-        Appointment.objects.create(
+        new_appointment = Appointment.objects.create(
             patient=patient,
             doctor=_get_doctor(request.user),
             title=title or f"Consultation {patient.username}",
@@ -679,7 +679,7 @@ def appointment_create_for_patient(request):
                     fail_silently=True,
                 )
             except Exception:
-                logger.exception("Échec envoi notification patient RDV programmé %s", pk)
+                logger.exception("Échec envoi notification patient RDV programmé %s", new_appointment.pk)
         messages.success(request, 'Rendez-vous programmé pour le patient.')
         return redirect('appointment_list')
     patients = (User.objects
@@ -727,7 +727,7 @@ def appointment_cancel(request, pk):
     return redirect('appointment_detail', pk=pk)
 
 
-@user_passes_test(_is_doctor, login_url='appointments')
+@user_passes_test(_is_doctor, login_url='appointment_list')
 def my_slots(request):
     """Le médecin gère ses créneaux de disponibilité."""
     doctor = _get_doctor(request.user)
@@ -741,7 +741,7 @@ def my_slots(request):
     })
 
 
-@user_passes_test(_is_doctor, login_url='appointments')
+@user_passes_test(_is_doctor, login_url='appointment_list')
 def add_slot(request):
     """Le médecin ajoute des créneaux (répétables si souhaité)."""
     doctor = _get_doctor(request.user)

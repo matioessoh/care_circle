@@ -71,7 +71,7 @@
                         <i class="fas fa-exclamation-circle"></i> {% trans "Ne pas diffuser : ce lien permet de choisir le mot de passe du patient. Il expirera après 24 h ou dès son utilisation." %}
                     </div>
                     <div class="d-flex gap-2">
-                        <input type="text" class="form-control font-monospace" id="login-link" value="{{ link }}" readonly onclick="this.select()">
+                        <input type="text" class="form-control font-monospace" id="login-link" value="{{ link }}" readonly>
                         <button type="button" id="copy-link" class="btn btn-outline-secondary"><i class="fas fa-copy"></i></button>
                     </div>
                 </div>
@@ -91,6 +91,7 @@ document.addEventListener('DOMContentLoaded', function() {
     const btn = document.getElementById('copy-link');
     const input = document.getElementById('login-link');
     if (btn && input) {
+        input.addEventListener('focus', function() { input.select(); });
         btn.addEventListener('click', function() {
             input.select();
             if (navigator.clipboard) {

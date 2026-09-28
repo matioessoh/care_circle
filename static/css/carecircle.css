@@ -18,6 +18,7 @@
   --green-bg: #E6F4EC;
   --text-primary: #111827;
   --text-secondary: #6B7280;
+  --text-muted-light: #8A94A8;
   --border: #E5E7EB;
 
   /* Typographie */
@@ -66,12 +67,13 @@ h1, h2, h3, h4, h5, h6 { font-weight: 600; color: var(--text-primary); }
 
 /* Grand titre de page (dashboard) */
 .page-title {
-  font-size: 34px;
+  font-size: clamp(24px, 4vw, 34px);
   font-weight: 700;
   color: var(--text-primary);
   margin-bottom: 4px;
+  line-height: 1.2;
 }
-.page-title it { color: var(--blue-accent); }
+.page-title em { color: var(--blue-accent); font-style: normal; }
 
 /* Disclaimers / réassurance */
 .reassurance {
@@ -90,8 +92,18 @@ h1, h2, h3, h4, h5, h6 { font-weight: 600; color: var(--text-primary); }
   z-index: 1020;
   background: var(--white);
   border-bottom: 1px solid var(--border);
-  box-shadow: var(--shadow-soft);
+  box-shadow: 0 1px 3px rgba(22, 33, 62, 0.06), 0 4px 16px rgba(22, 33, 62, 0.06);
 }
+/* Effet verre dépoli moderne quand le navigateur le permet (sinon fond uni) */
+@supports (background: color-mix(in srgb, white 50%, transparent)) {
+  .patient-navbar {
+    background: color-mix(in srgb, var(--white) 88%, transparent);
+    backdrop-filter: blur(12px) saturate(1.4);
+    -webkit-backdrop-filter: blur(12px) saturate(1.4);
+  }
+}
+.patient-navbar .navbar-toggler { border-color: var(--border); padding: 6px 10px; }
+.patient-navbar .navbar-toggler:focus { box-shadow: 0 0 0 3px rgba(46, 90, 172, 0.15); }
 .patient-navbar .nav-link {
   color: var(--text-secondary);
   font-weight: 500;
@@ -115,6 +127,19 @@ h1, h2, h3, h4, h5, h6 { font-weight: 600; color: var(--text-primary); }
   text-decoration: none;
   color: var(--text-primary);
 }
+/* Anneau icône : base globale (utilisable hors .brand-logo : headers, footers, pages) */
+.ring-icon {
+  width: 38px; height: 38px;
+  border: 3px solid var(--blue-accent);
+  border-radius: 50%;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--blue-accent);
+  font-size: 16px;
+  flex-shrink: 0;
+}
+.ring-icon-lg { width: 64px; height: 64px; border-width: 3px; font-size: 26px; }
 .brand-logo .ring-icon {
   width: 38px; height: 38px;
   border: 3px solid var(--blue-accent);
@@ -157,6 +182,8 @@ h1, h2, h3, h4, h5, h6 { font-weight: 600; color: var(--text-primary); }
   overflow-y: auto;
 }
 .with-doctor-sidebar { margin-left: 260px; }
+/* Le footer suit le décalage du contenu (sinon il passe sous la sidebar fixe) */
+.with-doctor-sidebar + .site-footer { margin-left: 260px; }
 
 .sidebar-doctor .brand-logo { color: var(--white); }
 .sidebar-doctor .brand-logo .ring-icon { border-color: var(--white); color: var(--white); }
@@ -230,6 +257,8 @@ h1, h2, h3, h4, h5, h6 { font-weight: 600; color: var(--text-primary); }
   overflow-y: auto;
 }
 .with-admin-sidebar { margin-left: 240px; margin-top: 64px; }
+/* Le footer suit le décalage du contenu (sinon il passe sous la sidebar fixe) */
+.with-admin-sidebar + .site-footer { margin-left: 240px; }
 .admin-sidebar .nav-link {
   display: flex;
   align-items: center;
@@ -475,10 +504,27 @@ h1, h2, h3, h4, h5, h6 { font-weight: 600; color: var(--text-primary); }
   .grid-3, .grid-2 { grid-template-columns: 1fr; }
   .sidebar-doctor { position: static; width: 100%; height: auto; }
   .with-doctor-sidebar { margin-left: 0; }
+  .with-doctor-sidebar + .site-footer { margin-left: 0; }
   .admin-sidebar { position: static; width: 100%; height: auto; }
-  .admin-topbar { position: static; }
+  .admin-topbar { position: static; height: auto; flex-wrap: wrap; gap: 12px; padding: 12px 16px; }
   .with-admin-sidebar { margin-left: 0; margin-top: 0; }
-  .role-main { padding: 20px; }
+  .with-admin-sidebar + .site-footer { margin-left: 0; }
+  .role-main { padding: 20px 16px; }
+  .cc-card { padding: 18px; }
+  .empty-state { padding: 32px 16px; }
+  .login-card { padding: 28px 22px; }
+  /* Menu mobile : boutons d'action pleine largeur, empilés */
+  .patient-navbar .navbar-collapse .btn-cc { width: 100%; justify-content: center; margin: 4px 0 !important; }
+  .patient-navbar .navbar-collapse .nav-item.me-2 { margin-right: 0 !important; }
+}
+
+/* Très petits écrans */
+@media (max-width: 576px) {
+  .role-main { padding: 16px 12px; }
+  .cc-card { padding: 16px; }
+  .discussion-card { padding: 14px; }
+  .btn-cc { padding: 10px 16px; font-size: 14px; }
+  .site-footer { padding: 40px 0 20px; }
 }
 
 /* ---------- Écran de connexion ---------- */
@@ -524,6 +570,7 @@ h1, h2, h3, h4, h5, h6 { font-weight: 600; color: var(--text-primary); }
   --text-primary: #E8EDF6;
   --text-secondary: #9BA7BC;
   --border: #263250;
+  --text-muted-light: #8A94A8;
   --shadow-soft: 0 2px 12px rgba(0, 0, 0, 0.4);
   --shadow-strong: 0 8px 30px rgba(0, 0, 0, 0.55);
 }
@@ -555,7 +602,13 @@ h1, h2, h3, h4, h5, h6 { font-weight: 600; color: var(--text-primary); }
 [data-theme="dark"] .login-screen { background: linear-gradient(145deg, #10162B 0%, #131C33 50%, #16233F 100%); }
 [data-theme="dark"] .login-screen .deco-circle { background: rgba(74, 120, 210, 0.10); }
 
-/* Espaces médecins / admin conservent le fond navy affiché */
+/* Cloche de notification sur fond marine (topbar admin) : contraste blanc */
+.admin-topbar .notification-bell { color: rgba(255, 255, 255, 0.85); }
+.admin-topbar .notification-bell:hover { background: rgba(255, 255, 255, 0.12); color: #FFFFFF; }
+
+/* Bouton hamburger visible en mode sombre */
+[data-theme="dark"] .patient-navbar .navbar-toggler-icon { filter: invert(1) brightness(1.6); }
+[data-theme="dark"] .patient-navbar .navbar-toggler { border-color: var(--border); }
 [data-theme="dark"] .admin-topbar,
 [data-theme="dark"] .sidebar-doctor,
 [data-theme="dark"] .admin-sidebar { background: var(--navy); }
@@ -563,6 +616,26 @@ h1, h2, h3, h4, h5, h6 { font-weight: 600; color: var(--text-primary); }
 [data-theme="dark"] .admin-sidebar .nav-link.active { background: var(--blue-accent); }
 [data-theme="dark"] .patient-navbar .nav-link.active,
 [data-theme="dark"] .patient-navbar .nav-link.active:hover { color: var(--blue-accent-2); }
+
+/* ---------- Composants Bootstrap en mode sombre ---------- */
+[data-theme="dark"] .card { background-color: #171E30; border-color: var(--border); color: var(--text-primary); }
+[data-theme="dark"] .card-header, [data-theme="dark"] .card-footer { background-color: rgba(255, 255, 255, 0.03); border-color: var(--border); }
+[data-theme="dark"] .bg-light { background-color: #1E2A4A !important; color: var(--text-primary); }
+[data-theme="dark"] .table { --bs-table-bg: transparent; --bs-table-color: var(--text-primary); --bs-table-border-color: var(--border); color: var(--text-primary); }
+[data-theme="dark"] .table thead th { color: var(--text-secondary); border-color: var(--border); }
+[data-theme="dark"] .table-hover > tbody > tr:hover > * { --bs-table-accent-bg: rgba(255, 255, 255, 0.04); color: var(--text-primary); }
+[data-theme="dark"] .form-control, [data-theme="dark"] .form-select { background-color: #10172B; border-color: var(--border); color: var(--text-primary); }
+[data-theme="dark"] .form-control:focus, [data-theme="dark"] .form-select:focus { background-color: #10172B; border-color: var(--blue-accent); color: var(--text-primary); }
+[data-theme="dark"] .form-control::placeholder { color: var(--text-secondary); }
+[data-theme="dark"] .form-control:disabled { background-color: #1A2340; color: var(--text-secondary); }
+[data-theme="dark"] .dropdown-menu { background-color: #1A2340; border-color: var(--border); }
+[data-theme="dark"] .dropdown-item { color: var(--text-primary); }
+[data-theme="dark"] .dropdown-item:hover { background-color: rgba(255, 255, 255, 0.06); color: #FFFFFF; }
+[data-theme="dark"] .dropdown-divider { border-color: var(--border); }
+[data-theme="dark"] .btn-close { filter: invert(1) brightness(1.4); }
+[data-theme="dark"] .modal-content { background-color: #171E30; border-color: var(--border); color: var(--text-primary); }
+[data-theme="dark"] .alert-warning { background-color: #3D3220; border-color: #6B5A2E; color: #E4C07A; }
+[data-theme="dark"] .text-muted { color: var(--text-secondary) !important; }
 
 /* ---------- Notifications ---------- */
 .notification-bell {
