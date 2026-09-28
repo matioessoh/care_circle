@@ -25,13 +25,19 @@ class Command(BaseCommand):
             status='confirmed',
             date__in=[today, tomorrow],
         ).select_related('patient', 'doctor__user'):
-            if not app.patient.email:
+            # Email du compte patient, sinon celui laissé lors de la prise de RDV anonyme.
+            recipient = getattr(app.patient, 'email', None) or app.patient_email
+            if not recipient:
                 continue
+            if app.patient:
+                patient_label = app.patient.get_full_name() or app.patient.username
+            else:
+                patient_label = app.patient_name or 'cher patient'
             when = "aujourd'hui" if app.date == today else "demain"
             heure = app.time.strftime('%H:%M') if app.time else "à l'heure prévue"
             sujet = "Rappel : votre rendez-vous " + when
             corps = (
-                "Bonjour " + (app.patient.get_full_name() or app.patient.username) + ",\n\n"
+                "Bonjour " + patient_label + ",\n\n"
                 "Rappel : vous avez un rendez-vous " + when + " à " + heure + ".\n"
                 "  Dr " + (app.doctor.user.get_full_name() or app.doctor.user.username) + "\n"
                 "  Motif : " + app.title + "\n\n"
@@ -42,12 +48,12 @@ class Command(BaseCommand):
                     subject=sujet,
                     message=corps,
                     from_email=settings.DEFAULT_FROM_EMAIL,
-                    recipient_list=[app.patient.email],
+                    recipient_list=[recipient],
                     fail_silently=True,
                 )
                 sent += 1
             except Exception:
-                logger.exception("Échec envoi rappel RDV %s à %s", app.pk, app.patient.email)
+                logger.exception("Échec envoi rappel RDV %s à %s", app.pk, recipient)
 
         # Rappels de médicaments actifs
         for med in Medication.objects.filter(is_active=True).select_related('user'):

@@ -5,5 +5,11 @@
     "care_circle/wsgi.py": {
       "maxDuration": 60
     }
-  }
+  },
+  "crons": [
+    {
+      "path": "/rendez-vous/api/cron/reminders/",
+      "schedule": "0 6 * * *"
+    }
+  ]
 }

@@ -14,15 +14,22 @@ from django.contrib.auth import login as auth_login
 from django.contrib.auth.tokens import default_token_generator
 from django.contrib.auth.password_validation import validate_password
 from django.core.exceptions import ValidationError
+from django.db import transaction
 from django.utils.encoding import force_bytes, force_str
 from django.utils.http import urlsafe_base64_encode, urlsafe_base64_decode
+from django_ratelimit.decorators import ratelimit
 from datetime import date, timedelta
 import logging
 import re
+import secrets
+
+from django.core.management import call_command
+from django.views.decorators.http import require_GET
 
 from .models import Appointment, Doctor, AvailabilitySlot
 from patients.models import PatientProfile
 from forum.models import Community, CommunityMembership
+from care_circle.ratelimit import client_ip_key, limited_response
 
 
 logger = logging.getLogger(__name__)
@@ -62,9 +69,12 @@ def doctor_appointments(request, pk):
     })
 
 
+@ratelimit(key=client_ip_key, rate='10/h', method='POST', block=False)
 def appointment_create_anonymous(request):
     """Prise de rendez-vous SANS compte : le patient laisse ses coordonnées.
     Le compte ne sera créé qu'à l'issue de la consultation, par le médecin."""
+    if request.method == 'POST' and getattr(request, 'limited', False):
+        return limited_response(request)
     if request.user.is_authenticated:
         return redirect('appointment_create')
     if request.method == 'POST':
@@ -80,37 +90,63 @@ def appointment_create_anonymous(request):
         time_val = parse_time(time_str) if time_str else None
 
         doctor = Doctor.objects.filter(id=doctor_id).first() if doctor_id else None
-        slot = AvailabilitySlot.objects.filter(id=slot_id, is_booked=False).first() if slot_id else None
-        if slot:
-            slot.is_booked = True
-            slot.save()
-            date_val = slot.date
-            time_val = slot.start_time
 
         if not patient_name or not patient_email:
             messages.error(request, 'Veuillez indiquer votre nom complet et votre email.')
             return redirect('appointment_create_anonymous')
-        if not doctor or not date_val or not time_val:
-            messages.error(request, 'Veuillez choisir un médecin, une date et une heure.')
+        if not doctor:
+            messages.error(request, 'Veuillez choisir un médecin.')
             return redirect('appointment_create_anonymous')
 
         if not title:
             title = f"Consultation {patient_name}"
 
-        appointment = Appointment.objects.create(
-            patient=None,
-            patient_name=patient_name,
-            patient_email=patient_email,
-            patient_phone=patient_phone,
-            doctor=doctor,
-            slot=slot,
-            title=title,
-            description=request.POST.get('description', ''),
-            date=date_val,
-            time=time_val,
-            location=request.POST.get('location', ''),
-            status='pending',
-        )
+        if slot_id and not (date_val and time_val):
+            # Réservation atomique : verrouille la ligne pour empêcher
+            # deux patients de réserver le même créneau en simultané.
+            with transaction.atomic():
+                slot = (AvailabilitySlot.objects
+                        .select_for_update()
+                        .filter(id=slot_id, is_booked=False)
+                        .first())
+                if slot is None:
+                    messages.error(request, 'Ce créneau vient d\'être réservé. Veuillez en choisir un autre.')
+                    return redirect('appointment_create_anonymous')
+                slot.is_booked = True
+                slot.save()
+                appointment = Appointment.objects.create(
+                    patient=None,
+                    patient_name=patient_name,
+                    patient_email=patient_email,
+                    patient_phone=patient_phone,
+                    doctor=doctor,
+                    slot=slot,
+                    title=title,
+                    description=request.POST.get('description', ''),
+                    date=slot.date,
+                    time=slot.start_time,
+                    location=request.POST.get('location', ''),
+                    status='pending',
+                )
+            date_val, time_val = slot.date, slot.start_time
+        else:
+            if not date_val or not time_val:
+                messages.error(request, 'Veuillez choisir une date et une heure.')
+                return redirect('appointment_create_anonymous')
+            appointment = Appointment.objects.create(
+                patient=None,
+                patient_name=patient_name,
+                patient_email=patient_email,
+                patient_phone=patient_phone,
+                doctor=doctor,
+                slot=None,
+                title=title,
+                description=request.POST.get('description', ''),
+                date=date_val,
+                time=time_val,
+                location=request.POST.get('location', ''),
+                status='pending',
+            )
         # Email au médecin
         if doctor and doctor.user.email:
             try:
@@ -148,8 +184,11 @@ def appointment_create_anonymous(request):
     return render(request, 'appointments/create_anonymous.html', {'doctors': doctors})
 
 
+@ratelimit(key=client_ip_key, rate='200/h', block=False)
 def doctor_slots_api(request, pk):
     """API AJAX : créneaux libres d'un médecin pour les 30 prochains jours."""
+    if getattr(request, 'limited', False):
+        return JsonResponse({'detail': 'Trop de requêtes.'}, status=429)
     doctor = get_object_or_404(Doctor, pk=pk)
     slots = AvailabilitySlot.objects.filter(
         doctor=doctor,
@@ -584,31 +623,52 @@ def appointment_create(request):
         time = parse_time(time_str) if time_str else None
 
         doctor = Doctor.objects.filter(id=doctor_id).first() if doctor_id else None
-        slot = AvailabilitySlot.objects.filter(id=slot_id, is_booked=False).first() if slot_id else None
-        if slot:
-            slot.is_booked = True
-            slot.save()
-            date = slot.date
-            time = slot.start_time
 
         if not title:
             title = f"Rendez-vous avec Dr {doctor.user.last_name}" if doctor else 'Rendez-vous'
-        if not date or not time:
-            messages.error(request, 'Veuillez choisir une date et une heure.')
-            return redirect('appointment_create')
 
-        appointment = Appointment.objects.create(
-            patient=request.user,
-            doctor=doctor,
-            slot=slot,
-            title=title,
-            description=request.POST.get('description', ''),
-            date=date,
-            time=time,
-            location=request.POST.get('location', ''),
-            notes=request.POST.get('notes', ''),
-            created_by=request.user,
-        )
+        if slot_id and not (date and time):
+            # Réservation atomique : verrouille la ligne pour empêcher
+            # deux patients de réserver le même créneau en simultané.
+            with transaction.atomic():
+                slot = (AvailabilitySlot.objects
+                        .select_for_update()
+                        .filter(id=slot_id, is_booked=False)
+                        .first())
+                if slot is None:
+                    messages.error(request, 'Ce créneau vient d\'être réservé. Veuillez en choisir un autre.')
+                    return redirect('appointment_create')
+                slot.is_booked = True
+                slot.save()
+                appointment = Appointment.objects.create(
+                    patient=request.user,
+                    doctor=doctor,
+                    slot=slot,
+                    title=title,
+                    description=request.POST.get('description', ''),
+                    date=slot.date,
+                    time=slot.start_time,
+                    location=request.POST.get('location', ''),
+                    notes=request.POST.get('notes', ''),
+                    created_by=request.user,
+                )
+            date, time = slot.date, slot.start_time
+        else:
+            if not date or not time:
+                messages.error(request, 'Veuillez choisir une date et une heure.')
+                return redirect('appointment_create')
+            appointment = Appointment.objects.create(
+                patient=request.user,
+                doctor=doctor,
+                slot=None,
+                title=title,
+                description=request.POST.get('description', ''),
+                date=date,
+                time=time,
+                location=request.POST.get('location', ''),
+                notes=request.POST.get('notes', ''),
+                created_by=request.user,
+            )
         # Notification email au médecin
         if doctor and doctor.user.email:
             try:
@@ -759,3 +819,17 @@ def add_slot(request):
         messages.success(request, f'{repeat_days} créneau(x) ajouté(s).')
         return redirect('my_slots')
     return render(request, 'appointments/add_slot.html')
+
+
+@require_GET
+def cron_reminders(request):
+    """Déclenché par Vercel Cron (1x/jour). Exige
+    `Authorization: Bearer <CRON_SECRET>` (Vercel l'envoie automatiquement
+    quand la variable d'environnement CRON_SECRET existe). Sans secret
+    configuré : toujours refusé (fail closed)."""
+    secret = getattr(settings, 'CRON_SECRET', '')
+    auth = request.headers.get('Authorization', '')
+    if not secret or not secrets.compare_digest(auth, f'Bearer {secret}'):
+        return JsonResponse({'detail': 'Forbidden'}, status=403)
+    call_command('send_reminders')
+    return JsonResponse({'ok': True})

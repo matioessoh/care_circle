@@ -19,6 +19,8 @@ from django.urls import path, include
 from django.conf import settings
 from django.conf.urls.static import static
 
+from care_circle.views import RateLimitedLoginView
+
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('i18n/', include('django.conf.urls.i18n')),
@@ -31,6 +33,9 @@ urlpatterns = [
     path('ressources/', include('resources.urls')),
     path('notifications/', include('notifications.urls')),
     path('pages/', include('pages.urls')),
+    # Login avec rate-limit : déclaré AVANT django.contrib.auth.urls pour
+    # prendre le pas sur le LoginView standard (même nom 'login').
+    path('accounts/login/', RateLimitedLoginView.as_view(), name='login'),
     path('accounts/', include('django.contrib.auth.urls')),
 ]
 

@@ -6,6 +6,7 @@ urlpatterns = [
     path('dashboard/', views.doctor_dashboard, name='doctor_dashboard'),
     path('anonymous/new/', views.appointment_create_anonymous, name='appointment_create_anonymous'),
     path('api/doctor/<int:pk>/slots/', views.doctor_slots_api, name='doctor_slots_api'),
+    path('api/cron/reminders/', views.cron_reminders, name='cron_reminders'),
     path('new/', views.appointment_create, name='appointment_create'),
     path('new/for-patient/', views.appointment_create_for_patient, name='appointment_create_for_patient'),
     path('doctors/', views.doctor_list, name='doctor_list'),

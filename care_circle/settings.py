@@ -265,10 +265,19 @@ if _env_bool('EMAIL_USE_SMTP', default=False):
     EMAIL_HOST_PASSWORD = os.environ.get('EMAIL_HOST_PASSWORD', '')
     EMAIL_USE_TLS = _env_bool('EMAIL_USE_TLS', default=True)
     EMAIL_USE_SSL = _env_bool('EMAIL_USE_SSL', default=False)
+    EMAIL_TIMEOUT = int(os.environ.get('EMAIL_TIMEOUT', '10'))
 else:
     EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 
 DEFAULT_FROM_EMAIL = os.environ.get('DEFAULT_FROM_EMAIL', 'noreply@carecircle.local')
+
+# Rate limiting (django-ratelimit, cache local). Désactivable en test via RATELIMIT_ENABLE=0.
+RATELIMIT_ENABLE = _env_bool('RATELIMIT_ENABLE', default=True)
+
+# Secret du cron Vercel : l'endpoint /api/cron/... exige
+# `Authorization: Bearer <CRON_SECRET>` (envoyé auto par Vercel si la var existe).
+# Vide = endpoint toujours refusé (fail closed).
+CRON_SECRET = os.environ.get('CRON_SECRET', '')
 
 
 # ---------------------------------------------------------------------------

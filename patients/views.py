@@ -6,6 +6,9 @@ from django.contrib import messages
 from django.contrib.auth.password_validation import validate_password
 from django.core.exceptions import ValidationError
 from django.db.models import Q
+from django_ratelimit.decorators import ratelimit
+
+from care_circle.ratelimit import client_ip_key, limited_response
 from .models import PatientProfile, Connection
 
 
@@ -16,7 +19,10 @@ def home(request):
     return render(request, 'home.html', {'my_communities': my_communities})
 
 
+@ratelimit(key=client_ip_key, rate='5/h', method='POST', block=False)
 def register(request):
+    if request.method == 'POST' and getattr(request, 'limited', False):
+        return limited_response(request)
     if request.user.is_authenticated:
         return redirect('home')
     if request.method == 'POST':
